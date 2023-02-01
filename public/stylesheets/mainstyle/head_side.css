@@ -1,0 +1,87 @@
+/* 헤더부분 */
+.head_container {
+  position: sticky;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.head_container .menu_bar {
+  display: inline-block;
+  padding: 12px 22px;
+}
+.head_container h1 {
+  display: inline-block;
+  margin: 13px 0;
+  font-family: "nicomoji";
+}
+.logo a {
+  font-size: 24px;
+}
+.header_form {
+  display: flex;
+  justify-content: space-between;
+}
+#search {
+  display: flex;
+  align-items: center;
+}
+#search_bar {
+  width: 100%;
+  padding: 5px 0 5px 20px;
+  border-radius: 40px 0 0 40px;
+  font-size: 20px;
+  border-color: #e2e2e2;
+}
+#search_btn {
+  padding: 7px 10px 6px 20px;
+  background-color: #d9d9d9;
+  border-style: none;
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+}
+#login_btn {
+  font-size: 14px;
+  padding: 9px 18px;
+  border-radius: 25px;
+  border-style: none;
+  background-color: #d9d9d9;
+  cursor: pointer;
+}
+/* 아이콘수정 */
+.fa-paw {
+  width: 30px;
+}
+.fas {
+  margin-right: 24px;
+  font-size: 24px;
+}
+/* 사이드부분 */
+aside {
+  position: fixed;
+  /* margin-top: 60px; */
+  width: 240px;
+  padding: 12px;
+}
+.menu {
+  list-style: none;
+}
+.home li,
+.my a {
+  display: block;
+  border-radius: 10px;
+  padding: 6px 8px;
+  margin-bottom: 12px;
+}
+.home li:hover,
+.my a:hover {
+  background-color: #d6d6d6;
+}
+.line {
+  display: block;
+  margin: 25px 0;
+  border-bottom: 1px solid;
+}
+.more {
+  margin: 24px;
+}
