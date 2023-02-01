@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
+  </head>
+  <body>
+    <header>
+      <div class="head_container">
+        <div class="container_logo">
+          <div class="menu_bar"><i class="fas fa-bars"></i></div>
+          <h1 class="logo">
+            <a href="#"><i class="fas fa-paw"></i>Take a Look</a>
+          </h1>
+        </div>
+        <form id="search" action="/result">
+          <div>
+            <input type="search" name="search" id="search_bar" />
+          </div>
+          <div>
+            <button type="submit" aria-label="검색" id="search_btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+        <div>
+          <input type="button" name="login" value="로그인" id="login_btn" />
+        </div>
+      </div>
+    </header>
+    <aside>
+      <ul class="menu home">
+        <li>
+          <a href="#"><i class="fas fa-home"></i>Home</a>
+        </li>
+        <li><i class="fas fa-globe"></i>해외영화</li>
+        <li><i class="fas fa-globe-asia"></i>국내영화</li>
+      </ul>
+      <div class="line"></div>
+      <div class="menu my">
+        <a href="#"><i class="fas fa-file-video"></i>My Playlist</a>
+      </div>
+      <div class="more"><i class="fas fa-chevron-down"></i>더보기</div>
+    </aside>
+    <main>
+      <div class="main_container">
+        <div class="tags">
+          <ul class="tag">
+            <li><a href="#">전체</a></li>
+            <li><a href="#">액션</a></li>
+            <li><a href="#">공포</a></li>
+            <li><a href="#">로맨스</a></li>
+            <li><a href="#">판타지</a></li>
+            <li><a href="#">SF</a></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <script src="https://kit.fontawesome.com/c6ba6a6cf1.js" crossorigin="anonymous"></script>
+  </body>
+</html>
