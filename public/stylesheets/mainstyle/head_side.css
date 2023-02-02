@@ -2,25 +2,22 @@
 .head_container {
   position: sticky;
   width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
 }
 .head_container .menu_bar {
-  display: inline-block;
-  padding: 12px 22px;
-}
-.head_container h1 {
-  display: inline-block;
-  margin: 13px 0;
-  font-family: "nicomoji";
-}
-.logo a {
-  font-size: 24px;
+  padding: 0 7px;
 }
 .header_form {
   display: flex;
   justify-content: space-between;
+}
+.container_logo {
+  display: flex;
+  align-items: center;
 }
 #search {
   display: flex;
@@ -49,9 +46,6 @@
   cursor: pointer;
 }
 /* 아이콘수정 */
-.fa-paw {
-  width: 30px;
-}
 .fas {
   margin-right: 24px;
   font-size: 24px;
