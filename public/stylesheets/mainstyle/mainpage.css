@@ -1,6 +1,6 @@
 main {
   margin-top: 10px;
-  margin-left: 240px
+  margin-left: 240px;
 }
 
 .main_container ul {
@@ -12,4 +12,5 @@ main {
   padding: 10px 13px;
   background-color: #d9d9d9;
   border-radius: 10px;
+  cursor: pointer;
 }

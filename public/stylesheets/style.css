@@ -1,8 +1,29 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import "mainstyle/head_side.css";
+@import "mainstyle/mainpage.css";
+
+@font-face {
+  font-family: "nicomoji";
+  src: url("../fonts/nicomoji-plus_v2.ttf");
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+body {
+  font-family: Helvetica, arial, sans-serif;
+}
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: #333;
 }
