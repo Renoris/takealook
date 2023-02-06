@@ -6,18 +6,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   padding: 0 16px;
+  border-bottom: 1px solid #d2d2d2;
 }
-.head_container .menu_bar {
-  padding: 0 7px;
-}
-.header_form {
+.head_container form {
   display: flex;
   justify-content: space-between;
 }
-.container_logo {
+.head_container .menu_bar {
+  padding: 0 8px;
+}
+.logo {
   display: flex;
   align-items: center;
+}
+.logo img {
+  width: 200px;
 }
 #search {
   display: flex;
@@ -47,35 +52,8 @@
 }
 /* 아이콘수정 */
 .fas {
-  margin-right: 24px;
   font-size: 24px;
 }
-/* 사이드부분 */
-aside {
-  position: fixed;
-  /* margin-top: 60px; */
-  width: 240px;
-  padding: 12px;
-}
-.menu {
-  list-style: none;
-}
-.home li,
-.my a {
-  display: block;
-  border-radius: 10px;
-  padding: 6px 8px;
-  margin-bottom: 12px;
-}
-.home li:hover,
-.my a:hover {
-  background-color: #d6d6d6;
-}
-.line {
-  display: block;
-  margin: 25px 0;
-  border-bottom: 1px solid;
-}
-.more {
-  margin: 24px;
+.fa-search {
+  margin-right: 20px;
 }
