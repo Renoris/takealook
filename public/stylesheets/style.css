@@ -1,6 +1,12 @@
 @import "mainstyle/header.css";
 @import "mainstyle/intro_content.css";
+@import "mainstyle/main_container.css";
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 
+.nanumgothic * {
+  font-family: "Nanum Gothic", sans-serif;
+}
 @font-face {
   font-family: "nicomoji";
   src: url("../fonts/nicomoji-plus_v2.ttf");
@@ -22,7 +28,8 @@ p {
   font-weight: 400;
 }
 body {
-  font-family: Helvetica, arial, sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f7efd5;
 }
 a {
   text-decoration: none;
@@ -31,9 +38,6 @@ a {
 
 /* 반응형 모바일 사이즈 */
 @media screen and (max-width: 480px) {
-  .logo {
-    flex-grow: 1;
-  }
   #search_bar {
     display: none;
   }
@@ -42,10 +46,16 @@ a {
     border-radius: 50%;
     padding: 0;
   }
-  .content_intro img {
-    display: none;
+  .content_intro h2 {
+    font-size: 40px;
   }
-  .content_intro div {
-    width: 75%;
+  .content_intro p {
+    font-size: 20px;
+  }
+  .login_box {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 15px 60px;
   }
 }

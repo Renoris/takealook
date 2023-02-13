@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100vh;
+}
+#error {
+  height: 100%;
+  background-image: url("../images/error1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
