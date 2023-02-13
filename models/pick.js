@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   pick.init({
-    bucketId: DataTypes.INTEGER,
+    memberId: DataTypes.INTEGER,
     movieId: DataTypes.INTEGER
   }, {
     sequelize,

@@ -12,9 +12,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      story: {
-        type: Sequelize.STRING
-      },
       genre:{
         type: Sequelize.STRING
       },
@@ -43,8 +40,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       user_rating: {
-        type: Sequelize.INTEGER
-      }
+        type: Sequelize.float(4,2)
+      },
+      story: {
+        type: Sequelize.TEXT('medium')
+      },
+
     });
   },
   async down(queryInterface, Sequelize) {

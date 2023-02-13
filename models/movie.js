@@ -15,22 +15,22 @@ module.exports = (sequelize, DataTypes) => {
   }
   Movie.init({
     title: DataTypes.STRING,
-    story: DataTypes.STRING,
     genre: DataTypes.STRING,
     country: DataTypes.STRING,
-    year : DataTypes.INTEGEG,
     link: DataTypes.STRING,
     image: DataTypes.STRING,
-    subtitle: DataTypes.STRING,
+    subTitle: DataTypes.STRING,
     pubDate: DataTypes.DATE,
     director: DataTypes.STRING,
     actor: DataTypes.STRING,
-    userRating: DataTypes.INTEGER
+    userRating: DataTypes.FLOAT(4,2),
+    story: DataTypes.TEXT('medium'),
   }, {
     sequelize,
     modelName: 'movie',
     underscored: true, /* 카멜 표기법을 스네이크 표기법으로 바꾸는 옵션 */
-    charset: 'utf8' /* 인코딩 */
+    charset: 'utf8', /* 인코딩 */
+    timestamps : false,
   });
   return Movie;
 };

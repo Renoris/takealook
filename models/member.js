@@ -15,9 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Member.init({
     userName: DataTypes.STRING,
-    password: DataTypes.STRING,
     emailAddress: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
     profileImage: DataTypes.STRING,
     allow: DataTypes.BOOLEAN,
     refreshToken: DataTypes.STRING
