@@ -1,14 +1,25 @@
+header {
+  position: relative;
+}
+
 /* 헤더부분 */
 .head_container {
   position: sticky;
+  background-color: #fff;
   width: 100%;
-  height: 60px;
+  height: 58px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 0 16px;
+  padding: 0 20px;
   border-bottom: 1px solid #d2d2d2;
+  box-shadow: 0, 3px, 5px, rgba(0, 0, 0, 0.2);
+}
+.head_container .interface {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .head_container form {
   display: flex;
@@ -29,31 +40,96 @@
   align-items: center;
 }
 #search_bar {
+  display: none;
   width: 100%;
-  padding: 5px 0 5px 20px;
+  padding: 6px 0 6px 20px;
   border-radius: 40px 0 0 40px;
-  font-size: 20px;
+  font-size: 18px;
   border-color: #e2e2e2;
 }
 #search_btn {
-  padding: 7px 10px 6px 20px;
-  background-color: #d9d9d9;
+  background-color: #fff;
   border-style: none;
-  border-radius: 0 40px 40px 0;
+  border-radius: 50%;
   cursor: pointer;
 }
-#login_btn {
-  font-size: 14px;
-  padding: 9px 18px;
-  border-radius: 25px;
+#search_btn:hover {
+  background-color: #ffd954;
+  padding: 6px 12px 6px 12px;
+  border-radius: 0 40px 40px 0;
+}
+#menu_bar {
   border-style: none;
-  background-color: #d9d9d9;
+  background-color: #fff;
   cursor: pointer;
+}
+#menu_bar ion-icon {
+  font-size: 32px;
 }
 /* 아이콘수정 */
-.fas {
-  font-size: 24px;
+ion-icon {
+  font-size: 32px;
 }
-.fa-search {
-  margin-right: 20px;
+button ion-icon {
+  font-size: 22px;
+}
+
+.login_box {
+  display: none;
+  position: fixed;
+  right: 0;
+  background-color: #fff;
+  width: 400px;
+  height: 260px;
+  border-radius: 20px;
+  z-index: 5;
+  padding: 15px 60px;
+  margin-top: 8px;
+  transition: all 1s;
+}
+.show {
+  display: block;
+}
+.login_box div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.login_box h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+.login_box p {
+  font-size: 12px;
+}
+.login_box button {
+  background-color: #ffd954;
+  padding: 14px;
+  margin-bottom: 12px;
+  width: 100%;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Nanum Gothic";
+  cursor: pointer;
+}
+.login_box a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 10px;
+  color: #bcbcbc;
+}
+#login_form label {
+  display: none;
+}
+#login_form #email {
+  border: 1px solid #bcbcbc;
+  border-radius: 5px;
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
 }
