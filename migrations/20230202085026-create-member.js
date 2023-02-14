@@ -12,7 +12,10 @@ module.exports = {
       user_name: {
         type: Sequelize.STRING
       },
-      email_address: {
+      role: {
+        type: Sequelize.STRING(30),
+      },
+      email: {
         type: Sequelize.STRING
       },
       profile_image: {
@@ -21,8 +24,14 @@ module.exports = {
       allow: {
         type: Sequelize.BOOLEAN
       },
+      disable:{
+        type: Sequelize.BOOLEAN
+      },
       refresh_token: {
         type: Sequelize.STRING
+      },
+      token_expire: {
+        type: Sequelize.DATE
       },
       created_at: {
         allowNull: false,
