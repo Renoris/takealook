@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=\, initial-scale=1.0" />
     <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
   </head>
   <body>
@@ -34,11 +34,11 @@
         <div>
           <h3>내가 쏘아올린 작은 취향</h3>
           <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
-          <form id="login_form" action="">
+          <form id="login_form" action="error.html">
             <label for="email">이메일</label>
-            <input type="text" id="email" placeholder="이메일 로그인" />
+            <input type="email" id="email" placeholder="이메일 로그인" />
+            <button type="submit" id="login_btn">로그인</button>
           </form>
-          <button type="submit">로그인</button>
           <a href="#">회원가입</a>
         </div>
       </div>
@@ -59,7 +59,7 @@
           <div class="list_selection">
             <div class="select_list">
               <div>
-                <input type="radio" name="select" id="movie" />
+                <input type="radio" name="select" id="movie" checked />
                 <label for="movie">영화</label>
               </div>
               <div>
@@ -84,6 +84,62 @@
             <div class="years_tag">
               <label for="year">연도별</label>
               <input type="number" name="year" id="year" value="2023" />
+            </div>
+          </div>
+        </div>
+        <div class="movie_container">
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
+            </div>
+          </div>
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
+            </div>
+          </div>
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
+            </div>
+          </div>
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
+            </div>
+          </div>
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
+            </div>
+          </div>
+          <div class="movie_cover">
+            <div class="cover_img">
+              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
+            </div>
+            <div class="movie_info">
+              <h3>영화제목</h3>
+              <span>장르 · 연도</span>
             </div>
           </div>
         </div>
