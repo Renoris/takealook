@@ -1,8 +1,39 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import "./mainstyle/header.css";
+@import "./mainstyle/intro_content.css";
+@import "./mainstyle/main_container.css";
+
+@import "./responsive.css";
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+
+.nanumgothic * {
+  font-family: "Nanum Gothic", sans-serif;
+}
+@font-face {
+  font-family: "nicomoji";
+  src: url("../fonts/nicomoji-plus_v2.ttf");
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f7efd5;
+}
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: #333;
 }
