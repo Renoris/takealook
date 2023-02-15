@@ -6,6 +6,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/web');
 const movieRouter = require('./routes/api/movie/MovieRouter');
 const authRouter = require('./routes/api/auth/AuthRouter');
+const errorRouter = require('./routes/web/error');
 
 const app = express();
 //views를 요청하면 /public으로 연결하겠다
@@ -24,5 +25,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/movie', movieRouter);
 app.use('/api/auth', authRouter);
-
+app.use('*', errorRouter);
 module.exports = app;

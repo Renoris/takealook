@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authService = require('./AuthService');
 const responseHandler = require("../../../util/response/ResponseHandler");
+const path = require("path");
 
 /**
  * 로그인 메일 요청
@@ -20,7 +21,12 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/:hash', async (req, res) => {
+router.get('/:hash', (req, res) => {
+    const filePath = path.join(__dirname,'..','..','..', 'public', 'auth.html');
+    res.sendFile(filePath);
+})
+
+router.post('/:hash', async (req, res) => {
     const {hash} = req.params;
     try {
         if (!hash) {throw Error("hash 값이 없습니다.")}
