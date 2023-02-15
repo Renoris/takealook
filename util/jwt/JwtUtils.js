@@ -1,6 +1,7 @@
 // jwt-util.js
 const jwt = require('jsonwebtoken');
-const secret = process.env.JWT_SECRET;
+const accessSecret = process.env.JWT_ACCESS;
+const refreshSecret = process.env.JWT_REFRESH;
 const {Op} = require('sequelize');
 const {member} = require('../../models/index');
 
@@ -11,7 +12,7 @@ module.exports = {
             role: user.role,
         };
 
-        return jwt.sign(payload, secret, { // secret으로 sign하여 발급하고 return
+        return jwt.sign(payload, accessSecret, { // secret으로 sign하여 발급하고 return
             algorithm: 'HS256', // 암호화 알고리즘
             expiresIn: '2h', 	  // 유효기간
         });
@@ -19,7 +20,7 @@ module.exports = {
     verify: (token) => { // access token 검증
         let decoded = null;
         try {
-            decoded = jwt.verify(token, secret);
+            decoded = jwt.verify(token, accessSecret);
             return {
                 ok: true,
                 id: decoded.id,
@@ -32,11 +33,14 @@ module.exports = {
             };
         }
     },
-    refresh: () => { // refresh token 발급
-        return jwt.sign({}, secret, { // refresh token은 payload 없이 발급
-            algorithm: 'HS256',
-            expiresIn: '7d',
-        });
+    refresh: async (user) => { // refresh token 발급
+
+        if (!user?.id) throw Error('유저데이터가 없습니다');
+        return jwt.sign({id:user.id}, refreshSecret, {
+                algorithm: 'HS256',
+                expiresIn: '7d',
+            });
+
     },
     refreshVerify: async (token, userId) => { // refresh token 검증
         try {
@@ -54,7 +58,7 @@ module.exports = {
 
             if (token === data.refresh_token) {
                 try {
-                    jwt.verify(token, secret);
+                    jwt.verify(token, refreshSecret);
                     return true;
                 } catch (err) {
                     return false;

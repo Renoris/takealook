@@ -1,22 +1,22 @@
 
-class ResponseBuilder {
+class ResponseHandler {
     constructor(res) {
         this.res = res;
     }
 
     setOk() {
         this.res.status(200);
-        return new ContentTypeBuilder(this.res);
+        return new ContentTypeHandler(this.res);
     }
 
     setIsCreated() {
         this.res.status(200);
-        return new ContentTypeBuilder(this.res);
+        return new ContentTypeHandler(this.res);
     }
 
     setNoContent() {
         this.res.status(201);
-        return new ContentTypeBuilder(this.res);
+        return new ContentTypeHandler(this.res);
     }
 
     setBadRequest(message = "올바르지 않은 요청입니다.") {
@@ -40,9 +40,14 @@ class ResponseBuilder {
     }
 }
 
-class ContentTypeBuilder {
+class ContentTypeHandler {
     constructor(res) {
         this.res = res;
+    }
+
+    setMultipartFormData() {
+        this.res.header['Content-Type'] = 'multipart/form-data';
+        return this.res;
     }
 
     setJson() {
@@ -53,21 +58,21 @@ class ContentTypeBuilder {
 
 module.exports = {
     setIsOkToJson: function (res) {
-        new ResponseBuilder(res).setOk().setJson();
+        new ResponseHandler(res).setOk().setJson();
     },
     badRequest: function (res, message) {
-        new ResponseBuilder(res).setBadRequest(message);
+        new ResponseHandler(res).setBadRequest(message);
     },
     noContent: function (res, message) {
-        new ResponseBuilder(res).setNoContent(message);
+        new ResponseHandler(res).setNoContent(message);
     },
     noAuthorize: function (res, message) {
-        new ResponseBuilder(res).setUnAuthorized(message);
+        new ResponseHandler(res).setUnAuthorized(message);
     },
     notForbidden: function (res, message) {
-        new ResponseBuilder(res).setNotForbidden(message);
+        new ResponseHandler(res).setNotForbidden(message);
     },
     internalError : function (res, message) {
-        new ResponseBuilder(res).setInternalError(message);
+        new ResponseHandler(res).setInternalError(message);
     },
 }

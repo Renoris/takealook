@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-require('dotenv').config();
-console.log(process.env.DB_HOST);
 
 const indexRouter = require('./routes/web');
 const movieRouter = require('./routes/api/movie/MovieRouter');

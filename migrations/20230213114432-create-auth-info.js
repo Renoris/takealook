@@ -13,7 +13,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      hash_email: {
+      hash: {
         type: Sequelize.STRING
       },
       expire:{

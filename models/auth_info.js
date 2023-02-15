@@ -15,10 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   auth_info.init({
     email: DataTypes.STRING,
-    hashEmail: DataTypes.STRING,
+    hash: DataTypes.STRING,
     expire : DataTypes.DATE,
   }, {
     sequelize,
+    timestamps: false,
     modelName: 'auth_info',
     underscored: true, /* 카멜 표기법을 스네이크 표기법으로 바꾸는 옵션 */
     charset: 'utf8' /* 인코딩 */
