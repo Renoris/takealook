@@ -1,0 +1,27 @@
+.account_cont {
+  width: 50%;
+  margin: 60px auto;
+  padding: 20px;
+}
+.account_cont img {
+  width: 200px;
+}
+.account_cont .hidden {
+  display: none;
+  width: 60px;
+  margin-bottom: 30px;
+}
+.account_cont h1 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.user_form form input {
+  display: block;
+  width: 50%;
+  margin-bottom: 10px;
+}
+.user_form button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100px;
+}

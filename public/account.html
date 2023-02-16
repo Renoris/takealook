@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <title>회원가입</title>
+  </head>
+  <body>
+    <header>
+      <div class="head_container">
+        <h1 class="logo">
+          <a href="#"><img src="images/logo.png" alt="Take a Look logo" /></a>
+        </h1>
+        <div class="interface">
+          <button id="menu_bar">
+            <ion-icon name="close"></ion-icon></ion-icon>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="account_cont">
+        <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
+        <img src="./images/paws.png" alt="" class="hidden">
+        <h1>회원가입을 환영합니다!</h1>
+        <div class="user_form">
+          <form>
+            <label for="user_name">이름 
+              <input type="text" id="user_name" placeholder="김북손">
+            </label>
+            <label for="user_nickname">닉네임 
+              <input type="text" id="user_nickname" placeholder="떼껄룩">
+            </label>
+            <label for="user_email">이메일 
+              <input type="email" name="user_email" id="user_email" placeholder="catlookon@takealook.kr">
+            </label>
+            <button>제출</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+      const account = document.querySelector('.account_cont');
+      const hidden = document.querySelector('.hidden');
+      account.addEventListener('keydown', ()=>{
+        hidden.style.display = 'inline';
+      });
+      account.addEventListener('keyup', ()=>{
+        hidden.style.display = 'none';
+      });
+          
+    </script>
+  </body>
+</html>

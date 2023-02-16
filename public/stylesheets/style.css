@@ -1,8 +1,10 @@
 @import "./mainstyle/header.css";
 @import "./mainstyle/intro_content.css";
 @import "./mainstyle/main_container.css";
+@import "./mainstyle/login-info.css";
 
 @import "./responsive.css";
+@import "./account.css";
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 
