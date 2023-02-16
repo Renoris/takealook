@@ -9,7 +9,7 @@ sideBtn.addEventListener("click", function () {
 
 // 로그인 입력 반응
 const loginBtn = document.querySelector("#login_btn");
-
+//
 loginBtn.addEventListener("click", function (e) {
   const login = document.getElementById("email").value;
   const clear = document.querySelector(".clear");
