@@ -1,148 +1,182 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="stylesheets/myliststyle/listheader.css">
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/myliststyle/listheader.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
+    <!-- 세종 헤더작업 -->
     <header>
-        <div class="head_container">
-            <h1 class="logo">
-                <a href="#"><img src="images/logo.png" alt="Take a Look logo" /></a>
-            </h1>
-            <div class="interface">
-                <form id="search" action="/result">
-                <div class="search_box">
-                    <input type="search" name="search" placeholder="영화 검색..." id="search_bar" />
-                </div>
-                <div>
-                    <button type="submit" aria-label="검색" id="search_btn">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </button>
-                </div>
-                </form>
-                <button id="menu_bar">
-                <ion-icon name="menu-outline"></ion-icon>
-                </button>
+      <!-- 로고 및 검색바 인터페이스 -->
+      <div class="head_container">
+        <h1 class="logo">
+          <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
+        </h1>
+        <div class="interface">
+          <form id="search" action="./error.html">
+            <div class="search_box">
+              <span class="back"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+              <input
+                type="search"
+                name="search"
+                placeholder="영화 검색..."
+                id="search_bar"
+                class="search_bar"
+              />
             </div>
-            </div>
-            <div class="login_box">
             <div>
-            <h3>내가 쏘아올린 작은 취향</h3>
-                <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
-                <form id="login_form" action="error.html">
-                <label for="email">이메일</label>
-                <input type="email" id="email" placeholder="이메일 로그인" />
-                <button type="submit" id="login_btn">로그인</button>
-                </form>
-                <a href="#">회원가입</a>
+              <button type="submit" label="검색" class="search_btn">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
             </div>
-            </div>
+          </form>
+          <button id="menu_bar">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <!-- 로그인 전 입력카드 -->
+      <div class="login_box">
+        <div>
+          <h3>내가 쏘아올린 작은 취향</h3>
+          <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
+          <span class="confirm_log clear"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 로그인 이메일로 전송되었습니다.
+            확인해주세요!</span
+          >
+          <span class="confirm_log fail"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
+            입력해주세요!</span
+          >
+          <form id="login_form" action="error.html">
+            <label for="email">이메일</label>
+            <input type="email" id="email" placeholder="이메일 로그인" />
+            <button type="submit" id="login_btn">로그인</button>
+          </form>
+          <a href="./account.html" target="_blank">회원가입</a>
+        </div>
+      </div>
+      <!-- 로그인 후 내정보 카드 -->
+      <div class="account_box">
+        <div class="account_info">
+          <div class="account_img">
+            <img src="./images/sample_profile.png" alt="프로필 사진" />
+          </div>
+          <div class="name_email">
+            <h2>떼껄룩 님</h2>
+            <button>로그아웃</button>
+            <p>takea1234@look.com</p>
+          </div>
+        </div>
+        <div class="account_menu">
+          <a href="./mylist.html" class="my_info">내 정보</a>
+          <a href="./mylist.html" class="my_list">내 리스트</a>
+        </div>
+      </div>
     </header>
-        <section class="myinfo">
-            <div class="myinfolist">
-                <img src="images/sample_profile.png">
+
+    <!-- 승범 작업구역 -->
+    <section class="myinfo">
+      <div class="myinfolist">
+        <img src="images/sample_profile.png" />
+      </div>
+    </section>
+    <main>
+      <div class="mylist">
+        <h1>내 리스트</h1>
+        <div class="mylistgradcircle"></div>
+      </div>
+      <div class="folderlist">
+        <div class="creatfolder">
+          <div>
+            <h2>생성한 리스트</h2>
+          </div>
+          <div>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="modfolder">
+          <div>
+            <ion-icon name="share-social-outline"></ion-icon>
+          </div>
+          <div>
+            <ion-icon name="pencil-outline"></ion-icon>
+          </div>
+          <div>
+            <ion-icon name="trash-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <section class="colcontainer">
+        <div class="collectionbox">
+          <div class="moviecollection">
+            <div class="trashicon">
+              <ion-icon name="trash-outline"></ion-icon>
             </div>
-        </section>
-        <main>
-            <div class="mylist">
-                <h1>내 리스트</h1>
-            <div class="mylistgradcircle"></div>
-            </div>
+            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+            음악영화모음
+          </div>
+        </div>
+        <div class="collectionbox">
+          <div class="moviecollection">
+            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+            음악영화모음
+          </div>
+        </div>
+        <div class="collectionbox">
+          <div class="moviecollection">
+            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+            음악영화모음
+          </div>
+        </div>
+        <div class="collectionbox">
+          <div class="moviecollection">
+            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+            음악영화모음
+          </div>
+        </div>
+      </section>
+      <section>
         <div class="folderlist">
-            <div class="creatfolder">
-                <div>
-                    <h2>생성한 리스트</h2>
-                </div>
-                <div>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                </div>
-            </div>
-            <div class="modfolder">
-                <div>
-                    <ion-icon name="share-social-outline"></ion-icon>
-                </div>
-                <div>
-                    <ion-icon name="pencil-outline"></ion-icon>
-                </div>
-                <div>
-                    <ion-icon name="trash-outline"></ion-icon>
-                </div>
-            </div>
-        </div>
-        <section class="colcontainer">
-            <div class="collectionbox">
-                <div class="moviecollection">
-                    <div class="trashicon">
-                    <ion-icon name="trash-outline"></ion-icon>
-                    </div>
-                    <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                    음악영화모음
-                </div>    
-            </div>
-            <div class="collectionbox">
-                <div class="moviecollection">
-                    <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                    음악영화모음
-                </div>    
-            </div>
-            <div class="collectionbox">
-                <div class="moviecollection">
-                    <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                    음악영화모음
-                </div>    
-            </div>
-            <div class="collectionbox">
-                <div class="moviecollection">
-                    <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                    음악영화모음
-                </div>    
-            </div>
-        </section>
-        <section>
-            <div class="folderlist">
-                <div class="creatfolder">
-                    <h2>내 취향 영화</h2>
-                    <div>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </div>
-                </div>
-                <div class="trashiconin">
-                    <ion-icon name="trash-outline"></ion-icon>
-                </div>
-            </div>
-        </section>
-        <div class="preferencemovie">
+          <div class="creatfolder">
+            <h2>내 취향 영화</h2>
             <div>
-                <img src= "https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                <div class="preferencelist">
-                주키퍼스 와이프<br>
-                <span>드라마·2019</span>
-                </div>
+              <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div>
-                <img src= "https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont">
-                <div class="preferencelist">
-                    주키퍼스 와이프<br>
-                <span>드라마·2019</span>
-                </div>
-            </div>
+          </div>
+          <div class="trashiconin">
+            <ion-icon name="trash-outline"></ion-icon>
+          </div>
         </div>
+      </section>
+      <div class="preferencemovie">
+        <div>
+          <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+          <div class="preferencelist">
+            주키퍼스 와이프<br />
+            <span>드라마·2019</span>
+          </div>
+        </div>
+        <div>
+          <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
+          <div class="preferencelist">
+            주키퍼스 와이프<br />
+            <span>드라마·2019</span>
+          </div>
+        </div>
+      </div>
     </main>
-
-
-
-
+    <script src="components/header.js"></script>
     <script
-        type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+  </body>
 </html>
