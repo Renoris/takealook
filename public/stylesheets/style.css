@@ -1,14 +1,22 @@
+<<<<<<< Updated upstream
 @import "./mainstyle/header.css";
 @import "./mainstyle/intro_content.css";
 @import "./mainstyle/main_container.css";
+@import "./mainstyle/login-info.css";
 
 @import "./responsive.css";
+@import "./account.css";
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 
 .nanumgothic * {
   font-family: "Nanum Gothic", sans-serif;
 }
+=======
+@import "mainstyle/head_side.css";
+@import "mainstyle/mainpage.css";
+
+>>>>>>> Stashed changes
 @font-face {
   font-family: "nicomoji";
   src: url("../fonts/nicomoji-plus_v2.ttf");
@@ -27,11 +35,17 @@ h5,
 h6,
 p {
   margin: 0;
+<<<<<<< Updated upstream
   font-weight: 400;
 }
 body {
   font-family: "Nanum Gothic", sans-serif;
   background: #f7efd5;
+=======
+}
+body {
+  font-family: Helvetica, arial, sans-serif;
+>>>>>>> Stashed changes
 }
 a {
   text-decoration: none;
