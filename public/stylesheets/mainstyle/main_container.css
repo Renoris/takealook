@@ -1,3 +1,6 @@
+main {
+  padding-top: 58px;
+}
 .main_container {
   width: 90%;
   margin: 40px auto;
@@ -12,10 +15,6 @@
 .list_selection {
   display: flex;
   gap: 60px;
-}
-.tags {
-  display: flex;
-  gap: 20px;
 }
 .select_list {
   display: flex;
@@ -44,6 +43,11 @@
   border-bottom: 5px solid;
   line-height: 45px;
 }
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .tags label {
   display: none;
 }
@@ -70,7 +74,7 @@
 .movie_cover {
   display: flex;
   flex-direction: column;
-  width: 260px;
+  width: 250px;
   height: 420px;
   text-align: center;
 }

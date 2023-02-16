@@ -1,10 +1,14 @@
 header {
   position: relative;
 }
+/* 아이콘수정 */
+ion-icon {
+  font-size: 24px;
+}
 
 /* 헤더부분 */
 .head_container {
-  position: sticky;
+  position: fixed;
   background-color: #fff;
   width: 100%;
   height: 58px;
@@ -13,7 +17,7 @@ header {
   align-items: center;
   gap: 12px;
   z-index: 1;
-  padding: 0 20px;
+  padding: 0 16px;
   border-bottom: 1px solid #d2d2d2;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
@@ -36,28 +40,55 @@ header {
 .logo img {
   width: 200px;
 }
+
+/* 검색바 */
 #search {
   display: flex;
   align-items: center;
+  position: fixed;
+  right: 60px;
 }
-#search_bar {
+.search_box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.back {
   display: none;
+  padding: 6px 5px 2px 7px;
+  margin-left: 8px;
+  vertical-align: 1px;
+  background-color: #ffd954;
+  border-radius: 50%;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+.search_bar {
+  display: none;
+  position: relative;
   width: 100%;
-  padding: 6px 0 6px 20px;
+  padding: 9px 0 8px 18px;
   border-radius: 40px 0 0 40px;
   font-size: 18px;
   border-color: #e2e2e2;
+  border-style: none;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s;
+  overflow: hidden;
 }
-#search_btn {
+.search_bar_show {
+  display: block;
+}
+.search_btn {
   background-color: #fff;
   border-style: none;
   border-radius: 50%;
   cursor: pointer;
 }
-#search_btn:hover {
+.search_btn_show {
   background-color: #ffd954;
   padding: 6px 12px 6px 12px;
   border-radius: 0 40px 40px 0;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 #menu_bar {
   border-style: none;
@@ -66,73 +97,4 @@ header {
 }
 #menu_bar ion-icon {
   font-size: 32px;
-}
-/* 아이콘수정 */
-ion-icon {
-  font-size: 32px;
-}
-button ion-icon {
-  font-size: 22px;
-}
-
-/* 로그인 박스 */
-.login_box {
-  display: none;
-  position: fixed;
-  right: 0;
-  background-color: #fff;
-  width: 400px;
-  height: 260px;
-  border-radius: 20px;
-  z-index: 5;
-  padding: 15px 60px;
-  margin-top: 8px;
-  box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.2);
-  transition: all 1s;
-}
-.show {
-  display: block;
-}
-.login_box div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-.login_box h3 {
-  font-size: 20px;
-  font-weight: 900;
-  margin-bottom: 5px;
-}
-.login_box p {
-  font-size: 12px;
-}
-.login_box button {
-  background-color: #ffd954;
-  padding: 14px;
-  margin-bottom: 12px;
-  width: 100%;
-  border-radius: 5px;
-  border-style: none;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: "Nanum Gothic";
-  cursor: pointer;
-}
-.login_box a {
-  text-decoration: none;
-  text-align: center;
-  font-size: 10px;
-  color: #bcbcbc;
-}
-#login_form label {
-  display: none;
-}
-#login_form #email {
-  border: 1px solid #bcbcbc;
-  border-radius: 5px;
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
 }

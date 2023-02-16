@@ -1,12 +1,7 @@
 /* 반응형 모바일 사이즈 */
 @media screen and (max-width: 480px) {
-  #search_bar {
-    display: none;
-  }
-  #search_btn {
-    background-color: initial;
-    border-radius: 50%;
-    padding: 0;
+  .logo img {
+    width: 150px;
   }
   .content_intro h2 {
     font-size: 40px;
@@ -20,7 +15,44 @@
     border-radius: 0;
     padding: 15px 60px;
   }
+
+  .main_container {
+    margin: 15px auto;
+  }
+  .select_list div {
+    width: 90px;
+  }
+  .select_list label {
+    font-size: 18px;
+  }
+  .genres_tag select,
+  .years_tag input {
+    width: 80px;
+    font-size: 12px;
+    padding: 6px;
+  }
+  .movie_container {
+    gap: 15px;
+  }
+  .movie_cover {
+    width: 150px;
+    height: 260px;
+  }
+  .movie_cover h3 {
+    font-size: 18px;
+  }
+  .movie_cover span {
+    font-size: 12px;
+  }
 }
 
-@media screen and (max-width: 950px) {
+/* 중간 사이즈(태블릿 등) */
+@media screen and (min-width: 481px) and (max-width: 992px) {
+  .movie_container {
+    gap: 15px;
+  }
+  .movie_cover {
+    width: 200px;
+    height: 350px;
+  }
 }

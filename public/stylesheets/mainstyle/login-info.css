@@ -1,0 +1,148 @@
+/* 로그인 박스 */
+.login_box,
+.account_box {
+  visibility: hidden;
+  position: fixed;
+  top: 58px;
+  right: -400px;
+  width: 400px;
+  height: 260px;
+  background-color: #fff;
+  border-radius: 20px;
+  z-index: 5;
+  padding: 25px 50px;
+  margin-top: 8px;
+  box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.2);
+  transition: all 1s;
+}
+.show {
+  visibility: visible;
+  right: 0;
+}
+.login_box div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.login_box h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+.login_box p {
+  font-size: 12px;
+}
+.login_box button {
+  background-color: #ffd954;
+  padding: 14px;
+  margin-bottom: 12px;
+  width: 100%;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Nanum Gothic";
+  cursor: pointer;
+}
+.login_box a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 10px;
+  color: #bcbcbc;
+}
+.confirm_log {
+  display: none;
+  color: #929292;
+  border-style: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.clear {
+  background-color: rgb(141, 247, 247);
+}
+.fail {
+  background-color: beige;
+}
+/* 로그인 발송 완료 로그 */
+.confirm_log_show {
+  display: block;
+}
+
+.confirm_log ion-icon {
+  font-size: 12px;
+  vertical-align: -2px;
+}
+#login_form label {
+  display: none;
+}
+#login_form #email {
+  border: 1px solid #bcbcbc;
+  border-radius: 5px;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+}
+
+/* 내 정보 박스 */
+.account_info {
+  width: 100%;
+  border-bottom: 1px solid #bc9252;
+  padding-bottom: 20px;
+}
+.account_img {
+  display: inline-block;
+  width: 120px;
+  vertical-align: middle;
+  margin-right: auto;
+}
+.account_img img {
+  width: 100%;
+  object-fit: cover;
+}
+.name_email {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.name_email h2 {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.name_email p {
+  font-weight: 700;
+  font-size: 14px;
+}
+.name_email button {
+  background-color: #d9d9d9;
+  border-style: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  vertical-align: 3px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.account_menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+}
+.my_info,
+.my_list {
+  background-color: #ffd954;
+  text-align: center;
+  border-style: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+}
