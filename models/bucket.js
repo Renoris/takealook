@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   bucket.init({
     bucketName: DataTypes.STRING,
     bucketTag: DataTypes.STRING,
+    ownerId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'bucket',
