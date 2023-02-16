@@ -70,16 +70,14 @@ const MovieService = {
      * @param offset : number 조회 페이지 번호
      */
     getMovies: async function (memberId, genre, pubDate, limit = 10, offset = 1) {
-       const info = getMovieQuery(1,genre, pubDate, limit, offset);
-       return await sequelize.query(info.query, {
-           replacements:info.replacements
+       const {query, replacements} = getMovieQuery(1,genre, pubDate, limit, offset);
+       return await sequelize.query(query, {
+           replacements
        });
     },
 
     getMovieDetail: async function (movieId) {
-        const result = await movie.findOne( {where : {id : {[Op.eq] : movieId}}});
-        console.log(result);
-        return result;
+        return await movie.findOne( {where : {id : {[Op.eq] : movieId}}});
     }
 }
 
