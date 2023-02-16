@@ -66,7 +66,7 @@ module.exports = {
     noContent: function (res, message) {
         new ResponseHandler(res).setNoContent(message);
     },
-    noAuthorize: function (res, message) {
+    unAuthorized: function (res, message) {
         new ResponseHandler(res).setUnAuthorized(message);
     },
     notForbidden: function (res, message) {

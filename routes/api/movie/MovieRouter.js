@@ -1,24 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const movieService = require('./MovieService');
-const statusBuilder = require("../../../util/response/ResponseHandler");
+const statusBuilder = require('../../../util/response/ResponseHandler');
+const jwtUtil = require('../../../util/jwt/JwtUtils');
 
 router.get('/', async (req, res) => {
     try {
-        const {limit, offset, genre, pubDate} = req.query;
+        const {genre, pubDate, limit, offset} = req.query;
+        const {authorization} = req.headers;
+        const token = jwtUtil.resolveToken(authorization);
+        const auth = jwtUtil.verify(token);
+        const result = movieService.getMovies(auth.id, genre, pubDate, limit, offset);
         statusBuilder.setIsOkToJson(res);
-        res.send(await movieService.getMovies(1, genre, pubDate, limit, offset));
+        res.send(result);
     } catch (error) {
-        statusBuilder.badRequest(res);
+        statusBuilder.badRequest(res, error.msg);
     }
 });
 
 router.get('/:id', async (req, res) => {
     try {
-        const id = req.params.id;
-        if (id) statusBuilder.badRequest(res);
+        const id = req.params?.id;
+        const movieDetail = await movieService.getMovieDetail(id);
         statusBuilder.setIsOkToJson(res);
-        res.send(await movieService.getMovieDetail(id));
+        res.send(movieDetail);
     } catch (error) {
         statusBuilder.badRequest(res);
     }

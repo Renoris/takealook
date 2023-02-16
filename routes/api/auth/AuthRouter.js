@@ -8,32 +8,26 @@ const path = require("path");
  * 로그인 메일 요청
  */
 router.post('/', async (req, res) => {
-    const { email } = req.body;
     try {
-        if (!email) {
-            responseHandler.badRequest(res)
-            return;
-        }
+        const { email } = req.body;
+        //로그인 이메일 보내기
         await authService.doSendLoginEmail(email);
-        res.redirect("/wait"); // 이 부분 회의 : 로그인 메일을 보낸 직후 어떻게 할건지?
+
+        //이메일 보내기 성공시 응답
+        responseHandler.setIsOkToJson(res);
+        res.send({message:"success"});
     } catch (error) {
-        responseHandler.badRequest(res);
+        responseHandler.badRequest(res, error.message);
     }
 })
 
-router.get('/:hash', (req, res) => {
-    const filePath = path.join(__dirname,'..','..','..', 'public', 'auth.html');
-    res.sendFile(filePath);
-})
-
-router.post('/:hash', async (req, res) => {
+router.get('/:hash', async (req, res) => {
     const {hash} = req.params;
     try {
-        if (!hash) {throw Error("hash 값이 없습니다.")}
         const tokens = await authService.registerTokenByHash(hash);
         res.send(tokens);
     } catch (error) {
-        responseHandler.badRequest(res);
+        responseHandler.badRequest(res, error.message);
     }
 })
 

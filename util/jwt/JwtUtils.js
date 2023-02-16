@@ -4,8 +4,15 @@ const accessSecret = process.env.JWT_ACCESS;
 const refreshSecret = process.env.JWT_REFRESH;
 const {Op} = require('sequelize');
 const {member} = require('../../models/index');
+const responseHandler = require("../response/ResponseHandler");
 
 module.exports = {
+    resolveToken: (authorization) => {
+        if (!authorization) return null;
+        if (!authorization.contains('Bearer')) return null;
+        return authorization.splice(6);
+    },
+
     sign: (user) => { // access token 발급
         const payload = { // access token에 들어갈 payload
             id: user.id,
