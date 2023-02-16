@@ -37,11 +37,12 @@ const AuthService = {
                 const member = await authStorage.getMemberByHash(hash, transaction);
                 if (!member) {throw Error("해당 유저가 존재하지 않습니다.")}
                 const refreshToken = await jwtUtil.refresh(member, transaction);
-                await memberStorage.setRefreshTokenById(member.id, refreshToken, transaction);
+                member.refreshToken = refreshToken;
+                member.save({transaction});
                 const accessToken = jwtUtil.sign(member);
+                await authStorage.deleteAuth(hash, transaction);
                 return {accessToken, refreshToken};
             })
-
         } catch (error) {
             throw (error);
         }

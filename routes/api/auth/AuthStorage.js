@@ -1,4 +1,4 @@
-const {auth_info, member} = require('../../../models/index');
+const {member, auth_info} = require('../../../models/index');
 const {Op} = require('sequelize');
 
 const AuthStorage = {
@@ -18,6 +18,10 @@ const AuthStorage = {
     getMemberByHash : async function (hash, transaction) {
         const {email} = await auth_info.findOne({where : {hash : {[Op.eq] : hash}, expire : {[Op.gt] : new Date()}}}, {transaction});
         return await member.findOne({where : {email : {[Op.eq] : email}}}, {transaction})
+    },
+
+    deleteAuth: async function (hash, transaction) {
+        await auth_info.destroy({where : {hash : {[Op.eq]: hash}}, transaction});
     }
 }
 
