@@ -2,9 +2,7 @@ const {member, auth_info} = require('../../../models/index');
 const {Op} = require('sequelize');
 
 const AuthStorage = {
-    insertAuth : async function (email, hash, transaction) {
-        const expire = new Date();
-        expire.setMinutes(expire.getMinutes() + 5);
+    insertAuth : async function (email, hash, expire, transaction) {
         const auth_info_item = await auth_info.findOne({where : {email : {[Op.eq] : email}}});
         if (auth_info_item) {
             auth_info_item.expire = expire;

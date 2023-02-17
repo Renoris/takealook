@@ -3,10 +3,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/web');
-const movieRouter = require('./routes/api/movie/MovieRouter');
-const authRouter = require('./routes/api/auth/AuthRouter');
+const indexRouter = require('./routes/web/index');
 const errorRouter = require('./routes/web/error');
+const apiRouter = require('./routes/api/ApiRouter')
+const authWebRouter = require('./routes/web/auth');
 
 const app = express();
 //views를 요청하면 /public으로 연결하겠다
@@ -23,7 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movie', movieRouter);
-app.use('/api/auth', authRouter);
+app.use('/auth', authWebRouter);
+app.use('/api', apiRouter);
 app.use('*', errorRouter);
+
 module.exports = app;

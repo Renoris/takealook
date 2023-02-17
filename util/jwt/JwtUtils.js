@@ -6,6 +6,13 @@ const {Op} = require('sequelize');
 const {member} = require('../../models/index');
 
 module.exports = {
+    resolveToken: (authorization) => {
+        if (!authorization) return null;
+        if (!(typeof authorization === 'string')) return null
+        if (!authorization.includes('bearer')) return null;
+        return authorization.replace('bearer ','');
+    },
+
     sign: (user) => { // access token 발급
         const payload = { // access token에 들어갈 payload
             id: user.id,
