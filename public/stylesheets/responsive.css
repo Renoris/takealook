@@ -1,5 +1,6 @@
 /* 반응형 모바일 사이즈 */
 @media screen and (max-width: 480px) {
+  /* 헤더(모바일) */
   .logo img {
     width: 150px;
   }
@@ -9,13 +10,14 @@
   .content_intro p {
     font-size: 20px;
   }
-  .login_box {
+  /* 로그인 박스(모바일) */
+  .login_box,
+  .account_box {
     width: 100%;
     margin: 0;
     border-radius: 0;
     padding: 15px 60px;
   }
-
   .main_container {
     margin: 15px auto;
   }

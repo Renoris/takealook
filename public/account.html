@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>회원가입</title>
   </head>
   <body>
     <header>
       <div class="head_container">
         <h1 class="logo">
-          <a href="#"><img src="images/logo.png" alt="Take a Look logo" /></a>
+          <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
         </h1>
         <div class="interface">
           <button id="menu_bar">
@@ -21,23 +22,34 @@
       </div>
     </header>
     <main>
-      <div class="account_cont">
-        <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
-        <img src="./images/paws.png" alt="" class="hidden">
-        <h1>회원가입을 환영합니다!</h1>
-        <div class="user_form">
-          <form>
-            <label for="user_name">이름 
-              <input type="text" id="user_name" placeholder="김북손">
-            </label>
-            <label for="user_nickname">닉네임 
-              <input type="text" id="user_nickname" placeholder="떼껄룩">
-            </label>
-            <label for="user_email">이메일 
-              <input type="email" name="user_email" id="user_email" placeholder="catlookon@takealook.kr">
-            </label>
-            <button>제출</button>
-          </form>
+      <div class="contanier_acct">
+        <div class="account_cont_border">
+          <div class="account_cont">
+            <h1>회원가입</h1>
+            <div class="border_line"></div>
+            <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
+            <img src="./images/paws.png" alt="" class="hidden">
+            <h2>Take a Look</h2>
+          </div>
+          <div class="user_form">
+            <form>
+              <label for="user_email">이메일 </label>
+              <div class="mail_line">
+                <input type="text" name="user_email" id="user_email" placeholder="catlookon">
+                <span>@</span><input type="text" id="email_platform">
+                <select name="platform" id="email_platforms">
+                  <option value="">직접입력</option>
+                </select>
+              </div>
+              <label for="user_name">이름 
+                <input type="text" id="user_name" placeholder="김북손">
+              </label>
+              <label for="user_nickname">닉네임 
+                <input type="text" id="user_nickname" placeholder="떼껄룩">
+              </label>
+              <button>제출</button>
+            </form>
+          </div>
         </div>
       </div>
     </main>

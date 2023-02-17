@@ -18,6 +18,8 @@ loginBtn.addEventListener("click", function (e) {
   if (login == "") {
     alert("이메일 입력하삼");
     e.preventDefault();
+    clear.classList.remove("confirm_log_show");
+    fail.classList.remove("confirm_log_show");
     return false;
   } else if (login.length <= 11) {
     fail.classList.add("confirm_log_show");
@@ -50,4 +52,20 @@ searchReturn.addEventListener("click", function () {
   searchBar.classList.remove("search_bar_show");
   searchBtn.classList.remove("search_btn_show");
   searchReturn.style.display = "none";
+});
+
+// 연도별 태그
+const years = document.querySelector("#year");
+
+isYearOptionExisted = false;
+years.addEventListener("focus", function () {
+  if (!isYearOptionExisted) {
+    isYearOptionExisted = true;
+    for (let i = 2023; i >= 1980; i--) {
+      const yearOption = document.createElement("option");
+      yearOption.setAttribute("value", i);
+      yearOption.innerText = i;
+      this.appendChild(yearOption);
+    }
+  }
 });

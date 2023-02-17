@@ -80,6 +80,7 @@
     </header>
     <!-- 메인작업 -->
     <main>
+      <!-- 히로이미지 칸 -->
       <section class="intro_container">
         <div class="hero_image"></div>
         <div class="content_intro">
@@ -90,7 +91,9 @@
           </div>
         </div>
       </section>
+      <!-- 영화/취향리스트 섹선 -->
       <section class="main_container">
+        <!-- 영화/취향 태그, 장르/연도 정렬태그 -->
         <div class="select_tags">
           <div class="list_selection">
             <div class="select_list">
@@ -108,7 +111,7 @@
             <div class="genres_tag">
               <label for="genre"> 장르별</label>
               <select name="genre" id="genre">
-                <option value="">장르별</option>
+                <option value="all" selected>장르별</option>
                 <option value="action">액션</option>
                 <option value="romance">로맨스</option>
                 <option value="sf">SF</option>
@@ -119,10 +122,13 @@
             </div>
             <div class="years_tag">
               <label for="year">연도별</label>
-              <input type="number" name="year" id="year" value="2023" />
+              <select name="year" id="year">
+                <option disabled selected>연도별</option>
+              </select>
             </div>
           </div>
         </div>
+        <!-- 영화 리스트 컨테이너 -->
         <div class="movie_container">
           <div class="movie_cover">
             <div class="cover_img">
