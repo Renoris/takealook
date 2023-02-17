@@ -9,29 +9,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_name: {
+      email: {
+        type: Sequelize.STRING
+      },
+      first_name: {
+        type: Sequelize.STRING
+      },
+      last_name: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      nick_name: {
         type: Sequelize.STRING
       },
       role: {
         type: Sequelize.STRING(30),
       },
-      email: {
-        type: Sequelize.STRING
-      },
       profile_image: {
         type: Sequelize.STRING
-      },
-      allow: {
-        type: Sequelize.BOOLEAN
       },
       disable:{
         type: Sequelize.BOOLEAN
       },
       refresh_token: {
         type: Sequelize.STRING
-      },
-      token_expire: {
-        type: Sequelize.DATE
       },
       created_at: {
         allowNull: false,

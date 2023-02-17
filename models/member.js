@@ -14,14 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Member.init({
-    userName: DataTypes.STRING,
     email: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName : DataTypes.STRING,
+    gender : DataTypes.STRING,
+    nickName : DataTypes.STRING,
     role: DataTypes.STRING(30),
     profileImage: DataTypes.STRING,
-    allow: DataTypes.BOOLEAN,
     disable:DataTypes.BOOLEAN,
     refreshToken: DataTypes.STRING,
-    tokenExpire: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'member',
