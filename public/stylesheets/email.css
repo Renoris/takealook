@@ -28,12 +28,12 @@ main{
     border-bottom: 4px solid #d9d9d9;
     width: 100%;
 }
-.emailPage img{
+.emailLine img{
     width: 190px;
     height: 120px;
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-bottom: -8px;
+    margin-bottom: -9px;
     border-image: linear-gradient(90deg, rgba(201, 133, 243, 1) 0%, rgba(255, 217, 84, 1) 100%);
     border-image-slice: 1;
     border-bottom: 4px solid;
@@ -69,15 +69,27 @@ main{
 }
 
 .admissionBtn{
-    text-align: center;
-    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     background-color: white;
     margin-top: 60px;
     width: 450px;
-    height: 90px;
-    
+    height: 80px;
+    border: 3px solid transparent;
+    background-image: linear-gradient(#fff,#fff), linear-gradient(to bottom, #C985F3, #FFD954);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 700;
 }
 
+.admissionBtn img{
+    width: 50px;
+}
 
 
 
