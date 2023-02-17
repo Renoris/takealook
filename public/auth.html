@@ -1,14 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
-</head>
-<body>
-    <h1>조금만 기다려 주세요.</h1>
-</body>
-<script src="/scripts/auth.js"></script>
+    <style>
+      body {
+        background: #f7efd5;
+        width: 100%;
+        height: 100%;
+      }
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+      }
+      .loading img {
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <img src="./images/loading.png" alt="고양이와 바다" />
+    </div>
+  </body>
+  <script src="/scripts/auth.js"></script>
 </html>

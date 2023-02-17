@@ -15,41 +15,55 @@
           <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
         </h1>
         <div class="interface">
-          <button id="menu_bar">
+          <a href="./index.html" id="menu_bar">
             <ion-icon name="close"></ion-icon></ion-icon>
-          </button>
+          </a>
         </div>
       </div>
     </header>
     <main>
-      <div class="contanier_acct">
-        <div class="account_cont_border">
-          <div class="account_cont">
-            <h1>회원가입</h1>
-            <div class="border_line"></div>
-            <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
-            <img src="./images/paws.png" alt="" class="hidden">
-            <h2>Take a Look</h2>
-          </div>
-          <div class="user_form">
-            <form>
-              <label for="user_email">이메일 </label>
-              <div class="mail_line">
-                <input type="text" name="user_email" id="user_email" placeholder="catlookon">
-                <span>@</span><input type="text" id="email_platform">
-                <select name="platform" id="email_platforms">
-                  <option value="">직접입력</option>
-                </select>
-              </div>
-              <label for="user_name">이름 
-                <input type="text" id="user_name" placeholder="김북손">
-              </label>
-              <label for="user_nickname">닉네임 
-                <input type="text" id="user_nickname" placeholder="떼껄룩">
-              </label>
-              <button>제출</button>
-            </form>
-          </div>
+      <div class="account_cont_border">
+        <div class="account_cont">
+          <h1>회원가입</h1>
+          <div class="border_line"></div>
+          <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
+          <img src="./images/paws.png" alt="" class="hidden">
+          <h2>Take a Look</h2>
+        </div>
+        <div class="user_form">
+          <form>
+            <div class="mail_line">
+              <label for="user_email"><ion-icon name="mail-outline"></ion-icon></label>
+              <input type="text" id="user_email" placeholder="이메일">
+              <span><ion-icon name="at-outline"></ion-icon></span>
+              <input type="text" id="email_platform">
+              <select name="platform" id="email_platforms">
+                <option value="">직접입력</option>
+                <option value="naver">naver.com</option>
+                <option value="gmail">gmail.com</option>
+                <option value="daum">daum.net</option>
+                <option value="hanmail">hanmail.net</option>
+              </select>
+            </div>
+            <div class="user_name">
+              <label for="sur_name"><ion-icon name="person"></ion-icon></label>
+              <input type="text" id="sur_name" placeholder="성">
+              <label for="full_name"></label>
+              <input type="text" id="full_name" placeholder="이름">
+            </div>
+            <div class="user_nickname">
+              <label for="user_nickname"><ion-icon name="pricetag"></ion-icon></label>
+              <input type="text" id="user_nickname" placeholder="떼껄룩">
+            </div>
+            <div class="user_gender">
+              <span> 성별 </span>
+              <label for="male">남</label>
+              <input type="radio" name="gender" id="male">
+              <label for="female">여</label>
+              <input type="radio" name="gender" id="female">
+            </div>
+            <button>가입하기</button>
+          </form>
         </div>
       </div>
     </main>
@@ -63,16 +77,6 @@
       crossorigin="anonymous"
     ></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script>
-      const account = document.querySelector('.account_cont');
-      const hidden = document.querySelector('.hidden');
-      account.addEventListener('keydown', ()=>{
-        hidden.style.display = 'inline';
-      });
-      account.addEventListener('keyup', ()=>{
-        hidden.style.display = 'none';
-      });
-          
-    </script>
+    <script src="./components/account.js"></script>
   </body>
 </html>
