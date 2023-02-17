@@ -3,8 +3,8 @@ const router = express.Router();
 const authRouter = require('./auth/AuthRouter');
 const movieRouter = require('./movie/MovieRouter');
 const {accessFilter} = require('../../filter/JwtFilter');
-const memberRouter = require('./member/MemberRouter')
-
+const memberRouter = require('./member/MemberRouter');
+const testRouter = require('./test/TestRouter');
 
 //jwt 필요없음
 router.use('/auth', authRouter);
@@ -14,6 +14,7 @@ router.use('/movie', movieRouter);
 //req.body.authId 에 유저 id 첨가
 router.use(accessFilter);
 router.use('/member', memberRouter);
+router.use('/test', testRouter);
 
 
 module.exports = router;
