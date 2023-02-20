@@ -50,21 +50,11 @@ main{
     font-size: 16px;
 }
 
-
-#emailselector{
-    height: 50px;
-    border: 0;
-    font-size: 30px;
-    font-weight: 700;
-    width: 500px;
-}
-
 .emailbox a {
     text-decoration-line: none;
     color: black;
 }
 .emailLine{
-    padding: 1px;
     border-bottom: 1px solid #D9D9D9;
 }
 
