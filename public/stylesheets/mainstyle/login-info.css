@@ -77,6 +77,9 @@
   background-color: rgb(141, 247, 247);
 }
 .fail {
+  background-color: pink;
+}
+.no_account {
   background-color: beige;
 }
 /* 로그인 발송 완료 로그 */

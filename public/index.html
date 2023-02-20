@@ -52,6 +52,10 @@
             ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
             입력해주세요!</span
           >
+          <span class="confirm_log no_account"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
+            먼저 해주세요!</span
+          >
           <form id="login_form" action="error.html">
             <label for="email">이메일</label>
             <input type="email" id="email" placeholder="이메일 로그인" />
@@ -131,6 +135,7 @@
         <!-- 영화 리스트 컨테이너 -->
         <div class="movie_container">
           <div class="movie_cover">
+            <img class="fav_btn" src="./images/fav_off.png" alt="" />
             <div class="cover_img">
               <img src="./images/no_image.png" alt="" />
             </div>
@@ -140,6 +145,7 @@
             </div>
           </div>
           <div class="movie_cover">
+            <img class="fav_btn" src="./images/fav_off.png" alt="" />
             <div class="cover_img">
               <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
             </div>
@@ -149,6 +155,7 @@
             </div>
           </div>
           <div class="movie_cover">
+            <img class="fav_btn" src="./images/fav_off.png" alt="" />
             <div class="cover_img">
               <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
             </div>
@@ -188,6 +195,7 @@
       </section>
     </main>
     <script src="components/header.js"></script>
+    <script src="components/main_cont.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
