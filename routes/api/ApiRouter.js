@@ -5,11 +5,13 @@ const movieRouter = require('./movie/MovieRouter');
 const {accessFilter} = require('../../filter/JwtFilter');
 const memberRouter = require('./member/MemberRouter');
 const testRouter = require('./test/TestRouter');
+const signUpRouter = require('./member/SignUpRouter');
+
 
 //jwt 필요없음
 router.use('/auth', authRouter);
 router.use('/movie', movieRouter);
-
+router.use('/signup', signUpRouter);
 //이 아래로 jwt 필요
 //req.body.authId 에 유저 id 첨가
 router.use(accessFilter);
