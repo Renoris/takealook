@@ -32,6 +32,7 @@ module.exports = {
                 ok: true,
                 id: decoded.id,
                 role: decoded.role,
+                message: '인증되었습니다'
             };
         } catch (err) {
             return {

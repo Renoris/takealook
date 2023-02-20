@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const indexRouter = require('./routes/web/index');
 const errorRouter = require('./routes/web/error');
@@ -15,6 +16,10 @@ app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 //뷰 엔진은 html로
 app.set('view engine', 'html');
+app.use(cors({
+    origin: 'https://mail.naver.com/',
+    credentials: true
+}))
 
 app.use(logger('dev'));
 app.use(express.json());

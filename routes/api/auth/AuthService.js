@@ -1,6 +1,6 @@
 const crypto = require("crypto");
-const smtpMessage = require("../../../util/message/EmailVerifyMessage");
-const smtp = require("../../../util/smtp/KaKaoSmtp");
+const smtpEmailContent = require("../../../util/message/EmailContent");
+const {sendMailHtml, sendMailText} = require("../../../util/smtp/KaKaoSmtp");
 const domain = (process.env.NODE_ENV === 'development') ? process.env.DEVELOPMENT_HOST : '';
 const {sequelize} = require('../../../models/index');
 const authStorage = require('./AuthStorage');
@@ -34,9 +34,8 @@ const AuthService = {
             expire.setMinutes(expire.getMinutes() + 5);
 
             await authStorage.insertAuth(email, hash, expire ,transaction);
-
             //메일보내기
-            await smtp(email, smtpMessage.subject(), smtpMessage.message(url));
+            await sendMailHtml(email, smtpEmailContent.getSubject(), smtpEmailContent.getHtml(url) , smtpEmailContent.getAttachment());
         })
     },
 
