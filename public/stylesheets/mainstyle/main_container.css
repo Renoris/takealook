@@ -72,11 +72,18 @@ main {
   flex-wrap: wrap;
 }
 .movie_cover {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 250px;
   height: 420px;
   text-align: center;
+}
+.movie_cover .fav_btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20%;
 }
 .cover_img {
   background-color: aliceblue;
