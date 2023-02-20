@@ -57,6 +57,28 @@ async function authFetch(url, method = "GET", contentType = 'application/json') 
   }
 })()
 
+function signBtnEvent() {
+  fetch('/api/test', {
+    method:'POST',
+    headers : {'Content-Type' : 'application/json'},
+    body:
+        {
+          email : "",
+          firstName : "",
+          lastName : "",
+          gender : "",
+          nickName : ""
+        }
+  }).then((response) => {
+    if (response.status === 200) {
+      console.log("success");
+    } else {
+      console.log("fail");
+    }
+  })
+}
+
+
 function logoutClick() {
   localStorage.removeItem('takealook-refresh');
   localStorage.removeItem('takealook-access');
