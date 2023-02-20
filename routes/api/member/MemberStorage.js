@@ -12,6 +12,13 @@ const MemberStorage = {
 
     setRefreshTokenById : async function (id, refreshToken, transaction) {
         return await member.update({refreshToken},{where : {id : {[Op.eq] : id}}}, {transaction});
+    },
+
+    insert: async function (userInfo, transaction) {
+        userInfo.created_at = new Date();
+        userInfo.disable = false;
+        userInfo.role = 'member';
+        await member.create(userInfo, {transaction});
     }
 }
 
