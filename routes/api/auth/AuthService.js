@@ -21,7 +21,8 @@ const AuthService = {
         await sequelize.transaction(async (transaction) => {
             //이메일 검증
             if (!email) throw Error('이메일이 없습니다');
-            if (!await memberStorage.getMemberByEmail(email, transaction)) throw Error("해당 이메일은 저장되어 있지 않습니다.");
+            const member = await memberStorage.getMemberByEmail(email, transaction);
+            if (!member) throw Error("해당 이메일은 저장되어 있지 않습니다.");
 
             //이메일 기반 해시 생성
             const hash = getHashByEmail(email);
@@ -34,8 +35,9 @@ const AuthService = {
             expire.setMinutes(expire.getMinutes() + 5);
 
             await authStorage.insertAuth(email, hash, expire ,transaction);
+            const userName = `${member.lastName} ${member.firstName}`;
             //메일보내기
-            await sendMailHtml(email, smtpEmailContent.getSubject(), smtpEmailContent.getHtml(url) , smtpEmailContent.getAttachment());
+            await sendMailHtml(email, smtpEmailContent.getSubject(), smtpEmailContent.getHtml(url, userName) , smtpEmailContent.getAttachment());
         })
     },
 
