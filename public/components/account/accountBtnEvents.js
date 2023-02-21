@@ -1,5 +1,5 @@
 
-export async function signUpBtnEventListener(e, email, emailPlatforms, nickName, firstName, lastName, genderList, fail) {
+export async function signUpBtnEventListener(e, email, emailPlatform, nickName, firstName, lastName, genderList, fail) {
     e.preventDefault();
     let gender = '';
     genderList.forEach((node) => {
@@ -8,7 +8,7 @@ export async function signUpBtnEventListener(e, email, emailPlatforms, nickName,
         }
     });
     const body = {
-        email: `${email.value}@${emailPlatforms.value}`,
+        email: `${email.value}@${emailPlatform.value}`,
         firstName : firstName.value,
         nickName : nickName.value,
         lastName : lastName.value,

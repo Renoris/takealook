@@ -6,12 +6,12 @@ const first_name = document.getElementById('first_name');
 const last_name = document.getElementById('last_name');
 const nick_name = document.getElementById('user_nickname');
 const email = document.getElementById('user_email');
-const emailPlatforms = document.getElementById('email_platforms');
+const emailPlatform = document.getElementById('email_platform');
 const genderList = document.getElementsByName("gender");
 const signup = document.getElementById('signup_btn');
 const fail = document.querySelector(".fail");
 
-signup.addEventListener('click', (e) => signUpBtnEventListener(e, email, emailPlatforms, nick_name, first_name, last_name,genderList, fail))
+signup.addEventListener('click', (e) => signUpBtnEventListener(e, email, emailPlatform, nick_name, first_name, last_name,genderList, fail))
 
 
 
