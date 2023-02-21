@@ -12,6 +12,11 @@ router.get('/', function(req, res, next) {
   res.sendFile(filePath);
 });
 
+router.get('/account', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'account.html');
+  res.sendFile(filePath);
+})
+
 router.get('/mylist', function (req, res) {
   const filePath = path.join(__dirname,'..','..','public', 'mylist.html');
   res.sendFile(filePath);
