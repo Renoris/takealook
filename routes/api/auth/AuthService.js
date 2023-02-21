@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const smtpEmailContent = require("../../../util/message/EmailContent");
-const {sendMailHtml, sendMailText} = require("../../../util/smtp/KaKaoSmtp");
-const domain = (process.env.NODE_ENV === 'development') ? process.env.DEVELOPMENT_HOST : '';
+const {sendMailHtml} = require("../../../util/smtp/KaKaoSmtp");
+const domain = process.env.HOST;
 const {sequelize} = require('../../../models/index');
 const authStorage = require('./AuthStorage');
 const memberStorage = require('../member/MemberStorage');
