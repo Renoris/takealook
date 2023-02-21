@@ -9,9 +9,11 @@ const memberService = require('./MemberService');
 router.post('/', async (req, res) => {
     try {
         const {email, firstName, lastName, gender, nickName} = req.body;
+        console.log(req.body);
+
         await memberService.signUp({email, firstName, lastName, gender, nickName});
-        res.status(200);
-        res.send({message:"success"})
+        responseHandler.setIsOkToJson(res);
+        res.send({message:"success"});
     } catch (error) {
         responseHandler.badRequest(res, error.message);
     }

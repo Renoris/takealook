@@ -4,6 +4,10 @@ const responseHandler = require("../../../util/response/ResponseHandler");
 const memberStorage = require("../member/MemberStorage");
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.send({message:'success'});
+})
+
 router.post("/",  (req, res) => {
     try {
         const {email, firstName, lastName, gender, nickName} = req.body;

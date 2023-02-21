@@ -46,10 +46,10 @@
               </select>
             </div>
             <div class="user_name">
-              <label for="sur_name"><ion-icon name="person"></ion-icon></label>
-              <input type="text" id="sur_name" placeholder="성">
-              <label for="full_name"></label>
-              <input type="text" id="full_name" placeholder="이름">
+              <label for="last_name"><ion-icon name="person"></ion-icon></label>
+              <input type="text" id="last_name" placeholder="성">
+              <label for="first_name"></label>
+              <input type="text" id="first_name" placeholder="이름">
             </div>
             <div class="user_nickname">
               <label for="user_nickname"><ion-icon name="pricetag"></ion-icon></label>
@@ -62,7 +62,10 @@
               <label for="female">여</label>
               <input type="radio" name="gender" id="female">
             </div>
-            <button>가입하기</button>
+            <span class="confirm_log fail"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 회원가입이 실패했습니다!</span
+            >
+            <button id = "signup_btn">가입하기</button>
           </form>
         </div>
       </div>
@@ -77,6 +80,6 @@
       crossorigin="anonymous"
     ></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="./components/account.js"></script>
+    <script type="module" src="components/account/account.js"></script>
   </body>
 </html>

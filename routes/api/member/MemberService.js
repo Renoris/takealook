@@ -15,6 +15,7 @@ const MemberService = {
     signUp: async function(userInfo) {
         return sequelize.transaction(async (transaction) => {
             const {firstName, lastName, nickName, email, gender} = userInfo;
+            console.log(userInfo);
             if (!userInfo.email) throw Error ("이메일이 없습니다.")
             if (await memberStorage.getMemberByEmail(email)) throw Error ("해당 이메일이 이미 존재합니다.");
             if (!firstName) throw Error ("이름이 없습니다.")
