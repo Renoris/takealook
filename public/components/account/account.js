@@ -1,3 +1,6 @@
+import {signUpBtnEventListener} from './accountBtnEvents.js';
+
+
 const account = document.querySelector(".user_form");
 const hidden = document.querySelector(".hidden");
 account.addEventListener("keydown", () => {

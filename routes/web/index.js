@@ -5,6 +5,10 @@ const path = require('path');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const filePath = path.join(__dirname,'..','..' ,'public', 'index.html');
+  res.status(200);
+  res.headers = {
+    'Content-Type' : 'text/html'
+  }
   res.sendFile(filePath);
 });
 
