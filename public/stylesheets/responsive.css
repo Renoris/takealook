@@ -28,7 +28,7 @@
     font-size: 18px;
   }
   .genres_tag select,
-  .years_tag input {
+  .years_tag select {
     width: 80px;
     font-size: 12px;
     padding: 6px;
