@@ -22,7 +22,7 @@ function getMovieQuery (id, genre, pubDate, limit, offset,user_rating) {
         from movies m 
         left join picks p on 
         p.movie_id = m.id and p.member_id = ?`;
-        replacements.push(id)``;
+        replacements.push(id);
     }else {
         query += ` from movies m`;
     }
