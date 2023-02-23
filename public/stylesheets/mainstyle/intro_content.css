@@ -5,12 +5,11 @@
 }
 .hero_image {
   height: 100%;
-  background-image: url("../../images/Cat_on_a_yellow_background.png");
+  background-image: url("../../images/cat_in_movie_house_bg_nolight.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-color: #bdc989;
-  /* opacity: 0.5; */
 }
 .content_intro {
   position: absolute;

@@ -56,12 +56,19 @@
   font-weight: 700;
   font-family: "Nanum Gothic";
   cursor: pointer;
+  transition: all 1s;
+}
+.login_box button:hover {
+  background-color: #ff9922;
 }
 .login_box a {
   text-decoration: none;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
   color: #bcbcbc;
+}
+.login_box a:hover {
+  text-decoration: underline;
 }
 .confirm_log {
   display: none;
