@@ -1,4 +1,4 @@
-async function authFetch(url, method = "GET", contentType = 'application/json') {
+async function authFetch(url, method = "GET" ,contentType = 'application/json') {
     try {
         const response = await fetch(url, {
             method,
