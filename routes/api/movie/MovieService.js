@@ -2,8 +2,8 @@ const movieStorage = require('./MovieStorage');
 
 
 const MovieService = {
-    getMovies : async function (memberId, genre, pubDate, limit, offset) {
-        return movieStorage.getMovies(memberId, genre, pubDate, limit, offset)
+    getMovies : async function (memberId, genre, pubDate, limit, offset, user_rating) {
+        return movieStorage.getMovies(memberId, genre, pubDate, limit, offset, user_rating)
     },
 
     getMovieDetail: async function (id) {

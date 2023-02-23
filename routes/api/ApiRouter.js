@@ -17,6 +17,7 @@ router.use('/test', testRouter);
 //이 아래로 jwt 필요
 //req.body.authId 에 유저 id 첨가
 router.use(accessFilter);
+
 router.use('/member', memberRouter);
 
 module.exports = router;
