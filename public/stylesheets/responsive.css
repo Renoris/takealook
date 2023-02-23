@@ -10,6 +10,9 @@
   .content_intro p {
     font-size: 20px;
   }
+  .hero_image {
+    background-image: url("../images/cat_in_movie_house_bg_wtlight.png");
+  }
   /* 로그인 박스(모바일) */
   .login_box,
   .account_box {

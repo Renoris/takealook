@@ -67,3 +67,8 @@ main {
   color: #fff;
   padding: 10px;
 }
+.genres_tag select:hover,
+.years_tag select:hover {
+  background-color: #3f3f3f;
+  cursor: pointer;
+}
