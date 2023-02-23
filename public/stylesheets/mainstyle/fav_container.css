@@ -1,0 +1,165 @@
+/* 취향공유 리스트 자리 */
+.fav_container {
+  margin-top: 30px;
+}
+.today_pick {
+  height: 450px;
+}
+.today_pick h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 900;
+}
+.picks_background {
+  position: absolute;
+  left: 0;
+  background: linear-gradient(180deg, rgba(255, 217, 84, 1) 0%, rgba(250, 182, 79, 1) 100%);
+  padding: 50px;
+  width: 100%;
+  height: 400px;
+}
+.picks_background .left_btn {
+  position: absolute;
+  cursor: pointer;
+  left: 30px;
+  top: 45%;
+  width: 40px;
+  opacity: 0.6;
+}
+.picks_background .right_btn {
+  position: absolute;
+  cursor: pointer;
+  right: 30px;
+  top: 45%;
+  width: 40px;
+  opacity: 0.6;
+}
+.pick_lists {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+}
+.pick_cover {
+  min-width: 230px;
+  height: 230px;
+  background-image: url(../../images/no_image.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* 내 취향이 포함 된 리스트 */
+.included_lists {
+  margin-top: 100px;
+  background-color: #fff;
+}
+.included_lists h2 {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.included_line {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.included_box {
+  position: relative;
+  width: 450px;
+  height: 240px;
+  filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.3));
+}
+.img_box {
+  background-color: aquamarine;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.included_textbox {
+  background-color: #ffd954;
+  width: 400px;
+  height: 220px;
+  padding: 20px;
+  z-index: -2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.included_texts {
+  position: absolute;
+  right: 16px;
+  width: 220px;
+}
+.included_texts h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.included_texts h4 {
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 2px solid #fff;
+}
+.included_texts h5 {
+  font-size: 16px;
+  font-weight: 900;
+  color: #ff9900;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.included_texts p {
+  text-align: center;
+  font-size: 14px;
+}
+.included_texts span {
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+}
+
+/* 취향공유 리스트 */
+.share_lists {
+  width: 100%;
+  margin: 80px 0;
+}
+.share_lists h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.share_box {
+  width: 230px;
+  height: 280px;
+}
+.share_img {
+  height: 230px;
+}
+.share_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.share_textbox {
+  text-align: center;
+  padding: 10px;
+}
+.share_textbox h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.share_textbox span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #bc9252;
+}
