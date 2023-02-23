@@ -114,15 +114,7 @@
           <div class="tags">
             <div class="genres_tag">
               <label for="genre"> 장르별</label>
-              <select name="genre" id="genre">
-                <option value="all" selected>장르별</option>
-                <option value="action">액션</option>
-                <option value="romance">로맨스</option>
-                <option value="sf">SF</option>
-                <option value="animation">애니메이션</option>
-                <option value="thriller">스릴러</option>
-                <option value="horror">공포</option>
-              </select>
+              <select name="genre" id="genre"></select>
             </div>
             <div class="years_tag">
               <label for="year">연도별</label>
@@ -141,54 +133,7 @@
             </div>
             <div class="movie_info">
               <h3>영화제목</h3>
-              <span>장르 · 연도</span>
-            </div>
-          </div>
-          <div class="movie_cover">
-            <img class="fav_btn" src="./images/fav_off.png" alt="" />
-            <div class="cover_img">
-              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
-            </div>
-            <div class="movie_info">
-              <h3>영화제목</h3>
-              <span>장르 · 연도</span>
-            </div>
-          </div>
-          <div class="movie_cover">
-            <img class="fav_btn" src="./images/fav_off.png" alt="" />
-            <div class="cover_img">
-              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
-            </div>
-            <div class="movie_info">
-              <h3>영화제목</h3>
-              <span>장르 · 연도</span>
-            </div>
-          </div>
-          <div class="movie_cover">
-            <div class="cover_img">
-              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
-            </div>
-            <div class="movie_info">
-              <h3>영화제목</h3>
-              <span>장르 · 연도</span>
-            </div>
-          </div>
-          <div class="movie_cover">
-            <div class="cover_img">
-              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
-            </div>
-            <div class="movie_info">
-              <h3>영화제목</h3>
-              <span>장르 · 연도</span>
-            </div>
-          </div>
-          <div class="movie_cover">
-            <div class="cover_img">
-              <img src="https://cdn-magazine.notefolio.net/files/03/17703-6044-23_cont" alt="" />
-            </div>
-            <div class="movie_info">
-              <h3>영화제목</h3>
-              <span>장르 · 연도</span>
+              <span>장르</span>
             </div>
           </div>
         </div>
@@ -202,20 +147,60 @@
                 <div class="pick_cover"></div>
                 <div class="pick_cover"></div>
                 <div class="pick_cover"></div>
+                <div class="pick_cover"></div>
+                <div class="pick_cover"></div>
+                <div class="pick_cover"></div>
               </div>
             </div>
           </div>
-          <div class="included_lists">
-            <h2>내 취향이 포함 된 리스트</h2>
+          <article class="included_lists">
+            <h2>내 취향이 포함 된 리스트 <ion-icon name="chevron-forward-outline"></ion-icon></h2>
             <div class="included_line">
-              <div class="included_box"></div>
+              <div class="included_box">
+                <div class="img_box"></div>
+                <div class="included_textbox">
+                  <div class="included_texts">
+                    <h3>세계동물영화사랑협회</h3>
+                    <h4>동물퍼먹기</h4>
+                    <h5>안녕 베일리</h5>
+                    <p>영화가 포함되어 있어요!</p>
+                    <span>수록 영화(27)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="included_box">
+                <div class="img_box"></div>
+                <div class="included_textbox">
+                  <div class="included_texts">
+                    <h3>세계동물영화사랑협회</h3>
+                    <h4>동물퍼먹기</h4>
+                    <h5>안녕 베일리</h5>
+                    <p>영화가 포함되어 있어요!</p>
+                    <span>수록 영화(27)</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </article>
+          <article class="share_lists">
+            <h2>취향공유 리스트</h2>
+            <div class="share_line">
+              <div class="share_box">
+                <div class="share_img">
+                  <img src="./images/no_image.png" alt="" />
+                </div>
+                <div class="share_textbox">
+                  <h3>리스트 이름</h3>
+                  <span>닉네임</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </main>
     <script type="module" src="components/index/header.js"></script>
-    <script type="module" src="components/main_cont.js"></script>
+    <script type="module" src="components/index/main_cont.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

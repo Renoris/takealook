@@ -1,7 +1,11 @@
+@import "./movie_container.css";
+@import "./fav_container.css";
+
 main {
   position: relative;
   padding-top: 58px;
 }
+/* 영화 & 취향공유 리스트 태그 및 정렬 태그 부분 */
 .main_container {
   width: 90%;
   margin: 40px auto;
@@ -39,7 +43,7 @@ main {
 }
 .select_list input[type="radio"]:checked + label {
   color: #262626;
-  border-image: linear-gradient(90deg, rgba(201, 133, 243, 1) 0%, rgba(255, 217, 84, 1) 100%);
+  border-image: linear-gradient(90deg, rgba(67, 87, 156, 1) 0%, rgba(250, 182, 79, 1) 100%);
   border-image-slice: 1;
   border-bottom: 5px solid;
   line-height: 45px;
@@ -61,116 +65,5 @@ main {
   font-size: 16px;
   background-color: #2c2c2c;
   color: #fff;
-  padding: 12px;
-}
-
-/* 영화 포스터자리 */
-.movie_container {
-  width: 100%;
-  margin: 30px 0;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-.hide {
-  display: none;
-}
-.movie_cover {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-  height: 420px;
-  text-align: center;
-}
-.movie_cover .fav_btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20%;
-}
-.cover_img {
-  background-color: aliceblue;
-  height: 85%;
-}
-.cover_img img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-}
-.movie_info {
-  background-color: initial;
-  width: 100%;
-}
-.movie_cover h3 {
-  font-size: 24px;
-  font-weight: 700;
-  padding: 6px 0;
-}
-.movie_cover span {
-  display: block;
-  color: #bc9252;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-/* 취향공유 리스트 자리 */
-.fav_container {
-  margin-top: 30px;
-}
-.today_pick {
-  height: 450px;
-}
-.today_pick h2 {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 24px;
-  font-weight: 900;
-}
-.picks_background {
-  position: absolute;
-  left: 0;
-  background: linear-gradient(180deg, rgba(255, 217, 84, 1) 0%, rgba(250, 182, 79, 1) 100%);
-  padding: 50px;
-  width: 100%;
-  height: 400px;
-}
-.picks_background .left_btn {
-  position: absolute;
-  cursor: pointer;
-  left: 30px;
-  top: 45%;
-  width: 40px;
-  opacity: 0.6;
-}
-.picks_background .right_btn {
-  position: absolute;
-  cursor: pointer;
-  right: 30px;
-  top: 45%;
-  width: 40px;
-  opacity: 0.6;
-}
-.pick_lists {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  height: 100%;
-}
-.pick_cover {
-  width: 240px;
-  height: 240px;
-  background-image: url(../../images/no_image.png);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.included_lists {
-  margin: 100px;
+  padding: 10px;
 }
