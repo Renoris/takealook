@@ -16,24 +16,6 @@ const searchReturn = document.querySelector(".back");
 const searchBar = document.querySelector(".search_bar");
 const searchBtn = document.querySelector(".search_btn");
 
-
-(async function initialize () {
-  const access = localStorage.getItem('takealook-access');
-  const refresh = localStorage.getItem('takealook-refresh');
-  if (access && refresh) {
-    try {
-      const response = await authFetch('/api/member/my');
-      const {email, nickName} = response;
-      const dom_nick_name = document.getElementById("user_nick_name");
-      const dom_user_email = document.getElementById('user_email');
-      dom_nick_name.innerText = nickName;
-      dom_user_email.innerText = email;
-    }catch (error) {
-      console.log(error);
-    }
-  }
-})();
-
 logoutBtn.addEventListener('click', (e) => logoutBtnClickEventListener(e));
 sideBtn.addEventListener("click",(e) => sideBtnClickEventListener(e, accountBox, loginBox));
 // 로그인 입력 반응
