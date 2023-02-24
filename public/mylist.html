@@ -54,12 +54,16 @@
             ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
             입력해주세요!</span
           >
+          <span class="confirm_log no_account"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
+            먼저 해주세요!</span
+          >
           <form id="login_form" action="error.html">
             <label for="email">이메일</label>
             <input type="email" id="email" placeholder="이메일 로그인" />
             <button type="submit" id="login_btn">로그인</button>
           </form>
-          <a href="./account.html" target="_blank">회원가입</a>
+          <a href="./account" target="_blank">회원가입</a>
         </div>
       </div>
       <!-- 로그인 후 내정보 카드 -->
@@ -69,9 +73,9 @@
             <img src="./images/sample_profile.png" alt="프로필 사진" />
           </div>
           <div class="name_email">
-            <h2>떼껄룩 님</h2>
-            <button>로그아웃</button>
-            <p>takea1234@look.com</p>
+            <h2 id="user_nick_name">떼껄룩 님</h2>
+            <button id="logout_btn">로그아웃</button>
+            <p id="user_email">takea1234@look.com</p>
           </div>
         </div>
         <div class="account_menu">
@@ -80,99 +84,114 @@
         </div>
       </div>
     </header>
-
     <!-- 승범 작업구역 -->
-    <section class="myinfo">
-      <div class="myinfolist">
-        <img src="images/sample_profile.png" />
-      </div>
-    </section>
     <main>
-      <div class="mylist">
-        <h1>내 리스트</h1>
-        <div class="mylistgradcircle"></div>
+      <div class="mylist_head">
+        <h2>내 리스트</h2>
       </div>
-      <div class="folderlist">
-        <div class="creatfolder">
-          <div>
-            <h2>생성한 리스트</h2>
-          </div>
-          <div>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="modfolder">
-          <div>
-            <ion-icon name="share-social-outline"></ion-icon>
-          </div>
-          <div>
-            <ion-icon name="pencil-outline"></ion-icon>
-          </div>
-          <div>
-            <ion-icon name="trash-outline"></ion-icon>
-          </div>
-        </div>
-      </div>
-      <section class="colcontainer">
-        <div class="collectionbox">
-          <div class="moviecollection">
-            <div class="trashicon">
-              <ion-icon name="trash-outline"></ion-icon>
+        <div class="mylist_clip">
+          <img src="./images/sample_profile.png">
+            <div class="mylist_title">
+            <span>떼껄룩</span>의 영화취향
+            <a href="#">내정보 편집</a>
             </div>
-            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-            음악영화모음
-          </div>
         </div>
-        <div class="collectionbox">
-          <div class="moviecollection">
-            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-            음악영화모음
-          </div>
-        </div>
-        <div class="collectionbox">
-          <div class="moviecollection">
-            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-            음악영화모음
-          </div>
-        </div>
-        <div class="collectionbox">
-          <div class="moviecollection">
-            <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-            음악영화모음
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="folderlist">
-          <div class="creatfolder">
-            <h2>내 취향 영화</h2>
-            <div>
-              <ion-icon name="chevron-forward-outline"></ion-icon>
+        <div class="creat_box">
+          <div class="creat_list">
+            <div class="creat_mylist">
+              내 리스트
             </div>
-          </div>
-          <div class="trashiconin">
-            <ion-icon name="trash-outline"></ion-icon>
+            <div class="list_gradation">
+            </div>
+            <section>
+              <div class="list_box">
+                <!-- 생성한 리스트 box -->
+                <div class="list_icon">
+                  <div class="list_font">
+                    생성한 리스트
+                  </div>
+                  <div>
+                    <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
+                  </div>
+                </div>
+                <!-- 공유, 편집, 삭제 기능 -->
+                <div class="list_icon">
+                  <div>
+                    <ion-icon name="share-social-outline"></ion-icon>
+                  </div>
+                  <div>
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </div>
+                  <div>
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </div>
+                </div>
+              </div>
+              <!-- 영화 모음 -->
+              <figure class="collection">
+                  
+                  <div class="folder_box">
+                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                    <div class="movie_folder">음악영화모음</div>
+                  </div>
+                  
+                  <div class="folder_box">
+                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                    <div class="movie_folder">음악영화모음</div>
+                  </div>
+
+                  <div class="folder_box">
+                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                    <div class="movie_folder">음악영화모음</div>
+                  </div>
+
+                  <div class="folder_box">
+                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                    <div class="movie_folder">음악영화모음</div>
+                  </div>
+                  
+              </figure>
+            </section>
+            
+            <!-- 취향리스트 -->
+            <section id="preference_list">
+              <div class="list_box">
+                <div class="list_icon">
+                  <div class="list_font">
+                    내취향 영화
+                  </div>
+                  <div>
+                    <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
+                  </div>
+                </div>
+                  <div class="list_icon">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </div>
+              </div>
+
+              <!-- 취향리스트 포스터 -->
+              <div class="list_poster">
+                <div class="mylist_poster">
+                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                </div>
+                <div class="mylist_poster">
+                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                </div>
+                <div class="mylist_poster">
+                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                </div>
+                <div class="mylist_poster">
+                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                </div>
+              </div>
+            </section>
+
+
+
           </div>
         </div>
-      </section>
-      <div class="preferencemovie">
-        <div>
-          <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-          <div class="preferencelist">
-            주키퍼스 와이프<br />
-            <span>드라마·2019</span>
-          </div>
-        </div>
-        <div>
-          <img src="https://cdn-magazine.notefolio.net/files/79/17679-6044-49_cont" />
-          <div class="preferencelist">
-            주키퍼스 와이프<br />
-            <span>드라마·2019</span>
-          </div>
-        </div>
-      </div>
     </main>
-    <script src="components/index/header.js"></script>
+    <script type="module" src="components/index/header.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
