@@ -15,11 +15,12 @@ const noAccount = document.querySelector(".no_account");
 const searchReturn = document.querySelector(".back");
 const searchBar = document.querySelector(".search_bar");
 const searchBtn = document.querySelector(".search_btn");
+const vaildEmail = document.querySelector(".valid_email");
 
 logoutBtn.addEventListener('click', (e) => logoutBtnClickEventListener(e));
 sideBtn.addEventListener("click",(e) => sideBtnClickEventListener(e, accountBox, loginBox));
 // 로그인 입력 반응
-loginBtn.addEventListener("click", (e) => loginBtnClickEventListener(e,email,clear,fail,noAccount));
+loginBtn.addEventListener("click", (e) => loginBtnClickEventListener(e,email,clear,fail,noAccount, vaildEmail));
 searchBtn.addEventListener("click",
     (e) => searchBtnClickEventListener(e, searchBar, searchBtn, searchReturn),
     { once: true });
