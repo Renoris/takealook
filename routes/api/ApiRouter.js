@@ -6,7 +6,7 @@ const {accessFilter} = require('../filter/JwtFilter');
 const memberRouter = require('./member/MemberRouter');
 const testRouter = require('./test/TestRouter');
 const signUpRouter = require('./member/SignUpRouter');
-const pickRouter = require('/pick/PickRouter');
+const pickRouter = require('./pick/PickRouter');
 
 //jwt 필요없음
 router.use('/auth', authRouter);

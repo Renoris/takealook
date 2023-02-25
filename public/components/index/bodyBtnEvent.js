@@ -1,6 +1,4 @@
 import elementFactory from "../elements/MoviesElements.js";
-import authfetch from "../fetchs/authfetch.js";
-
 export async function pickMovie (movieId, access) {
     if (!access) {
         alert("로그인이 되어잇지 않습니다.");

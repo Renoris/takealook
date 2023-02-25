@@ -1,4 +1,4 @@
-import authFetch from '../fetchs/authfetch.js'
+
 import {sideBtnClickEventListener, logoutBtnClickEventListener ,
   loginBtnClickEventListener , searchBtnClickEventListener, searchReturnClickEventListener} from "./headerBtnEvents.js";
 

@@ -1,4 +1,4 @@
-async function authFetch(url, bodyParam, method = "GET" ,contentType = 'application/json') {
+async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'application/json') {
     const init = {
         method,
         headers : {
