@@ -1,12 +1,18 @@
-async function authFetch(url, method = "GET" ,contentType = 'application/json') {
+async function authFetch(url, bodyParam, method = "GET" ,contentType = 'application/json') {
+    const init = {
+        method,
+        headers : {
+            'Content-Type' : contentType,
+            authorization :  localStorage.getItem('takealook-access')
+        }
+    };
+    if (bodyParam) {
+        if (method === 'GET') url = `${url}?${new URLSearchParams(bodyParam).toString()}`
+        else {init.body = JSON.stringify(bodyParam)}
+    }
+
     try {
-        const response = await fetch(url, {
-            method,
-            headers : {
-                'Content-Type' : contentType,
-                authorization :  localStorage.getItem('takealook-access')
-            }
-        });
+        const response = await fetch(url, init);
         return response.json();
     } catch (error) {
         try {
@@ -15,13 +21,7 @@ async function authFetch(url, method = "GET" ,contentType = 'application/json') 
                 if (response.status !== 200) throw Error ("토큰 갱신에 실패했습니다.");
                 const {accessToken} = await response.json();
                 localStorage.setItem('takealook-access', accessToken);
-                const response2 = await fetch(url, {
-                    method,
-                    headers : {
-                        'Content-Type' : contentType,
-                        authorization :  localStorage.getItem('takealook-access')
-                    }
-                });
+                const response2 = await fetch(url, init);
                 return response2.json();
             } else {
                 throw Error("비정상적인 토큰입니다.")
