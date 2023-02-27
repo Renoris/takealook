@@ -19,10 +19,10 @@ async function headerInitialize () {
 }
 
 async function bodyInitialize() {
-    spreadMovieInfo({limit:10, offset: 0}, access);
+    await spreadMovieInfo({limit:10, offset: 0}, access);
 }
 
-(async function initialize() {
+(function initialize() {
     headerInitialize();
     bodyInitialize();
 })();

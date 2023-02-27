@@ -1,5 +1,5 @@
 const {sequelize, pick, member} = require('../../../models/index');
-const {Op} = require('sequelize');
+const {Op, QueryTypes} = require('sequelize');
 
 
 function getFindAllPickMovieQuery(memberId) {
@@ -7,8 +7,8 @@ function getFindAllPickMovieQuery(memberId) {
     let query = `select m.id movieId, 
         m.title title, year(m.pub_date) pub_date, 
         m.genre genre, m.image image
-        from movie m 
-        inner join pick p on p.movieId = m.movieId and p.memberId = ?`;
+        from movies m 
+        inner join picks p on p.movie_id = m.id AND p.member_id = ?`;
     replacements.push(memberId);
     return {
         query,
@@ -22,12 +22,19 @@ const PickStorage = {
         const {query , replacements} = getFindAllPickMovieQuery(memberId);
         return sequelize.query(query, {
             replacements,
-            transaction
+            transaction,
+            type: QueryTypes.SELECT
         });
     },
 
     findPick: async function (memberId, movieId, transaction) {
-        return await pick.findOne({where : {[Op.eq]: {memberId, movieId}}, transaction});
+        return await pick.findOne({
+            where : {
+            [Op.and]:[
+                {memberId},
+                {movieId}
+            ]
+        }, transaction});
     },
 
     insertPick: async function (memberId, movieId, transaction) {

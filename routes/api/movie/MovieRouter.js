@@ -19,8 +19,6 @@ router.get('/', async (req, res) => {
             result = await movieService.getMovies(undefined, genre, pubDate, limit, offset, user_rating);
         }
 
-
-
         statusBuilder.setIsOkToJson(res);
         res.send(result );
     } catch (error) {

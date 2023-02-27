@@ -29,6 +29,7 @@ async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'app
         } catch (error2) {
             localStorage.removeItem('takealook-refresh');
             localStorage.removeItem('takealook-access');
+            location.reload();
         }
     }
 }

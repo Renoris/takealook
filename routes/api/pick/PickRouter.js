@@ -6,7 +6,7 @@ const movieService = require('./PickService');
 
 router.get('/', async (req, res) => {
     try {
-        const {authId, movieId} = req.body;
+        const {authId} = req.body;
         const result = await movieService.getPickMovies(authId);
         responseHandler.setIsOkToJson(res);
         res.send(result);
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/:movieId', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const {authId, movieId} = req.body;
         await movieService.pickMovie(authId, movieId);
@@ -26,7 +26,7 @@ router.post('/:movieId', async (req, res) => {
     }
 })
 
-router.delete('/:movieId', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         const {authId, movieId} = req.body;
         await movieService.deletePick(authId, movieId);

@@ -1,17 +1,19 @@
+import authFetch from "../fetchs/authfetch.js";
+const access = localStorage.getItem('takealook-access')
 // 리스트 추가 버튼
-const favBtn = document.querySelectorAll(".fav_btn");
-let favorite = 0;
-for (let i = 0; i < favBtn.length; i++) {
-  favBtn[i].addEventListener("click", () => {
-    if (favorite == 0) {
-      favBtn[i].src = "./images/fav_on.png";
-      favorite += 1;
-    } else if (favorite == 1) {
-      favBtn[i].src = "./images/fav_off.png";
-      favorite -= 1;
-    }
-  });
-}
+// const favBtn = document.querySelectorAll(".fav_btn");
+// let favorite = 0;
+// for (let i = 0; i < favBtn.length; i++) {
+//   favBtn[i].addEventListener("click", () => {
+//     if (favorite == 0) {
+//       favBtn[i].src = "./images/fav_on.png";
+//       favorite += 1;
+//     } else if (favorite == 1) {
+//       favBtn[i].src = "./images/fav_off.png";
+//       favorite -= 1;
+//     }
+//   });
+// }
 
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
@@ -65,7 +67,26 @@ movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
   favContainer.classList.add("hide");
 });
-recommendTag.addEventListener("click", () => {
+recommendTag.addEventListener("click", async () => {
+  // if (!access) {
+  //   alert('로그인이 되어 있지 않습니다.');
+  // }
   movieContainer.classList.add("hide");
   favContainer.classList.remove("hide");
+  // const $pickList = document.querySelector('.pick_lists');
+  // try {
+  //   const response = await authFetch('/api/pick');
+  //   $pickList.textContent = '';
+  //   response.forEach((item) => {
+  //     const $pickCover = document.createElement('div');
+  //     $pickCover.classList.add('pick_cover');
+  //     $pickCover.style.background = `url('${item.image}')`;
+  //     $pickList.appendChild($pickCover)
+  //   });
+  //
+  //
+  // }catch (error) {
+  //   alert('서버와의 통신에 실패 하였습니다.')
+  // }
+
 });
