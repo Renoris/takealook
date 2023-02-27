@@ -1,11 +1,10 @@
 import elementFactory from "../elements/MoviesElements.js";
-import authfetch from "../fetchs/authfetch.js";
+import authfetch from "../fetchs/AuthFetch.js";
 const access = localStorage.getItem('takealook-access')
 
 function getButtonState(state, node) {
     let _state = state;
     return {
-
         turnState : async function () {
             if (!access) {
                 alert("로그인이 필요한 서비스 입니다.");
@@ -58,7 +57,6 @@ export async function spreadMovieInfo(params, access) {
             const buttonState = getButtonState(movie.isPick, pickButton);
             pickButton.addEventListener('click', (e) => buttonState.turnState());
         });
-
         console.log(result);
     } catch (error) {
         console.log(error.message)
