@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     actor: DataTypes.STRING,
     userRating: DataTypes.FLOAT(4,2),
     story: DataTypes.TEXT('medium'),
+    random: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'movie',

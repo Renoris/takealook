@@ -1,19 +1,37 @@
-import authFetch from "../fetchs/authfetch.js";
-const access = localStorage.getItem("takealook-access");
-// 리스트 추가 버튼
-// const favBtn = document.querySelectorAll(".fav_btn");
-// let favorite = 0;
-// for (let i = 0; i < favBtn.length; i++) {
-//   favBtn[i].addEventListener("click", () => {
-//     if (favorite == 0) {
-//       favBtn[i].src = "./images/fav_on.png";
-//       favorite += 1;
-//     } else if (favorite == 1) {
-//       favBtn[i].src = "./images/fav_off.png";
-//       favorite -= 1;
-//     }
-//   });
-// }
+
+import authFetch from "../fetchs/AuthFetch.js";
+import elementFactory from "../elements/MoviesElements.js";
+const access = localStorage.getItem('takealook-access');
+function getButtonState(state, node) {
+  let _state = state;
+  return {
+    turnState : async function () {
+      if (!access) {
+        alert("로그인이 필요한 서비스 입니다.");
+        return;
+      }
+      try {
+        const movieId = Number(node.id.slice(6));
+        if (_state) {
+          await authfetch('/api/pick', {
+            movieId
+          }, 'DELETE')
+          node.src = "./images/fav_off.png";
+          _state = 0;
+        } else {
+          await authfetch('/api/pick', {
+            movieId
+          }, 'POST')
+          node.src = "./images/fav_on.png";
+          _state = 1;
+        }
+      }catch (error) {
+        console.log('서버와의 접속에 실패했습니다.')
+      }
+    }
+  }
+}
+
 
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
@@ -110,36 +128,65 @@ const throttle = (callback, time) => {
   }, time);
 };
 //생성시 배치할 요소. 이곳에서 영화리스트 커버와 제목 장르를 생성
-const createCover = (index) => {
-  const cover = document.createElement("div");
-  cover.className = "movie_cover";
-  cover.innerHTML = index;
-  cover.style.backgroundColor = "gray";
-  movieContainer.appendChild(cover);
+
+const createCover = (movie, $movieContainer) => {
+  const movieCover = elementFactory.createMovieCoverNode($movieContainer);
+  const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick ,movieCover);
+  const coverImageNode = elementFactory.createCoverImageNode(movieCover);
+  elementFactory.createInCoverImageNode(movie.image, coverImageNode);
+  elementFactory.createMovieInfoNode(movie.title, movie.genre, movieCover);
+  const buttonState = getButtonState(movie.isPick, pickButton);
+  pickButton.addEventListener('click', (e) => buttonState.turnState());
 };
+
 //콘텐츠 생성 공식
-const addCover = (pageIndex) => {
+const addCover = async (pageIndex) => {
   currentPage = pageIndex;
 
   const startRange = (pageIndex - 1) * coverIncrease;
   const endRange = currentPage == pageCount ? coverLimit : pageIndex * coverIncrease;
 
-  for (let i = startRange + 1; i <= endRange; i++) {
-    createCover(i);
+  try {
+    const params = {
+      limit: endRange-startRange,
+      offset : 0,
+      isRandom : true
+    };
+    let headers = {
+      'Content-Type': 'application/json'
+    };
+    if (access !== null || access) {
+      headers.authorization = access;
+    }
+    let url = '/api/movie';
+    url = `${url}?${new URLSearchParams(params).toString()}`;
+
+    const response = await fetch(url, {
+      headers
+    });
+
+    const result = await response.json();
+
+    result.forEach((movie) => {
+      createCover(movie, movieContainer);
+    });
+    console.log(result);
+  } catch (error) {
+    console.log(error.message)
   }
 };
 //무한 스크롤 공식
-const infiniteScroll = () => {
-  throttle(() => {
+const infiniteScroll = async () => {
+  await throttle(async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
-      addCover(currentPage + 1);
+      await addCover(currentPage + 1);
     }
     if (currentPage === pageCount) {
       removeInfiniteScroll();
     }
-  }, 100);
+  }, 1000);
 };
 //무한 스크롤 제어
 const removeInfiniteScroll = () => {
@@ -147,8 +194,8 @@ const removeInfiniteScroll = () => {
   window.removeEventListener("scroll", infiniteScroll);
 };
 //첫 스크롤 생성
-window.onload = function () {
-  addCover(currentPage);
+window.onload = async function () {
+  await addCover(currentPage);
 };
 
 window.addEventListener("scroll", infiniteScroll);
