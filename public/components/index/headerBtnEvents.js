@@ -25,10 +25,9 @@ export function logoutBtnClickEventListener(e) {
  * @param noAccount : Element
  * @returns {Promise<void>}
  */
-export async function loginBtnClickEventListener(e, emailElement, clear, fail, noAccount) {
+export async function loginBtnClickEventListener(e, emailElement, clear, fail, noAccount, validEmail) {
     const email = emailElement.value;
     if (validateEmail(email)) {
-        e.preventDefault();
         try {
             const response = await fetch('/api/auth', {method : 'POST',
                 headers : {'Content-Type' : 'application/json'} ,body : JSON.stringify({email})});
@@ -37,6 +36,7 @@ export async function loginBtnClickEventListener(e, emailElement, clear, fail, n
                 fail.classList.remove("confirm_log_show");
                 noAccount.classList.add("confirm_log_show");
                 clear.classList.remove("confirm_log_show");
+                validEmail.classList.remove("confirm_log_show");
                 return
             }
 
@@ -51,11 +51,18 @@ export async function loginBtnClickEventListener(e, emailElement, clear, fail, n
             fail.classList.remove("confirm_log_show");
             noAccount.classList.remove("confirm_log_show");
             clear.classList.add("confirm_log_show");
+            validEmail.classList.remove("confirm_log_show");
         } catch (error) {
             fail.classList.add("confirm_log_show");
             clear.classList.remove("confirm_log_show");
             noAccount.classList.remove("confirm_log_show");
+            validEmail.classList.remove("confirm_log_show");
         }
+    }else {
+        fail.classList.remove("confirm_log_show");
+        clear.classList.remove("confirm_log_show");
+        noAccount.classList.remove("confirm_log_show");
+        validEmail.classList.add("confirm_log_show");
     }
 }
 
