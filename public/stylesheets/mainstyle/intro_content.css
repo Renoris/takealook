@@ -9,7 +9,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-color: #bdc989;
+  background-color: #43579c;
+}
+.hero_image:hover {
+  background-image: url("../../images/cat_in_movie_house_bg_wtlight.png");
+  text-shadow: 1px 4px 8px #333;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 .content_intro {
   position: absolute;

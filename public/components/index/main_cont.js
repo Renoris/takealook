@@ -90,3 +90,66 @@ recommendTag.addEventListener("click", async () => {
   // }
 
 });
+
+// 무한스크롤 적용
+const movieCover = document.getElementsByClassName("movie_cover");
+//제한 횟수, 생성 횟수, 페이지 카운트
+const coverLimit = 99;
+const coverIncrease = 7;
+const pageCount = Math.ceil(coverLimit / coverIncrease);
+let currentPage = 1;
+//스크롤 이벤트를 throttle로 제어
+let throttleTimer;
+const throttle = (callback, time) => {
+  if (throttleTimer) return;
+
+  throttleTimer = true;
+
+  setTimeout(() => {
+    callback();
+    throttleTimer = false;
+  }, time);
+};
+//생성시 배치할 요소. 이곳에서 영화리스트 커버와 제목 장르를 생성
+const createCover = (index) => {
+  const cover = document.createElement("div");
+  cover.className = "movie_cover";
+  cover.innerHTML = index;
+  cover.style.backgroundColor = "gray";
+  movieContainer.appendChild(cover);
+};
+//콘텐츠 생성 공식
+const addCover = (pageIndex) => {
+  currentPage = pageIndex;
+
+  const startRange = (pageIndex - 1) * coverIncrease;
+  const endRange = currentPage == pageCount ? coverLimit : pageIndex * coverIncrease;
+
+  for (let i = startRange + 1; i <= endRange; i++) {
+    createCover(i);
+  }
+};
+//무한 스크롤 공식
+const infiniteScroll = () => {
+  throttle(() => {
+    const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+    if (endOfPage) {
+      addCover(currentPage + 1);
+    }
+    if (currentPage === pageCount) {
+      removeInfiniteScroll();
+    }
+  }, 100);
+};
+//무한 스크롤 제어
+const removeInfiniteScroll = () => {
+  movieCover.remove();
+  window.removeEventListener("scroll", infiniteScroll);
+};
+//첫 스크롤 생성
+window.onload = function () {
+  addCover(currentPage);
+};
+
+window.addEventListener("scroll", infiniteScroll);

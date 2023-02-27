@@ -10,6 +10,8 @@ const emailPlatform = document.getElementById("email_platform");
 const genderList = document.getElementsByName("gender");
 const signup = document.getElementById("signup_btn");
 const fail = document.querySelector(".fail");
+const emailPlatforms = document.getElementById("email_platforms");
+const etc = emailPlatforms.firstElementChild;
 
 signup.addEventListener("click", (e) =>
   signUpBtnEventListener(
@@ -29,4 +31,14 @@ account.addEventListener("keydown", () => {
 });
 account.addEventListener("keyup", () => {
   hidden.style.display = "none";
+});
+
+emailPlatforms.addEventListener("change", (e) => {
+  const platformChange = e.target.value;
+  emailPlatform.value = platformChange;
+  if (platformChange === etc.value) {
+    emailPlatform.readOnly = false;
+  } else {
+    emailPlatform.readOnly = true;
+  }
 });
