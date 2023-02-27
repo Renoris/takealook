@@ -51,7 +51,7 @@
   }
 }
 
-/* 중간 사이즈(태블릿 등) */
+/* 중간 사이즈(태블릿 등 화면조정) */
 @media screen and (min-width: 481px) and (max-width: 992px) {
   .movie_container {
     gap: 15px;
