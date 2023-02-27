@@ -49,6 +49,17 @@
   .movie_cover span {
     font-size: 12px;
   }
+  /* 영화 모달창 */
+  .modal_movie {
+    overflow: scroll;
+  }
+  .movie_card_container {
+    height: 100%;
+  }
+  .img_card,
+  .text_card {
+    border-radius: 0;
+  }
 }
 
 /* 중간 사이즈(태블릿 등 화면조정) */
