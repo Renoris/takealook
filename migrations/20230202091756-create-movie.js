@@ -45,7 +45,9 @@ module.exports = {
       story: {
         type: Sequelize.TEXT('medium')
       },
-
+      random: {
+        type: Sequelize.INTEGER
+      },
     });
   },
   async down(queryInterface, Sequelize) {

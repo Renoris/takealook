@@ -1,5 +1,4 @@
-import authFetch from "../fetchs/authfetch.js";
-import {spreadMovieInfo} from "./bodyBtnEvent.js";
+import authFetch from "../fetchs/AuthFetch.js";
 
 const access = localStorage.getItem('takealook-access');
 const refresh = localStorage.getItem('takealook-refresh');
@@ -18,11 +17,7 @@ async function headerInitialize () {
     }
 }
 
-async function bodyInitialize() {
-    await spreadMovieInfo({limit:10, offset: 0}, access);
-}
 
 (function initialize() {
     headerInitialize();
-    bodyInitialize();
 })();
