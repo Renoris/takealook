@@ -1,5 +1,5 @@
-const responseHandler = require('../util/response/ResponseHandler');
-const jwtUtil = require('../util/jwt/JwtUtils');
+const responseHandler = require('../../util/response/ResponseHandler');
+const jwtUtil = require('../../util/jwt/JwtUtils');
 
 function verifyAuthorization(authorization) {
     const token = jwtUtil.resolveToken(authorization);

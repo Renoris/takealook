@@ -7,11 +7,15 @@ const elementFactory = {
         return $element;
     },
 
-    createPickButtonNode: function (id, parentNode) {
+    createPickButtonNode: function (id,isPick ,parentNode) {
         const $element = document.createElement('img');
         if (id) $element.id = `movie_${id}`
         $element.classList.add('fav_btn');
-        $element.src = './images/fav_off.png';
+        if (isPick) {
+            $element.src = './images/fav_on.png';
+        }else {
+            $element.src = './images/fav_off.png';
+        }
         $element.alt = `id ${id} movies pickButton`;
         if (parentNode) parentNode.append($element);
         return $element;

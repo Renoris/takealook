@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'pick',
     underscored: true, /* 카멜 표기법을 스네이크 표기법으로 바꾸는 옵션 */
-    charset: 'utf8' /* 인코딩 */
+    charset: 'utf8'/* 인코딩 */
   });
   return pick;
 };

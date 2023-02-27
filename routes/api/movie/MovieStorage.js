@@ -18,7 +18,7 @@ function getMovieQuery (id, genre, pubDate, limit, offset,user_rating) {
         m.genre genre, m.image image`;
 
     if (id) {
-        query += `, p.id pick_id 
+        query += `, IF(p.id IS NULL, 0, 1) isPick
         from movies m 
         left join picks p on 
         p.movie_id = m.id and p.member_id = ?`;

@@ -9,8 +9,6 @@ const memberService = require('./MemberService');
 router.post('/', async (req, res) => {
     try {
         const {email, firstName, lastName, gender, nickName} = req.body;
-        console.log(req.body);
-
         await memberService.signUp({email, firstName, lastName, gender, nickName});
         responseHandler.setIsOkToJson(res);
         res.send({message:"success"});
