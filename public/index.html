@@ -58,7 +58,7 @@
             먼저 해주세요!</span
           >
           <span class="confirm_log valid_email"
-          ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
+            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
           >
           <form id="login_form">
             <label for="email">이메일</label>
@@ -131,7 +131,7 @@
         </div>
         <!-- 영화 리스트 컨테이너 -->
         <div class="movie_container">
-          <div class="movie_cover">
+          <!-- <div class="movie_cover">
             <img class="fav_btn" src="./images/fav_off.png" alt="" />
             <div class="cover_img">
               <img src="./images/no_image.png" alt="" />
@@ -140,7 +140,7 @@
               <h3>영화제목</h3>
               <span>장르</span>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="fav_container hide">
           <div class="today_pick">
@@ -156,18 +156,6 @@
           <article class="included_lists">
             <h2>내 취향이 포함 된 리스트 <ion-icon name="chevron-forward-outline"></ion-icon></h2>
             <div class="included_line">
-              <div class="included_box">
-                <div class="img_box"></div>
-                <div class="included_textbox">
-                  <div class="included_texts">
-                    <h3>세계동물영화사랑협회</h3>
-                    <h4>동물퍼먹기</h4>
-                    <h5>안녕 베일리</h5>
-                    <p>영화가 포함되어 있어요!</p>
-                    <span>수록 영화(27)</span>
-                  </div>
-                </div>
-              </div>
               <div class="included_box">
                 <div class="img_box"></div>
                 <div class="included_textbox">
@@ -198,6 +186,59 @@
           </article>
         </div>
       </section>
+      <div class="modal_movie">
+        <div class="movie_card_container">
+          <div class="img_card"></div>
+          <div class="text_card">
+            <div class="title_close">
+              <h2>Title</h2>
+              <button><ion-icon name="close-outline"></ion-icon></button>
+            </div>
+            <div class="movie_card">
+              <h3 class="movie_info_card">영화정보</h3>
+              <div class="card_info">
+                <div class="movie_card_left">
+                  <div>2023</div>
+                  <div>장르 종류</div>
+                </div>
+                <div class="movie_card_right">
+                  <div>평점</div>
+                  <div>상영시간</div>
+                </div>
+              </div>
+            </div>
+            <div class="summary">
+              <h3>줄거리</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa perferendis sapiente
+                rem possimus ex dicta aliquam expedita eaque, autem, laudantium repellendus ab
+                officiis odio dolores. Ratione modi consequuntur dicta molestiae?
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 로딩 모달 -->
+      <div class="modal_loading">
+        <div>
+          <div class="loading">
+            <img src="./images/loading.png" alt="고양이와 바다" />
+          </div>
+          <div class="wavy">
+            <span style="--i: 1">l</span>
+            <span style="--i: 2">o</span>
+            <span style="--i: 3">a</span>
+            <span style="--i: 4">d</span>
+            <span style="--i: 5">i</span>
+            <span style="--i: 6">n</span>
+            <span style="--i: 7">g</span>
+            <span style="--i: 8">.</span>
+            <span style="--i: 9">.</span>
+            <span style="--i: 10">.</span>
+          </div>
+        </div>
+      </div>
     </main>
     <script type="module" src="components/index/initialize.js"></script>
     <script type="module" src="components/index/header.js"></script>

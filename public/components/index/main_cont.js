@@ -1,3 +1,4 @@
+
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MoviesElements.js";
 const access = localStorage.getItem('takealook-access');
@@ -105,14 +106,13 @@ recommendTag.addEventListener("click", async () => {
   // }catch (error) {
   //   alert('서버와의 통신에 실패 하였습니다.')
   // }
-
 });
 
 // 무한스크롤 적용
 const movieCover = document.getElementsByClassName("movie_cover");
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
-const coverIncrease = 7;
+const coverIncrease = 0;
 const pageCount = Math.ceil(coverLimit / coverIncrease);
 let currentPage = 1;
 //스크롤 이벤트를 throttle로 제어
