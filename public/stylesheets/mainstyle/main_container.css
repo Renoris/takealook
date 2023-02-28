@@ -1,6 +1,6 @@
 @import "./movie_container.css";
 @import "./fav_container.css";
-@import "../modal.css";
+@import "./modal_cover.css";
 
 main {
   position: relative;
