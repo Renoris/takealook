@@ -1,0 +1,20 @@
+@media screen and (min-width: 360px) and (max-width: 480px){
+    section{
+        width: 100%;
+    
+    }
+    form{
+        margin: 20px 5px;
+        font-size: 14px;
+    }
+    .myprofile{
+        border-radius: 0px;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 992px) {
+    section{
+        width: 90%
+    }
+
+
+}

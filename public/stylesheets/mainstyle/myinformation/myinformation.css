@@ -1,0 +1,187 @@
+.mylist_logout{
+    background-color: #2c2c2c;
+    color: #ffffff;
+    width: 110px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.mylist_info{
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    border-bottom: 1px solid #959595;
+}
+
+section{
+    margin: 0 auto;
+    width: 60%;
+}
+
+.myprofile{
+height: 300px;
+background-color: #FFD954;
+border-radius: 10px;
+padding: 60px;
+}
+
+.myprofile img{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.image_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+}
+
+.image_change{
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    width: 110px;
+    height: 30px;
+    font-weight: 700;
+}
+
+.image_delete{
+    background-color: #ffecaa;
+    border: none;
+    border-radius: 4px;
+    width: 110px;
+    height: 30px;
+    font-weight: 700;
+}
+
+.email{
+
+    display: flex;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d9d9d9;
+    font-weight: 700;
+}
+
+.email_label{
+    margin-right: 30px;
+    margin-top: 4px;
+}
+
+#email_box{
+    height: 38px;
+    border: 1px solid #44579d;
+    flex-grow: 1;
+    margin-right: 110px;
+    border-radius: 4px;
+}
+
+.my_form{
+    margin-top: 30px;
+    display: flex;
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+.nick_name{
+    margin-right: 30px;
+    margin-top: 4px;
+}
+
+.nick_box{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#name_box{
+    height: 38px;
+    border: 1px solid #44579d;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.can_name{
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: green;
+    display: none;
+}
+
+.cannot_name{
+    margin-top: 4px;
+    display: none;
+    font-size: 12px;
+    color:crimson;
+    font-weight: 700;
+}
+
+.name_on {
+    display: flex;
+}
+
+.preferred_genre{
+    margin-right: 17px;
+    margin-top: 4px;
+}
+
+.overlap{
+    background-color: #FFD954;
+    border: none;
+    width: 100px;
+    height: 38px;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.gender_box{
+    margin-right: 45px;
+    margin-top: 4px;
+}
+
+#gender{
+    height: 38px;
+    flex-grow: 1;
+    margin-right: 108px;
+    border: 1px solid #44579d;
+    border-radius: 4px;
+}
+
+
+.genre_box{
+    margin-top: 30px;
+    display: flex;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d9d9d9;
+    font-weight: 700;
+
+}
+
+.modification{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+}
+
+.button_box{
+    background-color: #FFD954;
+    border: none;
+    height: 30px;
+    width: 90px;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+form{
+    margin: 20px;
+}
+
+
+
