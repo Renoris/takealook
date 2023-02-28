@@ -63,7 +63,7 @@ ion-icon {
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 .search_bar {
-  display: none;
+  display: flex;
   position: relative;
   width: 100%;
   padding: 9px 0 8px 18px;
@@ -75,23 +75,26 @@ ion-icon {
   transition: all 0.6s;
   overflow: hidden;
 }
-.search_bar_show {
-  display: block;
-}
-.search_btn {
+.search_view {
   background-color: #fff;
   border-style: none;
   border-radius: 50%;
   cursor: pointer;
+  display: none;
 }
-.search_btn:hover {
+.search_view:hover {
   background-color: #e2e2e2;
 }
-.search_btn_show {
+.search_btn {
   background-color: #ffd954;
   padding: 6px 12px 6px 12px;
+  border-style: none;
   border-radius: 0 40px 40px 0;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+}
+.search_show {
+  display: block;
 }
 #menu_bar {
   border-style: none;
