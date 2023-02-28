@@ -5,6 +5,7 @@
 
 @import "./responsive.css";
 @import "./account.css";
+@import "./modal_loading.css";
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 

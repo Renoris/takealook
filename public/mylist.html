@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
     <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/myliststyle/listheader.css" />
+    <link rel="stylesheet" href="stylesheets/myliststyle/mycollection.css" />
   </head>
 
   <body>
@@ -107,7 +107,7 @@
               <div class="list_box">
                 <!-- 생성한 리스트 box -->
                 <div class="list_icon">
-                  <div class="list_font">
+                  <div class="list_font" id="icon_font">
                     생성한 리스트
                   </div>
                   <div>
@@ -116,13 +116,13 @@
                 </div>
                 <!-- 공유, 편집, 삭제 기능 -->
                 <div class="list_icon">
-                  <div>
+                  <div id="edit_box">
                     <ion-icon name="share-social-outline"></ion-icon>
                   </div>
-                  <div>
+                  <div id="edit_box">
                     <ion-icon name="pencil-outline"></ion-icon>
                   </div>
-                  <div>
+                  <div id="edit_box">
                     <ion-icon name="trash-outline"></ion-icon>
                   </div>
                 </div>
@@ -157,37 +157,40 @@
             <section id="preference_list">
               <div class="list_box">
                 <div class="list_icon">
-                  <div class="list_font">
+                  <div class="list_font" id="icon_font">
                     내취향 영화
                   </div>
-                  <div>
+                  <div >
                     <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
                   </div>
                 </div>
                   <div class="list_icon">
+                    <div id="edit_box">
                     <ion-icon name="trash-outline"></ion-icon>
+                    </div>
                   </div>
               </div>
 
               <!-- 취향리스트 포스터 -->
               <div class="list_poster">
                 <div class="mylist_poster">
-                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img id="poster_click" src="images/fav_on.png">
                 </div>
                 <div class="mylist_poster">
-                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img id="poster_click" src="images/fav_on.png">
                 </div>
                 <div class="mylist_poster">
-                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img id="poster_click" src="images/fav_on.png">
                 </div>
                 <div class="mylist_poster">
-                  <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                  <img id="poster_click" src="images/fav_on.png">
                 </div>
               </div>
             </section>
-
-
-
           </div>
         </div>
     </main>

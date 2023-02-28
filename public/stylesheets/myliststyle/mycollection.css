@@ -8,7 +8,7 @@
   font-weight: 700;
 }
 .mylist_clip{
-  height: 400px;
+  height: 300px;
   padding-top: 40px;
   padding-left: 100px;
   background-color: black;
@@ -43,8 +43,9 @@
 }
 .creat_mylist{
   padding: 30px 10px 20px 30px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
+  color:#ff9900;
   width: 140px;
   height: 40px;
   text-align: center;
@@ -54,13 +55,13 @@
   margin-left: 20px;
   height: 3px;
   width: 120px;
-  background: linear-gradient( to right, #44579D , #ff9900);
+  background:  #ffd954;
 }
 .list_box{
-  background-color: #FFD954;
+  background-color: #44579D;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 14px;
 }
 section{
   margin-top: 10px;
@@ -70,20 +71,26 @@ section{
   box-shadow: 0px 4px 10px rgba( 0, 0, 0, 0.25);
 }
 .list_font{
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 #icon_font{
-  color: black;
+  color: #ffffff;
 }
 .list_icon{
   display: flex;
-  align-items: center;
   gap: 6px;
+  text-align: center;
 }
 .list_icon ion-icon{
-  font-size: 14px;
+  font-size: 18px;
   color: white;
+  vertical-align: -1.2px;
+}
+#edit_box{
+  width: 30px;
+  background-color: black;
+  border-radius: 999px;
 }
 .collection{
   margin-top: 30px;
@@ -95,14 +102,14 @@ section{
   gap: 20px;
 }
 .collection img{
-  width: 120px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   border-radius: 10px;
 }
 .folder_box{
   text-align: center;
-  width: 120px;
-  height: 140px;
+  width: 140px;
+  height: 150px;
 }
 #preference_list{
   margin-top: 100px;
@@ -118,10 +125,19 @@ section{
 .mylist_poster{
   width: 100px;
   height: 125px;
+  position: relative;
 }
-.list_poster img{
+.poster_collection{
   width: 100px;
   height: 125px;
   border: 4px solid #533303;
   border-radius: 4px;
 }
+
+#poster_click{
+  width: 20px;
+  position:absolute;
+  right: 10px;
+  top: 6px;
+}
+
