@@ -45,3 +45,12 @@ img {
   -o-user-drag: none;
   /* user-drag: none; */
 }
+/* TOP 버튼 */
+.up_to_top {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+.up_to_top img {
+  width: 40px;
+}

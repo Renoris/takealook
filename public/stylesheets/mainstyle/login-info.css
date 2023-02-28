@@ -89,6 +89,9 @@
 .no_account {
   background-color: beige;
 }
+.valid_email {
+  background-color: beige;
+}
 /* 로그인 발송 완료 로그 */
 .confirm_log_show {
   display: block;

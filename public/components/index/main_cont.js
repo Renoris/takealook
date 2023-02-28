@@ -1,11 +1,10 @@
-
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MoviesElements.js";
-const access = localStorage.getItem('takealook-access');
+const access = localStorage.getItem("takealook-access");
 function getButtonState(state, node) {
   let _state = state;
   return {
-    turnState : async function () {
+    turnState: async function () {
       if (!access) {
         alert("로그인이 필요한 서비스 입니다.");
         return;
@@ -13,25 +12,32 @@ function getButtonState(state, node) {
       try {
         const movieId = Number(node.id.slice(6));
         if (_state) {
-          await authfetch('/api/pick', {
-            movieId
-          }, 'DELETE')
+          await authfetch(
+            "/api/pick",
+            {
+              movieId,
+            },
+            "DELETE"
+          );
           node.src = "./images/fav_off.png";
           _state = 0;
         } else {
-          await authfetch('/api/pick', {
-            movieId
-          }, 'POST')
+          await authfetch(
+            "/api/pick",
+            {
+              movieId,
+            },
+            "POST"
+          );
           node.src = "./images/fav_on.png";
           _state = 1;
         }
-      }catch (error) {
-        console.log('서버와의 접속에 실패했습니다.')
+      } catch (error) {
+        console.log("서버와의 접속에 실패했습니다.");
       }
-    }
-  }
+    },
+  };
 }
-
 
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
@@ -112,7 +118,7 @@ recommendTag.addEventListener("click", async () => {
 const movieCover = document.getElementsByClassName("movie_cover");
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
-const coverIncrease = 0;
+const coverIncrease = 7;
 const pageCount = Math.ceil(coverLimit / coverIncrease);
 let currentPage = 1;
 //스크롤 이벤트를 throttle로 제어
@@ -131,12 +137,12 @@ const throttle = (callback, time) => {
 
 const createCover = (movie, $movieContainer) => {
   const movieCover = elementFactory.createMovieCoverNode($movieContainer);
-  const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick ,movieCover);
+  const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
   const coverImageNode = elementFactory.createCoverImageNode(movieCover);
   elementFactory.createInCoverImageNode(movie.image, coverImageNode);
   elementFactory.createMovieInfoNode(movie.title, movie.genre, movieCover);
   const buttonState = getButtonState(movie.isPick, pickButton);
-  pickButton.addEventListener('click', (e) => buttonState.turnState());
+  pickButton.addEventListener("click", (e) => buttonState.turnState());
 };
 
 //콘텐츠 생성 공식
@@ -148,31 +154,31 @@ const addCover = async (pageIndex) => {
 
   try {
     const params = {
-      limit: endRange-startRange,
-      offset : 0,
-      isRandom : true
+      limit: endRange - startRange,
+      offset: 0,
+      isRandom: true,
     };
     let headers = {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     };
     if (access !== null || access) {
       headers.authorization = access;
     }
-    let url = '/api/movie';
+    let url = "/api/movie";
     url = `${url}?${new URLSearchParams(params).toString()}`;
 
     const response = await fetch(url, {
-      headers
+      headers,
     });
 
     const result = await response.json();
-
+    console.log(result);
     result.forEach((movie) => {
       createCover(movie, movieContainer);
     });
     console.log(result);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 };
 //무한 스크롤 공식

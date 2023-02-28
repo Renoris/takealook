@@ -131,17 +131,18 @@
         </div>
         <!-- 영화 리스트 컨테이너 -->
         <div class="movie_container">
-          <!-- <div class="movie_cover">
+          <div class="movie_cover">
             <img class="fav_btn" src="./images/fav_off.png" alt="" />
             <div class="cover_img">
-              <img src="./images/no_image.png" alt="" />
+              <img src="./images/no_image_wtext.png" alt="" />
             </div>
             <div class="movie_info">
               <h3>영화제목</h3>
               <span>장르</span>
             </div>
-          </div> -->
+          </div>
         </div>
+        <!-- 취향 리스트 컨테이너 -->
         <div class="fav_container hide">
           <div class="today_pick">
             <h2>오늘 이 영화 어때 <ion-icon name="chevron-forward-outline"></ion-icon></h2>
@@ -186,6 +187,8 @@
           </article>
         </div>
       </section>
+
+      <!-- 영화 정보 모달 -->
       <div class="modal_movie">
         <div class="movie_card_container">
           <div class="img_card"></div>
@@ -218,7 +221,6 @@
           </div>
         </div>
       </div>
-
       <!-- 로딩 모달 -->
       <div class="modal_loading">
         <div>
@@ -238,6 +240,10 @@
             <span style="--i: 10">.</span>
           </div>
         </div>
+      </div>
+
+      <div class="up_to_top">
+        <a href="#"><img src="./images/top_btn.png" alt="" /></a>
       </div>
     </main>
     <script type="module" src="components/index/initialize.js"></script>
