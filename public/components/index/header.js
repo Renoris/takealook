@@ -9,6 +9,7 @@ import {
 
 // 로그인 화면 띄우기
 const loginBox = document.querySelector(".login_box");
+const outerLogin = document.querySelector(".outer_login");
 const sideBtn = document.querySelector("#menu_bar");
 const accountBox = document.querySelector(".account_box");
 const logoutBtn = document.getElementById("logout_btn");
@@ -26,6 +27,7 @@ const top = document.querySelector(".up_to_top");
 
 logoutBtn.addEventListener("click", (e) => logoutBtnClickEventListener(e));
 sideBtn.addEventListener("click", (e) => sideBtnClickEventListener(e, accountBox, loginBox));
+outerLogin.addEventListener("click", (e) => sideBtnClickEventListener(e, accountBox, loginBox));
 // 로그인 입력 반응
 loginBtn.addEventListener("click", (e) =>
   loginBtnClickEventListener(e, email, clear, fail, noAccount, vaildEmail)
@@ -36,4 +38,4 @@ searchView.addEventListener("click", (e) =>
 searchReturn.addEventListener("click", (e) =>
   searchReturnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
-top.addEventListener("scroll", (e) => topScrollEventListener(e));
+window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
