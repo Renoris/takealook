@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/myinformation.css">
+    <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/myinfo_media.css">
+</head>
+<body>
+    <!-- 로그아웃 버튼 -->
+    <header>
+        <div class="head_container">
+            <h1 class="logo">
+                <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
+            </h1>
+            <button class="mylist_logout">로그아웃</button>
+        </div>
+    </header>
+    
+    <!-- 내정보 제목 -->
+    <main>
+    <div class="mylist_info">
+        내 정보
+    </div>
+    <section>
+        <!-- 프로필 사진 -->
+        <div class="myprofile">
+            <div class="image_box">
+                <img src="./images/sample_profile.png">
+                <button class="image_change">이미지 수정</button>
+                <button class="image_delete">이미지 삭제</button>
+            </div>
+        </div>
+        
+        <!-- 이메일 -->
+        <form>
+        <div class="email">
+        <label class="email_label" for="email_box">이메일</label>
+            <input id="email_box" type="email" readonly>
+        </div>
+        
+        <!-- 닉네임, 성별, 선호장르 -->
+        
+        <div class="my_form">
+            <label class="nick_name" for="email_box">닉네임</label>
+            <div class="nick_box">
+                <input id="name_box" type="text">
+                <!-- 클래스명 name_on으로 추가하면 보입니다 -->
+                    <div class="can_name">이 닉네임을 사용할 수 있습니다.
+                    </div>
+                    <div class="cannot_name">이 닉네임을 사용할 수 없습니다.
+                    </div>
+            </div>
+            <button class="overlap">중복확인</button>
+        </div>
+        
+        <div class="my_form">
+            <label class="gender_box" for="email_box">성별</label>
+                <input id="gender" type="text">
+        </div>
+
+        <div class="genre_box">
+            <label class="preferred_genre" for="email_box">선호장르</label>
+                <input id="email_box" type="text">
+        </div>
+        <div class="modification">
+            <div>
+                <button class="button_box">수정</button>
+            </div>
+            <div>
+                <button class="button_box">탈퇴</button>
+            </div>
+        </div>
+
+        </form>
+    </section>
+    </main>
+
+
+    <script type="module" src="components/index/header.js"></script>
+    <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
