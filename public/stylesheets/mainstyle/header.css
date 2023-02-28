@@ -17,7 +17,7 @@ ion-icon {
   align-items: center;
   gap: 12px;
   z-index: 1;
-  padding: 0 16px;
+  padding: 0 64px 0 16px;
   border-bottom: 1px solid #d2d2d2;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
@@ -46,7 +46,7 @@ ion-icon {
   display: flex;
   align-items: center;
   position: fixed;
-  right: 60px;
+  right: 260px;
 }
 .search_box {
   display: flex;
@@ -87,13 +87,28 @@ ion-icon {
 }
 .search_btn {
   background-color: #ffd954;
-  padding: 6px 12px 6px 12px;
+  padding: 7px 14px 7px 12px;
   border-style: none;
   border-radius: 0 40px 40px 0;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
   display: flex;
 }
+.outer_login {
+  background-color: #43579c;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 24px;
+  border-style: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.outer_account {
+  font-size: 14px;
+  font-weight: 700;
+}
 #menu_bar {
+  display: none;
   border-style: none;
   border-radius: 50%;
   background-color: #fff;

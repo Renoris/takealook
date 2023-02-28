@@ -46,7 +46,7 @@
 .pick_cover {
   min-width: 230px;
   height: 230px;
-  background-image: url(../../images/no_image.png);
+  background-image: url(../../images/no_image_color.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

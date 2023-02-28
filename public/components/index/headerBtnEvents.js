@@ -128,8 +128,8 @@ export function searchReturnClickEventListener(e, searchBar, searchBtn, searchVi
  * TOP 버튼 스크롤 이벤트
  * @param e : Event
  */
-export function topScrollEventListener(e) {
-  if (window.scrollY > 100) {
+export function topScrollEventListener(e, top) {
+  if (window.scrollY > 500) {
     top.style.display = "block";
   } else {
     top.style.display = "none";
