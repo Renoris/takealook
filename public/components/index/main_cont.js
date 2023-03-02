@@ -1,5 +1,3 @@
-import authFetch from "../fetchs/AuthFetch.js";
-import elementFactory from "../elements/MoviesElements.js";
 import {addCover} from "./main_contEventListener.js";
 
 //장르별 정렬 리스트
@@ -43,8 +41,6 @@ recommendTag.addEventListener("click", async () => {
   favContainer.classList.remove("hide");
 });
 
-// 무한스크롤 적용
-const movieCover = document.getElementsByClassName("movie_cover");
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
 const coverIncrease = 7;
@@ -57,6 +53,7 @@ const throttle = (callback, time) => {
 
   throttleTimer = true;
 
+  //이걸 죠져놔야됌
   setTimeout(() => {
     callback();
     throttleTimer = false;
@@ -64,7 +61,7 @@ const throttle = (callback, time) => {
 };
 
 //무한 스크롤 공식
-const infiniteScroll = async () => {
+export const infiniteScroll = async () => {
   await throttle(async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
@@ -75,12 +72,11 @@ const infiniteScroll = async () => {
     if (currentPage > pageMax) {
       removeInfiniteScroll();
     }
-  }, 500);
+  }, 1000);
 };
 
 //무한 스크롤 제어
-const removeInfiniteScroll = () => {
-  movieCover.remove();
+export const removeInfiniteScroll = () => {
   window.removeEventListener("scroll", infiniteScroll);
 };
 
@@ -89,5 +85,4 @@ window.onload = async function () {
   await addCover(currentPage, pageMax, coverIncrease, coverLimit, movieContainer);
   currentPage++;
 };
-
 window.addEventListener("scroll", infiniteScroll);

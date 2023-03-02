@@ -1,3 +1,7 @@
+
+import {createCover} from "./main_contEventListener.js";
+const access = localStorage.getItem('takealook-access');
+
 /**
  * 로그인 이메일 값 검사
  * @param email : string 이메일
@@ -82,7 +86,6 @@ export async function loginBtnClickEventListener(
  * @param loginBox : Element
  * @returns {Promise<void>}
  */
-
 export async function sideBtnClickEventListener(e, accountBox, loginBox) {
   const access = localStorage.getItem("takealook-access");
   const refresh = localStorage.getItem("takealook-refresh");
@@ -101,13 +104,58 @@ export async function sideBtnClickEventListener(e, accountBox, loginBox) {
  * @param searchView : Element
  * @param searchReturn
  */
-export function searchBtnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn) {
+export function searchViewClickEventListener(e, searchBar, searchBtn, searchView, searchReturn) {
   e.preventDefault();
   searchView.style.display = "none";
   searchBar.style.display = "block";
   searchBtn.style.display = "block";
   searchReturn.style.display = "block";
 }
+
+// async function getMovies(search, parentNode) {
+//
+//   try {
+//     const params = {
+//       search
+//     };
+//     let headers = {
+//       "Content-Type": "application/json",
+//     };
+//     if (access !== null || access) {
+//       headers.authorization = access;
+//     }
+//     let url = "/api/movie";
+//     url = `${url}?${new URLSearchParams(params).toString()}`;
+//
+//     const response = await fetch(url, {headers,});
+//     const result = await response.json();
+//     result.forEach((movie) => {
+//       createCover(movie, parentNode);
+//     });
+//   } catch (error) {
+//     alert("서버와의 통신에 실패했습니다.")
+//   }
+// }
+
+// export async function searchBarEventListener(e, searchBar, inMovieNode) {
+//   if (e.key === "Enter") {
+//     e.preventDefault();
+//     // Call your function here
+//     window.removeEventListener('scroll',infiniteScroll);
+//     const keyword = searchBar.value;
+//     inMovieNode.textContent = '';
+//     await getMovies(keyword, inMovieNode);
+//   }
+// }
+//
+// export async function searchBtnEventListener(e, searchBtn,searchBar, inMovieNode) {
+//   e.preventDefault();
+//   const keyword = searchBar.value;
+//   window.removeEventListener('scroll',infiniteScroll);
+//   inMovieNode.textContent = '';
+//   await getMovies(keyword, inMovieNode);
+// }
+
 
 /**
  * 서치 리턴 버튼 클릭 이벤트

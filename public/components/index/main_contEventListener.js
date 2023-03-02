@@ -40,7 +40,7 @@ function getButtonState(state, node) {
         },
     };
 }
-const createCover = (movie, $movieContainer) => {
+export const createCover = (movie, $movieContainer) => {
     const movieCover = elementFactory.createMovieCoverNode($movieContainer);
     const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
     const coverImageNode = elementFactory.createCoverImageNode(movieCover);
