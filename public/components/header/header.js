@@ -5,11 +5,12 @@ import {
   searchViewClickEventListener,
   searchReturnClickEventListener,
   topScrollEventListener,
-  searchBtnEventListener,
-  searchBarEventListener
+  searchEventListener,
 } from "./headerEvents.js";
+import authFetch from "../fetchs/AuthFetch.js";
 
-// 로그인 화면 띄우기
+const access = localStorage.getItem('takealook-access');
+const refresh = localStorage.getItem('takealook-refresh');
 const movieContainer = document.querySelector('.movie_container');
 const loginBox = document.querySelector(".login_box");
 const outerLogin = document.querySelector(".outer_login");
@@ -40,15 +41,35 @@ searchView.addEventListener("click", (e) =>
   searchViewClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
 
-// searchBar.addEventListener('keydown', async (e) => {
-//   await searchBarEventListener(e, searchBar, movieContainer);
-// })
-//
-// searchBtn.addEventListener('click', async (e) => {
-//   await searchBtnEventListener(e, searchBtn, searchBar, movieContainer )
-// })
+searchBtn.addEventListener('click', (e) => {
+  const query = searchBar.value;
+  searchEventListener(e, query);
+})
+
+searchBar.addEventListener('keydown', (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const query = searchBar.value;
+    searchEventListener(e, query);
+  }
+})
 
 searchReturn.addEventListener("click", (e) =>
   searchReturnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
 window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
+
+(async function headerInitialize () {
+  if (access && refresh) {
+    try {
+      const response = await authFetch('/api/member/my');
+      const {email, nickName} = response;
+      const dom_nick_name = document.getElementById("user_nick_name");
+      const dom_user_email = document.getElementById('user_email');
+      dom_nick_name.innerText = nickName;
+      dom_user_email.innerText = email;
+    }catch (error) {
+      console.log(error);
+    }
+  }
+})();

@@ -27,10 +27,15 @@ function getMovieQuery (id, genre, pubDate, search, limit, offset) {
     }
 
     let flag = pubDate || genre || search;
-    let alreadyCondition = true;
+    let alreadyCondition = false;
 
     //항상 고정값
-    query = `${query} where pub_date >= 1990 and user_rating >= 5`;
+    if (!search) {
+        query = `${query} where pub_date >= 1990 and user_rating >= 2`;
+        alreadyCondition = true;
+    }else {
+        query = `${query} where`
+    }
 
     if (flag) {
         if (genre && genre !== 'All') {
@@ -52,7 +57,18 @@ function getMovieQuery (id, genre, pubDate, search, limit, offset) {
             }
             query = `${query} Year(pub_date) = ?`
             replacements.push(Number(pubDate));
-            if (!alreadyCondition) {리
+            if (!alreadyCondition) {
+                alreadyCondition = true;
+            }
+        }
+
+        if (search) {
+            if (alreadyCondition) {
+                query = `${query} and`;
+            }
+            query = `${query} title like ?`
+            replacements.push(`%${search}%`);
+            if (!alreadyCondition) {
                 alreadyCondition = true;
             }
         }
