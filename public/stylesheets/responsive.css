@@ -1,6 +1,13 @@
 /* 반응형 모바일 사이즈 */
 @media screen and (max-width: 480px) {
   /* 헤더(모바일) */
+  .head_container {
+    padding: 0 16px;
+  }
+  .outer_login,
+  .outer_account {
+    display: none;
+  }
   .logo img {
     width: 150px;
   }
@@ -14,12 +21,21 @@
     background-image: url("../images/cat_in_movie_house_bg_wtlight.png");
   }
   /* 검색바 */
+  #search {
+    right: 60px;
+  }
   .search_bar,
   .search_btn {
     display: none;
   }
   .search_view {
     display: flex;
+  }
+  #menu_bar {
+    display: block;
+  }
+  .login_box a {
+    display: block;
   }
   /* 로그인 박스(모바일) */
   .login_box,
@@ -72,11 +88,37 @@
 
 /* 중간 사이즈(태블릿 등 화면조정) */
 @media screen and (min-width: 481px) and (max-width: 992px) {
+  /* 헤더 부분 */
+  .head_container {
+    padding: 0 16px;
+  }
+  .outer_login,
+  .outer_account {
+    display: none;
+  }
+  /* 영화 리스트 구역 */
   .movie_container {
     gap: 15px;
   }
   .movie_cover {
     width: 200px;
     height: 350px;
+  }
+  /* 검색바 */
+  #search {
+    right: 60px;
+  }
+  .search_bar,
+  .search_btn {
+    display: none;
+  }
+  .search_view {
+    display: flex;
+  }
+  #menu_bar {
+    display: block;
+  }
+  .login_box a {
+    display: block;
   }
 }
