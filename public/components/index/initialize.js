@@ -17,7 +17,6 @@ async function headerInitialize () {
     }
 }
 
-
 (function initialize() {
     headerInitialize();
 })();
