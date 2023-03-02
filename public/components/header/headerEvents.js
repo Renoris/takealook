@@ -1,5 +1,5 @@
 
-import {createCover} from "./main_contEventListener.js";
+import {createCover} from "../index/main_contEventListener.js";
 const access = localStorage.getItem('takealook-access');
 
 /**
