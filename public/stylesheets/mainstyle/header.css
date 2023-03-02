@@ -46,7 +46,7 @@ ion-icon {
   display: flex;
   align-items: center;
   position: fixed;
-  right: 260px;
+  right: 300px;
 }
 .search_box {
   display: flex;
@@ -94,6 +94,7 @@ ion-icon {
   display: flex;
 }
 .outer_login {
+  display: none;
   background-color: #43579c;
   color: #fff;
   font-size: 14px;
@@ -103,9 +104,33 @@ ion-icon {
   border-radius: 20px;
   cursor: pointer;
 }
+.outer_profile {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.outer_profile img {
+  width: 32px;
+}
+.outer_profile span {
+  font-size: 14px;
+}
 .outer_account {
+  display: none;
   font-size: 14px;
   font-weight: 700;
+}
+.outer_logout {
+  display: none;
+  background-color: #fff;
+  color: #43579c;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border: 2px solid #43579c;
+  border-radius: 20px;
+  cursor: pointer;
 }
 #menu_bar {
   display: none;
@@ -120,4 +145,11 @@ ion-icon {
 }
 #menu_bar:hover {
   background-color: #e2e2e2;
+}
+
+.outer_hide {
+  display: none;
+}
+.outer_show {
+  display: flex;
 }

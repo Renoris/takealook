@@ -93,6 +93,44 @@ export async function sideBtnClickEventListener(e, accountBox, loginBox) {
 }
 
 /**
+ * 헤더 버튼 클릭 이벤트
+ * @param e : Event
+ * @param accountBox : Element
+ * @param loginBox : Element
+ * @param outerLogin : Element
+ * @param outerProfile : Element
+ * @param outerAccount : Element
+ * @param outerLogout : Element
+ * @returns {Promise<void>}
+ */
+
+export async function outerBtnClickEventListener(
+  e,
+  accountBox,
+  loginBox,
+  outerLogin,
+  outerProfile,
+  outerAccount,
+  outerLogout
+) {
+  const access = localStorage.getItem("takealook-access");
+  const refresh = localStorage.getItem("takealook-refresh");
+  if (!(access && refresh)) {
+    loginBox.classList.toggle("show");
+    outerLogin.classList.add("outer_show");
+    outerAccount.classList.add("outer_show");
+    outerProfile.classList.remove("outer_hide");
+    outerLogout.classList.remove("outer_hide");
+  } else if (access && refresh) {
+    accountBox.classList.toggle("show");
+    outerProfile.classList.add("outer_show");
+    outerLogout.classList.add("outer_show");
+    outerLogin.classList.remove("outer_hide");
+    outerAccount.classList.remove("outer_hide");
+  }
+}
+
+/**
  * 서치 버튼 클릭 이벤트
  * @param e : Event
  * @param searchBar : Element
@@ -117,10 +155,10 @@ export function searchViewClickEventListener(e, searchBar, searchBtn, searchView
  * @param searchReturn
  */
 export function searchReturnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn) {
-  searchView.style.display = "flex";
-  searchBar.style.display = "none";
-  searchBtn.style.display = "none";
-  searchReturn.style.display = "none";
+  searchView.style.display = "";
+  searchBar.style.display = "";
+  searchBtn.style.display = "";
+  searchReturn.style.display = "";
 }
 
 /**
