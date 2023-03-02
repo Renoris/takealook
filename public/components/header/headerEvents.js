@@ -82,7 +82,6 @@ export async function loginBtnClickEventListener(
  * @param loginBox : Element
  * @returns {Promise<void>}
  */
-
 export async function sideBtnClickEventListener(e, accountBox, loginBox) {
   const access = localStorage.getItem("takealook-access");
   const refresh = localStorage.getItem("takealook-refresh");
@@ -139,7 +138,7 @@ export async function outerBtnClickEventListener(
  * @param searchView : Element
  * @param searchReturn
  */
-export function searchBtnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn) {
+export function searchViewClickEventListener(e, searchBar, searchBtn, searchView, searchReturn) {
   e.preventDefault();
   searchView.style.display = "none";
   searchBar.style.display = "block";
@@ -172,4 +171,8 @@ export function topScrollEventListener(e, top) {
   } else {
     top.style.display = "none";
   }
+}
+
+export function searchEventListener (e, query) {
+  location.href = `/search?query=${query}`
 }

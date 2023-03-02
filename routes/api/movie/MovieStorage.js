@@ -6,13 +6,12 @@ const {Op, QueryTypes} = require('sequelize');
  * @param id : number 조회하는 사람의 id
  * @param genre : string 장르 - , 로 중복 장르 구분
  * @param pubDate : string 개봉년도
+ * @param search : string 검색어
  * @param limit : number 조회 갯수
  * @param offset : number 조회 페이지 번호
- * @param user_rating : number
- * @param isRandom : boolean
  * @return {object} 완성된 쿼리와 대체 배열
  */
-function getMovieQuery (id, genre, pubDate, limit, offset,user_rating, isRandom = false) {
+function getMovieQuery (id, genre, pubDate, search, limit, offset) {
     const replacements = [];
     let query = `select m.id movieId, 
         m.title title, year(m.pub_date) pub_date, 
@@ -27,9 +26,17 @@ function getMovieQuery (id, genre, pubDate, limit, offset,user_rating, isRandom 
         query += ` from movies m`;
     }
 
-    let flag = pubDate || genre || user_rating || isRandom;
-    let alreadyCondition = true;
-    query = `${query} where pub_date >= 1990`;
+    let flag = pubDate || genre || search;
+    let alreadyCondition = false;
+
+    //항상 고정값
+    if (!search) {
+        query = `${query} where pub_date >= 1990 and user_rating >= 2`;
+        alreadyCondition = true;
+    }else {
+        query = `${query} where`
+    }
+
     if (flag) {
         if (genre && genre !== 'All') {
             const genres = genre.split(",");
@@ -55,32 +62,31 @@ function getMovieQuery (id, genre, pubDate, limit, offset,user_rating, isRandom 
             }
         }
 
-        if (user_rating) {
+        if (search) {
             if (alreadyCondition) {
                 query = `${query} and`;
             }
-            query = `${query} user_rating >= ?`
-            replacements.push(user_rating);
-            if (!alreadyCondition) {
-                alreadyCondition = true;
-            }
-        }
-
-        if (isRandom) {
-            if (alreadyCondition) {
-                query = `${query} and`;
-            }
-            query = `${query} floor(rand() * 10000000) < m.random`
+            query = `${query} title like ?`
+            replacements.push(`%${search}%`);
             if (!alreadyCondition) {
                 alreadyCondition = true;
             }
         }
     }
 
-    if (isRandom) {
-        query = `${query} order by m.random asc, user_rating desc, pub_date desc limit ${limit}`;
-    } else {
-        query = `${query} order by pub_date desc, user_rating desc limit ${limit} offset ${offset}`;
+    if (pubDate) {
+        query = `${query} order by m.random desc`
+    }else {
+        query = `${query} order by pub_date desc, m.random desc`
+    }
+
+
+    if (limit) {
+        query = `${query} limit ${limit}`
+    }
+
+    if (limit && offset) {
+        query = `${query} offset ${offset}`
     }
 
     return {
@@ -97,13 +103,12 @@ const MovieStorage = {
      * @param memberId : number 조회하는 멤버 id
      * @param genre : string 장르 - , 로 중복 장르 구분
      * @param pubDate : string 개봉년도
+     * @param search : string 검색어
      * @param limit : number 조회 갯수
      * @param offset : number 조회 페이지 번호
-     * @param isRandom : boolean
-     * @param user_rating : number
      */
-    getMovies: async function (memberId, genre, pubDate, limit = 10, offset = 1, user_rating = 7, isRandom = false) {
-        const {query, replacements} = getMovieQuery(memberId, genre, pubDate, limit, offset, user_rating, isRandom);
+    getMovies: async function (memberId, genre, pubDate, search, limit , offset) {
+        const {query, replacements} = getMovieQuery(memberId, genre, pubDate,search ,limit, offset);
         return sequelize.query(query, {
             type: QueryTypes.SELECT, // 이거 없으면 같은 결과 2번 중복되서 나옴 //1번 array는 mysql, 2번은 meta데이터인데 mysql은 두가지가 같아서 생기는 문제
             replacements

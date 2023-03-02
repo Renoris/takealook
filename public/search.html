@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
   </head>
   <body>
@@ -15,14 +15,13 @@
       <!-- 로고 및 검색바 인터페이스 -->
       <div class="head_container">
         <h1 class="logo">
-          <a href="/"><img src="images/logo.png" alt="Take a Look logo" /></a>
+          <a href="/index.html"><img src="/images/logo.png" alt="Take a Look logo" /></a>
         </h1>
         <div class="interface">
           <form id="search">
             <div class="search_box">
               <span class="back"><ion-icon name="chevron-forward-outline"></ion-icon></span>
-              <input
-                type="search"
+              <input type="search"
                 name="search"
                 placeholder="영화 검색..."
                 id="search_bar"
@@ -39,16 +38,8 @@
               </button>
             </div>
           </form>
-          <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
           <button type="button" class="outer_login">로그인</button>
-          <div class="outer_profile">
-            <img src="./images/sample_profile.png" alt="">
-            <span>김떼껄룩</span>
-          </div>
-          <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
-          <a href="./account" target="_blank" class="outer_account">회원가입</a>
-          <button type="button" class="outer_logout">로그아웃</button>
-          <!-- 햄버거 메뉴 버튼 992px 이하일경우 활성화 -->
+          <a href="/account" target="_blank" class="outer_account">회원가입</a>
           <button type="button" id="menu_bar">
             <ion-icon name="menu-outline"></ion-icon>
           </button>
@@ -79,14 +70,14 @@
             <input type="text" id="email" placeholder="이메일 로그인" />
             <button type="button" id="login_btn">로그인</button>
           </form>
-          <a href="./account" target="_blank">회원가입</a>
+          <a href="/account" target="_blank">회원가입</a>
         </div>
       </div>
       <!-- 로그인 후 내정보 카드 -->
       <div class="account_box">
         <div class="account_info">
           <div class="account_img">
-            <img src="./images/sample_profile.png" alt="프로필 사진" />
+            <img src="/images/sample_profile.png" alt="프로필 사진" />
           </div>
           <div class="name_email">
             <h2 id="user_nick_name">떼껄룩 님</h2>
@@ -95,8 +86,8 @@
           </div>
         </div>
         <div class="account_menu">
-          <a href="./myinformation" class="my_info">내 정보</a>
-          <a href="./mylist" class="my_list">내 리스트</a>
+          <a href="/mylist.html" class="my_info">내 정보</a>
+          <a href="/mylist.html" class="my_list">내 리스트</a>
         </div>
       </div>
     </header>
@@ -107,9 +98,9 @@
         <div class="hero_image">
           <div class="content_intro">
             <div>
-              <h2>당신의 취향을<br />냥펀치 <img src="images/paws.png" alt="" /></h2>
+              <h2>당신의 취향을<br />냥펀치 <img src="/images/paws.png" alt="" /></h2>
               <p>너와 나의 취향저격</p>
-              <img src="images/logo_white.png" alt="" />
+              <img src="/images/logo_white.png" alt="" />
             </div>
           </div>
         </div>
@@ -146,9 +137,9 @@
         <!-- 영화 리스트 컨테이너 -->
         <div class="movie_container">
           <div class="movie_cover">
-            <img class="fav_btn" src="./images/fav_off.png" alt="" />
+            <img class="fav_btn" src="/images/fav_off.png" alt="" />
             <div class="cover_img">
-              <img src="./images/no_image_wtext.png" alt="" />
+              <img src="/images/no_image_wtext.png" alt="" />
             </div>
             <div class="movie_info">
               <h3>영화제목</h3>
@@ -161,8 +152,8 @@
           <div class="today_pick">
             <h2>오늘 이 영화 어때 <ion-icon name="chevron-forward-outline"></ion-icon></h2>
             <div class="picks_background">
-              <img src="./images/left_arrow.png" class="left_btn" alt="" />
-              <img src="./images/right_arrow.png" class="right_btn" alt="" />
+              <img src="/images/left_arrow.png" class="left_btn" alt="" />
+              <img src="/images/right_arrow.png" class="right_btn" alt="" />
               <div class="pick_lists">
                 <div class="pick_cover"></div>
               </div>
@@ -190,7 +181,7 @@
             <div class="share_line">
               <div class="share_box">
                 <div class="share_img">
-                  <img src="./images/no_image_color.png" alt="" />
+                  <img src="/images/no_image_color.png" alt="" />
                 </div>
                 <div class="share_textbox">
                   <h3>리스트 이름</h3>
@@ -239,7 +230,7 @@
       <div class="modal_loading">
         <div>
           <div class="loading">
-            <img src="./images/loading.png" alt="고양이와 바다" />
+            <img src="/images/loading.png" alt="고양이와 바다" />
           </div>
           <div class="wavy">
             <span style="--i: 1">l</span>
@@ -257,11 +248,11 @@
       </div>
       <!-- 상단으로 이동 버튼 -->
       <div class="up_to_top">
-        <a href="#"><img src="./images/top_btn.png" alt="" /></a>
+        <a href="#"><img src="/images/top_btn.png" alt="" /></a>
       </div>
     </main>
-    <script type="module" src="components/index/main_cont.js"></script>
     <script type="module" src="components/header/header.js"></script>
+    <script type="module" src="components/search/main_cont.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

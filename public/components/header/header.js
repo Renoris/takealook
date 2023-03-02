@@ -3,12 +3,15 @@ import {
   outerBtnClickEventListener,
   logoutBtnClickEventListener,
   loginBtnClickEventListener,
-  searchBtnClickEventListener,
+  searchViewClickEventListener,
   searchReturnClickEventListener,
   topScrollEventListener,
-} from "./headerBtnEvents.js";
+  searchEventListener,
+} from "./headerEvents.js";
 
-// 로그인 화면 띄우기
+const access = localStorage.getItem("takealook-access");
+const refresh = localStorage.getItem("takealook-refresh");
+const movieContainer = document.querySelector(".movie_container");
 const loginBox = document.querySelector(".login_box");
 const outerLogin = document.querySelector(".outer_login");
 const outerProfile = document.querySelector(".outer_profile");
@@ -59,8 +62,22 @@ loginBtn.addEventListener("click", (e) =>
   loginBtnClickEventListener(e, email, clear, fail, noAccount, vaildEmail)
 );
 searchView.addEventListener("click", (e) =>
-  searchBtnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
+  searchViewClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
+
+searchBtn.addEventListener("click", (e) => {
+  const query = searchBar.value;
+  searchEventListener(e, query);
+});
+
+searchBar.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const query = searchBar.value;
+    searchEventListener(e, query);
+  }
+});
+
 searchReturn.addEventListener("click", (e) =>
   searchReturnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
