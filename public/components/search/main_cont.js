@@ -1,6 +1,6 @@
+//장르별 정렬 리스트
 import {addCover} from "./main_contEventListener.js";
 
-//장르별 정렬 리스트
 const genreList = document.getElementById("genre");
 let genreArray = ["장르별", "전체", "TV영화", "액션", "드라마", "공포", "로맨스", "스릴러", "다큐멘터리", "코미디", "가족", "전쟁", "애니메이션", "SF", "무협"];
 let genreOption = "";
@@ -40,6 +40,10 @@ recommendTag.addEventListener("click", async () => {
   movieContainer.classList.add("hide");
   favContainer.classList.remove("hide");
 });
+//검색
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const query = urlParams.get("query");
 
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
@@ -66,7 +70,9 @@ export const infiniteScroll = async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
-      await addCover(currentPage, pageMax, coverIncrease, coverLimit, movieContainer);
+      const startRange = (currentPage - 1) * coverIncrease;
+      const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
+      await addCover(query, startRange, endRange ,movieContainer);
       currentPage ++;
     }
     if (currentPage > pageMax) {
@@ -79,10 +85,15 @@ export const infiniteScroll = async () => {
 export const removeInfiniteScroll = () => {
   window.removeEventListener("scroll", infiniteScroll);
 };
-
-// 첫 스크롤 생성
+//첫 스크롤 생성
 window.onload = async function () {
-  await addCover(currentPage, pageMax, coverIncrease, coverLimit, movieContainer);
+  const startRange = (currentPage - 1) * coverIncrease;
+  const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
+  const result = await addCover(query,startRange, endRange ,movieContainer);
+  if (result) {
+    removeInfiniteScroll();
+  }
+
   currentPage++;
 };
 window.addEventListener("scroll", infiniteScroll);

@@ -6,16 +6,16 @@ const jwtUtil = require('../../../util/jwt/JwtUtils');
 
 router.get('/', async (req, res) => {
     try {
-        const {genre, pubDate, search, limit, offset} = req.query;
+        const {genre, pubDate, query, limit, offset} = req.query;
         const {authorization} = req.headers;
 
         let result;
         if (authorization) {
             const token = jwtUtil.resolveToken(authorization);
             const auth = jwtUtil.verify(token);
-            result = await movieService.getMovies(auth.id, genre, pubDate, search ,limit, offset);
+            result = await movieService.getMovies(auth.id, genre, pubDate, query ,limit, offset);
         } else {
-            result = await movieService.getMovies(undefined, genre, pubDate,search , limit, offset);
+            result = await movieService.getMovies(undefined, genre, pubDate,query , limit, offset);
         }
 
         statusBuilder.setIsOkToJson(res);
