@@ -61,7 +61,12 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+#usable_email,
+#duplicate_email {
+  margin-left: 24px;
+  margin-top: 3px;
 }
 .user_gender span {
   width: 100%;
