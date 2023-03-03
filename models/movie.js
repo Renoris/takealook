@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     subTitle: DataTypes.STRING,
     pubDate: DataTypes.DATE,
-    running_time : DataTypes.STRING,
+    runningTime : DataTypes.STRING,
     director: DataTypes.STRING,
     actor: DataTypes.STRING,
     userRating: DataTypes.FLOAT(4,2),

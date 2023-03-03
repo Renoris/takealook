@@ -1,12 +1,63 @@
 import elementFactory from "../elements/MoviesElements.js";
 import authFetch from "../fetchs/AuthFetch.js";
 const access = localStorage.getItem("takealook-access");
+const removeList = {
+    '&nbsp;': ' ',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&amp;': '&',
+    '&quot;': '"',
+    '&#035;': '#',
+    '&#039;': ''
+};
+async function toggleModal(movieId) {
+    if (!movieId) alert("영화를 읽어오지 못했습니다.");
+    try {
+        const loadingModal = document.querySelector('.modal_loading');
+        loadingModal.classList.add('modal_on');
+        const movie  = await (await fetch(`/api/movie/${movieId}`)).json();
+        if (!movie) throw Error ("영화정보를 불러오지 못했습니다.");
+        const movieDetailImage = document.getElementById('movie_detail_image');
+        const movieDetailTitle = document.getElementById('movie_detail_title');
+        const movieDetailStory = document.getElementById('movie_detail_story');
+        const movieDetailPubDate = document.getElementById('movie_detail_pub_date');
+        const movieDetailRunningTime = document.getElementById('movie_detail_running_time');
+        const movieDetailGenre = document.getElementById('movie_detail_genre');
+        const movieDetailUserRating = document.getElementById('movie_detail_user_rating');
+        const movieModal = document.querySelector('.modal_movie');
+
+        movieDetailImage.src = movie.image;
+        if (movie.title.length > 12) {
+            movieDetailTitle.classList.add('modalfontdown');
+        }else {
+            movieDetailTitle.classList.remove('modalfontdown');
+        }
+        let replacedTitle = movie.title;
+        for (const key in removeList) {
+            replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
+        }
+
+        movieDetailTitle.innerText = replacedTitle;
+        movieDetailStory.innerText =  movie.story.replace('\n', ' ');
+        movieDetailPubDate.innerText = movie.pubDate.slice(0,4);
+        movieDetailRunningTime.innerText = `${(movie.runningTime) ? movie.runningTime : '알수 없음'}`;
+        movieDetailGenre.innerText = `${movie.genre}`;
+        movieDetailUserRating.innerText = `평점: ${(movie.userRating)}`;
+
+        loadingModal.classList.remove('modal_on');
+        movieModal.classList.add('modal_on');
+    } catch (error) {
+        alert(error.message);
+    }
+}
 
 
 function getButtonState(state, node) {
     let _state = state;
     return {
         turnState: async function () {
+            const loadingModal = document.querySelector('.modal_loading');
+            loadingModal.classList.add('modal_on');
             if (!access) {
                 alert("로그인이 필요한 서비스 입니다.");
                 return;
@@ -37,6 +88,7 @@ function getButtonState(state, node) {
             } catch (error) {
                 console.log("서버와의 접속에 실패했습니다.");
             }
+            loadingModal.classList.remove('modal_on');
         },
     };
 }
@@ -45,9 +97,16 @@ export const createCover = (movie, $movieContainer) => {
     const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
     const coverImageNode = elementFactory.createCoverImageNode(movieCover);
     elementFactory.createInCoverImageNode(movie.image, coverImageNode);
-    elementFactory.createMovieInfoNode(movie.title, movie.genre, movieCover);
+
+
+    let replacedTitle = movie.title;
+    for (const key in removeList) {
+        replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
+    }
+    elementFactory.createMovieInfoNode(replacedTitle, movie.genre, movieCover);
     const buttonState = getButtonState(movie.isPick, pickButton);
     pickButton.addEventListener("click", (e) => buttonState.turnState());
+    coverImageNode.addEventListener('click', (e) => toggleModal(movie.movieId));
 };
 
 export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimit, parentNode) => {
