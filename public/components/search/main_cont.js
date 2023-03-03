@@ -1,8 +1,24 @@
 //장르별 정렬 리스트
-import {addCover} from "./main_contEventListener.js";
+import { addCover } from "./main_contEventListener.js";
 
 const genreList = document.getElementById("genre");
-let genreArray = ["장르별", "전체", "TV영화", "액션", "드라마", "공포", "로맨스", "스릴러", "다큐멘터리", "코미디", "가족", "전쟁", "애니메이션", "SF", "무협"];
+let genreArray = [
+  "장르별",
+  "전체",
+  "TV영화",
+  "액션",
+  "드라마",
+  "공포",
+  "로맨스",
+  "스릴러",
+  "다큐멘터리",
+  "코미디",
+  "가족",
+  "전쟁",
+  "애니메이션",
+  "SF",
+  "무협",
+];
 let genreOption = "";
 
 for (let i = 0; i < genreArray.length; i++) {
@@ -72,13 +88,13 @@ export const infiniteScroll = async () => {
     if (endOfPage) {
       const startRange = (currentPage - 1) * coverIncrease;
       const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
-      await addCover(query, startRange, endRange ,movieContainer);
-      currentPage ++;
+      await addCover(query, startRange, endRange, movieContainer);
+      currentPage++;
     }
     if (currentPage > pageMax) {
       removeInfiniteScroll();
     }
-  }, 1000);
+  }, 500);
 };
 
 //무한 스크롤 제어
@@ -89,7 +105,7 @@ export const removeInfiniteScroll = () => {
 window.onload = async function () {
   const startRange = (currentPage - 1) * coverIncrease;
   const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
-  const result = await addCover(query,startRange, endRange ,movieContainer);
+  const result = await addCover(query, startRange, endRange, movieContainer);
   if (result) {
     removeInfiniteScroll();
   }

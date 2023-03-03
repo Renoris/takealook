@@ -95,7 +95,9 @@
 }
 /* 로그인 발송 완료 로그 */
 .confirm_log_show {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .confirm_log ion-icon {
@@ -121,7 +123,7 @@
 }
 .account_img {
   display: inline-block;
-  width: 120px;
+  width: 100px;
   vertical-align: middle;
   margin-right: auto;
 }
