@@ -30,7 +30,7 @@ const elementFactory = {
   createInCoverImageNode: function (url, parentNode) {
     const $element = document.createElement("img");
     if (!url || url === "null") {
-      $element.src = "./images/no_image_wtext.png";
+      $element.src = "./images/no_image.png";
     } else $element.src = url;
     if (parentNode) parentNode.append($element);
     return $element;
