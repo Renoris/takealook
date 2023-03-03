@@ -45,6 +45,8 @@
                 <option value="hanmail.net">hanmail.net</option>
               </select>
             </div>
+            <span class="usable" id ="usable_email">사용가능한 이메일 입니다.</span>
+            <span class="duplicate" id ="duplicate_email">중복된 이메일 입니다. 다른 이메일을 입력해 주세요.</span>
             <div class="user_name">
               <label for="last_name"><ion-icon name="person"></ion-icon></label>
               <input type="text" id="last_name" placeholder="성">
@@ -55,10 +57,10 @@
               <label for="user_nickname"><ion-icon name="pricetag"></ion-icon></label>
               <div class="nickname_alert">
                 <input type="text" id="user_nickname" placeholder="닉네임">
-                <span class="usable">사용가능한 닉네임 입니다.</span>
-                <span class="dupplicate">중복된 닉네임 입니다. 다시 입력해주세요!</span>
+                <span class="usable" id = "usable_nick_name">사용가능한 닉네임 입니다.</span>
+                <span class="duplicate" id = "duplicate_nick_name">중복된 닉네임 입니다. 다시 입력해주세요!</span>
               </div>
-              <button type="button">중복확인</button>
+              <button id = 'validate_nick_btn' type="button">중복확인</button>
             </div>
             <div class="user_gender">
               <span> 성별 </span>
@@ -68,7 +70,7 @@
               <input type="radio" name="gender" id="female">
             </div>
             <span class="confirm_log fail">
-              <ion-icon name="alert-circle-outline"></ion-icon> 회원가입이 실패했습니다!
+              <ion-icon name="alert-circle-outline"></ion-icon> 회원가입이 실패했습니다! 정보를 다시 확인해 주세요!
             </span>
             <button id = "signup_btn">가입하기</button>
           </form>

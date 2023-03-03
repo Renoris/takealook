@@ -1,6 +1,8 @@
 
-export async function signUpBtnEventListener(e, email, emailPlatform, nickName, firstName, lastName, genderList, fail) {
+export async function signUpBtnEventListener(e, signupInfo, genderList, validateDom) {
     e.preventDefault();
+    const {email, emailDomain, nickName, firstName, lastName} = signupInfo;
+
     let gender = '';
     genderList.forEach((node) => {
         if (node.checked) {
@@ -8,10 +10,10 @@ export async function signUpBtnEventListener(e, email, emailPlatform, nickName, 
         }
     });
     const body = {
-        email: `${email.value}@${emailPlatform.value}`,
-        firstName : firstName.value,
-        nickName : nickName.value,
-        lastName : lastName.value,
+        email: `${email}@${emailDomain}`,
+        firstName : firstName,
+        nickName : nickName,
+        lastName : lastName,
         gender : gender
     };
     try {
@@ -19,12 +21,29 @@ export async function signUpBtnEventListener(e, email, emailPlatform, nickName, 
         const response = await fetch('/api/signup', {method : 'POST', headers : {
                 'Content-Type' : 'application/json',
             }, body : JSON.stringify(body)});
-        if (response.status !== 200) throw Error("기입된 정보중 올바르지 않은 정보가 있습니다.");
         const result = await response.json();
-        if (result.message !== 'success') throw Error (result.message);
+
+        if (result.message !== 'success') {
+            validateDom.fail.innerText = result.message;
+            throw Error (result.message);
+        }
+        alert("회원가입이 완료 되었습니다.");
         window.location.href = `${window.location.protocol}//${window.location.host}`;
     }catch (error) {
-        fail.classList.add("confirm_log_show");
-        console.log(error.message);
+        //이메일 검증 먼저 들어감
+        validateDom.fail.classList.add("confirm_log_show");
+        if (error.message.includes("해당 이메일이 존재합니다")) {
+            validateDom.duplicateEmail.classList.add("valid_show");
+        } else if (error.message.includes("해당 닉네임이 존재합니다")) {
+            validateDom.usableEmail.classList.add("valid_show");
+            validateDom.duplicateEmail.classList.remove("valid_show");
+            validateDom.duplicateNickName.classList.add("valid_show");
+            validateDom.usableNickName.classList.remove("valid_show");
+        } else {
+            validateDom.usableEmail.classList.remove("valid_show");
+            validateDom.duplicateEmail.classList.remove("valid_show");
+            validateDom.duplicateNickName.classList.remove("valid_show");
+            validateDom.usableNickName.classList.remove("valid_show");
+        }
     }
 }

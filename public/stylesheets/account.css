@@ -87,17 +87,17 @@
   flex-grow: 1;
   gap: 3px;
 }
-.nickname_alert .usable {
+.usable {
   display: none;
   font-size: 12px;
   color: green;
 }
-.nickname_alert .dupplicate {
+.duplicate {
   display: none;
   font-size: 12px;
   color: red;
 }
-.nickname_alert .nickname_show {
+.valid_show {
   display: block;
 }
 .user_nickname button {
