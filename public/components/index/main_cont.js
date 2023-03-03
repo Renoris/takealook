@@ -102,3 +102,8 @@ window.onload = async function () {
   currentPage++;
 };
 window.addEventListener("scroll", infiniteScroll);
+const movieModalCloseBtn = document.getElementById('movie_modal_close_btn');
+movieModalCloseBtn.addEventListener('click', (e) => {
+  const movieModal = document.querySelector('.modal_movie');
+  movieModal.classList.remove('modal_on');
+});

@@ -32,6 +32,8 @@ export async function loginBtnClickEventListener(
   noAccount,
   validEmail
 ) {
+  const loadingModal = document.querySelector('.modal_loading');
+  loadingModal.classList.add('modal_on');
   const email = emailElement.value;
   if (validateEmail(email)) {
     try {
@@ -73,6 +75,7 @@ export async function loginBtnClickEventListener(
     noAccount.classList.remove("confirm_log_show");
     validEmail.classList.add("confirm_log_show");
   }
+
 }
 
 /**

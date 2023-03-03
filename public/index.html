@@ -206,38 +206,38 @@
       <!-- class modal_on 시 모달이 뜸 -->
       <div class="modal_movie">
         <div class="movie_card_container">
-          <div class="img_card"></div>
+          <img src="./images/no_image.png" class="img_card" id="movie_detail_image">
           <div class="text_card">
             <div class="title_close">
-              <h2>Title</h2>
-              <button><ion-icon name="close-outline"></ion-icon></button>
+              <h2 id = "movie_detail_title">Title</h2>
+              <button id="movie_modal_close_btn"><ion-icon name="close-outline"></ion-icon></button>
             </div>
             <div class="movie_card">
               <h3 class="movie_info_card">영화정보</h3>
               <div class="card_info">
                 <div class="movie_card_left">
-                  <div>2023</div>
-                  <div>장르 종류</div>
+                  <div id = "movie_detail_pub_date">2023</div>
+                  <div id = "movie_detail_genre">장르 종류</div>
                 </div>
                 <div class="movie_card_right">
-                  <div>평점</div>
-                  <div>상영시간</div>
+                  <div id = "movie_detail_user_rating">평점</div>
+                  <div id = "movie_detail_running_time">상영시간</div>
                 </div>
               </div>
             </div>
             <div class="summary">
               <h3>줄거리</h3>
-              <p>
+              <p id = "movie_detail_story">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa perferendis sapiente
                 rem possimus ex dicta aliquam expedita eaque, autem, laudantium repellendus ab
                 officiis odio dolores. Ratione modi consequuntur dicta molestiae?
               </p>
             </div>
           </div>
-        </div>
+        </img>
       </div>
       <!-- 로딩 모달 -->
-      <div class="modal_loading">
+      <div class="modal_loading modal_on">
         <div>
           <div class="loading">
             <img src="./images/loading.png" alt="고양이와 바다" />
