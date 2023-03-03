@@ -58,7 +58,7 @@ body{
   margin-left: 20px;
   height: 3px;
   width: 120px;
-  background:  #ff9900;
+  background-color: #43579C;
 }
 .list_box{
   display: flex;
@@ -83,6 +83,7 @@ section{
 .list_icon{
   display: flex;
   gap: 6px;
+  align-items: center;
   text-align: center;
 }
 .list_icon ion-icon{
@@ -105,7 +106,7 @@ section{
   font-weight: 700;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  overflow: hidden;
   gap: 20px;
 }
 .collection img{
@@ -129,7 +130,7 @@ section{
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  overflow: hidden;
   gap: 10px;
 }
 .mylist_poster{
