@@ -85,114 +85,116 @@
       </div>
     </header>
     <!-- 승범 작업구역 -->
-    <main>
+    <main class="list_main">
       <div class="mylist_head">
         <h2>내 리스트</h2>
       </div>
-        <div class="mylist_clip">
-          <img src="./images/sample_profile.png">
-            <div class="mylist_title">
-            <span>떼껄룩</span>의 영화취향
-            <a href="#">내정보 편집</a>
-            </div>
+      <div class="mylist_clip">
+        <img src="./images/sample_profile.png">
+        <div class="mylist_title">
+          <span>떼껄룩</span>의 영화취향
+          <a href="#">내정보 편집</a>
         </div>
-        <div class="creat_box">
-          <div class="creat_list">
-            <div class="creat_mylist">
-              내 리스트
-            </div>
-            <div class="list_gradation">
-            </div>
-            <section>
-              <div class="list_box">
-                <!-- 생성한 리스트 box -->
-                <div class="list_icon">
-                  <div class="list_font" id="icon_font">
-                    생성한 리스트
-                  </div>
-                  <div>
-                    <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
-                  </div>
+      </div>
+      <div class="creat_box">
+        <div class="creat_list">
+          <div class="creat_mylist">
+            내 리스트
+          </div>
+          <div class="list_gradation">
+          </div>
+          <section>
+            <img class="arrow_box"src="images/left_arrow.png">
+            <div class="list_box">
+            <!-- 생성한 리스트 box -->
+              <div class="list_icon">
+                <img src="images/listcreat.png">
+                <div class="list_font" id="icon_font">
+                  생성한 리스트
                 </div>
-                <!-- 공유, 편집, 삭제 기능 -->
-                <div class="list_icon">
-                  <div id="edit_box">
-                    <ion-icon name="share-social-outline"></ion-icon>
-                  </div>
-                  <div id="edit_box">
-                    <ion-icon name="pencil-outline"></ion-icon>
-                  </div>
-                  <div id="edit_box">
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </div>
+                <div>
+                  <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
                 </div>
               </div>
+                <!-- 공유, 편집, 삭제 기능 -->
+              <div class="list_icon">
+                <div id="edit_box">
+                  <ion-icon name="share-social-outline"></ion-icon>
+                </div>
+                <div id="edit_box">
+                  <ion-icon name="pencil-outline"></ion-icon>
+                </div>
+                <div id="edit_box">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </div>
+              </div>
+            </div>
+              
               <!-- 영화 모음 -->
-              <figure class="collection">
+            <figure class="collection">
+              <div class="folder_box">
+                <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <div>음악영화모음</div>
+              </div>
                   
-                  <div class="folder_box">
-                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                    <div class="movie_folder">음악영화모음</div>
-                  </div>
-                  
-                  <div class="folder_box">
-                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                    <div class="movie_folder">음악영화모음</div>
-                  </div>
-
-                  <div class="folder_box">
-                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                    <div class="movie_folder">음악영화모음</div>
-                  </div>
-
-                  <div class="folder_box">
-                    <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                    <div class="movie_folder">음악영화모음</div>
-                  </div>
-                  
-              </figure>
-            </section>
+              <div class="folder_box">
+                <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <div>음악영화모음</div>
+              </div>
+              <div class="folder_box">
+                <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <div>음악영화모음</div>
+              </div>
+              <div class="folder_box">
+                <img src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <div>음악영화모음</div>
+              </div>    
+            </figure>
+            <img class="arrow_right"src="images/right_arrow.png">
+          </section>
             
             <!-- 취향리스트 -->
-            <section id="preference_list">
-              <div class="list_box">
-                <div class="list_icon">
-                  <div class="list_font" id="icon_font">
-                    내취향 영화
-                  </div>
-                  <div >
-                    <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
-                  </div>
+          <section id="preference_list">
+            <img class="arrow_box"src="images/left_arrow.png">
+            <div class="list_box">
+              <div class="list_icon">
+                <img src="images/moviecollection.png">
+                <div class="list_font" id="icon_font">
+                  내취향 영화
                 </div>
-                  <div class="list_icon">
-                    <div id="edit_box">
-                    <ion-icon name="trash-outline"></ion-icon>
-                    </div>
-                  </div>
+                <div>
+                  <ion-icon id="icon_font" name="chevron-down-outline"></ion-icon>
+                </div>
               </div>
-
+              <div class="list_icon">
+                <div id="edit_box">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </div>
+              </div>
+            </div>
               <!-- 취향리스트 포스터 -->
-              <div class="list_poster">
-                <div class="mylist_poster">
-                  <img class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                  <img id="poster_click" src="images/fav_on.png">
-                </div>
-                <div class="mylist_poster">
-                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                  <img id="poster_click" src="images/fav_on.png">
-                </div>
-                <div class="mylist_poster">
-                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                  <img id="poster_click" src="images/fav_on.png">
-                </div>
-                <div class="mylist_poster">
-                  <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
-                  <img id="poster_click" src="images/fav_on.png">
-                </div>
+            <div class="list_poster">
+              <div class="mylist_poster">
+                <img class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <img id="poster_click" src="images/fav_on.png">
               </div>
-            </section>
-          </div>
+              <div class="mylist_poster">
+                <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <img id="poster_click" src="images/fav_on.png">
+              </div>
+              <div class="mylist_poster">
+                <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <img id="poster_click" src="images/fav_on.png">
+              </div>
+              <div class="mylist_poster">
+                <img  class="poster_collection" src="https://img.vogue.co.kr/vogue/2020/03/style_5e7da0efac0a5.jpg">
+                <img id="poster_click" src="images/fav_on.png">
+              </div>
+            </div>
+            <img class="arrow_right"src="images/right_arrow.png">
+          </section>
         </div>
+      </div>
     </main>
     <script type="module" src="components/index/header.js"></script>
     <script
