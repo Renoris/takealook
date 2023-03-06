@@ -7,6 +7,7 @@ const memberRouter = require('./member/MemberRouter');
 const testRouter = require('./test/TestRouter');
 const signUpRouter = require('./member/SignUpRouter');
 const pickRouter = require('./pick/PickRouter');
+const bucketRouter = require('./bucket/BucketRouter');
 
 //jwt 필요없음
 router.use('/auth', authRouter);
@@ -19,4 +20,5 @@ router.use(accessFilter);
 
 router.use('/member', memberRouter);
 router.use('/pick', pickRouter);
+router.use('/bucket', bucketRouter);
 module.exports = router;
