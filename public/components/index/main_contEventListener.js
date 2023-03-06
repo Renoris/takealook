@@ -109,15 +109,24 @@ export const createCover = (movie, $movieContainer) => {
     coverImageNode.addEventListener('click', (e) => toggleModal(movie.movieId));
 };
 
-export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimit, parentNode) => {
+export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimit, search ,parentNode) => {
     const startRange = (pageIndex - 1) * coverIncrease;
     const endRange = pageIndex === pageMaxIndex ? coverLimit : pageIndex * coverIncrease;
-
+    const {genre, pubDate} = search;
     try {
         const params = {
             limit: endRange - startRange,
             offset: startRange
         };
+
+        if (genre) {
+            params.genre = genre;
+        }
+
+        if (pubDate) {
+            params.pubDate = pubDate;
+        }
+
         let headers = {
             "Content-Type": "application/json",
         };
