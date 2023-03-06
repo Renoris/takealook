@@ -1,5 +1,18 @@
 import { addCover } from "./main_contEventListener.js";
 
+//제한 횟수, 생성 횟수, 페이지 카운트
+const coverLimit = 99;
+const coverIncrease = 7;
+const pageMax = Math.ceil(coverLimit / coverIncrease);
+let currentPage = 1;
+
+//영화 & 취향 리스트 전환 태그
+const movieContainer = document.querySelector(".movie_container");
+const favContainer = document.querySelector(".fav_container");
+const movieTag = document.getElementById("movie");
+const recommendTag = document.getElementById("recommend");
+
+
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
 let genreArray = [
@@ -33,7 +46,7 @@ let isYearOptionExisted = false;
 years.addEventListener("focus", function () {
   if (!isYearOptionExisted) {
     isYearOptionExisted = true;
-    for (let i = 2023; i >= 1980; i--) {
+    for (let i = 2023; i >= 1990; i--) {
       const yearOption = document.createElement("option");
       yearOption.setAttribute("value", i);
       yearOption.innerText = i;
@@ -42,11 +55,29 @@ years.addEventListener("focus", function () {
   }
 });
 
-//영화 & 취향 리스트 전환 태그
-const movieContainer = document.querySelector(".movie_container");
-const favContainer = document.querySelector(".fav_container");
-const movieTag = document.getElementById("movie");
-const recommendTag = document.getElementById("recommend");
+const search = {
+  genre : '',
+  pubDate : ''
+}
+
+
+genreList.addEventListener('change', async (e) => {
+  search.genre = e.target.value;
+  currentPage = 1;
+  movieContainer.textContent = '';
+});
+
+years.addEventListener('change', async (e) => {
+  search.pubDate = e.target.value;
+  currentPage = 1;
+  movieContainer.textContent = '';
+})
+
+genreList.addEventListener('change', async (e) => {
+  search.genre = e.target.value;
+  currentPage = 1;
+  movieContainer.textContent = '';
+})
 
 movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
@@ -57,11 +88,6 @@ recommendTag.addEventListener("click", async () => {
   favContainer.classList.remove("hide");
 });
 
-//제한 횟수, 생성 횟수, 페이지 카운트
-const coverLimit = 99;
-const coverIncrease = 7;
-const pageMax = Math.ceil(coverLimit / coverIncrease);
-let currentPage = 1;
 //스크롤 이벤트를 throttle로 제어
 let throttleTimer;
 const throttle = (callback, time) => {
@@ -82,7 +108,7 @@ export const infiniteScroll = async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
-      await addCover(currentPage, pageMax, coverIncrease, coverLimit, movieContainer);
+      await addCover(currentPage, pageMax, coverIncrease, coverLimit, search ,movieContainer);
       currentPage++;
     }
     if (currentPage > pageMax) {

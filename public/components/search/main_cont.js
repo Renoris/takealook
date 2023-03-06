@@ -1,6 +1,9 @@
 //장르별 정렬 리스트
 import { addCover } from "./main_contEventListener.js";
-
+const coverLimit = 99;
+const coverIncrease = 7;
+const pageMax = Math.ceil(coverLimit / coverIncrease);
+let currentPage = 1;
 const genreList = document.getElementById("genre");
 let genreArray = [
   "장르별",
@@ -42,6 +45,24 @@ years.addEventListener("focus", function () {
   }
 });
 
+const search = {
+  genre : '',
+  pubDate : ''
+}
+
+
+genreList.addEventListener('change', async (e) => {
+  search.genre = e.target.value;
+  currentPage = 1;
+  movieContainer.textContent = '';
+});
+
+years.addEventListener('change', async (e) => {
+  search.pubDate = e.target.value;
+  currentPage = 1;
+  movieContainer.textContent = '';
+})
+
 //영화 & 취향 리스트 전환 태그
 const movieContainer = document.querySelector(".movie_container");
 const favContainer = document.querySelector(".fav_container");
@@ -61,11 +82,6 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const query = urlParams.get("query");
 
-//제한 횟수, 생성 횟수, 페이지 카운트
-const coverLimit = 99;
-const coverIncrease = 7;
-const pageMax = Math.ceil(coverLimit / coverIncrease);
-let currentPage = 1;
 //스크롤 이벤트를 throttle로 제어
 let throttleTimer;
 const throttle = (callback, time) => {
@@ -88,7 +104,7 @@ export const infiniteScroll = async () => {
     if (endOfPage) {
       const startRange = (currentPage - 1) * coverIncrease;
       const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
-      await addCover(query, startRange, endRange, movieContainer);
+      await addCover(query, startRange, endRange,search ,movieContainer);
       currentPage++;
     }
     if (currentPage > pageMax) {
@@ -105,7 +121,7 @@ export const removeInfiniteScroll = () => {
 window.onload = async function () {
   const startRange = (currentPage - 1) * coverIncrease;
   const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
-  const result = await addCover(query, startRange, endRange, movieContainer);
+  const result = await addCover(query, startRange, endRange,search ,movieContainer);
   if (result) {
     removeInfiniteScroll();
   }
