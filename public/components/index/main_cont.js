@@ -117,7 +117,7 @@ export const removeInfiniteScroll = () => {
 
 // 첫 스크롤 생성
 window.onload = async function () {
-  await addCover(currentPage, pageMax, coverIncrease, coverLimit, movieContainer);
+  await addCover(currentPage, pageMax, coverIncrease, coverLimit,search ,movieContainer);
   currentPage++;
 };
 window.addEventListener("scroll", infiniteScroll);
