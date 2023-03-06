@@ -9,6 +9,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 11;
 }
 /* 모달 켜기 */
 .modal_on {
@@ -25,7 +26,7 @@
   width: 360px;
   height: 486px;
   background-color: #ff9900;
-  background-image: url("../../images/no_image_color.png");
+  background-image: url("../../images/no_image.png");
   background-position: center;
   background-size: cover;
   border-radius: 20px 0 0 20px;
@@ -43,7 +44,7 @@
   align-items: center;
   margin-bottom: 20px;
 }
-.title_close h2 {
+.movie_detail_title {
   font-size: 22px;
   font-weight: 900;
   color: #fff;
@@ -82,7 +83,7 @@
   padding: 20px;
   border-radius: 10px;
   height: 220px;
-  overflow: hidden;
+  overflow: auto;
 }
 .summary h3 {
   font-size: 16px;
