@@ -163,34 +163,21 @@
             <div class="picks_background">
               <img src="./images/left_arrow.png" class="left_btn" alt="" />
               <img src="./images/right_arrow.png" class="right_btn" alt="" />
-              <div class="pick_lists">
-                <div class="pick_cover"></div>
-              </div>
+              <ul class="pick_lists">
+                <li><img src="./images/concept_happy.jpg" alt="" /></li>
+                <li><img src="./images/concept_dine.jpg" alt="" /></li>
+                <li><img src="./images/concept_sad.jpg" alt="" /></li>
+                <li><img src="./images/concept_anger.jpg" alt="" /></li>
+                <li><img src="./images/concept_idea.jpg" alt="" /></li>
+              </ul>
             </div>
           </div>
-          <article class="included_lists">
-            <h2>내 취향이 포함 된 리스트 <ion-icon name="chevron-forward-outline"></ion-icon></h2>
-            <div class="included_line">
-              <div class="included_box">
-                <div class="img_box"></div>
-                <div class="included_textbox">
-                  <div class="included_texts">
-                    <h3>세계동물영화사랑협회</h3>
-                    <h4>동물퍼먹기</h4>
-                    <h5>안녕 베일리</h5>
-                    <p>영화가 포함되어 있어요!</p>
-                    <span>수록 영화(27)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article class="share_lists">
+          <div class="share_lists">
             <h2>취향공유 리스트</h2>
             <div class="share_line">
               <div class="share_box">
                 <div class="share_img">
-                  <img src="./images/no_image_color.png" alt="" />
+                  <img src="./images/no_image.png" alt="" />
                 </div>
                 <div class="share_textbox">
                   <h3>리스트 이름</h3>
@@ -198,7 +185,7 @@
                 </div>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </section>
 
@@ -206,38 +193,38 @@
       <!-- class modal_on 시 모달이 뜸 -->
       <div class="modal_movie">
         <div class="movie_card_container">
-          <img src="./images/no_image.png" class="img_card" id="movie_detail_image">
+          <img src="./images/no_image.png" class="img_card" id="movie_detail_image" />
           <div class="text_card">
             <div class="title_close">
-              <h2 id = "movie_detail_title">Title</h2>
+              <h2 class="movie_detail_title">Title</h2>
               <button id="movie_modal_close_btn"><ion-icon name="close-outline"></ion-icon></button>
             </div>
             <div class="movie_card">
               <h3 class="movie_info_card">영화정보</h3>
               <div class="card_info">
                 <div class="movie_card_left">
-                  <div id = "movie_detail_pub_date">2023</div>
-                  <div id = "movie_detail_genre">장르 종류</div>
+                  <div id="movie_detail_pub_date">2023</div>
+                  <div id="movie_detail_genre">장르 종류</div>
                 </div>
                 <div class="movie_card_right">
-                  <div id = "movie_detail_user_rating">평점</div>
-                  <div id = "movie_detail_running_time">상영시간</div>
+                  <div id="movie_detail_user_rating">평점</div>
+                  <div id="movie_detail_running_time">상영시간</div>
                 </div>
               </div>
             </div>
             <div class="summary">
               <h3>줄거리</h3>
-              <p id = "movie_detail_story">
+              <p id="movie_detail_story">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa perferendis sapiente
                 rem possimus ex dicta aliquam expedita eaque, autem, laudantium repellendus ab
                 officiis odio dolores. Ratione modi consequuntur dicta molestiae?
               </p>
             </div>
           </div>
-        </img>
+        </div>
       </div>
       <!-- 로딩 모달 -->
-      <div class="modal_loading modal_on">
+      <div class="modal_loading">
         <div>
           <div class="loading">
             <img src="./images/loading.png" alt="고양이와 바다" />
@@ -262,6 +249,7 @@
       </div>
     </main>
     <script type="module" src="components/index/main_cont.js"></script>
+    <script type="module" src="components/index/fav_cont.js"></script>
     <script type="module" src="components/header/header.js"></script>
     <script
       type="module"

@@ -12,7 +12,6 @@ const favContainer = document.querySelector(".fav_container");
 const movieTag = document.getElementById("movie");
 const recommendTag = document.getElementById("recommend");
 
-
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
 let genreArray = [
@@ -56,28 +55,22 @@ years.addEventListener("focus", function () {
 });
 
 const search = {
-  genre : '',
-  pubDate : ''
-}
+  genre: "",
+  pubDate: "",
+};
 
-
-genreList.addEventListener('change', async (e) => {
+genreList.addEventListener("change", async (e) => {
   search.genre = e.target.value;
   currentPage = 1;
-  movieContainer.textContent = '';
+  movieContainer.textContent = "";
 });
 
-years.addEventListener('change', async (e) => {
+years.addEventListener("change", async (e) => {
   search.pubDate = e.target.value;
   currentPage = 1;
-  movieContainer.textContent = '';
-})
+  movieContainer.textContent = "";
+});
 
-genreList.addEventListener('change', async (e) => {
-  search.genre = e.target.value;
-  currentPage = 1;
-  movieContainer.textContent = '';
-})
 
 movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
@@ -128,8 +121,8 @@ window.onload = async function () {
   currentPage++;
 };
 window.addEventListener("scroll", infiniteScroll);
-const movieModalCloseBtn = document.getElementById('movie_modal_close_btn');
-movieModalCloseBtn.addEventListener('click', (e) => {
-  const movieModal = document.querySelector('.modal_movie');
-  movieModal.classList.remove('modal_on');
+const movieModalCloseBtn = document.getElementById("movie_modal_close_btn");
+movieModalCloseBtn.addEventListener("click", (e) => {
+  const movieModal = document.querySelector(".modal_movie");
+  movieModal.classList.remove("modal_on");
 });

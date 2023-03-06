@@ -80,17 +80,17 @@
     padding: 6px;
   }
   .movie_container {
-    gap: 15px;
+    gap: 30px 20px;
   }
   .movie_cover {
     width: 150px;
     height: 260px;
   }
   .movie_cover h3 {
-    font-size: 14px;
+    font-size: 12px;
   }
   .movie_cover span {
-    font-size: 12px;
+    font-size: 10px;
   }
   /* 영화 모달창 */
   .modal_movie {
@@ -119,11 +119,17 @@
   }
   /* 영화 리스트 구역 */
   .movie_container {
-    gap: 15px;
+    gap: 30px 15px;
   }
   .movie_cover {
     width: 200px;
     height: 350px;
+  }
+  .movie_cover h3 {
+    font-size: 16px;
+  }
+  .movie_cover span {
+    font-size: 12px;
   }
   /* 검색바 */
   #search {
