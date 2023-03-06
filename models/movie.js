@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Movie.hasOne(models.bucket_item);
     }
   }
   Movie.init({
@@ -26,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     actor: DataTypes.STRING,
     userRating: DataTypes.FLOAT(4,2),
     story: DataTypes.TEXT('medium'),
-    random: DataTypes.INTEGER
+    random: DataTypes.INTEGER,
+    thumb: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'movie',

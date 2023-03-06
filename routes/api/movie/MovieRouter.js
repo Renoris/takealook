@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         }
 
         statusBuilder.setIsOkToJson(res);
-        res.send(result );
+        res.send(result);
     } catch (error) {
         statusBuilder.badRequest(res, error.msg);
     }

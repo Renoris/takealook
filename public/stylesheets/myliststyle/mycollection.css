@@ -14,7 +14,7 @@ body{
   height: 300px;
   padding-top: 40px;
   padding-left: 100px;
-  background-image: url(/takealook/public/images/movie_film.png);
+  background-image: url('../../images/movie_film.png');
   background-repeat: no-repeat;
   background-position: left top;
   display: flex;
