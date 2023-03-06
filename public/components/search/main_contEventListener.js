@@ -1,8 +1,9 @@
 import {createCover} from "../index/main_contEventListener.js";
 const access = localStorage.getItem("takealook-access");
 
-export const addCover = async (query,startRange, endRange , parentNode) => {
+export const addCover = async (query,startRange, endRange ,search ,parentNode) => {
     let resultEnd = false;
+    const {genre, pubDate} = search;
 
     try {
         const params = {
@@ -10,6 +11,8 @@ export const addCover = async (query,startRange, endRange , parentNode) => {
             limit: endRange - startRange,
             offset: startRange
         };
+
+      류
         let headers = {
             "Content-Type": "application/json",
         };

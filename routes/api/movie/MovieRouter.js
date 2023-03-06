@@ -9,6 +9,9 @@ router.get('/', async (req, res) => {
         const {genre, pubDate, query, limit, offset} = req.query;
         const {authorization} = req.headers;
 
+        console.log(genre);
+        console.log(pubDate);
+
         let result;
         if (authorization) {
             const token = jwtUtil.resolveToken(authorization);
@@ -19,7 +22,7 @@ router.get('/', async (req, res) => {
         }
 
         statusBuilder.setIsOkToJson(res);
-        res.send(result );
+        res.send(result);
     } catch (error) {
         statusBuilder.badRequest(res, error.msg);
     }

@@ -15,7 +15,7 @@ function getMovieQuery (id, genre, pubDate, search, limit, offset) {
     const replacements = [];
     let query = `select m.id movieId, 
         m.title title, year(m.pub_date) pub_date, 
-        m.genre genre, m.image image`;
+        m.genre genre, m.thumb thumb`;
     if (id) {
         query += `, IF(p.id IS NULL, 0, 1) isPick
         from movies m 

@@ -1,15 +1,22 @@
-@media screen and (min-width: 360px) and (max-width: 480px){
+@media screen  and (max-width: 480px){
     section{
         width: 100%;
     
     }
     form{
-        margin: 20px 5px;
-        font-size: 14px;
+        margin: 20px 2px;
+        font-size: 12px;
     }
     .myprofile{
         border-radius: 0px;
     }
+    .gender_box{
+        margin-right: 40px;
+    }
+    .preferred_genre{
+        margin-right: 20px;
+    }
+
 }
 @media screen and (min-width: 481px) and (max-width: 992px) {
     section{

@@ -71,11 +71,6 @@ years.addEventListener("change", async (e) => {
   movieContainer.textContent = "";
 });
 
-genreList.addEventListener("change", async (e) => {
-  search.genre = e.target.value;
-  currentPage = 1;
-  movieContainer.textContent = "";
-});
 
 movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
@@ -106,7 +101,7 @@ export const infiniteScroll = async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
-      await addCover(currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+      await addCover(currentPage, pageMax, coverIncrease, coverLimit, search ,movieContainer);
       currentPage++;
     }
     if (currentPage > pageMax) {
