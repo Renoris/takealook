@@ -48,6 +48,9 @@ module.exports = {
       random: {
         type: Sequelize.INTEGER
       },
+      thumb: {
+        type: Sequelize.STRING
+      }
     });
   },
   async down(queryInterface, Sequelize) {
