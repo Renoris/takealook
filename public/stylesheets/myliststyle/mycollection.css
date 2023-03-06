@@ -14,8 +14,13 @@ body{
   height: 300px;
   padding-top: 40px;
   padding-left: 100px;
+<<<<<<< HEAD
+  background-image: url('/images/movie_film.png');
+  background-repeat: no-repeat; 
+=======
   background-image: url('../../images/movie_film.png');
   background-repeat: no-repeat;
+>>>>>>> develop
   background-position: left top;
   display: flex;
   gap: 10px;
@@ -101,25 +106,48 @@ section{
   border-radius: 999px;
 }
 .collection{
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 10px;
   font-weight: 700;
   display: flex;
-  justify-content: space-between;
   overflow: hidden;
-  gap: 20px;
+  gap: 10px;
 }
-.collection img{
-  width: 140px;
-  height: 140px;
-  border-radius: 10px;
-  border: 1px solid black;
-}
+
 .folder_box{
   text-align: center;
-  width: 140px;
-  height: 150px;
 }
+
+.folder_gird{
+  display: grid;
+  grid-template-areas:
+    'a a c'
+    'a a f';
+  gap: 2px;
+}
+
+.img_menu{
+    padding-top: 10px;
+}
+
+.one_img{
+  width: 100px;
+  height: 162px;
+  grid-area: a;
+  border-radius: 10px 0 0 10px;
+}
+
+.two_img{
+  height: 80px;
+  grid-area: c;
+  border-radius: 0 10px 0 0;
+}
+.three_img{
+  height: 80px;
+  grid-area: f;
+  border-radius: 0 0 10px 0;
+}
+
 #preference_list{
   margin-top: 100px;
   position: relative;
@@ -129,8 +157,6 @@ section{
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
-  overflow: hidden;
   gap: 10px;
 }
 .mylist_poster{
@@ -145,7 +171,7 @@ section{
   border: 1px solid #2c2c2c;
   border-radius: 4px;
 }
-#poster_click{
+.poster_click{
   width: 20px;
   position:absolute;
   right: 10px;

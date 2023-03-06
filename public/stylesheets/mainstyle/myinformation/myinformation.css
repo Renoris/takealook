@@ -71,7 +71,7 @@ padding: 60px;
     margin-top: 4px;
 }
 
-#email_box{
+.email_box{
     height: 38px;
     border: 1px solid #44579d;
     flex-grow: 1;
