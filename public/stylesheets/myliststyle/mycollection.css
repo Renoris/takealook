@@ -14,8 +14,13 @@ body{
   height: 300px;
   padding-top: 40px;
   padding-left: 100px;
+<<<<<<< HEAD
   background-image: url('/images/movie_film.png');
   background-repeat: no-repeat; 
+=======
+  background-image: url('../../images/movie_film.png');
+  background-repeat: no-repeat;
+>>>>>>> develop
   background-position: left top;
   display: flex;
   gap: 10px;

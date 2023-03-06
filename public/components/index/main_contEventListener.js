@@ -96,7 +96,7 @@ export const createCover = (movie, $movieContainer) => {
     const movieCover = elementFactory.createMovieCoverNode($movieContainer);
     const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
     const coverImageNode = elementFactory.createCoverImageNode(movieCover);
-    elementFactory.createInCoverImageNode(movie.image, coverImageNode);
+    elementFactory.createInCoverImageNode(movie.thumb, coverImageNode);
 
 
     let replacedTitle = movie.title;
