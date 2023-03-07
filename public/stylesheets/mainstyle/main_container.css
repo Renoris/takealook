@@ -73,3 +73,6 @@ main {
   background-color: #3f3f3f;
   cursor: pointer;
 }
+.tags_hide {
+  display: none;
+}

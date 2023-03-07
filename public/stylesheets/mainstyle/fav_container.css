@@ -55,7 +55,7 @@
   top: 45%;
   width: 40px;
   opacity: 0.6;
-  z-index: 10;
+  z-index: 2;
 }
 .left_btn {
   left: 30px;
@@ -73,6 +73,12 @@
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
+}
+.share_line {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 .share_box {
   width: 230px;

@@ -21,6 +21,7 @@
   flex-wrap: wrap;
   width: 720px;
   border-radius: 20px;
+  transition: all 1s;
 }
 .img_card {
   width: 360px;

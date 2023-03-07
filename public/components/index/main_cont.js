@@ -13,6 +13,7 @@ const movieContainer = document.querySelector(".movie_container");
 const favContainer = document.querySelector(".fav_container");
 const movieTag = document.getElementById("movie");
 const recommendTag = document.getElementById("recommend");
+const tags = document.querySelector(".tags");
 
 //장르별 정렬 리스트
 const genreList = document.getElementById("genre");
@@ -73,16 +74,18 @@ years.addEventListener("change", async (e) => {
   movieContainer.textContent = "";
 });
 
-
 movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
   favContainer.classList.add("hide");
+  tags.classList.remove("tags_hide");
   activeFav = false;
 });
 recommendTag.addEventListener("click",  () => {
   movieContainer.classList.add("hide");
   favContainer.classList.remove("hide");
+  tags.classList.add("tags_hide");
   activeFav = true;
+
 });
 
 //스크롤 이벤트를 throttle로 제어
@@ -107,7 +110,7 @@ export const infiniteScroll = async () => {
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
-      await addCover(currentPage, pageMax, coverIncrease, coverLimit, search ,movieContainer);
+      await addCover(currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
       currentPage++;
     }
     if (currentPage > pageMax) {
@@ -123,7 +126,7 @@ export const removeInfiniteScroll = () => {
 
 // 첫 스크롤 생성
 window.onload = async function () {
-  await addCover(currentPage, pageMax, coverIncrease, coverLimit,search ,movieContainer);
+  await addCover(currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
   currentPage++;
 };
 window.addEventListener("scroll", infiniteScroll);
