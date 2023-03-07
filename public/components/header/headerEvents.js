@@ -169,5 +169,9 @@ export function searchReturnClickEventListener(e, searchBar, searchBtn, searchVi
 
 
 export function searchEventListener (e, query) {
-  location.href = `/search?query=${query}`
+  if (!query) {
+    alert("영화 검색어를 입력해 주세요.");
+    return;
+  }
+  location.href = `?query=${query}`
 }
