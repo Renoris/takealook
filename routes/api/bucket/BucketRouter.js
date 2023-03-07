@@ -6,9 +6,18 @@ const bucketService = require('./BucketService');
 router.get('/', async (req, res) => {
     try {
         const {authId} = req.body;
-        console.log(authId);
         const result = await bucketService.getMyBuckets(authId);
-        console.log(result);
+        responseHandler.setIsOkToJson(res);
+        res.send(result);
+    } catch (error) {
+        responseHandler.unAuthorized(res);
+    }
+})
+
+router.get('/:id', async (req, res) => {
+    try {
+        const {authId} = req.body;
+        const result = await bucketService.getMyBuckets(authId);
         responseHandler.setIsOkToJson(res);
         res.send(result);
     } catch (error) {

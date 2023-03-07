@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     profileImage: DataTypes.STRING,
     disable:DataTypes.BOOLEAN,
     refreshToken: DataTypes.STRING,
+    favorite:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'member',
