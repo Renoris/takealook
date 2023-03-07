@@ -148,7 +148,9 @@ export async function mainCont(query) {
     const movieModal = document.querySelector(".modal_movie");
     movieModal.classList.remove("modal_on");
   });
-
+  const top = document.querySelector(".up_to_top");
   window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
+
+
 }
 
