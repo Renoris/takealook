@@ -4,32 +4,25 @@ const path = require('path');
 
 router.get('/account', function (req, res) {
   const filePath = path.join(__dirname,'..','..','public', 'account.html');
-  res.sendFile(filePath);
-})
-router.get('/search', (req, res) => {
-  const filePath = path.join(__dirname,'..','..','public', 'search.html');
+  res.status(200);
   res.sendFile(filePath);
 })
 
 router.get('/mylist', function (req, res) {
   const filePath = path.join(__dirname,'..','..','public', 'mylist.html');
+  res.status(200);
   res.sendFile(filePath);
 })
 
 router.get('/myinformation', function (req, res) {
   const filePath = path.join(__dirname,'..','..','public', 'myinformation.html');
+  res.status(200);
   res.sendFile(filePath);
 })
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  const filePath = path.join(__dirname,'..','..' ,'public', 'index.html');
+router.get('/index', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'index.html');
   res.status(200);
-  res.headers = {
-    'Content-Type' : 'text/html'
-  }
   res.sendFile(filePath);
-});
-
-
+})
 module.exports = router;

@@ -9,9 +9,6 @@ import {
 } from "./headerEvents.js";
 import authFetch from "../fetchs/AuthFetch.js";
 
-const access = localStorage.getItem("takealook-access");
-const refresh = localStorage.getItem("takealook-refresh");
-const movieContainer = document.querySelector(".movie_container");
 const loginBox = document.querySelector(".login_box");
 const outerLogin = document.querySelector(".outer_login");
 const outerProfile = document.querySelector(".outer_profile");
