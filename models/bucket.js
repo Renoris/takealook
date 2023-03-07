@@ -14,9 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   bucket.init({
+    bucketId:DataTypes.INTEGER,
     bucketName: DataTypes.STRING,
     bucketTag: DataTypes.STRING,
     ownerId: DataTypes.INTEGER,
+    publish: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'bucket',

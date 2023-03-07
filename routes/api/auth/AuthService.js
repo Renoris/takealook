@@ -49,7 +49,6 @@ const AuthService = {
             // 해시값으로 멤버 추출
             const member = await authStorage.getMemberByHash(hash, transaction);
             if (!member) throw Error("해당 유저가 존재하지 않습니다.");
-
             //리프레시 토큰 생성
             const refreshToken = await jwtUtil.refresh(member, transaction);
 

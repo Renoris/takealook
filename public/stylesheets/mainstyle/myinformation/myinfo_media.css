@@ -1,7 +1,18 @@
 @media screen  and (max-width: 480px){
     section{
         width: 100%;
-    
+    }
+    .email_label{
+        margin-right: 20px;
+    }
+    .nick_name{
+        margin-right: 20px;
+    }
+    .name_label{
+        margin-right: 30px;
+    }
+    .gender_box{
+        margin-right: 24px;
     }
     form{
         margin: 20px 2px;
@@ -11,17 +22,14 @@
         border-radius: 0px;
     }
     .gender_box{
-        margin-right: 40px;
+        margin-right: 32px;
     }
     .preferred_genre{
-        margin-right: 20px;
+        margin-right: 10px;
     }
-
 }
 @media screen and (min-width: 481px) and (max-width: 992px) {
     section{
         width: 90%
     }
-
-
 }

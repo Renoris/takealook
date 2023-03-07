@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'bucket_item',
+    underscored: true, /* 카멜 표기법을 스네이크 표기법으로 바꾸는 옵션 */
+    charset: 'utf8'
   });
   return bucket_item;
 };

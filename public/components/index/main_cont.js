@@ -1,5 +1,7 @@
 import { addCover } from "./main_contEventListener.js";
 
+let activeFav = false;
+
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
 const coverIncrease = 7;
@@ -76,11 +78,14 @@ movieTag.addEventListener("click", () => {
   movieContainer.classList.remove("hide");
   favContainer.classList.add("hide");
   tags.classList.remove("tags_hide");
+  activeFav = false;
 });
-recommendTag.addEventListener("click", async () => {
+recommendTag.addEventListener("click",  () => {
   movieContainer.classList.add("hide");
   favContainer.classList.remove("hide");
   tags.classList.add("tags_hide");
+  activeFav = true;
+
 });
 
 //스크롤 이벤트를 throttle로 제어
@@ -100,6 +105,8 @@ const throttle = (callback, time) => {
 //무한 스크롤 공식
 export const infiniteScroll = async () => {
   await throttle(async () => {
+    if (activeFav) return;
+
     const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {

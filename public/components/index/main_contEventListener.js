@@ -55,8 +55,6 @@ function getButtonState(state, node) {
   let _state = state;
   return {
     turnState: async function () {
-      const loadingModal = document.querySelector(".modal_loading");
-      loadingModal.classList.add("modal_on");
       if (!access) {
         alert("로그인이 필요한 서비스 입니다.");
         return;
@@ -85,9 +83,8 @@ function getButtonState(state, node) {
           _state = 1;
         }
       } catch (error) {
-        console.log("서버와의 접속에 실패했습니다.");
+        alert("서버와의 접속에 실패했습니다.");
       }
-      loadingModal.classList.remove("modal_on");
     },
   };
 }
@@ -139,7 +136,6 @@ export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimi
     });
 
     const result = await response.json();
-    console.log(result);
     result.forEach((movie) => {
       createCover(movie, parentNode);
     });
