@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   bucket_item.init({
-    movie_id: DataTypes.INTEGER,
-    bucket_id: DataTypes.INTEGER
+    movieId: DataTypes.INTEGER,
+    bucketId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'bucket_item',

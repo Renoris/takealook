@@ -5,7 +5,6 @@ import {
   loginBtnClickEventListener,
   searchViewClickEventListener,
   searchReturnClickEventListener,
-  topScrollEventListener,
   searchEventListener,
 } from "./headerEvents.js";
 import authFetch from "../fetchs/AuthFetch.js";
@@ -31,7 +30,6 @@ const searchBar = document.querySelector(".search_bar");
 const searchBtn = document.querySelector(".search_btn");
 const searchView = document.querySelector(".search_view");
 const vaildEmail = document.querySelector(".valid_email");
-const top = document.querySelector(".up_to_top");
 
 logoutBtn.addEventListener("click", (e) => logoutBtnClickEventListener(e));
 outerLogout.addEventListener("click", (e) => logoutBtnClickEventListener(e));
@@ -82,7 +80,6 @@ searchBar.addEventListener("keydown", (e) => {
 searchReturn.addEventListener("click", (e) =>
   searchReturnClickEventListener(e, searchBar, searchBtn, searchView, searchReturn)
 );
-window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
 
 // 로그인 전, 후 UI 변경
 async function onloadpage() {
