@@ -1,8 +1,7 @@
 let isChangeAccess = false;
 
 async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'application/json') {
-    if (isChangeAccess) return ;
-
+    if (isChangeAccess) return;
     const init = {
         method,
         headers : {
@@ -15,27 +14,37 @@ async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'app
         else {init.body = JSON.stringify(bodyParam)}
     }
 
+    //여기부턴 api 요청
     try {
         const response = await fetch(url, init);
-        return response.json();
-    } catch (error) {
-        try {
-            if (error.message === 'TokenExpiredError') {
-                if (isChangeAccess) return ;
-                isChangeAccess = true;
-                const response = await fetch(url, {method : "POST", headers : {'Content-Type' : 'application/json', authorization :  localStorage.getItem('takealook-access')}});
-                if (response.status !== 200) throw Error ("토큰 갱신에 실패했습니다.");
-                const {accessToken} = await response.json();
+        if (response.status !== 401) {
+            return response.json();
+        } else {
+            isChangeAccess = true;
+            const result = await response.json();
+            if (result.message.include('TokenExpiredError')){
+                const refreshResponse = await fetch('/api/auth/refresh',
+                    {
+                        method : "POST",
+                        headers : {
+                            'Content-Type' : 'application/json',
+                            authorization :  localStorage.getItem('takealook-access')},
+                        body: {
+                            refreshToken: JSON.stringify(localStorage.getItem('takealook-refresh'))
+                        }
+                    });
+                if (refreshResponse.status !== 200) throw Error ("토큰 갱신에 실패했습니다.");
+                const {accessToken} = await refreshResponse.json();
                 localStorage.setItem('takealook-access', accessToken);
                 location.reload();
             } else {
                 throw Error("비정상적인 토큰입니다.")
             }
-        } catch (error2) {
-            localStorage.removeItem('takealook-refresh');
-            localStorage.removeItem('takealook-access');
-            location.reload();
         }
+    } catch (error) {
+        localStorage.removeItem('takealook-refresh');
+        localStorage.removeItem('takealook-access');
+        location.reload();
     }
 }
 

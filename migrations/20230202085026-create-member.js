@@ -36,6 +36,9 @@ module.exports = {
       refresh_token: {
         type: Sequelize.STRING
       },
+      favorite:{
+        type: Sequelize.STRING
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

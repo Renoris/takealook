@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     bucketName: DataTypes.STRING,
     bucketTag: DataTypes.STRING,
     ownerId: DataTypes.INTEGER,
+    publish: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'bucket',
