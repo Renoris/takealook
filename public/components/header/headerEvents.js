@@ -167,17 +167,6 @@ export function searchReturnClickEventListener(e, searchBar, searchBtn, searchVi
   searchReturn.style.display = "";
 }
 
-/**
- * TOP 버튼 스크롤 이벤트
- * @param e : Event
- */
-export function topScrollEventListener(e, top) {
-  if (window.scrollY > 500) {
-    top.style.display = "block";
-  } else {
-    top.style.display = "none";
-  }
-}
 
 export function searchEventListener (e, query) {
   location.href = `/search?query=${query}`

@@ -104,7 +104,8 @@ export const createCover = (movie, $movieContainer) => {
 };
 
 
-export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimit, search ,parentNode) => {
+export const addCover = async (query, pageIndex, pageMaxIndex, coverIncrease, coverLimit, search ,parentNode) => {
+    let count = 0;
     const startRange = (pageIndex - 1) * coverIncrease;
     const endRange = pageIndex === pageMaxIndex ? coverLimit : pageIndex * coverIncrease;
     const {genre, pubDate} = search;
@@ -122,6 +123,10 @@ export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimi
             params.pubDate = pubDate;
         }
 
+        if (query){
+            params.query = query;
+        }
+
         let headers = {
             "Content-Type": "application/json",
         };
@@ -131,13 +136,30 @@ export const addCover = async (pageIndex, pageMaxIndex, coverIncrease, coverLimi
         let url = "/api/movie";
         url = `${url}?${new URLSearchParams(params).toString()}`;
 
-    const response = await fetch(url, {
-      headers,
-    });
+        const response = await fetch(url, {
+          headers,
+        });
 
-    const result = await response.json();
-    result.forEach((movie) => {
-      createCover(movie, parentNode);
-    });
-  } catch (error) {}
+        const result = await response.json();
+        result.forEach((movie) => {
+          createCover(movie, parentNode);
+        });
+        count = result.length;
+    } catch (error) {
+
+    }
+
+    return count;
 };
+
+/**
+ * TOP 버튼 스크롤 이벤트
+ * @param e : Event
+ */
+export function topScrollEventListener(e, top) {
+    if (window.scrollY > 500) {
+        top.style.display = "block";
+    } else {
+        top.style.display = "none";
+    }
+}
