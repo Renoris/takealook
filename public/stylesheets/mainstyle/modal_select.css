@@ -1,0 +1,29 @@
+.modal_selection {
+  display: none;
+  width: 340px;
+  height: 500px;
+  background-color: #ff9922;
+}
+.select_movies {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffd954;
+  gap: 0 10px;
+}
+.select_movies img {
+  width: 40px;
+}
+.select_movies li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  border: 2px dotted;
+}
+.select_movies h3 {
+  display: flex;
+  flex-grow: 1;
+  font-size: 20px;
+}
+.select_movies input {
+  margin: 15px;
+}

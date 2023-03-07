@@ -18,13 +18,14 @@
 /* 모달 영화정보 */
 .movie_card_container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 720px;
+  width: 700px;
   border-radius: 20px;
   transition: all 1s;
 }
 .img_card {
-  width: 360px;
+  width: 350px;
   height: 486px;
   background-color: #ff9900;
   background-image: url("../../images/no_image.png");
@@ -33,9 +34,9 @@
   border-radius: 20px 0 0 20px;
 }
 .text_card {
-  width: 360px;
+  width: 350px;
   height: 486px;
-  padding: 43px 30px;
+  padding: 43px 20px;
   border-radius: 0 20px 20px 0;
   background-color: #3f4b77;
 }
