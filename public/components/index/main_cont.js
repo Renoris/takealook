@@ -66,12 +66,16 @@ genreList.addEventListener("change", async (e) => {
   search.genre = e.target.value;
   currentPage = 1;
   movieContainer.textContent = "";
+  await addCover(currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+  currentPage++;
 });
 
 years.addEventListener("change", async (e) => {
   search.pubDate = e.target.value;
   currentPage = 1;
   movieContainer.textContent = "";
+  await addCover(currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+  currentPage++;
 });
 
 movieTag.addEventListener("click", () => {
