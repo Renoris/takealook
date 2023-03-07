@@ -6,7 +6,7 @@ function getFindAllPickMovieQuery(memberId) {
     const replacements = [];
     let query = `select m.id movieId, 
         m.title title, year(m.pub_date) pub_date, 
-        m.genre genre, m.image image
+        m.genre genre, m.thumb thumb
         from movies m 
         inner join picks p on p.movie_id = m.id AND p.member_id = ?`;
     replacements.push(memberId);
