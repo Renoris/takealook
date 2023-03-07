@@ -10,11 +10,15 @@
   background-size: cover;
   background-position: center center;
   background-color: #43579c;
+  transition: 1s ease-out;
+  transition-duration: 2;
+  transition-property: background-color;
 }
 .hero_image:hover {
-  background-image: url("../../images/cat_in_movie_house_bg_wtlight.png");
   text-shadow: 1px 4px 8px #333;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  background-image: url("../../images/cat_in_movie_house_bg_wtlight.png");
+  transition: 1s ease-out;
 }
 .content_intro {
   position: absolute;

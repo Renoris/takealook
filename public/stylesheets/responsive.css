@@ -45,7 +45,7 @@
     width: 100%;
     margin: 0;
     border-radius: 0;
-    padding: 15px 45px;
+    padding: 15px 30px;
   }
   .account_info {
     margin-top: 15px;
@@ -103,6 +103,27 @@
   .text_card {
     border-radius: 0;
   }
+  /* 취향리스트 부분 */
+  .today_pick h2,
+  .share_lists h2 {
+    font-size: 20px;
+  }
+  .share_line {
+    gap: 30px 20px;
+  }
+  .share_box {
+    width: 150px;
+    height: 200px;
+  }
+  .share_img {
+    height: 150px;
+  }
+  .share_textbox h3 {
+    font-size: 16px;
+  }
+  .share_textbox span {
+    font-size: 10px;
+  }
 }
 
 /* 중간 사이즈(태블릿 등 화면조정) */
@@ -147,5 +168,10 @@
   }
   .login_box a {
     display: block;
+  }
+  /* 영화 모달 창 */
+  .img_card,
+  .text_card {
+    border-radius: 0;
   }
 }
