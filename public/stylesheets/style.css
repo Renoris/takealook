@@ -2,6 +2,7 @@
 @import "./mainstyle/intro_content.css";
 @import "./mainstyle/main_container.css";
 @import "./mainstyle/login-info.css";
+@import "./mainstyle/modal_select.css";
 
 @import "./responsive.css";
 @import "./account.css";
