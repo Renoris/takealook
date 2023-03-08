@@ -137,7 +137,7 @@ export const addCover = async (query, pageIndex, pageMaxIndex, coverIncrease, co
         url = `${url}?${new URLSearchParams(params).toString()}`;
 
         const response = await fetch(url, {
-          headers,
+            headers,
         });
 
         const result = await response.json();

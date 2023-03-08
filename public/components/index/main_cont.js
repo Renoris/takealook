@@ -137,6 +137,18 @@ export async function mainCont(query) {
 
   // 첫 스크롤 생성
   innerWindow.onload = async function () {
+    if (query) {
+      try {
+        await fetch('/api/movie/build', {
+          method : "POST",
+          body : JSON.stringify({query}),
+          headers : {
+            "Content-Type" : "application/json"
+          }
+        });
+      }catch (error) {}
+    }
+
     const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
     endMovie = length === 0;
     currentPage++;
