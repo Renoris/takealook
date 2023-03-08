@@ -25,6 +25,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/build', async (req, res) => {
+    try {
+        const {query} = req.body;
+        await movieService.buildMovies(query);
+        statusBuilder.setIsOkToJson(res);
+        res.send({message : 'success'});
+    } catch (error) {
+        statusBuilder.badRequest(res, error.msg);
+    }
+});
+
+
 router.get('/:id', async (req, res) => {
     try {
         const id = req.params?.id;
