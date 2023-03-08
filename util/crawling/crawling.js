@@ -166,13 +166,12 @@ async function crawlingMovieData(url) {
     const story = resolveStory($);
     const imageSrc = resolveOriginImageSrc($);
     const outLine = resolveOutLine($); // [나라, 장르, 러닝타임, 개봉일]
-    const thumb = `${imageSrc}?type=m886_590_2`;
-    return {
-        story,
-        imageSrc,
-        outLine,
-        thumb
-    };
+    let thumb = null;
+    if (imageSrc) {
+        thumb = `${imageSrc}?type=m886_590_2`;
+    }
+
+    return  {story, imageSrc, outLine, thumb};
 }
 
 async function isExistMovie(title, director, pubDate) {
