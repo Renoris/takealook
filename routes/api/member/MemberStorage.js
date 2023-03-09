@@ -6,7 +6,6 @@ const MemberStorage = {
         return await member.findOne({where : {nickName : {[Op.eq] : nickName}}, transaction});
     },
 
-
     getMemberByEmail : async function (email, transaction) {
         return await member.findOne({where : {email : {[Op.eq] : email.trim()}}, transaction});
     },
@@ -24,6 +23,14 @@ const MemberStorage = {
         userInfo.disable = false;
         userInfo.role = 'member';
         await member.create(userInfo, {transaction});
+    },
+
+    update: async function (authId, nickName, favorite, profileImage ,transaction) {
+        const user = await member.findOne({where : {id :authId}, transaction});
+        if (!user) { throw Error("로그인 되지 않은 사용자 입니다")}
+        user.nickName = nickName;
+        user.favorite = favorite;
+        user.save({transaction});
     }
 }
 

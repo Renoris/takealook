@@ -13,8 +13,8 @@ const MemberStorage = {
                         {
                             attributes:['thumb'],
                             model: movie
-                        }]}
-            ],where : {ownerId : {[Op.eq] : memberId}}, transaction});
+                        }]}]
+            ,where : {ownerId : {[Op.eq] : memberId}}, transaction});
 
 
         return result.map((item) => {

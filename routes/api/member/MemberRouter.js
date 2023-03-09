@@ -14,4 +14,15 @@ router.get('/my', async (req, res) => {
     }
 })
 
+router.put('/my', async (req, res) => {
+    try {
+        const {authId, nickName, favorite, profileImage} = req.body;
+        const myInfo = await memberService.updateMyInfo(authId, nickName, favorite, profileImage);
+        responseHandler.setIsOkToJson(res);
+        res.send(myInfo);
+    } catch (error) {
+        responseHandler.badRequest(res);
+    }
+})
+
 module.exports = router;
