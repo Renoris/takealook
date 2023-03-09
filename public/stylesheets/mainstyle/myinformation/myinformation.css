@@ -96,24 +96,16 @@ form{
 .name_label{
     margin-right: 40px;
 }
-#name_put{
+.gender_input {
     height: 38px;
     display: block;
     width: 40%;
     padding: 10px 5px;
     border-style: none;
     border-bottom: 2px solid #bcbcbc;
+    margin-right: 2px;
 }
-#name_in{
-    height: 38px;
-    display: block;
-    width: 40%;
-    padding: 10px 5px;
-    margin-left: 2px;
-    border-style: none;
-    border-bottom: 2px solid #bcbcbc;
-}
-#name_box{
+.nick_name_box{
     height: 38px;
     border: 1px solid #44579d;
     border-radius: 4px;

@@ -37,13 +37,13 @@
         <form>
         <div class="email">
             <label class="email_label" for="email_box">이메일</label>
-            <input class="email_box" type="email" readonly>
+            <input class="email_box" id="email_box" type="email" readonly>
         </div>
         <!-- 닉네임, 성별, 선호장르 -->
         <div class="my_form">
-            <label class="nick_name" for="name_box">닉네임</label>
+            <label class="nick_name" for="nick_name_box">닉네임</label>
             <div class="nick_box">
-                <input id="name_box" type="text">
+                <input id="nick_name_box" class="nick_name_box" type="text">
                 <!-- 클래스명 name_on으로 추가하면 보입니다 -->
                 <div class="can_name">이 닉네임을 사용할 수 있습니다.
                 </div>
@@ -53,20 +53,20 @@
             <button class="overlap">중복확인</button>
         </div>
         <div class="my_form">
-            <label class="name_label" for="name_box">이름</label>
-            <input id="name_put" type="text" placeholder="성">
-            <input id="name_in" type="text" placeholder="이름">
+            <label class="name_label">이름</label>
+            <input class = "gender_input" type="text" id="last_name" placeholder="성">
+            <input class = "gender_input" type="text" id="first_name" placeholder="이름">
         </div>
         <div class="my_form">
-            <label class="gender_box" for="email_box">성별</label>
-            <label class="gender_divide" for="email_box" >남</label>
-            <input class="gender" type="radio" onclick="return(false);">
-            <label class="gender_divide" for="email_box" >여</label>
-            <input class="gender" type="radio" onclick="return(false);" >
+            <label class="gender_box">성별</label>
+            <label class="gender_divide" for="male" >남</label>
+            <input class="gender" id = "male" type="radio" onclick="return(false);">
+            <label class="gender_divide" for="female" >여</label>
+            <input class="gender" id = "female" type="radio" onclick="return(false);" >
         </div>
         <div class="genre_box">
             <label class="preferred_genre">선호장르</label>
-            <select class="genre_selector">
+            <select class="genre_selector" id = "favorite_1">
                 <option>장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
@@ -82,7 +82,7 @@
                 <option>SF</option>
                 <option>무협</option>
             </select>
-            <select class="genre_selector">
+            <select class="genre_selector" id = "favorite_2">
                 <option>장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
@@ -98,7 +98,7 @@
                 <option>SF</option>
                 <option>무협</option>
             </select>
-            <select class="genre_selector">
+            <select class="genre_selector" id = "favorite_3">
                 <option>장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
