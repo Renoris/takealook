@@ -1,6 +1,6 @@
 let isChangeAccess = false;
 
-async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'application/json') {
+async function authFetch(url, method = "GET" , bodyParam, contentType = 'application/json') {
     if (isChangeAccess) return;
     const init = {
         method,
@@ -13,12 +13,12 @@ async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'app
         if (method === 'GET') url = `${url}?${new URLSearchParams(bodyParam).toString()}`
         else {init.body = JSON.stringify(bodyParam)}
     }
-
     //여기부턴 api 요청
     try {
         const response = await fetch(url, init);
         if (response.status !== 401) {
             return response.json();
+
         } else {
             isChangeAccess = true;
             const result = await response.json();
@@ -44,7 +44,9 @@ async function authFetch(url, bodyParam = {}, method = "GET" ,contentType = 'app
     } catch (error) {
         localStorage.removeItem('takealook-refresh');
         localStorage.removeItem('takealook-access');
-        location.reload();
+        location.href = "/";
+    } finally {
+        isChangeAccess = false;
     }
 }
 

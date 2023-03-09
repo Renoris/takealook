@@ -12,11 +12,92 @@
 <body>
     <!-- 로그아웃 버튼 -->
     <header>
+        <!-- 로고 및 검색바 인터페이스 -->
         <div class="head_container">
             <h1 class="logo">
-                <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
+                <a href="/"><img src="images/logo.png" alt="Take a Look logo" /></a>
             </h1>
-            <button class="mylist_logout">로그아웃</button>
+            <div class="interface">
+                <form id="search">
+                    <div class="search_box">
+                        <span class="back"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                        <input
+                                type="search"
+                                name="search"
+                                placeholder="영화 검색..."
+                                id="search_bar"
+                                class="search_bar"
+                        />
+                    </div>
+                    <div>
+                        <!-- search_show 클래스로 검색바와 버튼 활성화 -->
+                        <button type="button" label="검색" class="search_btn">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                        <button type="button" label="검색" class="search_view">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+                <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
+                <button type="button" class="outer_login">로그인</button>
+                <div class="outer_profile">
+                    <img src="./images/sample_profile.png" alt="" />
+                    <span id="outer_nick_name">김떼껄룩</span>
+                </div>
+                <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
+                <a href="./account" class="outer_account">회원가입</a>
+                <button type="button" class="outer_logout">로그아웃</button>
+                <!-- 햄버거 메뉴 버튼 992px 이하일경우 활성화 -->
+                <button type="button" id="menu_bar">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
+        <!-- 로그인 전 입력카드 -->
+        <div class="login_box">
+            <div>
+                <h3>내가 쏘아올린 작은 취향</h3>
+                <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
+                <span class="confirm_log clear"
+                ><ion-icon name="alert-circle-outline"></ion-icon> 로그인 이메일로 전송되었습니다.
+            확인해주세요!</span
+                >
+                <span class="confirm_log fail"
+                ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
+            입력해주세요!</span
+                >
+                <span class="confirm_log no_account"
+                ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
+            먼저 해주세요!</span
+                >
+                <span class="confirm_log valid_email"
+                ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
+                >
+                <form id="login_form">
+                    <label for="email">이메일</label>
+                    <input type="text" id="email" placeholder="이메일 로그인" />
+                    <button type="button" id="login_btn">로그인</button>
+                </form>
+                <a href="./account">회원가입</a>
+            </div>
+        </div>
+        <!-- 로그인 후 내정보 카드 -->
+        <div class="account_box">
+            <div class="account_info">
+                <div class="account_img">
+                    <img src="./images/sample_profile.png" alt="프로필 사진" />
+                </div>
+                <div class="name_email">
+                    <h2 id="user_nick_name">떼껄룩 님</h2>
+                    <button id="logout_btn">로그아웃</button>
+                    <p id="user_email">takea1234@look.com</p>
+                </div>
+            </div>
+            <div class="account_menu">
+                <a href="./myinformation" class="my_info">내 정보</a>
+                <a href="./mylist" class="my_list">내 리스트</a>
+            </div>
         </div>
     </header>
     <!-- 내정보 제목 -->
@@ -41,21 +122,24 @@
         </div>
         <!-- 닉네임, 성별, 선호장르 -->
         <div class="my_form">
-            <label class="nick_name" for="nick_name_box">닉네임</label>
+            <label class="nick_name" for="nick_name">닉네임</label>
             <div class="nick_box">
-                <input id="nick_name_box" class="nick_name_box" type="text">
+                <input id="nick_name" class="nick_name_box" type="text">
                 <!-- 클래스명 name_on으로 추가하면 보입니다 -->
-                <div class="can_name">이 닉네임을 사용할 수 있습니다.
+                <div id ="usable_nick_name" class="can_name">이 닉네임을 사용할 수 있습니다.
                 </div>
-                <div class="cannot_name">이 닉네임을 사용할 수 없습니다.
+                <div id = "duplicate_nick_name" class="cannot_name">이 닉네임을 사용할 수 없습니다.
                 </div>
             </div>
-            <button class="overlap">중복확인</button>
+            <button id = "validate_nick_btn" class="overlap">중복확인</button>
         </div>
         <div class="my_form">
-            <label class="name_label">이름</label>
-            <input class = "gender_input" type="text" id="last_name" placeholder="성">
-            <input class = "gender_input" type="text" id="first_name" placeholder="이름">
+
+                <label class="name_label" for="last_name">성</label>
+                <input class = "name_input" type="text" id="last_name" placeholder="성" readonly>
+                <label class="name_label" for="first_name">이름</label>
+                <input class = "name_input" type="text" id="first_name" placeholder="이름" readonly>
+
         </div>
         <div class="my_form">
             <label class="gender_box">성별</label>
@@ -67,7 +151,7 @@
         <div class="genre_box">
             <label class="preferred_genre">선호장르</label>
             <select class="genre_selector" id = "favorite_1">
-                <option>장르별</option>
+                <option value="ALL">장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
                 <option>드라마</option>
@@ -83,7 +167,7 @@
                 <option>무협</option>
             </select>
             <select class="genre_selector" id = "favorite_2">
-                <option>장르별</option>
+                <option value="ALL">장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
                 <option>드라마</option>
@@ -99,7 +183,7 @@
                 <option>무협</option>
             </select>
             <select class="genre_selector" id = "favorite_3">
-                <option>장르별</option>
+                <option value="ALL">장르별</option>
                 <option>TV영화</option>
                 <option>액션</option>
                 <option>드라마</option>
@@ -117,23 +201,46 @@
         </div>
         <div class="modification">
             <div>
-                <button class="button_box">수정</button>
+                <button type="button" id ="submitBtn" class="button_box">수정</button>
             </div>
             <div>
-                <button class="button_box">탈퇴</button>
+                <button type="button" id ="deleteBtn" class="button_box">탈퇴</button>
             </div>
         </div>
 
         </form>
     </section>
+
+        <!-- 로딩 모달 -->
+        <div class="modal_loading">
+            <div>
+                <div class="loading">
+                    <img src="./images/loading.png" alt="고양이와 바다" />
+                </div>
+                <div class="wavy">
+                    <span style="--i: 1">l</span>
+                    <span style="--i: 2">o</span>
+                    <span style="--i: 3">a</span>
+                    <span style="--i: 4">d</span>
+                    <span style="--i: 5">i</span>
+                    <span style="--i: 6">n</span>
+                    <span style="--i: 7">g</span>
+                    <span style="--i: 8">.</span>
+                    <span style="--i: 9">.</span>
+                    <span style="--i: 10">.</span>
+                </div>
+            </div>
+        </div>
     </main>
 
 
     <script type="module" src="components/header/header.js"></script>
+    <script type="module" src="components/info/myInformation.js"></script>
     <script
     type="module"
     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
+
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

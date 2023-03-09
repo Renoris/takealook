@@ -1,4 +1,4 @@
-import { signUpBtnEventListener } from "./accountBtnEvents.js";
+import { signUpBtnEventListener, validate_nick_btnClickEventListener } from "./accountBtnEvents.js";
 
 const account = document.querySelector(".user_form");
 const hidden = document.querySelector(".hidden");
@@ -37,25 +37,7 @@ signup.addEventListener("click", (e) => {
 }
 );
 
-async function validate_nick_btnClickEventListener(e, dom_nick_name, usableNickName, duplicateNickName) {
-  e.preventDefault();
-  const nickName = dom_nick_name.value;
-  const url = `/api/signup/valid/nickname?${new URLSearchParams({query:nickName})}`;
-  try{
-    const response = await (await fetch(url)).json();
-    if (!response.isExist) {
-      usableNickName.classList.add('valid_show');
-      duplicateNickName.classList.remove('valid_show');
-    } else {
-      duplicateNickName.classList.add('valid_show');
-      usableNickName.classList.remove('valid_show');
-    }
-  } catch (error){
-    alert(error.message);
-  }
-}
-
-validate_nick_btn.addEventListener('click', e => validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName));
+validate_nick_btn.addEventListener('click', e => validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName, 'valid_show'));
 
 
 account.addEventListener("keydown", () => {

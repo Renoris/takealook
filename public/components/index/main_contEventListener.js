@@ -64,20 +64,21 @@ function getButtonState(state, node) {
         if (_state) {
           await authFetch(
             "/api/pick",
+              "DELETE",
             {
               movieId,
             },
-            "DELETE"
           );
           node.src = "./images/fav_off.png";
           _state = 0;
         } else {
           await authFetch(
+
             "/api/pick",
+              "POST",
             {
               movieId,
             },
-            "POST"
           );
           node.src = "./images/fav_on.png";
           _state = 1;
@@ -155,6 +156,7 @@ export const addCover = async (query, pageIndex, pageMaxIndex, coverIncrease, co
 /**
  * TOP 버튼 스크롤 이벤트
  * @param e : Event
+ * @param top : document.element
  */
 export function topScrollEventListener(e, top) {
     if (window.scrollY > 500) {

@@ -22,6 +22,7 @@ const AuthService = {
             //이메일 검증
             if (!email) throw Error('이메일이 없습니다');
             const member = await memberStorage.getMemberByEmail(email, transaction);
+            console.log(member);
             if (!member) throw Error("해당 이메일은 저장되어 있지 않습니다.");
 
             //이메일 기반 해시 생성

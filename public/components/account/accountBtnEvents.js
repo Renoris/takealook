@@ -47,3 +47,21 @@ export async function signUpBtnEventListener(e, signupInfo, genderList, validate
         }
     }
 }
+
+export async function validate_nick_btnClickEventListener(e, dom_nick_name, usableNickName, duplicateNickName, onClassName) {
+    e.preventDefault();
+    const nickName = dom_nick_name.value;
+    const url = `/api/signup/valid/nickname?${new URLSearchParams({query:nickName})}`;
+    try{
+        const response = await (await fetch(url)).json();
+        if (!response.isExist) {
+            usableNickName.classList.add(onClassName);
+            duplicateNickName.classList.remove(onClassName);
+        } else {
+            duplicateNickName.classList.add(onClassName);
+            usableNickName.classList.remove(onClassName);
+        }
+    } catch (error){
+        alert(error.message);
+    }
+}

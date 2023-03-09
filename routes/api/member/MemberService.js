@@ -6,8 +6,8 @@ const MemberService = {
     getMember : async function (memberId) {
         return sequelize.transaction(async (transaction) => {
             //이메일 검증
-            const {email, firstName, lastName, gender, nickName, profileImage} = await memberStorage.getMemberById(memberId, transaction);
-            return {email, firstName, lastName, gender, nickName, profileImage};
+            const {email, firstName, lastName, gender, nickName, profileImage, favorite} = await memberStorage.getMemberById(memberId, transaction);
+            return {email, firstName, lastName, gender, nickName, profileImage, favorite};
         })
     },
 
@@ -38,6 +38,12 @@ const MemberService = {
     updateMyInfo : async function(authId, nickName, favorite, profileImage) {
         await sequelize.transaction(async (transaction) => {
             return await memberStorage.update(authId,nickName, favorite, profileImage ,transaction);
+        });
+    },
+
+    disable : async function(memberId) {
+        await sequelize.transaction(async (transaction) => {
+            return await memberStorage.disable(memberId ,transaction);
         });
     }
 }
