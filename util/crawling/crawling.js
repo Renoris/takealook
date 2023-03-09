@@ -24,6 +24,7 @@ class MovieData {
         this.director = director;
         this.actor = actor;
         this.userRating = userRating;
+        this.random = Math.floor(Math.random()*10000000);
         this.thumb = thumb;
     }
 }
