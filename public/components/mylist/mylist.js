@@ -23,7 +23,7 @@ function createMyListPoster(movie, parentNode) {
     parentNode.appendChild(myListPoster);
 
     favBtn.addEventListener('click', async (e) => {
-        await authFetch("/api/pick", {movieId: movie.movieId}, "DELETE");
+        await authFetch("/api/pick","DELETE" ,{movieId: movie.movieId});
         parentNode.removeChild(myListPoster);
     });
 }

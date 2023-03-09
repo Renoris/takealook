@@ -48,6 +48,7 @@ export async function loginBtnClickEventListener(
         noAccount.classList.add("confirm_log_show");
         clear.classList.remove("confirm_log_show");
         validEmail.classList.remove("confirm_log_show");
+        loadingModal.classList.remove("modal_on");
         return;
       }
 
@@ -63,22 +64,19 @@ export async function loginBtnClickEventListener(
       noAccount.classList.remove("confirm_log_show");
       clear.classList.add("confirm_log_show");
       validEmail.classList.remove("confirm_log_show");
-      loadingModal.classList.remove("modal_on");
     } catch (error) {
       fail.classList.add("confirm_log_show");
       clear.classList.remove("confirm_log_show");
       noAccount.classList.remove("confirm_log_show");
       validEmail.classList.remove("confirm_log_show");
-      loadingModal.classList.remove("modal_on");
     }
   } else {
     fail.classList.remove("confirm_log_show");
     clear.classList.remove("confirm_log_show");
     noAccount.classList.remove("confirm_log_show");
     validEmail.classList.add("confirm_log_show");
-    loadingModal.classList.remove("modal_on");
   }
-
+  loadingModal.classList.remove("modal_on");
 }
 
 /**

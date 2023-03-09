@@ -94,26 +94,29 @@ form{
     margin-left: 4px;
 }
 .name_label{
-    margin-right: 40px;
+    width : 32px;
+    margin-right: 42px;
 }
-#name_put{
+.gender_input {
     height: 38px;
     display: block;
-    width: 40%;
+    width: 30%;
     padding: 10px 5px;
     border-style: none;
     border-bottom: 2px solid #bcbcbc;
+    margin-right: 2px;
 }
-#name_in{
+.name_box{}
+.name_input {
     height: 38px;
     display: block;
-    width: 40%;
+    width: 30%;
     padding: 10px 5px;
-    margin-left: 2px;
     border-style: none;
     border-bottom: 2px solid #bcbcbc;
+    margin-right: 15px;
 }
-#name_box{
+.nick_name_box{
     height: 38px;
     border: 1px solid #44579d;
     border-radius: 4px;
@@ -161,9 +164,7 @@ select{
 .genre_selector{
     margin-left: 5px;
 }
-.name_on {
-    display: flex;
-}
+
 .can_name{
     margin-top: 4px;
     font-size: 12px;
@@ -177,6 +178,9 @@ select{
     font-size: 12px;
     color:crimson;
     font-weight: 700;
+}
+.name_on {
+    display: flex;
 }
 .modification{
     margin-top: 20px;
