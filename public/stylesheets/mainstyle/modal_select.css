@@ -1,13 +1,16 @@
 .modal_selection {
-  position: relative;
+  position: absolute;
+  top: 320px;
+  left: 160px;
   display: none;
-  width: 340px;
+  width: auto;
   height: 500px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
   padding: 20px 0;
   overflow: auto;
+  z-index: 2;
 }
 .folder_title {
   position: sticky;

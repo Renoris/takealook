@@ -1,190 +1,213 @@
-body{
-  background: linear-gradient(#972240, #fff5e1)
-}
-.mylist_head{
+.mylist_head {
   text-align: center;
-  background-color: white;
-}
-.mylist_head h2{
   padding: 16px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
 }
-.mylist_clip{
+/* 히로이미지 내부 */
+.mylist_hero {
   height: 300px;
-  padding-top: 40px;
-  padding-left: 100px;
-  background-image: url('../../images/movie_film.png');
+  width: 100%;
+  background-image: url("../../images/movie_film.png");
   background-repeat: no-repeat;
-  background-position: left top;
+  background-size: cover;
+  background-position: center;
+}
+.mylist_title {
   display: flex;
-  gap: 10px;
-}
-.mylist_clip img{
-  width: 80px;
-  height: 80px;
-}
-.mylist_title{
-  padding-top: 20px;
-  font-size: 26px;
+  align-items: center;
+  gap: 6px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 60px;
+  font-size: 24px;
   color: white;
 }
-.mylist_title span{
-  color: #ff9900
-
+.mylist_title img {
+  width: 100px;
 }
-.mylist_title a{
+.mylist_title b {
+  color: #ff9900;
+}
+.mylist_title a {
   display: block;
-  font-size: 10px;
+  font-size: 14px;
   color: white;
-  margin-top: 5px;
+  margin-top: 6px;
 }
-.creat_box{
-  width: 90%;
-  margin: 40px auto;
-  background-color: inherit;
+.mylist_title a:hover {
+  text-decoration: underline;
 }
-.creat_mylist{
-  padding: 30px 10px 20px 30px;
-  font-size: 22px;
-  font-weight: 700;
-  color:#ffffff;
-  width: 140px;
-  height: 40px;
-  text-align: center;
-}
-.list_gradation{
-  margin-top: 10px;
-  margin-left: 20px;
-  height: 3px;
-  width: 120px;
-  background-color: #43579C;
-}
-.list_box{
-  display: flex;
-  justify-content: space-between;
-  padding: 14px;
-}
-section{
-  margin-top: 10px;
-  padding: 30px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba( 0, 0, 0, 0.25);
+/* 메인컨텐츠 컨테이너 */
+.my_list_container {
   position: relative;
+  background: linear-gradient(#972240, #fff5e1);
+  padding-bottom: 10px;
 }
-.list_font{
-  font-size: 16px;
-  font-weight: 700;
+.create_box {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
 }
-#icon_font{
+.create_mylist {
+  display: inline-block;
+  margin: 30px 0;
+  padding: 10px 20px;
+  border-bottom: 5px solid #43579c;
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+}
+/* 생성한 리스트 부분 */
+/* .list_cont는 내 취향 영화 부분과 같이 활용됨 */
+.list_cont {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 100px;
+}
+.list_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list_text {
+  font-size: 18px;
+  font-weight: 900;
   color: #c6003e;
 }
-.list_icon{
+.list_title {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
   text-align: center;
 }
-.list_icon ion-icon{
-  font-size: 18px;
-  color: white;
-  vertical-align: -1.2px;
-}
-.list_icon img{
-  width: 20px;
-  height: 20px;
-}
-#edit_box{
-  width: 30px;
-  background-color: black;
-  border-radius: 999px;
-}
-.collection{
-  margin-top: 20px;
-  font-size: 10px;
-  font-weight: 700;
+.list_icon {
   display: flex;
-  overflow: hidden;
+  gap: 8px;
+}
+.list_icon button {
+  background-color: #2c2c2c;
+  padding: 6px 14px;
+  border-radius: 25px;
+  border-style: none;
+  cursor: pointer;
+}
+.list_icon ion-icon {
+  font-size: 20px;
+  color: white;
+}
+.list_folders {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
   gap: 10px;
+  overflow: auto;
 }
-
-.folder_box{
-  text-align: center;
+/* 폴더 라인 */
+.folder_lists {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
-
-.folder_gird{
+.folder_box {
+  width: 260px;
+  height: 300px;
+}
+.folder_img {
+  background-image: url("../../images/add_folder.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 85%;
+}
+/* .folder_grid {
   display: grid;
   grid-template-areas:
-    'a a c'
-    'a a f';
+    "a a c"
+    "a a f";
   gap: 2px;
-}
-
-.img_menu{
-    padding-top: 10px;
-}
-
-.one_img{
+} */
+/* .first_img {
   width: 100px;
   height: 162px;
   grid-area: a;
   border-radius: 10px 0 0 10px;
 }
-
-.two_img{
+.second_img {
   height: 80px;
   grid-area: c;
   border-radius: 0 10px 0 0;
 }
-.three_img{
+.third_img {
   height: 80px;
   grid-area: f;
   border-radius: 0 0 10px 0;
+} */
+.folder_name {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
 }
 
-#preference_list{
-  margin-top: 100px;
-  position: relative;
-
+/* 내 취향 영화 리스트 부분 */
+#more_btn {
+  border-style: none;
+  background-color: transparent;
+  padding: 6px 6px 0 6px;
 }
-.list_poster{
+.more {
+  color: #c6003e;
+  transition: all 0.5s;
+}
+.more:hover {
+  transition: all 0.5s;
+  transform: rotate(0.5turn);
+}
+.list_poster {
   margin-top: 20px;
-  margin-bottom: 20px;
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 30px;
 }
-.mylist_poster{
-  width: 100px;
-  height: 125px;
+.mylist_poster {
   position: relative;
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 360px;
+  text-align: center;
 }
-.poster_collection{
-  width: 100px;
-  height: 125px;
-  border: 1px solid #2c2c2c;
-  border-radius: 4px;
+.poster_collection {
+  background-color: aliceblue;
+  height: 85%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
-.poster_click{
-  width: 20px;
-  position:absolute;
-  right: 10px;
-  top: 6px;
+.poster_collection img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
-.arrow_box{
-  width: 30px;
-  height: 30px;
-  top: 150px;
+.poster_click {
   position: absolute;
-  z-index: 1;
+  top: 5px;
+  right: 5px;
+  width: 20%;
 }
-.arrow_right{
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: 10px;
-  top: 150px;
+.poster_info {
+  width: 100%;
+  padding: 5px;
 }
-
-
+.poster_info h3 {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 0;
+}
+.poster_info span {
+  display: block;
+  color: #bc9252;
+  font-size: 14px;
+  font-weight: 700;
+}
