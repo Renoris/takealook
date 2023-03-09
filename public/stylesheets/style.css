@@ -4,6 +4,8 @@
 @import "./mainstyle/login-info.css";
 @import "./mainstyle/modal_select.css";
 
+@import "./myliststyle/mycollection.css";
+
 @import "./responsive.css";
 @import "./account.css";
 @import "./modal_loading.css";
@@ -47,6 +49,7 @@ img {
   -o-user-drag: none;
   /* user-drag: none; */
 }
+
 /* TOP 버튼 */
 .up_to_top {
   display: none;
