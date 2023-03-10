@@ -1,11 +1,11 @@
-import {addCover} from "./main_contEventListener.js";
-import {topScrollEventListener} from "./main_contEventListener.js";
+import {addCover,
+    topScrollEventListener,
+    recommendTagClickEventListener,
+    movieTagClickEventListener, reloadPage} from "./main_contEventListener.js";
 
-const innerWindow = window;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const query = urlParams.get("query");
-
 let activeFav = false;
 let endMovie = false;
 
@@ -14,6 +14,8 @@ const coverLimit = 99;
 const coverIncrease = 7;
 const pageMax = Math.ceil(coverLimit / coverIncrease);
 let currentPage = 1;
+
+
 
 //영화 & 취향 리스트 전환 태그
 const movieContainer = document.querySelector(".movie_container");
@@ -64,41 +66,36 @@ years.addEventListener("focus", function () {
     }
 });
 
-const search = {
+export const searchInfo = {
     genre: "",
     pubDate: "",
+    query,
+    currentPage,
+    pageMax,
+    coverIncrease,
+    coverLimit
 };
 
 genreList.addEventListener("change", async (e) => {
-    search.genre = e.target.value;
-    currentPage = 1;
-    movieContainer.textContent = "";
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
-    endMovie = length === 0;
-    currentPage++;
+    searchInfo.genre = e.target.value;
+    await reloadPage(e, searchInfo, scrollControlValues);
 });
 
 years.addEventListener("change", async (e) => {
-    search.pubDate = e.target.value;
-    currentPage = 1;
-    movieContainer.textContent = "";
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
-    endMovie = length === 0;
-    currentPage++;
+    searchInfo.pubDate = e.target.value;
+    await reloadPage(e, searchInfo, scrollControlValues);
 });
 
-movieTag.addEventListener("click", () => {
-    movieContainer.classList.remove("hide");
-    favContainer.classList.add("hide");
-    tags.classList.remove("tags_hide");
-    activeFav = false;
-});
-recommendTag.addEventListener("click", () => {
-    movieContainer.classList.add("hide");
-    favContainer.classList.remove("hide");
-    tags.classList.add("tags_hide");
-    activeFav = true;
-});
+export const scrollControlValues = {
+    movieContainer,
+    favContainer,
+    tags,
+    activeFav,
+    endMovie
+}
+
+movieTag.addEventListener("click", (e) => movieTagClickEventListener(e, scrollControlValues));
+recommendTag.addEventListener("click", (e) => recommendTagClickEventListener(e, scrollControlValues));
 
 //스크롤 이벤트를 throttle로 제어
 let throttleTimer;
@@ -117,28 +114,23 @@ const throttle = (callback, time) => {
 //무한 스크롤 공식
 const infiniteScroll = async () => {
     await throttle(async () => {
-        if (activeFav) return;
-        if (endMovie) return;
+        if (scrollControlValues.activeFav) return;
+        if (scrollControlValues.endMovie) return;
         const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
         if (endOfPage) {
-            const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
-            endMovie = length === 0;
-            currentPage++;
+            const length = await addCover(searchInfo, scrollControlValues.movieContainer);
+            scrollControlValues.endMovie = length === 0;
+            searchInfo.currentPage++;
         }
         if (currentPage > pageMax) {
-            removeInfiniteScroll();
+            scrollControlValues.endMovie = true;
         }
     }, 500);
 };
 
-//무한 스크롤 제어
-const removeInfiniteScroll = () => {
-    window.removeEventListener("scroll", infiniteScroll);
-};
-
 // 첫 스크롤 생성
-innerWindow.onload = async function () {
+window.onload = async function () {
     if (query) {
         try {
             await fetch('/api/movie/build', {
@@ -152,9 +144,9 @@ innerWindow.onload = async function () {
         }
     }
 
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
-    endMovie = length === 0;
-    currentPage++;
+    const length = await addCover(searchInfo, scrollControlValues.movieContainer);
+    scrollControlValues.endMovie = length === 0;
+    searchInfo.currentPage++;
 };
 
 window.addEventListener("scroll", infiniteScroll);
