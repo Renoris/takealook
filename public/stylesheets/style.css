@@ -5,6 +5,7 @@
 @import "./mainstyle/modal_select.css";
 
 @import "./myliststyle/mycollection.css";
+@import "./mainstyle/myinformation/myinformation.css";
 
 @import "./responsive.css";
 @import "./account.css";

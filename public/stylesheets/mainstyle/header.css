@@ -180,6 +180,7 @@ ion-icon {
 }
 
 .outer_hide {
+  /*필요하면 사용*/
   display: none;
 }
 .outer_show {

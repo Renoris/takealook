@@ -1,5 +1,5 @@
 import { addCover } from "./main_contEventListener.js";
-import {topScrollEventListener} from "./main_contEventListener.js";
+import { topScrollEventListener } from "./main_contEventListener.js";
 
 const innerWindow = window;
 
@@ -7,24 +7,23 @@ export async function mainCont(query) {
   let activeFav = false;
   let endMovie = false;
 
-//제한 횟수, 생성 횟수, 페이지 카운트
+  //제한 횟수, 생성 횟수, 페이지 카운트
   const coverLimit = 99;
   const coverIncrease = 7;
   const pageMax = Math.ceil(coverLimit / coverIncrease);
   let currentPage = 1;
 
-//영화 & 취향 리스트 전환 태그
+  //영화 & 취향 리스트 전환 태그
   const movieContainer = document.querySelector(".movie_container");
   const favContainer = document.querySelector(".fav_container");
   const movieTag = document.getElementById("movie");
   const recommendTag = document.getElementById("recommend");
   const tags = document.querySelector(".tags");
 
-//장르별 정렬 리스트
+  //장르별 정렬 리스트
   const genreList = document.getElementById("genre");
   let genreArray = [
     "장르별",
-    "전체",
     "TV영화",
     "액션",
     "드라마",
@@ -46,7 +45,7 @@ export async function mainCont(query) {
   }
   genreList.innerHTML = genreOption;
 
-// 연도별 정렬 리스트
+  // 연도별 정렬 리스트
   const years = document.querySelector("#year");
 
   let isYearOptionExisted = false;
@@ -71,7 +70,15 @@ export async function mainCont(query) {
     search.genre = e.target.value;
     currentPage = 1;
     movieContainer.textContent = "";
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+    const length = await addCover(
+      query,
+      currentPage,
+      pageMax,
+      coverIncrease,
+      coverLimit,
+      search,
+      movieContainer
+    );
     endMovie = length === 0;
     currentPage++;
   });
@@ -80,7 +87,15 @@ export async function mainCont(query) {
     search.pubDate = e.target.value;
     currentPage = 1;
     movieContainer.textContent = "";
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+    const length = await addCover(
+      query,
+      currentPage,
+      pageMax,
+      coverIncrease,
+      coverLimit,
+      search,
+      movieContainer
+    );
     endMovie = length === 0;
     currentPage++;
   });
@@ -91,14 +106,14 @@ export async function mainCont(query) {
     tags.classList.remove("tags_hide");
     activeFav = false;
   });
-  recommendTag.addEventListener("click",  () => {
+  recommendTag.addEventListener("click", () => {
     movieContainer.classList.add("hide");
     favContainer.classList.remove("hide");
     tags.classList.add("tags_hide");
     activeFav = true;
   });
 
-//스크롤 이벤트를 throttle로 제어
+  //스크롤 이벤트를 throttle로 제어
   let throttleTimer;
   const throttle = (callback, time) => {
     if (throttleTimer) return;
@@ -112,7 +127,7 @@ export async function mainCont(query) {
     }, time);
   };
 
-//무한 스크롤 공식
+  //무한 스크롤 공식
   const infiniteScroll = async () => {
     await throttle(async () => {
       if (activeFav) return;
@@ -120,7 +135,15 @@ export async function mainCont(query) {
       const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
       if (endOfPage) {
-        const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+        const length = await addCover(
+          query,
+          currentPage,
+          pageMax,
+          coverIncrease,
+          coverLimit,
+          search,
+          movieContainer
+        );
         endMovie = length === 0;
         currentPage++;
       }
@@ -139,17 +162,25 @@ export async function mainCont(query) {
   innerWindow.onload = async function () {
     if (query) {
       try {
-        await fetch('/api/movie/build', {
-          method : "POST",
-          body : JSON.stringify({query}),
-          headers : {
-            "Content-Type" : "application/json"
-          }
+        await fetch("/api/movie/build", {
+          method: "POST",
+          body: JSON.stringify({ query }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
-      }catch (error) {}
+      } catch (error) {}
     }
 
-    const length = await addCover(query, currentPage, pageMax, coverIncrease, coverLimit, search, movieContainer);
+    const length = await addCover(
+      query,
+      currentPage,
+      pageMax,
+      coverIncrease,
+      coverLimit,
+      search,
+      movieContainer
+    );
     endMovie = length === 0;
     currentPage++;
   };
@@ -162,7 +193,4 @@ export async function mainCont(query) {
   });
   const top = document.querySelector(".up_to_top");
   window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
-
-
 }
-
