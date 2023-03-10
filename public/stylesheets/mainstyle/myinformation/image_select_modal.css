@@ -1,0 +1,17 @@
+.select_images {
+  position: absolute;
+  top: 60px;
+  left: 80px;
+  display: none;
+  flex-wrap: wrap;
+  width: 360px;
+  background-color: #fff;
+}
+.image_lineup {
+  width: 100%;
+  margin: 6px auto;
+}
+.image_lineup img {
+  display: inline-block;
+  width: 100px;
+}

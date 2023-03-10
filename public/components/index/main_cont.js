@@ -9,6 +9,7 @@ const query = urlParams.get("query");
 let activeFav = false;
 let endMovie = false;
 
+
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
 const coverIncrease = 7;
@@ -28,7 +29,6 @@ const tags = document.querySelector(".tags");
 const genreList = document.getElementById("genre");
 let genreArray = [
     "장르별",
-    "전체",
     "TV영화",
     "액션",
     "드라마",
@@ -49,6 +49,7 @@ for (let i = 0; i < genreArray.length; i++) {
     genreOption += `<option>${genreArray[i]}</option>`;
 }
 genreList.innerHTML = genreOption;
+
 
 // 연도별 정렬 리스트
 const years = document.querySelector("#year");
@@ -100,6 +101,7 @@ recommendTag.addEventListener("click", (e) => recommendTagClickEventListener(e, 
 //스크롤 이벤트를 throttle로 제어
 let throttleTimer;
 const throttle = (callback, time) => {
+
     if (throttleTimer) return;
 
     throttleTimer = true;
@@ -110,6 +112,7 @@ const throttle = (callback, time) => {
         throttleTimer = false;
     }, time);
 };
+
 
 //무한 스크롤 공식
 const infiniteScroll = async () => {
@@ -126,12 +129,14 @@ const infiniteScroll = async () => {
         if (currentPage > pageMax) {
             scrollControlValues.endMovie = true;
         }
+
     }, 500);
 };
 
 // 첫 스크롤 생성
 window.onload = async function () {
     if (query) {
+
         try {
             await fetch('/api/movie/build', {
                 method: "POST",
@@ -149,11 +154,14 @@ window.onload = async function () {
     searchInfo.currentPage++;
 };
 
+
 window.addEventListener("scroll", infiniteScroll);
 const movieModalCloseBtn = document.getElementById("movie_modal_close_btn");
 movieModalCloseBtn.addEventListener("click", (e) => {
     const movieModal = document.querySelector(".modal_movie");
     movieModal.classList.remove("modal_on");
+
 });
 const top = document.querySelector(".up_to_top");
 window.addEventListener("scroll", (e) => topScrollEventListener(e, top));
+
