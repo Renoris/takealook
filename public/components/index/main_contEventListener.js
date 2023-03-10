@@ -10,6 +10,22 @@ const removeList = {
   "&#035;": "#",
   "&#039;": "",
 };
+
+export function movieTagClickEventListener(e, scrollControlValues) {
+    scrollControlValues.movieContainer.classList.remove("hide");
+    scrollControlValues.favContainer.classList.add("hide");
+    scrollControlValues.tags.classList.remove("tags_hide");
+    scrollControlValues.activeFav = false;
+}
+
+export function recommendTagClickEventListener(e, scrollControlValues) {
+    scrollControlValues.movieContainer.classList.add("hide");
+    scrollControlValues.favContainer.classList.remove("hide");
+    scrollControlValues.tags.classList.add("tags_hide");
+    scrollControlValues.activeFav = true;
+}
+
+
 async function toggleModal(movieId) {
   if (!movieId) alert("영화를 읽어오지 못했습니다.");
   try {
@@ -94,22 +110,23 @@ export const createCover = (movie, $movieContainer) => {
     const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
     const coverImageNode = elementFactory.createCoverImageNode(movieCover);
     elementFactory.createInCoverImageNode(movie.thumb, coverImageNode);
-  let replacedTitle = movie.title;
-  for (const key in removeList) {
-    replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
-  }
-  elementFactory.createMovieInfoNode(replacedTitle, movie.genre, movieCover);
-  const buttonState = getButtonState(movie.isPick, pickButton);
-  pickButton.addEventListener("click", (e) => buttonState.turnState());
-  coverImageNode.addEventListener("click", (e) => toggleModal(movie.movieId));
+     let replacedTitle = movie.title;
+     for (const key in removeList) {
+         replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
+     }
+    elementFactory.createMovieInfoNode(replacedTitle, movie.genre, movieCover);
+    const buttonState = getButtonState(movie.isPick, pickButton);
+    pickButton.addEventListener("click", (e) => buttonState.turnState());
+    coverImageNode.addEventListener("click", (e) => toggleModal(movie.movieId));
 };
 
 
-export const addCover = async (query, pageIndex, pageMaxIndex, coverIncrease, coverLimit, search ,parentNode) => {
+export const addCover = async (searchInfo ,parentNode) => {
     let count = 0;
-    const startRange = (pageIndex - 1) * coverIncrease;
-    const endRange = pageIndex === pageMaxIndex ? coverLimit : pageIndex * coverIncrease;
-    const {genre, pubDate} = search;
+    const {genre, pubDate, query, currentPage, pageMax, coverIncrease, coverLimit} = searchInfo;
+
+    const startRange = (currentPage - 1) * coverIncrease;
+    const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
     try {
         const params = {
             limit: endRange - startRange,
@@ -156,7 +173,7 @@ export const addCover = async (query, pageIndex, pageMaxIndex, coverIncrease, co
 /**
  * TOP 버튼 스크롤 이벤트
  * @param e : Event
- * @param top : document.element
+ * @param top
  */
 export function topScrollEventListener(e, top) {
     if (window.scrollY > 500) {
@@ -164,4 +181,12 @@ export function topScrollEventListener(e, top) {
     } else {
         top.style.display = "none";
     }
+}
+
+export async function reloadPage (e, searchInfo, scrollControlValues) {
+    searchInfo.currentPage = 1;
+    scrollControlValues.movieContainer.textContent = "";
+    const length = await addCover(searchInfo, scrollControlValues.movieContainer);
+    scrollControlValues.endMovie = length === 0;
+    searchInfo.currentPage++;
 }

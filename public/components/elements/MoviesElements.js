@@ -46,7 +46,7 @@ const elementFactory = {
       $title.innerText = title;
     }
     const $genre = document.createElement("span");
-    $genre.innerText = `${genre}`;
+    $genre.innerText = (!genre || genre === 'null' )? '장르 미정' :`${genre}`;
     $element.append($title, $genre);
     if (parentNode) parentNode.append($element);
     return $element;

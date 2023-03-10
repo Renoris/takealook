@@ -10,7 +10,6 @@ const MovieService = {
         await crawling.naverMovieApiCrawling(query);
     },
 
-
     getMovieDetail: async function (id) {
         if(!id) throw Error('id가 없습니다.');
         return movieStorage.getMovieDetail(id);
