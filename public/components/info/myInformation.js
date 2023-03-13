@@ -20,13 +20,14 @@ const firstName = document.getElementById("first_name");
 const lastName = document.getElementById("last_name");
 const male = document.getElementById("male");
 const female = document.getElementById("female");
+const updateProfileImage = document.getElementById("update_profile_img");
 
 validate_nick_btn.addEventListener("click", (e) =>
   validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName, "name_on")
 );
 
 submitBtn.addEventListener("click", async (e) => {
-  await submitBtnClickEventListener(e, nick_name, favorite1, favorite2, favorite3, loadingModal);
+  await submitBtnClickEventListener(e, nick_name, favorite1, favorite2, favorite3, updateProfileImage ,loadingModal);
 });
 
 deleteBtn.addEventListener("click", async (e) => {
@@ -39,6 +40,7 @@ deleteBtn.addEventListener("click", async (e) => {
   nick_name.value = myInfo.nickName;
   lastName.value = myInfo.lastName;
   firstName.value = myInfo.firstName;
+  updateProfileImage.src = myInfo.profileImage;
   if (myInfo.gender === "male") {
     male.checked = true;
   } else {

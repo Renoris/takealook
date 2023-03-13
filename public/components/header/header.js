@@ -86,13 +86,20 @@ async function onloadpage() {
   if (access && refresh) {
     try {
       const response = await authFetch('/api/member/my');
-      const {email, nickName} = response;
+      const {email, nickName, profileImage} = response;
       const dom_nick_name = document.getElementById("user_nick_name");
       const dom_user_email = document.getElementById('user_email');
       const dom_outer_nickName = document.getElementById('outer_nick_name');
+      const profileImageDom = document.getElementById('profile_image');
+      const innerProfileImageDom = document.getElementById('inner_profile_image');
       dom_nick_name.innerText = `${nickName} 님`;
       dom_user_email.innerText = email;
       dom_outer_nickName.innerText = `${nickName} 님`;
+      if (profileImage) {
+        profileImageDom.src = profileImage;
+        innerProfileImageDom.src = profileImage;
+      }
+
     }catch (error) {
       console.log(error);
     }

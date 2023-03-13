@@ -23,11 +23,11 @@
             <div class="search_box">
               <span class="back"><ion-icon name="chevron-forward-outline"></ion-icon></span>
               <input
-                type="search"
-                name="search"
-                placeholder="영화 검색..."
-                id="search_bar"
-                class="search_bar"
+                      type="search"
+                      name="search"
+                      placeholder="영화 검색..."
+                      id="search_bar"
+                      class="search_bar"
               />
             </div>
             <div>
@@ -43,7 +43,7 @@
           <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
           <button type="button" class="outer_login">로그인</button>
           <div class="outer_profile">
-            <img src="./images/sample_profile.png" alt="" />
+            <img id = "profile_image" src="./images/sample_profile.png" alt="" />
             <span id="outer_nick_name">김떼껄룩</span>
           </div>
           <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
@@ -61,19 +61,19 @@
           <h3>내가 쏘아올린 작은 취향</h3>
           <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
           <span class="confirm_log clear"
-            ><ion-icon name="alert-circle-outline"></ion-icon> 로그인 이메일로 전송되었습니다.
+          ><ion-icon name="alert-circle-outline"></ion-icon> 로그인 이메일로 전송되었습니다.
             확인해주세요!</span
           >
           <span class="confirm_log fail"
-            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
+          ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
             입력해주세요!</span
           >
           <span class="confirm_log no_account"
-            ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
+          ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
             먼저 해주세요!</span
           >
           <span class="confirm_log valid_email"
-            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
+          ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
           >
           <form id="login_form">
             <label for="email">이메일</label>
@@ -87,7 +87,7 @@
       <div class="account_box">
         <div class="account_info">
           <div class="account_img">
-            <img src="./images/sample_profile.png" alt="프로필 사진" />
+            <img id = "inner_profile_image" src="./images/sample_profile.png" alt="프로필 사진" />
           </div>
           <div class="name_email">
             <h2 id="user_nick_name">떼껄룩 님</h2>
