@@ -8,6 +8,7 @@
     <title>보고싶은 영화 담아두자! 떼껄룩(Take a Look)</title>
     <link rel="stylesheet" href="stylesheets/style.css" />
     <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/myinfo_media.css" />
+    <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/image_select_modal.css" />
   </head>
   <body>
     <!-- 로그아웃 버튼 -->
@@ -58,7 +59,7 @@
         <!-- 프로필 사진 -->
         <div class="my_profile">
           <div class="image_box">
-            <img src="./images/sample_profile.png" />
+            <img src="./images/leon_cat.png" />
             <button class="image_change">이미지 변경</button>
           </div>
         </div>
@@ -112,14 +113,10 @@
           </div>
         </form>
         <!-- 이미지 편집 모달 -->
-        <article id="select_images">
-          <div class="image_lineup">
-            <img src="./images/sample_profile.png" alt="" />
-            <img src="./images/sample_profile.png" alt="" />
-            <img src="./images/sample_profile.png" alt="" />
-            <img src="./images/sample_profile.png" alt="" />
-            <img src="./images/sample_profile.png" alt="" />
-            <img src="./images/sample_profile.png" alt="" />
+        <!-- image_on 으로 모달 활성화 -->
+        <article class="select_overlay">
+          <div class="select_images">
+            <div class="image_lineup"></div>
           </div>
         </article>
       </section>
@@ -148,6 +145,7 @@
 
     <script type="module" src="components/header/header.js"></script>
     <script type="module" src="components/info/myInformation.js"></script>
+    <script type="module" src="components/info/image_select_modal.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
