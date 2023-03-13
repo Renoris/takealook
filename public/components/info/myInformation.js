@@ -40,7 +40,9 @@ deleteBtn.addEventListener("click", async (e) => {
   nick_name.value = myInfo.nickName;
   lastName.value = myInfo.lastName;
   firstName.value = myInfo.firstName;
-  updateProfileImage.src = myInfo.profileImage;
+  if (myInfo.profileImage) {
+    updateProfileImage.src = myInfo.profileImage;
+  }
   if (myInfo.gender === "male") {
     male.checked = true;
   } else {
