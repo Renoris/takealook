@@ -88,7 +88,7 @@ async function spreadMyPick() {
 
 
 spreadMyPick();
-spreadMyList();
+// spreadMyList();
 
 
 

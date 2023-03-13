@@ -1,11 +1,11 @@
 import authFetch from "../fetchs/AuthFetch.js";
 
-export async function submitBtnClickEventListener(e, nickName, favorite1, favorite2, favorite3, loadingModal) {
+export async function submitBtnClickEventListener(e, nickName, favorite1, favorite2, favorite3, profileImage ,loadingModal) {
     let favorite = `${(favorite1.value)? favorite1.value : 'ALL'},${(favorite2.value)? favorite2.value : 'ALL'},${(favorite3.value)? favorite3.value : 'ALL'}`;
-
+    const img = profileImage.src;
     try {
         loadingModal.classList.add('modal_on');
-        await authFetch('/api/member/my', 'PUT',{nickName:nickName.value, favorite});
+        await authFetch('/api/member/my', 'PUT',{nickName:nickName.value, favorite, profileImage:img});
         alert("수정되었습니다.");
         location.reload();
     }catch (error){

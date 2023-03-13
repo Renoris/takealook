@@ -27,6 +27,7 @@ const MemberStorage = {
         user.nickName = nickName;
         console.log(favorite);
         user.favorite = favorite;
+        user.profileImage = profileImage;
         user.save(transaction);
     },
 
