@@ -79,7 +79,7 @@ async function movieCheckBoxClickEventListener(e, movieId, bucketId, movieRow, s
 function createBucketItem(movieInfo, bucketId, checked, selectedMovies, unSelectedMovies) {
     const li = document.createElement('li');
     li.id = `movie_${movieInfo.movieId}`;
-    const img = document.createElement('div');
+    const img = document.createElement('img');
     img.src = convertImageScaleSmall(movieInfo.thumb);
 
     const titleDom = document.createElement('h3');
