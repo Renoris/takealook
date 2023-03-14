@@ -85,34 +85,33 @@ async function onloadpage() {
 
   if (access && refresh) {
     try {
-      const response = await authFetch('/api/member/my');
-      const {email, nickName, profileImage} = response;
+      const response = await authFetch("/api/member/my");
+      const { email, nickName, profileImage } = response;
       const dom_nick_name = document.getElementById("user_nick_name");
-      const dom_user_email = document.getElementById('user_email');
-      const dom_outer_nickName = document.getElementById('outer_nick_name');
-      const profileImageDom = document.getElementById('profile_image');
-      const innerProfileImageDom = document.getElementById('inner_profile_image');
+      const dom_user_email = document.getElementById("user_email");
+      const dom_outer_nickName = document.getElementById("outer_nick_name");
+      const profileImageDom = document.getElementById("profile_image");
+      const innerProfileImageDom = document.getElementById("inner_profile_image");
       dom_nick_name.innerText = `${nickName} 님`;
       dom_user_email.innerText = email;
       dom_outer_nickName.innerText = `${nickName} 님`;
-      if (window.location.pathname.includes("mylist")){
-        document.getElementById('my_list_nick_name').innerHTML = `<b>${nickName}</b> 님`;
+      if (window.location.pathname.includes("mylist")) {
+        document.getElementById(
+          "my_list_nick_name"
+        ).innerHTML = `<b>${nickName}</b> 님 의<br> 영화취향`;
       }
 
       if (profileImage) {
-
         /**
          * 이부분 헤더에 있으면 안되지만... 다른방법을 찾아보자
          */
-        if (window.location.pathname.includes("mylist")){
-          document.getElementById('my_list_profile_image').src = profileImage;
+        if (window.location.pathname.includes("mylist")) {
+          document.getElementById("my_list_profile_image").src = profileImage;
         }
         profileImageDom.src = profileImage;
         innerProfileImageDom.src = profileImage;
       }
-
-
-    }catch (error) {
+    } catch (error) {
       console.log(error);
     }
 

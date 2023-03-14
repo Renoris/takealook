@@ -108,7 +108,7 @@
         <div class="mylist_title">
           <img id="my_list_profile_image" src="./images/sample_profile.png" />
           <div>
-            <h3 id="my_list_nick_name"><b>떼껄룩</b>의 영화취향</h3>
+            <h3 id="my_list_nick_name"><b>떼껄룩</b>님 의 <br />영화취향</h3>
             <a href="./myinformation">내정보 편집</a>
           </div>
         </div>
@@ -141,7 +141,32 @@
             <div class="list_folders">
               <div class="folder_lists">
                 <div class="folder_box">
-                  <div class="folder_img"></div>
+                  <div class="folder_imgs">
+                    <div class="folder_img1"><img src="./images/concept_happy.jpg" alt="" /></div>
+                    <div class="folder_img2"><img src="./images/concept_idea.jpg" alt="" /></div>
+                    <div class="folder_img3"><img src="./images/concept_anger.jpg" alt="" /></div>
+                  </div>
+                  <h4 class="folder_name">영화폴더 1</h4>
+                </div>
+                <div class="folder_box">
+                  <div class="folder_imgs">
+                    <div class="folder_img1"><img src="./images/concept_dine.jpg" alt="" /></div>
+                    <div class="folder_img2"><img src="./images/concept_idea.jpg" alt="" /></div>
+                  </div>
+                  <h4 class="folder_name">영화폴더 1</h4>
+                </div>
+                <div class="folder_box">
+                  <div class="folder_imgs">
+                    <div class="folder_img1"><img src="./images/concept_anger.jpg" alt="" /></div>
+                    <div class="folder_img2"><img src="./images/concept_idea.jpg" alt="" /></div>
+                    <div class="folder_img3"><img src="./images/concept_happy.jpg" alt="" /></div>
+                  </div>
+                  <h4 class="folder_name">영화폴더 1</h4>
+                </div>
+                <div class="folder_box">
+                  <div class="folder_imgs">
+                    <div class="folder_img1"><img src="./images/add_folder.png" alt="" /></div>
+                  </div>
                   <h4 class="folder_name">영화폴더 1</h4>
                 </div>
               </div>
@@ -150,8 +175,15 @@
 
           <!-- 내 리스트 페이지용 모달 ( 욺길예정 ) -->
           <!-- select_on 으로 모달 활성화 -->
-          <div class="modal_selection">
-            <h2 class="folder_title">폴더 제목</h2>
+          <div class="modal_selection select_on">
+            <div class="folder_title_head">
+              <!-- title_hide 클래스로 전환 -->
+              <h2 class="folder_title">폴더 제목</h2>
+              <div class="title_edit title_hide">
+                <input type="text" id="folder_title" />
+                <button type="button" id="apply_title">적용</button>
+              </div>
+            </div>
             <h3 class="in_list">포함된 영화</h3>
             <ul class="selected_movies">
               <li>
@@ -215,8 +247,8 @@
             </div>
             <!-- 취향리스트 포스터 -->
             <div class="list_poster">
-              <div class="mylist_poster">
-                <!-- click_show 로 favbtn 활성화 -->
+              <!-- <div class="mylist_poster">
+                click_show 로 favbtn 활성화
                 <img class="poster_click" src="./images/fav_on.png" alt="" />
                 <div class="poster_collection">
                   <img src="./images/no_image.png" alt="" />
@@ -225,7 +257,7 @@
                   <h3>영화제목</h3>
                   <span>장르</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </article>
         </div>

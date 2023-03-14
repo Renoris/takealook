@@ -25,6 +25,7 @@
 }
 .mylist_title img {
   width: 100px;
+  border-radius: 20px;
 }
 .mylist_title b {
   color: #ff9900;
@@ -128,42 +129,48 @@
 .folder_lists {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 100px;
 }
 .folder_box {
-  width: 260px;
-  height: 300px;
+  width: 240px;
+  height: 330px;
 }
-.folder_img {
-  background-image: url("../../images/add_folder.png");
-  background-size: cover;
-  background-position: center;
+.folder_imgs {
+  position: relative;
   width: 100%;
   height: 85%;
 }
-/* .folder_grid {
-  display: grid;
-  grid-template-areas:
-    "a a c"
-    "a a f";
-  gap: 2px;
-} */
-/* .first_img {
-  width: 100px;
-  height: 162px;
-  grid-area: a;
-  border-radius: 10px 0 0 10px;
+.folder_imgs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid #fff;
 }
-.second_img {
-  height: 80px;
-  grid-area: c;
-  border-radius: 0 10px 0 0;
+.folder_img1,
+.folder_img2,
+.folder_img3 {
+  position: absolute;
+  width: 240px;
+  height: 240px;
 }
-.third_img {
-  height: 80px;
-  grid-area: f;
-  border-radius: 0 0 10px 0;
-} */
+.folder_img1 {
+  top: 30px;
+  left: 0;
+  z-index: 4;
+}
+.folder_img2 {
+  top: 15px;
+  left: 25px;
+  z-index: 3;
+  filter: brightness(70%);
+}
+.folder_img3 {
+  top: 0;
+  left: 50px;
+  z-index: 2;
+  filter: brightness(60%);
+}
 .folder_name {
   margin-top: 10px;
   font-size: 16px;

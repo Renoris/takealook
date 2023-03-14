@@ -83,31 +83,39 @@ async function movieCheckBoxClickEventListener(
  * @param unSelectedMovies
  */
 function createBucketItem(movieInfo, bucketId, checked, selectedMovies, unSelectedMovies) {
+  const li = document.createElement("li");
+  li.id = `movie_${movieInfo.movieId}`;
+  const img = document.createElement("img");
+  img.src = convertImageScaleSmall(movieInfo.thumb);
 
-    const li = document.createElement('li');
-    li.id = `movie_${movieInfo.movieId}`;
-    const img = document.createElement('img');
-    img.src = convertImageScaleSmall(movieInfo.thumb);
+  const titleDom = document.createElement("h3");
+  titleDom.innerHTML = movieInfo.title;
 
-    const titleDom = document.createElement('h3');
-    titleDom.innerHTML = movieInfo.title;
+  const inputCheckBox = document.createElement("input");
+  inputCheckBox.type = "checkbox";
+  if (checked) {
+    inputCheckBox.checked = true;
+  }
 
-    const inputCheckBox = document.createElement('input');
-    inputCheckBox.type = "checkbox";
-    if (checked) {
-        inputCheckBox.checked = true;
-    }
+  inputCheckBox.addEventListener("change", (e) =>
+    movieCheckBoxClickEventListener(
+      e,
+      movieInfo.movieId,
+      bucketId,
+      li,
+      selectedMovies,
+      unSelectedMovies
+    )
+  );
 
-    inputCheckBox.addEventListener('change', e => movieCheckBoxClickEventListener(e, movieInfo.movieId, bucketId, li,selectedMovies, unSelectedMovies));
-
-    li.append(img);
-    li.append(titleDom);
-    li.append(inputCheckBox);
-    if (checked) {
-        selectedMovies.append(li);
-    }else {
-        unSelectedMovies.append(li);
-    }
+  li.append(img);
+  li.append(titleDom);
+  li.append(inputCheckBox);
+  if (checked) {
+    selectedMovies.append(li);
+  } else {
+    unSelectedMovies.append(li);
+  }
 }
 
 /**
@@ -140,7 +148,7 @@ function createMyPick(movie, parentNode) {
  * @param bucketId
  * @returns {Promise<void>}
  */
-async function refreshModalData(e, bucketId) {
+async function refreshModalData(e, bucketId, folder_box) {
   //dom 셋팅
   const modal = document.querySelector(".modal_selection");
   const folderTitle = document.querySelector(".folder_title");
@@ -165,6 +173,9 @@ async function refreshModalData(e, bucketId) {
   for (const unSelect of unSelectList) {
     createBucketItem(unSelect, bucketId, false, selectedMovies, unselectedMovies);
   }
+
+  modal.style.top = `${folderBox.offsetTop}px`;
+  modal.style.left = `${folderBox.offsetLeft}px`;
 
   modal.classList.add("select_on");
 }
@@ -197,7 +208,7 @@ function createMovieList(bucketId, bucketName, thumbArray, parentNode) {
   parentNode.append(folderBox);
 
   //이벤트 할당
-  folderBox.addEventListener("click", (e) => refreshModalData(e, bucketId));
+  folderBox.addEventListener("click", (e) => refreshModalData(e, bucketId, folderBox));
 }
 
 if (!access || !refresh) {
@@ -262,7 +273,7 @@ deleteBtn.addEventListener("click", () => {
 //내 픽 부분
 removeBtn.addEventListener("click", () => {
   removeBtn.classList.toggle("edit_list");
-  const favBtns = document.querySelectorAll('.poster_click');
+  const favBtns = document.querySelectorAll(".poster_click");
   for (const favBtn of favBtns) {
     favBtn.classList.toggle("click_show");
   }
