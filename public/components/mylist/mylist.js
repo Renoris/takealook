@@ -233,12 +233,6 @@ async function spreadMyList() {
 spreadMyPick();
 spreadMyList();
 
-//
-// (function initialize(){
-//     spreadMyPick();
-//     spreadMyList();
-// })()
-
 // 더 보기 기능, 펼치기 & 접기 토글
 const moreBtn = document.getElementById("more_btn");
 const moreIcon = document.querySelector(".more");

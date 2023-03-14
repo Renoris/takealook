@@ -58,9 +58,7 @@ module.exports = {
                     id : {
                         [Op.eq] : userId
                     },
-                    token_expire : {
-                        [Op.lt] : new Date()
-                    }
+                    disable : 0,
                 }
             }) // refresh token 가져오기
 
