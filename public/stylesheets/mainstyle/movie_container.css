@@ -3,7 +3,8 @@
   width: 100%;
   margin: 30px 0;
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  gap: 30px 20px;
   flex-wrap: wrap;
 }
 .hide {
@@ -13,8 +14,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 250px;
-  height: 420px;
+  width: 220px;
+  height: 400px;
   text-align: center;
 }
 .movie_cover .fav_btn {

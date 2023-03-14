@@ -1,5 +1,6 @@
 let selectableImages = [
   "avatar_cat.png",
+  "elsa_cat.png",
   "harry_cat.png",
   "leon_cat.png",
   "matilda_cat.png",
