@@ -9,7 +9,6 @@ let selectableImages = [
   "concept_happy.jpg",
   "concept_idea.jpg",
   "concept_sad.jpg",
-  "sample_profile.png",
 ];
 
 const editImage = document.querySelector(".image_lineup");
