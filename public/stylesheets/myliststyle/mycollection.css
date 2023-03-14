@@ -16,11 +16,11 @@
 .mylist_title {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   width: 80%;
   margin: 0 auto;
   padding-top: 60px;
-  font-size: 24px;
+  font-size: 26px;
   color: white;
 }
 .mylist_title img {
@@ -83,11 +83,10 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  text-align: center;
 }
 .list_icon {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 .share_btn,
 .edit_btn,
@@ -132,8 +131,8 @@
   gap: 100px;
 }
 .folder_box {
-  width: 240px;
-  height: 330px;
+  width: 250px;
+  height: 300px;
 }
 .folder_imgs {
   position: relative;
@@ -151,23 +150,20 @@
 .folder_img2,
 .folder_img3 {
   position: absolute;
-  width: 240px;
+  width: 170px;
   height: 240px;
 }
 .folder_img1 {
-  top: 30px;
   left: 0;
   z-index: 4;
 }
 .folder_img2 {
-  top: 15px;
-  left: 25px;
+  left: 40px;
   z-index: 3;
   filter: brightness(70%);
 }
 .folder_img3 {
-  top: 0;
-  left: 50px;
+  left: 80px;
   z-index: 2;
   filter: brightness(60%);
 }
@@ -186,6 +182,7 @@
 #more_btn {
   display: flex;
   gap: 6px;
+  color: gray;
   text-decoration: underline;
   font-weight: 900;
   font-size: 12px;

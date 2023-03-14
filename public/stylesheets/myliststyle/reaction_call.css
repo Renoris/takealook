@@ -1,66 +1,42 @@
-@media screen  and (max-width: 480px){
-    section{
-        padding: 10px;
-    }
-    .collection img{
-        width: 100px;
-        height: 100px;
-        border-radius: 10px;
-        border: 1px solid black;
-    }
-    .folder_box{
-        text-align: center;
-        width: 100px;
-        height: 100px;
-    }
-    .arrow_box{
-        top: 110px;
-    }
-    .arrow_right{
-        top: 110px;
-    }
-    .list_icon ion-icon{
-        font-size: 12px;
-    }
-    .list_font{
-        font-size: 12px;
-    }
-    .list_icon img{
-        width: 15px;
-        height: 15px;
-    }
-
-    .mylist_clip{
-        padding: 20px;
-        height: 200px;
-    }
-
-    .collection{
-        margin-top: 10px;
-    }
-    .list_poster{
-        margin: 10px 0;
-    }
-    .creat_mylist{
-        font-size: 18px;
-        padding: 10px 10px 20px 10px;
-    }
-    .list_gradation{
-        margin-top: 0;
-        margin-left: 14px;
-
-    }
+@media screen and (max-width: 480px) {
+  /* 상위 구간 */
+  #my_list_nick_name {
+    font-size: 22px;
+  }
+  .create_mylist {
+    font-size: 20px;
+  }
+  .mylist_title a {
+    font-size: 12px;
+  }
+  /* 생성한 리스트 구간 */
+  .list_text {
+    font-size: 16px;
+  }
+  .list_icon ion-icon {
+    font-size: 14px;
+  }
+  .share_btn,
+  .edit_btn,
+  .delete_btn,
+  .remove_btn {
+    padding: 3px 9px;
+  }
+  /* 내 취향 영화 부분 */
+  #more_btn {
+    font-size: 10px;
+  }
+  .list_poster {
+    gap: 30px 10px;
+  }
+  .mylist_poster {
+    width: 126px;
+    height: 235px;
+  }
 }
 
 @media screen and (min-width: 481px) and (max-width: 992px) {
-    .mylist_title{
-        font-size: 30px;
-    }
-    .mylist_clip{
-        padding-left: 40px;
-    }
-
-    .mylist_title{
-        padding-top: 30px;
-    }
+  .mylist_title {
+    font-size: 24px;
+  }
 }
