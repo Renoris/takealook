@@ -83,39 +83,31 @@ async function movieCheckBoxClickEventListener(
  * @param unSelectedMovies
  */
 function createBucketItem(movieInfo, bucketId, checked, selectedMovies, unSelectedMovies) {
-  const li = document.createElement("li");
-  li.id = `movie_${movieInfo.movieId}`;
-  const img = document.createElement("div");
-  img.src = convertImageScaleSmall(movieInfo.thumb);
 
-  const titleDom = document.createElement("h3");
-  titleDom.innerHTML = movieInfo.title;
+    const li = document.createElement('li');
+    li.id = `movie_${movieInfo.movieId}`;
+    const img = document.createElement('img');
+    img.src = convertImageScaleSmall(movieInfo.thumb);
 
-  const inputCheckBox = document.createElement("input");
-  inputCheckBox.type = "checkbox";
-  if (checked) {
-    inputCheckBox.checked = true;
-  }
+    const titleDom = document.createElement('h3');
+    titleDom.innerHTML = movieInfo.title;
 
-  inputCheckBox.addEventListener("change", (e) =>
-    movieCheckBoxClickEventListener(
-      e,
-      movieInfo.movieId,
-      bucketId,
-      li,
-      selectedMovies,
-      unSelectedMovies
-    )
-  );
+    const inputCheckBox = document.createElement('input');
+    inputCheckBox.type = "checkbox";
+    if (checked) {
+        inputCheckBox.checked = true;
+    }
 
-  li.append(img);
-  li.append(titleDom);
-  li.append(inputCheckBox);
-  if (checked) {
-    selectedMovies.append(li);
-  } else {
-    unSelectedMovies.append(li);
-  }
+    inputCheckBox.addEventListener('change', e => movieCheckBoxClickEventListener(e, movieInfo.movieId, bucketId, li,selectedMovies, unSelectedMovies));
+
+    li.append(img);
+    li.append(titleDom);
+    li.append(inputCheckBox);
+    if (checked) {
+        selectedMovies.append(li);
+    }else {
+        unSelectedMovies.append(li);
+    }
 }
 
 /**
