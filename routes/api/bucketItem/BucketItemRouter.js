@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 /**
  * 버켓 아이템 제거
  */
-router.post('/', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         const {authId, bucketId, movieId} = req.body;
         await bucketItemService.deleteBucketItem(authId, bucketId, movieId);

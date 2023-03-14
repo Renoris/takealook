@@ -15,6 +15,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/simple', async (req, res) => {
+    try {
+        const {authId} = req.body;
+        const result = await movieService.getPickMovieSimple(authId);
+        responseHandler.setIsOkToJson(res);
+        res.send(result);
+    } catch (error) {
+        responseHandler.badRequest(res, error.message);
+    }
+})
+
 router.post('/', async (req, res) => {
     try {
         const {authId, movieId} = req.body;

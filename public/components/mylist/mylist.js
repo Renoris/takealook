@@ -2,10 +2,112 @@ import authFetch from "../fetchs/AuthFetch.js";
 
 const access = localStorage.getItem('takealook-access');
 const refresh = localStorage.getItem('takealook-refresh');
-function convertImageScaleMedium(image) {
-    return image.replace('type=m886_590_2', 'type=m203_290_2');
+
+function distributePick(simplePicks, bucketItemMovieIds) {
+    const selectList = [];
+    const unSelectList = [];
+    for (const simplePick of simplePicks) {
+        let flag = false;
+        for (const itemMovieId of bucketItemMovieIds) {
+            if (itemMovieId === simplePick.movieId) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag) {
+            selectList.push(simplePick);
+        } else {
+            unSelectList.push(simplePick);
+        }
+    }
+
+    return {
+        selectList,
+        unSelectList
+    }
 }
 
+function getMovieListThumb(thumbs) {
+    let index = 0;
+    let array = ['images/no_image', 'images/no_image_black', 'images/no_image_color'];
+    for (const thumb of thumbs) {
+        if (thumb) {
+            array[index] = thumb;
+            index++;
+        }
+        if (index >= 3) {
+            break;
+        }
+    }
+    return array;
+}
+
+function convertImageScaleMedium(image) {
+    const index = image.indexOf('type=');
+    return `${image.slice(0, index)}type=m203_290_2`
+}
+
+function convertImageScaleSmall(image) {
+    const index = image.indexOf('type=');
+    return `${image.slice(0, index)}type=m77_110_2`
+}
+
+async function movieCheckBoxClickEventListener(e, movieId, bucketId, movieRow, selectedMovies, unSelectedMovies) {
+    if (e.target.checked) {
+        await authFetch('/api/bucket_item/my', 'POST', {movieId, bucketId});
+        e.target.checked = true;
+        movieRow.remove();
+        selectedMovies.prepend(movieRow);
+    } else {
+
+        await authFetch('/api/bucket_item/my', 'DELETE', {movieId, bucketId});
+        e.target.checked = false;
+        movieRow.remove();
+        unSelectedMovies.prepend(movieRow);
+    }
+}
+
+/**
+ * 모달 내 영화 리스트 아이템 생성
+ * @param movieInfo
+ * @param bucketId
+ * @param checked
+ * @param selectedMovies
+ * @param unSelectedMovies
+ */
+function createBucketItem(movieInfo, bucketId, checked, selectedMovies, unSelectedMovies) {
+    const li = document.createElement('li');
+    li.id = `movie_${movieInfo.movieId}`;
+    const img = document.createElement('div');
+    img.src = convertImageScaleSmall(movieInfo.thumb);
+
+    const titleDom = document.createElement('h3');
+    titleDom.innerHTML = movieInfo.title;
+
+    const inputCheckBox = document.createElement('input');
+    inputCheckBox.type = "checkbox";
+    if (checked) {
+        inputCheckBox.checked = true;
+    }
+
+    inputCheckBox.addEventListener('change', e => movieCheckBoxClickEventListener(e, movieInfo.movieId, bucketId, li,selectedMovies, unSelectedMovies));
+
+    li.append(img);
+    li.append(titleDom);
+    li.append(inputCheckBox);
+    if (checked) {
+        selectedMovies.append(li);
+    }else {
+        unSelectedMovies.append(li);
+    }
+}
+
+/**
+ * 내 픽 영화 엘리먼트 생성
+ * @param movie
+ * @param parentNode
+ */
 function createMyPick(movie, parentNode) {
     const myListPoster = document.createElement('div');
     myListPoster.classList.add('mylist_poster');
@@ -25,20 +127,70 @@ function createMyPick(movie, parentNode) {
     });
 }
 
-function createMovieList(bucketId, bucketName, thumbArray, parentNode) {
-    const movieBucketContainer = document.createElement('div');
-    // myListPoster.classList.add('');
-    movieBucketContainer.id = `bucket_${bucketId}`;
+/**
+ * 모달 내 체크 박스 이벤트
+ * @param e
+ * @param bucketId
+ * @returns {Promise<void>}
+ */
+async function refreshModalData(e, bucketId) {
+    //dom 셋팅
+    const modal = document.querySelector('.modal_selection');
+    const folderTitle = document.querySelector('.folder_title');
+    const selectedMovies = document.querySelector('.selected_movies');
+    const unselectedMovies = document.querySelector('.unselected_movies');
 
-    for (let i = 0; i < 3; i++) {
-        const thumb = document.createElement('img');
-        // thumb.classList.add('');
-        thumb.src = convertImageScaleMedium(thumbArray[i]);
-        // 삽입엘리먼트.appendChild(thumb);
+    //초기화
+    selectedMovies.textContent = '';
+    unselectedMovies.textContent = '';
+    folderTitle.innerHTML = '';
+
+    //데이터 셋팅
+    const simplePicks = await authFetch('/api/pick/simple'); // 이부분 동시해서 마무리 할 방법 찾기
+    const bucketItemMovie = await authFetch(`/api/bucket/my/${bucketId}`); //
+    const bucketItemMovieIds = bucketItemMovie.bucketItemMovieIds; //
+    const {selectList, unSelectList} = distributePick(simplePicks, bucketItemMovieIds);
+    folderTitle.innerHTML = bucketItemMovie.bucketName;
+    for (const select of selectList) {
+        createBucketItem(select, bucketId, true, selectedMovies, unselectedMovies);
     }
 
-    //제목 삽입
-    //장르 삽입
+    for (const unSelect of unSelectList) {
+        createBucketItem(unSelect, bucketId, false, selectedMovies,unselectedMovies);
+    }
+
+    modal.classList.add('select_on');
+}
+
+/**
+ * 무비 리스트 엘리멘트 생성
+ * @param bucketId
+ * @param bucketName
+ * @param thumbArray
+ * @param parentNode
+ */
+function createMovieList(bucketId, bucketName, thumbArray, parentNode) {
+    //엘리먼트 생성
+    const folderBox = document.createElement('div');
+    folderBox.classList.add('folder_box');
+    folderBox.id = `bucket_${bucketId}`;
+
+    const folderImages = document.createElement('div');
+    folderImages.classList.add('folder_img');
+    // folderImages.style.backgroundImage = thumbArray[0];
+
+    const folderName = document.createElement('h4');
+    folderName.classList.add('folder_name');
+    folderName.innerText = bucketName;
+    folderName.innerText = bucketName;
+
+    //계층 구조 형성
+    folderBox.append(folderImages);
+    folderBox.append(folderName);
+    parentNode.append(folderBox);
+
+    //이벤트 할당
+    folderBox.addEventListener('click', e => refreshModalData(e, bucketId));
 }
 
 if (!access || !refresh) {
@@ -58,37 +210,21 @@ async function spreadMyPick() {
     }
 }
 
-// async function spreadMyList() {
-//     const listPoster = document.querySelector('.list_poster');
-//     const buckets = await authFetch('/api/bucket/my');
-//
-//     for (const bucket of buckets) {
-//         const bucketId = bucket.bucketId;
-//         const bucketName = bucket.bucketName;
-//         let index = 0;
-//         let array = ['images/no_image', 'images/no_image_black', 'images/no_image_color'];
-//         for (const thumb of bucket.bucketThumbs) {
-//             if (thumb) {
-//                 array[index] = thumb;
-//                 index++;
-//             }
-//             if (index >= 3) {
-//                 break;
-//             }
-//         }
-//
-//         createMovieList(bucketId, bucketName, array);
-//
-//
-//         //이후로 element 생성하고 값 할당
-//     }
-// }
-//
+async function spreadMyList() {
+    const folder_lists = document.querySelector('.folder_lists');
+    const buckets = await authFetch('/api/bucket/my');
 
+    for (const bucket of buckets) {
+        const bucketId = bucket.bucketId;
+        const bucketName = bucket.bucketName;
+        const thumbArray = getMovieListThumb(bucket.bucketThumbs)
 
+        createMovieList(bucketId, bucketName, thumbArray, folder_lists);
+    }
+}
 
 spreadMyPick();
-// spreadMyList();
+spreadMyList();
 
 
 
