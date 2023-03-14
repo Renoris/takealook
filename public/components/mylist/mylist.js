@@ -253,6 +253,8 @@ const shareBtn = document.querySelector(".share_btn");
 const editBtn = document.querySelector(".edit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const removeBtn = document.querySelector(".remove_btn");
+
+//영화 리스트 부분
 shareBtn.addEventListener("click", () => {
   shareBtn.classList.toggle("edit_list");
 });
@@ -262,6 +264,12 @@ editBtn.addEventListener("click", () => {
 deleteBtn.addEventListener("click", () => {
   deleteBtn.classList.toggle("edit_list");
 });
+
+//내 픽 부분
 removeBtn.addEventListener("click", () => {
   removeBtn.classList.toggle("edit_list");
+  const favBtns = document.querySelectorAll('.poster_click');
+  for (const favBtn of favBtns) {
+    favBtn.classList.toggle("click_show");
+  }
 });
