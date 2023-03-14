@@ -122,6 +122,7 @@ ion-icon {
   box-shadow: 0 4px 9px rgba(0, 0, 0, 0.4);
 }
 .outer_profile img {
+  border-radius: 20px;
   width: 32px;
 }
 .outer_profile span {

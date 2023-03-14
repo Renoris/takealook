@@ -45,16 +45,17 @@
     width: 100%;
     margin: 0;
     border-radius: 0;
-    padding: 15px 30px;
+    padding: 15px 20px;
   }
   .account_info {
     margin-top: 15px;
   }
   .account_img {
-    width: 100px;
+    width: 90px;
   }
   .name_email h2 {
-    font-size: 16px;
+    font-size: 14px;
+    margin-right: 5px;
   }
   #user_email {
     font-size: 12px;
@@ -62,6 +63,20 @@
   .my_info,
   .my_list {
     font-size: 12px;
+  }
+  /* 회원가입 */
+  .account_cont_border {
+    width: 360px;
+    padding: 20px;
+  }
+  .user_form form input {
+    font-size: 12px;
+  }
+  .user_form ion-icon {
+    font-size: 16px;
+  }
+  #email_platforms {
+    display: none;
   }
   /* 메인컨테이너 영화 리스트 부분 */
   .main_container {
@@ -78,9 +93,6 @@
     width: 80px;
     font-size: 12px;
     padding: 6px;
-  }
-  .movie_container {
-    gap: 30px 20px;
   }
   .movie_cover {
     width: 150px;
@@ -139,9 +151,6 @@
     display: none;
   }
   /* 영화 리스트 구역 */
-  .movie_container {
-    gap: 30px 15px;
-  }
   .movie_cover {
     width: 200px;
     height: 350px;
