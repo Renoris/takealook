@@ -95,10 +95,22 @@ async function onloadpage() {
       dom_nick_name.innerText = `${nickName} 님`;
       dom_user_email.innerText = email;
       dom_outer_nickName.innerText = `${nickName} 님`;
+      if (window.location.pathname.includes("mylist")){
+        document.getElementById('my_list_nick_name').innerHTML = `<b>${nickName}</b> 님`;
+      }
+
       if (profileImage) {
+
+        /**
+         * 이부분 헤더에 있으면 안되지만... 다른방법을 찾아보자
+         */
+        if (window.location.pathname.includes("mylist")){
+          document.getElementById('my_list_profile_image').src = profileImage;
+        }
         profileImageDom.src = profileImage;
         innerProfileImageDom.src = profileImage;
       }
+
 
     }catch (error) {
       console.log(error);
