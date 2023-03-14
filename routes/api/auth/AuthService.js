@@ -22,7 +22,6 @@ const AuthService = {
             //이메일 검증
             if (!email) throw Error('이메일이 없습니다');
             const member = await memberStorage.getMemberByEmail(email, transaction);
-            console.log(member);
             if (!member) throw Error("해당 이메일은 저장되어 있지 않습니다.");
 
             //이메일 기반 해시 생성
@@ -45,12 +44,15 @@ const AuthService = {
     registerTokenByHash: async function (hash) {
         return sequelize.transaction(async (transaction) => {
             // 해시값 검증
+            console.log ('----------------------------');
             if (!hash) throw Error("hash 값이 없습니다");
-
+            console.log ('1');
             // 해시값으로 멤버 추출
             const member = await authStorage.getMemberByHash(hash, transaction);
+            console.log ('2');
             if (!member) throw Error("해당 유저가 존재하지 않습니다.");
             //리프레시 토큰 생성
+            console.log ('3');
             const refreshToken = await jwtUtil.refresh(member, transaction);
 
             //리프레시 토큰 업데이트

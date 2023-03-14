@@ -14,8 +14,8 @@ const AuthStorage = {
     },
 
     getMemberByHash : async function (hash, transaction) {
-        const {email} = await auth_info.findOne({where : {hash : {[Op.eq] : hash}, expire : {[Op.gt] : new Date()}}}, {transaction});
-        return await member.findOne({where : {email : {[Op.eq] : email}}}, {transaction})
+        const {email} = await auth_info.findOne({where : {hash : {[Op.eq] : hash}, expire : {[Op.gt] : new Date()}}, transaction});
+        return await member.findOne({where : { disable : false, email}}, {transaction})
     },
 
     deleteAuth: async function (hash, transaction) {

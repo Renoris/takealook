@@ -11,7 +11,7 @@ const MemberStorage = {
     },
 
     getMemberById : async function (id, transaction) {
-        return await member.findOne({where : {id, disable : 0}, transaction});
+        return await member.findOne({where : {id,  disable : 0}, transaction});
     },
 
     insert: async function (userInfo, transaction) {
@@ -25,7 +25,6 @@ const MemberStorage = {
         const user = await member.findOne({where : {id :authId}, transaction});
         if (!user) { throw Error("로그인 되지 않은 사용자 입니다")}
         user.nickName = nickName;
-        console.log(favorite);
         user.favorite = favorite;
         user.profileImage = profileImage;
         user.save(transaction);
