@@ -18,9 +18,12 @@ export async function submitBtnClickEventListener(e, nickName, favorite1, favori
 export async function deleteBtnClickEventListener(e, loadingModal) {
     try {
         loadingModal.classList.add('modal_on');
-        await authFetch('/api/member/my','DELETE');
-        alert("탈퇴 되었습니다");
-        location.href = "/";
+        const flag = confirm("정말 삭제하시겠습니까?")
+        if(flag) {
+            await authFetch('/api/member/my','DELETE');
+            alert("탈퇴 되었습니다");
+            location.href = "/";
+        }
     }catch (error){
         alert("서버와의 통신에 실패하였습니다.");
     }finally {
