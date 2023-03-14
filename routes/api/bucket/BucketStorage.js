@@ -35,18 +35,14 @@ const MemberStorage = {
             include: [
                 {
                     model: bucket_item,
-                    attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
-                    include: [
-                        {
-                            attributes:[['id', 'movieId'],'title','genre','country','image','pub_date','thumb'],
-                            model: movie
-                        }]}
+                    attributes:[['bucket_id','connectbid'], ['movie_id','movieId']]}
              ],where : {[Op.and]: [
                  {ownerId : {[Op.eq] : memberId}}, {id : {[Op.eq] : bucketId}}]} ,transaction});
+
         return {
             bucketId:result.bucketId,
             bucketName:result.bucketName,
-            bucketItems:result.bucket_items.map((bItem) => { return {movieId:bItem.movie.movieId, title:bItem.movie.title, genre:bItem.movie.genre, country:bItem.movie.country, image:bItem.movie.image, pubDate:bItem.movie.pubDate, thumb:bItem.movie.thumb}})
+            bucketItemMovieIds:result.bucket_items.map((bItem) => { return bItem.movieId})
         }
     },
 

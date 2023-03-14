@@ -16,10 +16,31 @@ function getFindAllPickMovieQuery(memberId) {
     }
 }
 
+function getFindAllPickMovieSimpleQuery(memberId) {
+    const replacements = [];
+    let query = `select m.id movieId, m.thumb thumb, m.title title
+        from movies m 
+        inner join picks p on p.movie_id = m.id AND p.member_id = ?`;
+    replacements.push(memberId);
+    return {
+        query,
+        replacements
+    }
+}
+
 
 const PickStorage = {
     findAllPickMovie: async function (memberId, transaction) {
         const {query , replacements} = getFindAllPickMovieQuery(memberId);
+        return sequelize.query(query, {
+            replacements,
+            transaction,
+            type: QueryTypes.SELECT
+        });
+    },
+
+    findAllPickMovieSimple: async function (memberId, transaction) {
+        const {query , replacements} = getFindAllPickMovieSimpleQuery(memberId);
         return sequelize.query(query, {
             replacements,
             transaction,
