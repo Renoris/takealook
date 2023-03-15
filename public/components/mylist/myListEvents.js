@@ -3,27 +3,24 @@ import elementFactory from "../elements/MyListElements.js";
 import {reFreshMovieListImage} from "../util/convertImage.js";
 import {validateNickname} from "../util/validationNickName.js";
 
-function distributePick(simplePicks, bucketItemMovieIds) {
-  const selectList = [];
+function distributePick(simplePicks, bucketItemMovies) {
   const unSelectList = [];
-  for (const simplePick of simplePicks) {
-    let flag = false;
-    for (const itemMovieId of bucketItemMovieIds) {
-      if (itemMovieId === simplePick.movieId) {
-        flag = true;
-        break;
+  for (const pick of simplePicks){
+      let flag = false;
+      for (const movies of bucketItemMovies) {
+          if (pick.movieId === movies.movieId) {
+              flag = true;
+              break;
+          }
       }
-    }
 
-    if (flag) {
-      selectList.push(simplePick);
-    } else {
-      unSelectList.push(simplePick);
-    }
+      if (!flag) {
+          unSelectList.push(pick);
+      }
   }
 
   return {
-    selectList,
+    selectList:bucketItemMovies,
     unSelectList,
   };
 }
@@ -131,12 +128,12 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
 
     //데이터 셋팅
 
-    const simplePicks = await authFetch("/api/pick/simple"); // 이부분 동시해서 마무리 할 방법 찾기
-    const bucketItemMovie = await authFetch(`/api/bucket/my/${bucketId}`); //
-    const bucketItemMovieIds = bucketItemMovie.bucketItemMovieIds; //
-    const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovieIds);
+    const simplePicks = await authFetch("/api/pick/simple"); // 여기
+    const bucketInfo = await authFetch(`/api/bucket/my/${bucketId}`); //여기 건들이자
+    const bucketItemMovies = bucketInfo.bucketItemMovies; //
+    const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovies); //여기도
 
-    folderTitle.innerHTML = bucketItemMovie.bucketName;
+    folderTitle.innerHTML = bucketInfo.bucketName;
 
     for (const select of selectList) {
         elementFactory.createBucketItem(

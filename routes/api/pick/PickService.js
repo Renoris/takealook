@@ -12,7 +12,7 @@ const PickService = {
     getPickMovieSimple: function (memberId) {
         return sequelize.transaction (async (transaction) => {
             if(!memberId) throw Error("로그인 되지 않은 사용자입니다.");
-            return await pickStorage.findAllPickMovieSimple(memberId, transaction);
+            return pickStorage.findAllPickMovieSimple(memberId, transaction);
         })
     },
 
