@@ -27,9 +27,9 @@ function distributePick(simplePicks, bucketItemMovies) {
 function getMovieListThumb(thumbs) {
   let index = 0;
   let array = [
-    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
-    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
-    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
   ];
   for (const item of thumbs) {
     if (item.thumb) {
