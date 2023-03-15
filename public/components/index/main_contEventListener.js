@@ -26,7 +26,7 @@ export function recommendTagClickEventListener(e, scrollControlValues) {
 }
 
 
-async function toggleModal(movieId) {
+export async function toggleModal(movieId) {
   if (!movieId) alert("영화를 읽어오지 못했습니다.");
   try {
     const loadingModal = document.querySelector(".modal_loading");
@@ -42,7 +42,7 @@ async function toggleModal(movieId) {
     const movieDetailUserRating = document.getElementById("movie_detail_user_rating");
     const movieModal = document.querySelector(".modal_movie");
 
-    movieDetailImage.src = movie.image;
+    movieDetailImage.src = movie.thumb;
     if (movie.title.length > 12) {
       movieDetailTitle.classList.add("modalfontdown");
     } else {
@@ -52,14 +52,12 @@ async function toggleModal(movieId) {
     for (const key in removeList) {
       replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
     }
-
     movieDetailTitle.innerText = replacedTitle;
     movieDetailStory.innerText = movie.story.replace("\n", " ");
     movieDetailPubDate.innerText = movie.pubDate.slice(0, 4);
     movieDetailRunningTime.innerText = `${movie.runningTime ? movie.runningTime : "알수 없음"}`;
     movieDetailGenre.innerText = `${movie.genre}`;
     movieDetailUserRating.innerText = `평점: ${movie.userRating}`;
-
     loadingModal.classList.remove("modal_on");
     movieModal.classList.add("modal_on");
   } catch (error) {
