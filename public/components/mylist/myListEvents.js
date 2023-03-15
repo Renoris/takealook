@@ -163,7 +163,7 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
 }
 
 async function movieListClickEventListener (e, bucketId, folder_box, refreshThumbArg) {
-    const modal = document.querySelector(".modal_selection");
+    const modal = document.querySelector(".selection_overlay");
     await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
     modal.classList.add("select_on");
 }
