@@ -50,6 +50,26 @@ const elementFactory = {
         folderImages.append(folderImageDiv2);
         folderImages.append(folderImageDiv3);
 
+        const deleteFolder = document.createElement('img');
+        deleteFolder.classList.add('delete_folder');
+        deleteFolder.src = `${window.location.protocol}//${window.location.host}/images/delete_folder.png`;
+
+        const deleteBtn = document.querySelector(".delete_btn");
+        if (deleteBtn.classList.contains('edit_list')) {
+            deleteFolder.classList.add('delete_on');
+        }
+
+
+        deleteFolder.addEventListener('click', async (e) => {
+            const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
+            if (!response.message) {
+                alert("서버와 통신하지 못하였습니다.");
+                return;
+            }
+            folderBox.remove();
+            alert("삭제되었습니다.");
+        })
+
         const folderName = document.createElement("h4");
         folderName.id = `folder_${bucketId}`;
         folderName.classList.add("folder_name");
@@ -57,6 +77,7 @@ const elementFactory = {
 
         //계층 구조 형성
         folderBox.append(folderImages);
+        folderBox.append(deleteFolder);
         folderBox.append(folderName);
         parentNode.append(folderBox);
 

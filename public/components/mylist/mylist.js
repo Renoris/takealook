@@ -18,7 +18,6 @@ const shareValid = document.querySelector(".share_valid"); //공유중인 상태
 const shareInvalid = document.querySelector(".share_invalid"); //공유 안된 상태 이미지
 const sharing = document.querySelector(".sharing"); //공유중 상태 문구
 const deleteBtn = document.querySelector(".delete_btn");
-const deleteFolder = document.querySelector(".delete_folder"); //폴더 삭제 버튼 누를시 등장 이미지
 const removeBtn = document.querySelector(".remove_btn");
 
 //영화 리스트 부분
@@ -27,8 +26,11 @@ shareBtn.addEventListener("click", () => {
   // shareInvalid.classList.toggle("share_on");
 });
 deleteBtn.addEventListener("click", () => {
+  const deleteFolders = document.querySelectorAll(".delete_folder"); //폴더 삭제 버튼 누를시 등장 이미지
   deleteBtn.classList.toggle("edit_list");
-  deleteFolder.classList.toggle("delete_on");
+  for (const item of deleteFolders) {
+    item.classList.toggle("delete_on");
+  }
 });
 
 //내 픽 부분
