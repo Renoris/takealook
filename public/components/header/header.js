@@ -98,7 +98,7 @@ async function onloadpage() {
       if (window.location.pathname.includes("mylist")) {
         document.getElementById(
           "my_list_nick_name"
-        ).innerHTML = `<b>${nickName}</b> 님 의<br> 영화취향`;
+        ).innerHTML = `<b>${nickName}</b> 님<br> 영화취향`;
       }
 
       if (profileImage) {

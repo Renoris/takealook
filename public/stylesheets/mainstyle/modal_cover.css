@@ -9,7 +9,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 11;
+  z-index: 100;
 }
 /* 모달 켜기 */
 .modal_on {

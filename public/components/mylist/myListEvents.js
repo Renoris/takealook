@@ -3,88 +3,85 @@ import elementFactory from "../elements/MyListElements.js";
 import {reFreshMovieListImage} from "../util/convertImage.js";
 
 function createEmptyMovieFolder(parentNode) {
-    let array =
-        [`${window.location.protocol}//${window.location.host}/images/no_image.png`,
-            `${window.location.protocol}//${window.location.host}/images/no_image_black.png`,
-            `${window.location.protocol}//${window.location.host}/images/no_image_color.png`
-        ];
-    const folderBox = document.createElement("div");
-    folderBox.classList.add("folder_box");
+  let array = [
+    `${window.location.protocol}//${window.location.host}/images/no_image.png`,
+    `${window.location.protocol}//${window.location.host}/images/no_image_black.png`,
+    `${window.location.protocol}//${window.location.host}/images/no_image_color.png`,
+  ];
+  const folderBox = document.createElement("div");
+  folderBox.classList.add("folder_box");
 
-    const folderImages = document.createElement("div");
-    folderImages.classList.add("folder_imgs");
+  const folderImages = document.createElement("div");
+  folderImages.classList.add("folder_imgs");
 
-    const folderImageDiv = document.createElement('div');
-    folderImageDiv.classList.add('folder_img1');
-    const addImage = document.createElement('img');
-    addImage.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
-    folderImageDiv.append(addImage);
+  const folderImageDiv = document.createElement("div");
+  folderImageDiv.classList.add("folder_img1");
+  const addImage = document.createElement("img");
+  addImage.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+  folderImageDiv.append(addImage);
 
-    folderImages.append(folderImageDiv);
+  folderImages.append(folderImageDiv);
 
-    const folderName = document.createElement("h4");
-    folderName.classList.add("folder_name");
-    folderName.innerText = '리스트 생성';
+  const folderName = document.createElement("h4");
+  folderName.classList.add("folder_name");
+  folderName.innerText = "리스트 생성";
 
-    //계층 구조 형성
-    folderBox.append(folderImages);
-    folderBox.append(folderName);
+  //계층 구조 형성
+  folderBox.append(folderImages);
+  folderBox.append(folderName);
+  parentNode.append(folderBox);
+
+  //이벤트 할당
+  folderBox.addEventListener("click", async (e) => {
+    const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
+    folderBox.remove();
+    elementFactory.reCreateMovieList(bucketId, "새로운 폴더", array, parentNode, refreshModalData);
     parentNode.append(folderBox);
-
-    //이벤트 할당
-    folderBox.addEventListener("click", async (e) => {
-        const {bucketId} = await authFetch('/api/bucket/my', 'POST', {bucketName : "새로운 폴더"});
-        folderBox.remove();
-        elementFactory.reCreateMovieList(bucketId, "새로운 폴더", array , parentNode, refreshModalData);
-        parentNode.append(folderBox);
-    });
+  });
 }
 
 function distributePick(simplePicks, bucketItemMovieIds) {
-    const selectList = [];
-    const unSelectList = [];
-    for (const simplePick of simplePicks) {
-        let flag = false;
-        for (const itemMovieId of bucketItemMovieIds) {
-            if (itemMovieId === simplePick.movieId) {
-                flag = true;
-                break;
-            }
-        }
-
-        if (flag) {
-            selectList.push(simplePick);
-        } else {
-            unSelectList.push(simplePick);
-        }
+  const selectList = [];
+  const unSelectList = [];
+  for (const simplePick of simplePicks) {
+    let flag = false;
+    for (const itemMovieId of bucketItemMovieIds) {
+      if (itemMovieId === simplePick.movieId) {
+        flag = true;
+        break;
+      }
     }
 
-    return {
-        selectList,
-        unSelectList,
-    };
+    if (flag) {
+      selectList.push(simplePick);
+    } else {
+      unSelectList.push(simplePick);
+    }
+  }
+
+  return {
+    selectList,
+    unSelectList,
+  };
 }
 function getMovieListThumb(thumbs) {
-    let index = 0;
-    let array =
-        [
-            {
-                thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`
-            },
-            {
-                thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`
-            },
-            {
-                thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`
-            },
-        ];
-    for (const item of thumbs) {
-        if (item.thumb) {
-            array[index] = item;
-            index++;
-        }
+  let index = 0;
+  let array = [
+    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
+    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
+    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
+  ];
+  for (const thumb of thumbs) {
+    if (thumb) {
+      array[index] = thumb;
+      index++;
     }
-    return array;
+    if (index >= 3) {
+      break;
+
+    }
+  }
+  return array;
 }
 
 async function movieCheckBoxClickEventListener(
@@ -121,6 +118,7 @@ async function movieCheckBoxClickEventListener(
  * @param folder_box
  * @returns {Promise<void>}
  */
+
 async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
     //dom 셋팅
     const folderTitle = document.querySelector(".folder_title");
@@ -153,29 +151,35 @@ async function movieListClickEventListener (e, bucketId, folder_box, refreshThum
     modal.classList.add("select_on");
 }
 
-async function favBtnClickEventListener (e, movieId, parentNode, myListPoster) {
-    await authFetch("/api/pick", "DELETE", { movieId});
-    parentNode.removeChild(myListPoster);
+async function favBtnClickEventListener(e, movieId, parentNode, myListPoster) {
+  await authFetch("/api/pick", "DELETE", { movieId });
+  parentNode.removeChild(myListPoster);
 }
 
 export async function spreadMyPick(listPoster) {
-    try {
-        const result = await authFetch("/api/pick");
-        result.forEach((item) => {
-            elementFactory.createMyPick(item, favBtnClickEventListener, listPoster);
-        });
-    } catch (error) {
-        alert("서버와의 통신에 실패했습니다.");
-    }
+  try {
+    const result = await authFetch("/api/pick");
+    result.forEach((item) => {
+      elementFactory.createMyPick(item, favBtnClickEventListener, listPoster);
+    });
+  } catch (error) {
+    alert("서버와의 통신에 실패했습니다.");
+  }
 }
 export async function spreadMyList(folderLists) {
-    const buckets = await authFetch("/api/bucket/my");
+  const buckets = await authFetch("/api/bucket/my");
 
-    for (const bucket of buckets) {
-        const bucketId = bucket.bucketId;
-        const bucketName = bucket.bucketName;
-        const thumbArray = getMovieListThumb(bucket.bucketThumbs);
-        elementFactory.reCreateMovieList(bucketId, bucketName, thumbArray, folderLists, movieListClickEventListener);
-    }
-    createEmptyMovieFolder(folderLists);
+  for (const bucket of buckets) {
+    const bucketId = bucket.bucketId;
+    const bucketName = bucket.bucketName;
+    const thumbArray = getMovieListThumb(bucket.bucketThumbs);
+    elementFactory.reCreateMovieList(
+      bucketId,
+      bucketName,
+      thumbArray,
+      folderLists,
+      movieListClickEventListener
+    );
+  }
+  createEmptyMovieFolder(folderLists);
 }
