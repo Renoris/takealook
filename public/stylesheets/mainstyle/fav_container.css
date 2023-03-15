@@ -50,6 +50,7 @@
 }
 .left_btn,
 .right_btn {
+  display: none;
   position: absolute;
   cursor: pointer;
   top: 45%;

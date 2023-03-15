@@ -120,6 +120,10 @@
   .share_lists h2 {
     font-size: 20px;
   }
+  .left_btn,
+  .right_btn {
+    display: block;
+  }
   .share_line {
     gap: 30px 20px;
   }
@@ -182,5 +186,10 @@
   .img_card,
   .text_card {
     border-radius: 0;
+  }
+  /* 취향리스트 부분 */
+  .left_btn,
+  .right_btn {
+    display: block;
   }
 }
