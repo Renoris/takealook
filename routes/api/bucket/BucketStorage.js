@@ -3,7 +3,7 @@ const {Op} = require('sequelize');
 
 const MemberStorage = {
     getBuckets : async function (memberId, transaction) {
-        const result = await bucket.findAll({
+        const result =  await bucket.findAll({
             attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
             include: [
                 {
@@ -14,15 +14,15 @@ const MemberStorage = {
                             attributes:['thumb'],
                             model: movie
                         }]}]
-            ,where : {ownerId : {[Op.eq] : memberId}}, transaction});
+            ,where : {ownerId : {[Op.eq] : memberId}}, transaction, order: [['bucketId', 'DESC']]}, transaction);
 
 
         return result.map((item) => {
             return {
-                bucketId:item.bucketId,
-                bucketName:item.bucketName,
+                bucketId:item.dataValues.bucketId,
+                bucketName:item.dataValues.bucketName,
                 bucketThumbs:item.bucket_items.map((bItem) => {
-                    return bItem.movie.thumb;
+                    return bItem.movie.dataValues.thumb;
                 })
             }
         })
@@ -47,7 +47,7 @@ const MemberStorage = {
     },
 
     createBucket: async function (authId, bucketName, publish, transaction) {
-        await bucket.create({
+        return await bucket.create({
             ownerId:authId,
             bucketName,
             publish
@@ -55,7 +55,7 @@ const MemberStorage = {
     },
 
     updateBucket: async function (authId, bucketId ,bucketName, publish, transaction) {
-        const myBucket = await bucket.findOne({where : {[Op.and] : [ {ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}})
+        const myBucket = await bucket.findOne({where : {[Op.and] : [{ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}, transaction})
         if (!myBucket) throw Error("해당 영화 리스트가 없습니다.");
 
         if(bucketName) {

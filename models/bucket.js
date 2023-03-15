@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   bucket.init({
-    bucketId:DataTypes.INTEGER,
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     bucketName: DataTypes.STRING,
     bucketTag: DataTypes.STRING,
     ownerId: DataTypes.INTEGER,
