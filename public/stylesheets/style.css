@@ -2,9 +2,9 @@
 @import "./mainstyle/intro_content.css";
 @import "./mainstyle/main_container.css";
 @import "./mainstyle/login-info.css";
-@import "./mainstyle/modal_select.css";
 
 @import "./myliststyle/mycollection.css";
+@import "./myliststyle/modal_select.css";
 @import "./mainstyle/myinformation/myinformation.css";
 
 @import "./account.css";

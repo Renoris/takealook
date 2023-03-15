@@ -137,80 +137,24 @@
             <!-- 영화 모음 -->
             <div class="list_folders">
               <div class="folder_lists">
-                <div class="folder_box">
+                <!-- <div class="folder_box">
                   <div class="folder_imgs">
                     <div class="folder_img1"><img src="./images/add_folder.png" alt="" /></div>
                     <div class="folder_img2"><img src="./images/add_folder.png" alt="" /></div>
                     <div class="folder_img3"><img src="./images/add_folder.png" alt="" /></div>
                   </div>
-                  <!-- share_on 클래스로 공유중 표시 전환 -->
+                  share_on 클래스로 공유중 표시 전환
                   <img class="share_valid" src="./images/share_valid.png" alt="" />
                   <img class="share_invalid" src="./images/share_invalid.png" alt="" />
-                  <!-- delete_on 클래스로 폴더 삭제 버튼 활성화 -->
+                  delete_on 클래스로 폴더 삭제 버튼 활성화
                   <img class="delete_folder" src="./images/delete_folder.png" alt="" />
                   <h4 class="folder_name">영화폴더 1</h4>
                   <span class="sharing">공유중</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </article>
 
-          <!-- 내 리스트 페이지용 모달 ( 욺길예정 ) -->
-          <!-- select_on 으로 모달 활성화 -->
-          <article class="selection_overlay">
-            <div class="modal_selection">
-              <form class="folder_title_head">
-                <!-- title_hide 클래스로 전환 -->
-                <h2 class="folder_title">폴더 제목</h2>
-                <div class="title_edit title_hide">
-                  <input type="text" id="folder_title" />
-                  <button type="button" id="apply_title">적용</button>
-                </div>
-              </form>
-              <h3 class="in_list">포함된 영화</h3>
-              <ul class="selected_movies">
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-              </ul>
-              <hr />
-              <h3 class="out_list">미포함된 영화</h3>
-              <ul class="unselected_movies">
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-                <li>
-                  <img src="./images/no_image.png" alt="" />
-                  <h3>영화 제목 출력 부분</h3>
-                  <input type="checkbox" />
-                </li>
-              </ul>
-            </div>
-          </article>
           <!-- 취향리스트 -->
           <!-- favlist_hide 로 저장한 영화리스트 접기 / 펼치기 -->
           <article class="favlist_cont favlist_hide">
@@ -245,6 +189,36 @@
           </article>
         </div>
       </section>
+      <!-- select_on 으로 모달 활성화 -->
+      <article class="selection_overlay">
+        <div class="modal_selection">
+          <form class="folder_title_head">
+            <!-- title_hide 클래스로 전환 -->
+            <h2 class="folder_title">폴더 제목</h2>
+            <div class="title_edit title_hide">
+              <input type="text" id="folder_title" />
+              <button type="button" id="apply_title">적용</button>
+            </div>
+          </form>
+          <h3 class="in_list">포함된 영화</h3>
+          <ul class="selected_movies">
+            <li>
+              <img src="./images/no_image.png" alt="" />
+              <h3>영화 제목 출력 부분</h3>
+              <input type="checkbox" />
+            </li>
+          </ul>
+          <hr />
+          <h3 class="out_list">미포함된 영화</h3>
+          <ul class="unselected_movies">
+            <li>
+              <img src="./images/no_image.png" alt="" />
+              <h3>영화 제목 출력 부분</h3>
+              <input type="checkbox" />
+            </li>
+          </ul>
+        </div>
+      </article>
     </main>
     <script type="module" src="/components/mylist/mylist.js"></script>
     <script type="module" src="components/header/header.js"></script>
