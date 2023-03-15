@@ -17,7 +17,7 @@ const MemberStorage = {
             where : {ownerId : {[Op.eq] : memberId}}, transaction,
             order:
                 [['id', 'ASC'],
-                [bucket_item, movie, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
+                [bucket_item, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
             ]}, transaction);
 
 
@@ -43,7 +43,7 @@ const MemberStorage = {
                     attributes:[['bucket_id','connectbid'], ['movie_id','movieId']]}],
             where : {
                 [Op.and]: [{ownerId : memberId}, {id : bucketId}]},
-            order: [['id', 'ASC'],[bucket_item,'movieId','DESC']],
+            order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
             transaction
         });
 
