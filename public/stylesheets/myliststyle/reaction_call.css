@@ -15,9 +15,9 @@
   }
   .list_icon ion-icon {
     font-size: 14px;
+    vertical-align: baseline;
   }
   .share_btn,
-  .edit_btn,
   .delete_btn,
   .remove_btn {
     padding: 3px 9px;

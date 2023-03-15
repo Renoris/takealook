@@ -11,8 +11,6 @@
 }
 .select_images {
   position: relative;
-  top: 60px;
-  left: 80px;
   width: 360px;
   background-color: #fff;
   border: 6px double #44579d;

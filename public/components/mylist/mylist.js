@@ -1,5 +1,5 @@
 import authFetch from "../fetchs/AuthFetch.js";
-import {spreadMyList, spreadMyPick} from "./myListEvents.js";
+import { spreadMyList, spreadMyPick } from "./myListEvents.js";
 
 // 더 보기 기능, 펼치기 & 접기 토글
 const moreBtn = document.getElementById("more_btn");
@@ -14,16 +14,12 @@ moreBtn.addEventListener("click", () => {
 });
 // 내 취향 영화 리스트 편집 버튼
 const shareBtn = document.querySelector(".share_btn");
-const editBtn = document.querySelector(".edit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const removeBtn = document.querySelector(".remove_btn");
 
 //영화 리스트 부분
 shareBtn.addEventListener("click", () => {
   shareBtn.classList.toggle("edit_list");
-});
-editBtn.addEventListener("click", () => {
-  editBtn.classList.toggle("edit_list");
 });
 deleteBtn.addEventListener("click", () => {
   deleteBtn.classList.toggle("edit_list");
@@ -38,7 +34,15 @@ removeBtn.addEventListener("click", () => {
   }
 });
 
-(function initialize(){
+(function initialize() {
   spreadMyList(folder_lists);
   spreadMyPick(listPoster);
-})()
+})();
+
+const selectOverlay = document.querySelector(".selection_overlay");
+selectOverlay.addEventListener("click", (e) => {
+  const evTarget = e.target;
+  if (evTarget.classList.contains("selection_overlay")) {
+    selectOverlay.classList.remove("select_on");
+  }
+});
