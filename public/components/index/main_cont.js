@@ -5,6 +5,7 @@ import {
   movieTagClickEventListener,
   reloadPage,
 } from "./main_contEventListener.js";
+import {modalInitialize} from "../modal/modalUtil.js";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -151,17 +152,8 @@ window.onload = async function () {
 };
 
 window.addEventListener("scroll", infiniteScroll);
-const movieModalCloseBtn = document.getElementById("movie_modal_close_btn");
-const movieModal = document.querySelector(".modal_movie");
-movieModalCloseBtn.addEventListener("click", (e) => {
-  movieModal.classList.remove("modal_on");
-});
-movieModal.addEventListener("click", (e) => {
-  const evTarget = e.target;
-  if (evTarget.classList.contains("modal_movie")) {
-    movieModal.classList.remove("modal_on");
-  }
-});
+
+modalInitialize();
 
 const top = document.querySelector(".up_to_top");
 window.addEventListener("scroll", (e) => topScrollEventListener(e, top));

@@ -37,11 +37,23 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/:bucketId', async (req, res) => {
+router.patch('/title/:bucketId', async (req, res) => {
     try {
         const {bucketId} = req.params;
-        const {authId, bucketName, publish} = req.body;
-        await bucketService.updateBucket(authId,bucketId ,bucketName, publish);
+        const {authId, bucketName} = req.body;
+        await bucketService.updateBucketTitle(authId,bucketId ,bucketName);
+        responseHandler.setIsOkToJson(res);
+        res.send({message : "success"});
+    } catch (error) {
+        responseHandler.badRequest(res, error.message);
+    }
+})
+
+router.patch('/publish/:bucketId', async (req, res) => {
+    try {
+        const {bucketId} = req.params;
+        const {authId, publish} = req.body;
+        await bucketService.updateBucketPublish(authId, bucketId ,publish);
         responseHandler.setIsOkToJson(res);
         res.send({message : "success"});
     } catch (error) {
