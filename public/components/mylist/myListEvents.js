@@ -30,9 +30,9 @@ function distributePick(simplePicks, bucketItemMovieIds) {
 function getMovieListThumb(thumbs) {
   let index = 0;
   let array = [
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
+    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
+    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
+    { thumb: `${window.location.protocol}//${window.location.host}/images/add_folder.png` },
   ];
   for (const item of thumbs) {
     if (item.thumb) {
@@ -45,6 +45,7 @@ function getMovieListThumb(thumbs) {
   }
   return array;
 }
+
 
 async function movieCheckBoxClickEventListener(
     e, eventParameter,
@@ -71,6 +72,7 @@ async function movieCheckBoxClickEventListener(
         }
         reFreshMovieListImage(refreshThumbArg);
     }
+    reFreshMovieListImage(refreshThumbArg);
 }
 
 async function titleConvertEvent(title, bucketId, fixedFolderTitle, titleEdit) {
@@ -122,29 +124,48 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
     })
 
     //초기화
+
     selectedMovies.textContent = "";
     unselectedMovies.textContent = "";
     folderTitle.innerHTML = "";
 
     //데이터 셋팅
+
     const simplePicks = await authFetch("/api/pick/simple"); // 이부분 동시해서 마무리 할 방법 찾기
     const bucketItemMovie = await authFetch(`/api/bucket/my/${bucketId}`); //
     const bucketItemMovieIds = bucketItemMovie.bucketItemMovieIds; //
     const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovieIds);
-    folderTitle.innerHTML = bucketItemMovie.bucketName;
-    for (const select of selectList) {
-        elementFactory.createBucketItem(select, bucketId, true, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
-    }
 
+    folderTitle.innerHTML = bucketItemMovie.bucketName;
+
+    for (const select of selectList) {
+        elementFactory.createBucketItem(
+          select,
+          bucketId,
+          true,
+          selectedMovies,
+          unselectedMovies,
+          movieCheckBoxClickEventListener,
+          refreshThumbArg
+        );
+    }
     for (const unSelect of unSelectList) {
-        elementFactory.createBucketItem(unSelect, bucketId, false, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
+        elementFactory.createBucketItem(
+            unSelect,
+            bucketId,
+            false,
+            selectedMovies,
+            unselectedMovies,
+            movieCheckBoxClickEventListener,
+            refreshThumbArg
+        );
     }
 }
 
-async function movieListClickEventListener (e, bucketId, folder_box, refreshThumbArg) {
-    const modal = document.querySelector(".selection_overlay");
-    await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
-    modal.classList.add("select_on");
+async function movieListClickEventListener(e, bucketId, folder_box, refreshThumbArg) {
+  const modal = document.querySelector(".selection_overlay");
+  await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
+  modal.classList.add("select_on");
 }
 
 async function favBtnClickEventListener(e, movieId, parentNode, myListPoster) {

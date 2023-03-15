@@ -13,7 +13,7 @@
 .modal_selection {
   position: relative;
   height: 500px;
-  background-color: #fff;
+  background-color: #ffeeb3;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px 0;
@@ -64,6 +64,7 @@
   font-size: 14px;
   font-weight: 900;
   padding: 10px 20px;
+  background-color: #ffd954;
 }
 .selected_movies,
 .unselected_movies {
@@ -95,7 +96,8 @@
 .unselected_movies h3 {
   display: flex;
   flex-grow: 1;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
 }
 hr {
   margin: 10px 0;

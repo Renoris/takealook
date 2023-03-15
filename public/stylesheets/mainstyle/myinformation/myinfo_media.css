@@ -1,4 +1,7 @@
 @media screen and (max-width: 480px) {
+  .outer_logout {
+    display: block;
+  }
   .mylist_info {
     font-size: 18px;
   }
@@ -31,4 +34,20 @@
   #profile_cont {
     width: 90%;
   }
+  .outer_logout {
+    display: block;
+  }
+}
+
+#search {
+  display: none;
+}
+#menu_bar {
+  display: none;
+}
+.outer_profile,
+.outer_account,
+.login_box,
+.account_box {
+  display: none;
 }

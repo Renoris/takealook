@@ -15,7 +15,7 @@ let endMovie = false;
 
 //제한 횟수, 생성 횟수, 페이지 카운트
 const coverLimit = 99;
-const coverIncrease = 7;
+const coverIncrease = 14;
 const pageMax = Math.ceil(coverLimit / coverIncrease);
 let currentPage = 1;
 
