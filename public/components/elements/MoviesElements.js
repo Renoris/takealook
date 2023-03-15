@@ -1,3 +1,5 @@
+
+
 const elementFactory = {
   createMovieCoverNode: function (parentNode) {
     const $element = document.createElement("div");
@@ -50,7 +52,7 @@ const elementFactory = {
     $element.append($title, $genre);
     if (parentNode) parentNode.append($element);
     return $element;
-  },
+  }
 };
 
 export default elementFactory;

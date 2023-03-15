@@ -29,9 +29,9 @@ router.get('/:bucketId', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const {authId, bucketName, publish} = req.body;
-        await bucketService.createBucket(authId, bucketName, publish);
+        const result = await bucketService.createBucket(authId, bucketName, publish);
         responseHandler.setIsOkToJson(res);
-        res.send({message : "success"});
+        res.send({message : "success", bucketId:result.id});
     } catch (error) {
         responseHandler.badRequest(res, error.message);
     }
