@@ -1,6 +1,6 @@
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
-import {convertImageScaleMedium} from "../util/covertImage.js";
+import {reFreshMovieListImage} from "../util/convertImage.js";
 
 function createEmptyMovieFolder(parentNode) {
     let array =
@@ -67,45 +67,50 @@ function distributePick(simplePicks, bucketItemMovieIds) {
 function getMovieListThumb(thumbs) {
     let index = 0;
     let array =
-        [`${window.location.protocol}//${window.location.host}/images/no_image.png`,
-            `${window.location.protocol}//${window.location.host}/images/no_image_black.png`,
-            `${window.location.protocol}//${window.location.host}/images/no_image_color.png`
+        [
+            {
+                thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`
+            },
+            {
+                thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`
+            },
+            {
+                thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`
+            },
         ];
-    for (const thumb of thumbs) {
-        if (thumb) {
-            array[index] = thumb;
+    for (const item of thumbs) {
+        if (item.thumb) {
+            array[index] = item;
             index++;
-        }
-        if (index >= 3) {
-            break;
         }
     }
     return array;
 }
 
 async function movieCheckBoxClickEventListener(
-    e,
-    movieId,
-    bucketId,
-    movieRow,
-    selectedMovies,
-    unSelectedMovies,
-    thumb,
-    thumbsNode
+    e, eventParameter,
 ) {
+    const {movieId, bucketId, movieRow, selectedMovies, unSelectedMovies,thumb ,refreshThumbArg} = eventParameter;
+    const {thumbArray} = refreshThumbArg;
+
     if (e.target.checked) {
         await authFetch("/api/bucket_item/my", "POST", { movieId, bucketId });
-        e.target.checked = true;
         movieRow.remove();
         selectedMovies.prepend(movieRow);
-        thumbsNode.thumb3.src = thumbsNode.thumb2.src;
-        thumbsNode.thumb2.src = thumbsNode.thumb1.src;
-        thumbsNode.thumb1.src = thumb
+        thumbArray.unshift({movieId:movieId, thumb});
+        reFreshMovieListImage(refreshThumbArg);
+
     } else {
         await authFetch("/api/bucket_item/my", "DELETE", { movieId, bucketId });
-        e.target.checked = false;
         movieRow.remove();
         unSelectedMovies.prepend(movieRow);
+        for (const item of thumbArray){
+            if (item.movieId === movieId) {
+                thumbArray.remove(item);
+                break;
+            }
+        }
+        reFreshMovieListImage(refreshThumbArg);
     }
 }
 
@@ -116,7 +121,7 @@ async function movieCheckBoxClickEventListener(
  * @param folder_box
  * @returns {Promise<void>}
  */
-async function refreshModalData(e, bucketId, folder_box) {
+async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
     //dom 셋팅
     const folderTitle = document.querySelector(".folder_title");
     const selectedMovies = document.querySelector(".selected_movies");
@@ -134,17 +139,17 @@ async function refreshModalData(e, bucketId, folder_box) {
     const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovieIds);
     folderTitle.innerHTML = bucketItemMovie.bucketName;
     for (const select of selectList) {
-        elementFactory.createBucketItem(select, bucketId, true, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, thumbs);
+        elementFactory.createBucketItem(select, bucketId, true, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
     }
 
     for (const unSelect of unSelectList) {
-        elementFactory.createBucketItem(unSelect, bucketId, false, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, thumbs);
+        elementFactory.createBucketItem(unSelect, bucketId, false, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
     }
 }
 
-async function movieListClickEventListener (e, bucketId, folder_box) {
+async function movieListClickEventListener (e, bucketId, folder_box, refreshThumbArg) {
     const modal = document.querySelector(".modal_selection");
-    await refreshModalData(e, bucketId, folder_box);
+    await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
     modal.classList.add("select_on");
 }
 
