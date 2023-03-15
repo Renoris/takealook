@@ -1,6 +1,6 @@
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
-import { convertImageScaleMedium } from "../util/covertImage.js";
+import {reFreshMovieListImage} from "../util/convertImage.js";
 
 function createEmptyMovieFolder(parentNode) {
   let array = [
@@ -78,35 +78,37 @@ function getMovieListThumb(thumbs) {
     }
     if (index >= 3) {
       break;
+
     }
   }
   return array;
 }
 
 async function movieCheckBoxClickEventListener(
-  e,
-  movieId,
-  bucketId,
-  movieRow,
-  selectedMovies,
-  unSelectedMovies,
-  thumb,
-  thumbsNode
+    e, eventParameter,
 ) {
-  if (e.target.checked) {
-    await authFetch("/api/bucket_item/my", "POST", { movieId, bucketId });
-    e.target.checked = true;
-    movieRow.remove();
-    selectedMovies.prepend(movieRow);
-    thumbsNode.thumb3.src = thumbsNode.thumb2.src;
-    thumbsNode.thumb2.src = thumbsNode.thumb1.src;
-    thumbsNode.thumb1.src = thumb;
-  } else {
-    await authFetch("/api/bucket_item/my", "DELETE", { movieId, bucketId });
-    e.target.checked = false;
-    movieRow.remove();
-    unSelectedMovies.prepend(movieRow);
-  }
+    const {movieId, bucketId, movieRow, selectedMovies, unSelectedMovies,thumb ,refreshThumbArg} = eventParameter;
+    const {thumbArray} = refreshThumbArg;
+
+    if (e.target.checked) {
+        await authFetch("/api/bucket_item/my", "POST", { movieId, bucketId });
+        movieRow.remove();
+        selectedMovies.prepend(movieRow);
+        thumbArray.unshift({movieId:movieId, thumb});
+        reFreshMovieListImage(refreshThumbArg);
+
+    } else {
+        await authFetch("/api/bucket_item/my", "DELETE", { movieId, bucketId });
+        movieRow.remove();
+        unSelectedMovies.prepend(movieRow);
+        for (const item of thumbArray){
+            if (item.movieId === movieId) {
+                thumbArray.remove(item);
+                break;
+            }
+        }
+        reFreshMovieListImage(refreshThumbArg);
+    }
 }
 
 /**
@@ -116,52 +118,37 @@ async function movieCheckBoxClickEventListener(
  * @param folder_box
  * @returns {Promise<void>}
  */
-async function refreshModalData(e, bucketId, folder_box) {
-  //dom 셋팅
-  const folderTitle = document.querySelector(".folder_title");
-  const selectedMovies = document.querySelector(".selected_movies");
-  const unselectedMovies = document.querySelector(".unselected_movies");
 
-  //초기화
-  selectedMovies.textContent = "";
-  unselectedMovies.textContent = "";
-  folderTitle.innerHTML = "";
+async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
+    //dom 셋팅
+    const folderTitle = document.querySelector(".folder_title");
+    const selectedMovies = document.querySelector(".selected_movies");
+    const unselectedMovies = document.querySelector(".unselected_movies");
 
-  //데이터 셋팅
-  const simplePicks = await authFetch("/api/pick/simple"); // 이부분 동시해서 마무리 할 방법 찾기
-  const bucketItemMovie = await authFetch(`/api/bucket/my/${bucketId}`); //
-  const bucketItemMovieIds = bucketItemMovie.bucketItemMovieIds; //
-  const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovieIds);
-  folderTitle.innerHTML = bucketItemMovie.bucketName;
-  for (const select of selectList) {
-    elementFactory.createBucketItem(
-      select,
-      bucketId,
-      true,
-      selectedMovies,
-      unselectedMovies,
-      movieCheckBoxClickEventListener,
-      thumbs
-    );
-  }
+    //초기화
+    selectedMovies.textContent = "";
+    unselectedMovies.textContent = "";
+    folderTitle.innerHTML = "";
 
-  for (const unSelect of unSelectList) {
-    elementFactory.createBucketItem(
-      unSelect,
-      bucketId,
-      false,
-      selectedMovies,
-      unselectedMovies,
-      movieCheckBoxClickEventListener,
-      thumbs
-    );
-  }
+    //데이터 셋팅
+    const simplePicks = await authFetch("/api/pick/simple"); // 이부분 동시해서 마무리 할 방법 찾기
+    const bucketItemMovie = await authFetch(`/api/bucket/my/${bucketId}`); //
+    const bucketItemMovieIds = bucketItemMovie.bucketItemMovieIds; //
+    const { selectList, unSelectList } = distributePick(simplePicks, bucketItemMovieIds);
+    folderTitle.innerHTML = bucketItemMovie.bucketName;
+    for (const select of selectList) {
+        elementFactory.createBucketItem(select, bucketId, true, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
+    }
+
+    for (const unSelect of unSelectList) {
+        elementFactory.createBucketItem(unSelect, bucketId, false, selectedMovies, unselectedMovies, movieCheckBoxClickEventListener, refreshThumbArg);
+    }
 }
 
-async function movieListClickEventListener(e, bucketId, folder_box) {
-  const modal = document.querySelector(".selection_overlay");
-  await refreshModalData(e, bucketId, folder_box);
-  modal.classList.add("select_on");
+async function movieListClickEventListener (e, bucketId, folder_box, refreshThumbArg) {
+    const modal = document.querySelector(".modal_selection");
+    await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
+    modal.classList.add("select_on");
 }
 
 async function favBtnClickEventListener(e, movieId, parentNode, myListPoster) {
