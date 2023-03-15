@@ -1,5 +1,5 @@
-import authFetch from "../fetchs/AuthFetch.js";
 import { spreadMyList, spreadMyPick } from "./myListEvents.js";
+import {modalInitialize} from "../modal/modalUtil.js";
 
 // 더 보기 기능, 펼치기 & 접기 토글
 const moreBtn = document.getElementById("more_btn");
@@ -24,7 +24,7 @@ const removeBtn = document.querySelector(".remove_btn");
 //영화 리스트 부분
 shareBtn.addEventListener("click", () => {
   shareBtn.classList.toggle("edit_list");
-  shareInvalid.classList.toggle("share_on");
+  // shareInvalid.classList.toggle("share_on");
 });
 deleteBtn.addEventListener("click", () => {
   deleteBtn.classList.toggle("edit_list");
@@ -53,14 +53,4 @@ selectOverlay.addEventListener("click", (e) => {
   }
 });
 
-const movieModalCloseBtn = document.getElementById("movie_modal_close_btn");
-const movieModal = document.querySelector(".modal_movie");
-movieModalCloseBtn.addEventListener("click", (e) => {
-  movieModal.classList.remove("modal_on");
-});
-movieModal.addEventListener("click", (e) => {
-  const evTarget = e.target;
-  if (evTarget.classList.contains("modal_movie")) {
-    movieModal.classList.remove("modal_on");
-  }
-});
+modalInitialize();

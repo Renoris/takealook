@@ -19,9 +19,17 @@ const BucketService = {
         })
     },
 
-    updateBucket : async function (authId, bucketId, bucketName, publish) {
+    updateBucketTitle : async function (authId, bucketId, bucketName) {
         return sequelize.transaction(async (transaction) => {
-            return await bucketStorage.updateBucket(authId, bucketId ,bucketName, publish, transaction);
+            if (!bucketName) throw Error("버켓 이름이 없습니다.");
+            return await bucketStorage.updateBucketTitle(authId, bucketId ,bucketName, transaction);
+        })
+    },
+
+    updateBucketPublish : async function (authId, bucketId, publish) {
+        return sequelize.transaction(async (transaction) => {
+            if (!publish) throw Error("버켓 공유 여부를 지정하지 않았습니다.");
+            return await bucketStorage.updateBucketPublish(authId, bucketId ,publish, transaction);
         })
     },
 

@@ -1,5 +1,6 @@
 import {convertImageScaleMedium, convertImageScaleSmall, reFreshMovieListImage} from "../util/convertImage.js";
 import {toggleModal} from "../index/main_contEventListener.js";
+import authFetch from "../fetchs/AuthFetch.js";
 const elementFactory = {
     /**
      * 무비 리스트 엘리멘트 생성
@@ -50,6 +51,7 @@ const elementFactory = {
         folderImages.append(folderImageDiv3);
 
         const folderName = document.createElement("h4");
+        folderName.id = `folder_${bucketId}`;
         folderName.classList.add("folder_name");
         folderName.innerText = bucketName;
 
@@ -69,7 +71,6 @@ const elementFactory = {
      * @param selectedMovies
      * @param unSelectedMovies
      * @param movieCheckBoxClickEventListener : function
-     * @param thumbs : Object
      */
     createBucketItem : function (movieInfo, bucketId, checked, selectedMovies, unSelectedMovies, movieCheckBoxClickEventListener, refreshThumbArg) {
         const li = document.createElement("li");
@@ -144,6 +145,62 @@ const elementFactory = {
         parentNode.appendChild(myListPoster);
         myListPoster.addEventListener('click', async (e) => {await toggleModal(movie.movieId)});
         favBtn.addEventListener("click", async (e) => favBtnClickEventListener(e, movie.movieId, parentNode, myListPoster));
+    },
+
+
+    createEmptyMovieFolder: function (movieListClickEventListener, parentNode) {
+        let array = [
+            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
+            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
+            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
+        ];
+        const folderBox = document.createElement("div");
+        folderBox.classList.add("folder_box");
+
+        const folderImages = document.createElement("div");
+        folderImages.classList.add("folder_imgs");
+
+        const folderImageDiv = document.createElement("div");
+        folderImageDiv.classList.add("folder_img1");
+
+        const addImage = document.createElement("img");
+        addImage.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+        folderImageDiv.append(addImage);
+
+        const folderImageDiv2 = document.createElement("div");
+        folderImageDiv2.classList.add("folder_img2");
+
+        const addImage2 = document.createElement("img");
+        addImage2.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+        folderImageDiv2.append(addImage2);
+
+        const folderImageDiv3 = document.createElement("div");
+        folderImageDiv3.classList.add("folder_img3");
+
+        const addImage3 = document.createElement("img");
+        addImage3.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+        folderImageDiv3.append(addImage3);
+
+        folderImages.append(folderImageDiv);
+        folderImages.append(folderImageDiv2);
+        folderImages.append(folderImageDiv3);
+
+        const folderName = document.createElement("h4");
+        folderName.classList.add("folder_name");
+        folderName.innerText = "리스트 생성";
+
+        //계층 구조 형성
+        folderBox.append(folderImages);
+        folderBox.append(folderName);
+        parentNode.append(folderBox);
+
+        //이벤트 할당
+        folderBox.addEventListener("click", async (e) => {
+            const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
+            folderBox.remove();
+            elementFactory.reCreateMovieList(bucketId,"새로운 폴더",array , parentNode, movieListClickEventListener);
+            parentNode.append(folderBox);
+        });
     }
 };
 
