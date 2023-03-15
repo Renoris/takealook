@@ -34,14 +34,13 @@ function getMovieListThumb(thumbs) {
       {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
       {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
   ];
-  for (const thumb of thumbs) {
-    if (thumb) {
-      array[index] = thumb;
+  for (const item of thumbs) {
+    if (item.thumb) {
+      array[index] = item;
       index++;
     }
     if (index >= 3) {
       break;
-
     }
   }
   return array;
