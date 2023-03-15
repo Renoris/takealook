@@ -143,7 +143,7 @@ const elementFactory = {
         myListPoster.appendChild(posterInfo);
 
         parentNode.appendChild(myListPoster);
-        myListPoster.addEventListener('click', async (e) => {await toggleModal(movie.movieId)});
+        poster_collection.addEventListener('click', async (e) => {await toggleModal(movie.movieId)});
         favBtn.addEventListener("click", async (e) => favBtnClickEventListener(e, movie.movieId, parentNode, myListPoster));
     },
 
