@@ -1,4 +1,4 @@
-import {convertImageScaleMedium, convertImageScaleSmall} from "../util/covertImage.js";
+import {convertImageScaleMedium, convertImageScaleSmall, reFreshMovieListImage} from "../util/convertImage.js";
 const elementFactory = {
     /**
      * 무비 리스트 엘리멘트 생성
@@ -20,21 +20,30 @@ const elementFactory = {
         const folderImageDiv1 = document.createElement('div');
         folderImageDiv1.classList.add('folder_img1');
         const thumb1 = document.createElement('img');
-        thumb1.src = thumbArray[0];
         folderImageDiv1.append(thumb1);
 
         const folderImageDiv2 = document.createElement('div');
         folderImageDiv2.classList.add('folder_img2');
         const thumb2 = document.createElement('img');
-        thumb2.src = thumbArray[1];
         folderImageDiv2.append(thumb2);
 
         const folderImageDiv3 = document.createElement('div');
         folderImageDiv3.classList.add('folder_img3');
         const thumb3 = document.createElement('img');
-        thumb3.src = thumbArray[2];
         folderImageDiv3.append(thumb3);
 
+        const thumbNodes = [
+            thumb1,
+            thumb2,
+            thumb3
+        ]
+
+        const refreshThumbArg = {
+            thumbNodes,
+            thumbArray
+        }
+
+        reFreshMovieListImage(refreshThumbArg)
         folderImages.append(folderImageDiv1);
         folderImages.append(folderImageDiv2);
         folderImages.append(folderImageDiv3);
@@ -48,13 +57,8 @@ const elementFactory = {
         folderBox.append(folderName);
         parentNode.append(folderBox);
 
-        const thumbs = {
-            thumb1,
-            thumb2,
-            thumb3
-        }
         //이벤트 할당
-        folderBox.addEventListener("click", (e) => movieListClickEventListener(e, bucketId, folderBox, thumbs));
+        folderBox.addEventListener("click", (e) => movieListClickEventListener(e, bucketId, folderBox, refreshThumbArg));
     },
     /**
      * 모달 내 영화 리스트 아이템 생성
@@ -66,11 +70,13 @@ const elementFactory = {
      * @param movieCheckBoxClickEventListener : function
      * @param thumbs : Object
      */
-    createBucketItem : function (movieInfo, bucketId, checked, selectedMovies, unSelectedMovies, movieCheckBoxClickEventListener, thumbs) {
+    createBucketItem : function (movieInfo, bucketId, checked, selectedMovies, unSelectedMovies, movieCheckBoxClickEventListener, refreshThumbArg) {
         const li = document.createElement("li");
         li.id = `movie_${movieInfo.movieId}`;
         const img = document.createElement("img");
-        img.src = convertImageScaleSmall(movieInfo.thumb);
+        const convertedThumb = convertImageScaleSmall(movieInfo.thumb);
+
+        img.src = convertedThumb;
 
         const titleDom = document.createElement("h3");
         titleDom.innerHTML = movieInfo.title;
@@ -81,18 +87,17 @@ const elementFactory = {
             inputCheckBox.checked = true;
         }
 
-        inputCheckBox.addEventListener("change", (e) =>
-            movieCheckBoxClickEventListener(
-                e,
-                movieInfo.movieId,
-                bucketId,
-                li,
-                selectedMovies,
-                unSelectedMovies,
-                movieInfo.thumb,
-                thumbs
-            )
-        );
+        const eventParameters = {
+            movieId:movieInfo.movieId,
+            bucketId,
+            movieRow:li,
+            selectedMovies,
+            unSelectedMovies,
+            refreshThumbArg,
+            thumb:convertedThumb
+        }
+
+        inputCheckBox.addEventListener("change", (e) => movieCheckBoxClickEventListener(e, eventParameters));
 
         li.append(img);
         li.append(titleDom);
