@@ -14,11 +14,11 @@ const MemberStorage = {
                             attributes:[['id', 'movieId'], 'thumb'],
                             model: movie,
                         }]}],
-            where : {ownerId : {[Op.eq] : memberId}}, transaction,
+            where : {ownerId : {[Op.eq] : memberId}},
             order:
                 [['id', 'ASC'],
                 [bucket_item, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
-            ]}, transaction);
+            ], transaction});
 
 
         return result.map((item) => {
@@ -40,7 +40,13 @@ const MemberStorage = {
             include: [
                 {
                     model: bucket_item,
-                    attributes:[['bucket_id','connectbid'], ['movie_id','movieId']]}],
+                    attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
+                    include: [
+                        {
+                            attributes:[['id', 'movieId'], 'title' ,'thumb'],
+                            model: movie,
+                        }]
+                }],
             where : {
                 [Op.and]: [{ownerId : memberId}, {id : bucketId}]},
             order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
@@ -50,7 +56,13 @@ const MemberStorage = {
         return {
             bucketId:result.bucketId,
             bucketName:result.bucketName,
-            bucketItemMovieIds:result.bucket_items.map((bItem) => { return bItem.movieId})
+            bucketItemMovies:result.bucket_items.map((bItem) => {
+                return {
+                    movieId : bItem.movie.dataValues.movieId,
+                    thumb : bItem.movie.dataValues.thumb,
+                    title : bItem.movie.dataValues.title
+                }
+            })
         }
     },
 
