@@ -17,7 +17,7 @@ const usableNickName = document.getElementById("usable_nick_name");
 const duplicateNickName = document.getElementById("duplicate_nick_name");
 const usableEmail = document.getElementById("usable_email");
 const duplicateEmail = document.getElementById("duplicate_email");
-
+const unUsableNickName = document.getElementById('un_usable_nick_name');
 signup.addEventListener("click", (e) => {
   const signInfo = {
     email: email.value,
@@ -33,13 +33,14 @@ signup.addEventListener("click", (e) => {
     usableNickName,
     duplicateNickName,
     fail,
+    unUsableNickName
   };
 
   signUpBtnEventListener(e, signInfo, genderList, validateDom);
 });
 
 validate_nick_btn.addEventListener("click", (e) =>
-  validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName, "valid_show")
+  validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName,unUsableNickName, "valid_show")
 );
 
 account.addEventListener("keydown", () => {
