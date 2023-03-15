@@ -6,11 +6,13 @@ const elementFactory = {
      * 무비 리스트 엘리멘트 생성
      * @param bucketId
      * @param bucketName
+     * @param publish
      * @param thumbArray
      * @param parentNode
      * @param movieListClickEventListener : function
      */
-    reCreateMovieList: function (bucketId, bucketName, thumbArray, parentNode, movieListClickEventListener) {
+    reCreateMovieList: function (bucketId, bucketName, publish ,thumbArray, parentNode, movieListClickEventListener) {
+        console.log (`${bucketName} : ${publish}`)
         //엘리먼트 생성
         const folderBox = document.createElement("div");
         folderBox.classList.add("folder_box");
@@ -50,15 +52,72 @@ const elementFactory = {
         folderImages.append(folderImageDiv2);
         folderImages.append(folderImageDiv3);
 
+
+        const sharing = document.createElement('span');
+        sharing.id = `shareing_${bucketId}`;
+        sharing.classList.add('sharing');
+        sharing.innerText = "공유중";
+
+        const shareValid = document.createElement('img');
+        shareValid.classList.add('share_valid');
+        shareValid.id = `share_${bucketId}`
+        shareValid.src = `${window.location.protocol}//${window.location.host}/images/share_valid.png`;
+        shareValid.addEventListener('click', async (e) => {
+            const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : false});
+            if (!response.message) {
+                alert("서버와 통신하지 못하였습니다.");
+                return;
+            }
+            shareValid['data-active'] = 0;
+            shareValid.classList.remove('share_on');
+            shareInvalid['data-active'] = 1;
+            shareInvalid.classList.add('share_on');
+            sharing.classList.remove('share_on');
+        })
+
+        const shareInvalid = document.createElement('img');
+        shareInvalid.classList.add('share_invalid');
+        shareInvalid.src = `${window.location.protocol}//${window.location.host}/images/share_invalid.png`;
+        shareInvalid.addEventListener('click', async (e) => {
+            const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : true});
+            if (!response.message) {
+                alert("서버와 통신하지 못하였습니다.");
+                return;
+            }
+            shareValid['data-active'] = 1;
+            shareValid.classList.add('share_on');
+            shareInvalid['data-active'] = 0;
+            shareInvalid.classList.remove('share_on');
+            sharing.classList.add('share_on');
+        })
+
+        if(publish) {
+            shareValid['data-active'] = 1;
+            shareInvalid['data-active'] = 0;
+        } else {
+            shareValid['data-active'] = 0;
+            shareInvalid['data-active'] = 1;
+        }
+
         const deleteFolder = document.createElement('img');
         deleteFolder.classList.add('delete_folder');
         deleteFolder.src = `${window.location.protocol}//${window.location.host}/images/delete_folder.png`;
 
+        //이부분은 새로 생성 햇을때 추가할건지 말건지
         const deleteBtn = document.querySelector(".delete_btn");
         if (deleteBtn.classList.contains('edit_list')) {
             deleteFolder.classList.add('delete_on');
         }
 
+        deleteFolder.addEventListener('click', async (e) => {
+            const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
+            if (!response.message) {
+                alert("서버와 통신하지 못하였습니다.");
+                return;
+            }
+            folderBox.remove();
+            alert("삭제되었습니다.");
+        })
 
         deleteFolder.addEventListener('click', async (e) => {
             const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
@@ -77,12 +136,15 @@ const elementFactory = {
 
         //계층 구조 형성
         folderBox.append(folderImages);
+        folderBox.append(shareValid);
+        folderBox.append(shareInvalid);
         folderBox.append(deleteFolder);
         folderBox.append(folderName);
+        folderBox.append(sharing);
         parentNode.append(folderBox);
 
         //이벤트 할당
-        folderBox.addEventListener("click", (e) => movieListClickEventListener(e, bucketId, folderBox, refreshThumbArg));
+        thumb1.addEventListener("click", (e) => movieListClickEventListener(e, bucketId, folderBox, refreshThumbArg));
     },
     /**
      * 모달 내 영화 리스트 아이템 생성
@@ -219,7 +281,7 @@ const elementFactory = {
         folderBox.addEventListener("click", async (e) => {
             const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
             folderBox.remove();
-            elementFactory.reCreateMovieList(bucketId,"새로운 폴더",array , parentNode, movieListClickEventListener);
+            elementFactory.reCreateMovieList(bucketId,"새로운 폴더",false ,array , parentNode, movieListClickEventListener);
             parentNode.append(folderBox);
         });
     }

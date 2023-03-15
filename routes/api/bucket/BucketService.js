@@ -28,7 +28,7 @@ const BucketService = {
 
     updateBucketPublish : async function (authId, bucketId, publish) {
         return sequelize.transaction(async (transaction) => {
-            if (!publish) throw Error("버켓 공유 여부를 지정하지 않았습니다.");
+            if (publish === undefined || publish === null || typeof publish !== 'boolean') throw Error("버켓 공유 여부를 지정하지 않았습니다.");
             return await bucketStorage.updateBucketPublish(authId, bucketId ,publish, transaction);
         })
     },

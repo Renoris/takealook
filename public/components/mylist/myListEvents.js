@@ -184,16 +184,16 @@ export async function spreadMyList(folderLists) {
   const buckets = await authFetch("/api/bucket/my");
 
   for (const bucket of buckets) {
-    const bucketId = bucket.bucketId;
-    const bucketName = bucket.bucketName;
-    const thumbArray = getMovieListThumb(bucket.bucketThumbs);
-    elementFactory.reCreateMovieList(
-      bucketId,
-      bucketName,
-      thumbArray,
-      folderLists,
-      movieListClickEventListener
-    );
+      const {publish, bucketId, bucketName, bucketThumbs} = bucket;
+      const thumbArray = getMovieListThumb(bucketThumbs);
+      elementFactory.reCreateMovieList(
+          bucketId,
+          bucketName,
+          publish,
+          thumbArray,
+          folderLists,
+          movieListClickEventListener
+        );
   }
   elementFactory.createEmptyMovieFolder(movieListClickEventListener, folderLists);
 }

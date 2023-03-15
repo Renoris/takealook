@@ -4,7 +4,7 @@ const {Op} = require('sequelize');
 const MemberStorage = {
     getBuckets : async function (memberId, transaction) {
         const result =  await bucket.findAll({
-            attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
+            attributes : [['id', 'bucketId'],['bucket_name', 'bucketName'], 'publish'],
             include: [
                 {
                     model: bucket_item,
@@ -24,6 +24,7 @@ const MemberStorage = {
         return result.map((item) => {
             return {
                 bucketId:item.dataValues.bucketId,
+                publish : item.dataValues['publish'],
                 bucketName:item.dataValues.bucketName,
                 bucketThumbs:item.bucket_items.map((bItem) => {
                     return {thumb:bItem.movie.dataValues.thumb,
