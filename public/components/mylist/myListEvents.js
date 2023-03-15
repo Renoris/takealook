@@ -2,43 +2,6 @@ import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
 import {reFreshMovieListImage} from "../util/convertImage.js";
 
-function createEmptyMovieFolder(parentNode) {
-  let array = [
-    `${window.location.protocol}//${window.location.host}/images/no_image.png`,
-    `${window.location.protocol}//${window.location.host}/images/no_image_black.png`,
-    `${window.location.protocol}//${window.location.host}/images/no_image_color.png`,
-  ];
-  const folderBox = document.createElement("div");
-  folderBox.classList.add("folder_box");
-
-  const folderImages = document.createElement("div");
-  folderImages.classList.add("folder_imgs");
-
-  const folderImageDiv = document.createElement("div");
-  folderImageDiv.classList.add("folder_img1");
-  const addImage = document.createElement("img");
-  addImage.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
-  folderImageDiv.append(addImage);
-
-  folderImages.append(folderImageDiv);
-
-  const folderName = document.createElement("h4");
-  folderName.classList.add("folder_name");
-  folderName.innerText = "리스트 생성";
-
-  //계층 구조 형성
-  folderBox.append(folderImages);
-  folderBox.append(folderName);
-  parentNode.append(folderBox);
-
-  //이벤트 할당
-  folderBox.addEventListener("click", async (e) => {
-    const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
-    folderBox.remove();
-    elementFactory.reCreateMovieList(bucketId, "새로운 폴더", array, parentNode, refreshModalData);
-    parentNode.append(folderBox);
-  });
-}
 
 function distributePick(simplePicks, bucketItemMovieIds) {
   const selectList = [];
@@ -67,9 +30,9 @@ function distributePick(simplePicks, bucketItemMovieIds) {
 function getMovieListThumb(thumbs) {
   let index = 0;
   let array = [
-    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
-    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
-    `${window.location.protocol}//${window.location.host}/images/add_folder.png`,
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
+      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
   ];
   for (const thumb of thumbs) {
     if (thumb) {
@@ -109,6 +72,61 @@ async function movieCheckBoxClickEventListener(
         }
         reFreshMovieListImage(refreshThumbArg);
     }
+}
+
+function createEmptyMovieFolder(parentNode) {
+    let array = [
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
+    ];
+    const folderBox = document.createElement("div");
+    folderBox.classList.add("folder_box");
+
+    const folderImages = document.createElement("div");
+    folderImages.classList.add("folder_imgs");
+
+    const folderImageDiv = document.createElement("div");
+    folderImageDiv.classList.add("folder_img1");
+
+    const addImage = document.createElement("img");
+    addImage.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+    folderImageDiv.append(addImage);
+
+    const folderImageDiv2 = document.createElement("div");
+    folderImageDiv2.classList.add("folder_img2");
+
+    const addImage2 = document.createElement("img");
+    addImage2.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+    folderImageDiv2.append(addImage2);
+
+    const folderImageDiv3 = document.createElement("div");
+    folderImageDiv3.classList.add("folder_img3");
+
+    const addImage3 = document.createElement("img");
+    addImage3.src = `${window.location.protocol}//${window.location.host}/images/add_folder.png`;
+    folderImageDiv3.append(addImage3);
+
+    folderImages.append(folderImageDiv);
+    folderImages.append(folderImageDiv2);
+    folderImages.append(folderImageDiv3);
+
+    const folderName = document.createElement("h4");
+    folderName.classList.add("folder_name");
+    folderName.innerText = "리스트 생성";
+
+    //계층 구조 형성
+    folderBox.append(folderImages);
+    folderBox.append(folderName);
+    parentNode.append(folderBox);
+
+    //이벤트 할당
+    folderBox.addEventListener("click", async (e) => {
+        const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
+        folderBox.remove();
+        elementFactory.reCreateMovieList(bucketId,"새로운 폴더",array , parentNode, movieListClickEventListener);
+        parentNode.append(folderBox);
+    });
 }
 
 /**
