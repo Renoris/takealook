@@ -21,9 +21,9 @@ const lastName = document.getElementById("last_name");
 const male = document.getElementById("male");
 const female = document.getElementById("female");
 const updateProfileImage = document.getElementById("update_profile_img");
-
+const unUsableNickName = document.getElementById('un_usable_nick_name');
 validate_nick_btn.addEventListener("click", (e) =>
-  validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName, "name_on")
+  validate_nick_btnClickEventListener(e, nick_name, usableNickName, duplicateNickName,unUsableNickName , "name_on")
 );
 
 submitBtn.addEventListener("click", async (e) => {
