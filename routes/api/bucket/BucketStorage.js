@@ -13,7 +13,7 @@ const MemberStorage = {
             order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
             limit:Number(limit), //number()이걸 안해주면 string으로 들어가는 문제 발생
             offset:Number(offset),
-            subQuery:false, //limit가 서브쿼리에 걸리는것을 방지
+            // subQuery:false, //limit가 서브쿼리에 걸리는것을 방지
             transaction
         });
 
