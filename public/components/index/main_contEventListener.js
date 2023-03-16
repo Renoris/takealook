@@ -98,10 +98,8 @@ export const createCover = (movie, $movieContainer) => {
     const pickButton = elementFactory.createPickButtonNode(movie.movieId, movie.isPick, movieCover);
     const coverImageNode = elementFactory.createCoverImageNode(movieCover);
     elementFactory.createInCoverImageNode(movie.thumb, coverImageNode);
-     let replacedTitle = movie.title;
-     for (const key in removeList) {
-         replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
-     }
+    let replacedTitle = movie.title;
+    replacedTitle = replaceSpecialCode(replacedTitle);
     elementFactory.createMovieInfoNode(replacedTitle, movie.genre, movieCover);
     const buttonState = getButtonState(movie.isPick, pickButton);
     pickButton.addEventListener("click", (e) => buttonState.turnState());
