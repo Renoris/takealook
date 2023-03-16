@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Op, Sequelize
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class bucket extends Model {
@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       bucket.hasMany(models.bucket_item);
+      bucket.belongsTo(models.member, {
+        foreignKey: 'ownerId',
+        targetKey: 'id',
+        on: {
+          ownerId: {[Op.eq]:Sequelize.col('members.id')}
+        }
+      });
     }
   }
   bucket.init({

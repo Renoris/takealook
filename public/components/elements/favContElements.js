@@ -1,7 +1,7 @@
 import {reFreshMovieListImage} from "../util/convertImage.js";
 
 const elementFactory = {
-    createMovieList: function (bucketId, bucketName,thumbArray, parentNode) {
+    createMovieList: function (bucketId, bucketName,thumbArray, nickName ,parentNode) {
         //엘리먼트 생성
         const folderBox = document.createElement("div");
         folderBox.classList.add("folder_box");
@@ -41,20 +41,23 @@ const elementFactory = {
         folderImages.append(folderImageDiv2);
         folderImages.append(folderImageDiv3);
 
-        const sharing = document.createElement('span');
-        sharing.id = `shareing_${bucketId}`;
-        sharing.classList.add('sharing');
-        sharing.innerText = "공유중";
+        const shareTextBox = document.createElement('div');
+        shareTextBox.classList.add('share_textbox');
 
-        const folderName = document.createElement("h4");
+        const folderName = document.createElement("h3");
         folderName.id = `folder_${bucketId}`;
         folderName.classList.add("folder_name");
         folderName.innerText = bucketName;
 
+        const nickNameDom = document.createElement("span");
+        nickNameDom.innerText =  nickName;
+
+        shareTextBox.append(folderName);
+        shareTextBox.append(nickNameDom);
+
         //계층 구조 형성
         folderBox.append(folderImages);
-        folderBox.append(folderName);
-        folderBox.append(sharing);
+        folderBox.append(shareTextBox);
         parentNode.append(folderBox);
    },
 }
