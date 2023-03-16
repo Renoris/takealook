@@ -127,12 +127,21 @@
   .share_line {
     gap: 30px 20px;
   }
-  .share_box {
+  .folder_box {
     width: 150px;
     height: 200px;
   }
-  .share_img {
-    height: 150px;
+  .folder_img1,
+  .folder_img2,
+  .folder_img3 {
+    width: 110px;
+    height: 160px;
+  }
+  .folder_img2 {
+    left: 20px;
+  }
+  .folder_img3 {
+    left: 40px;
   }
   .share_textbox h3 {
     font-size: 16px;
