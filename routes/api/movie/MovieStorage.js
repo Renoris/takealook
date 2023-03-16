@@ -12,6 +12,7 @@ const {Op, QueryTypes} = require('sequelize');
  * @return {object} 완성된 쿼리와 대체 배열
  */
 function getMovieQuery (id, genre, pubDate, search, limit, offset) {
+    const currentYear = new Date().getFullYear();
     const replacements = [];
     let query = `select m.id movieId, 
         m.title title, year(m.pub_date) pub_date, 
@@ -31,11 +32,11 @@ function getMovieQuery (id, genre, pubDate, search, limit, offset) {
 
     //항상 고정값
     if (!search) {
-        query = `${query} where pub_date >= 1990 and user_rating >= 2 and genre not like '%에로%'`;
+        query = `${query} where pub_date >= 1990 and year(pub_date) <= ${currentYear} and user_rating >= 2 and genre not like '%에로%'`;
         alreadyCondition = true;
     }else {
         alreadyCondition = true;
-        query = `${query} where genre not like '%에로%'`;
+        query = `${query} where genre not like '%에로%' and year(pub_date) <= ${currentYear}`;
     }
 
     if (flag) {

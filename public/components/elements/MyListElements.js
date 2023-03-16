@@ -12,7 +12,6 @@ const elementFactory = {
      * @param movieListClickEventListener : function
      */
     reCreateMovieList: function (bucketId, bucketName, publish ,thumbArray, parentNode, movieListClickEventListener) {
-        console.log (`${bucketName} : ${publish}`)
         //엘리먼트 생성
         const folderBox = document.createElement("div");
         folderBox.classList.add("folder_box");
@@ -224,9 +223,9 @@ const elementFactory = {
 
     createEmptyMovieFolder: function (movieListClickEventListener, parentNode) {
         let array = [
-            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
-            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
-            {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
+            {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
+            {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
+            {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
         ];
         const folderBox = document.createElement("div");
         folderBox.classList.add("folder_box");
