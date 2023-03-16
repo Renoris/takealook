@@ -2,7 +2,69 @@ const {bucket, bucket_item, movie} = require('../../../models/index');
 const {Op} = require('sequelize');
 
 const MemberStorage = {
-    getBuckets : async function (memberId, transaction) {
+    getPublishBuckets : async function (limit, offset ,transaction) {
+        const result =  await bucket.findAll({
+            attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
+            include: [
+                {
+                    model: bucket_item,
+                    attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
+                    include: [
+                        {
+                            attributes:[['id', 'movieId'], 'thumb'],
+                            model: movie,
+                        }]}],
+            where : {publish : 1},
+            limit,
+            offset,
+            order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
+            ], transaction});
+
+        return result.map((item) => {
+            return {
+                bucketId:item.dataValues.bucketId,
+                bucketName:item.dataValues.bucketName,
+                bucketThumbs:item.bucket_items.map((bItem) => {
+                    return {thumb:bItem.movie.dataValues.thumb,
+                        movieId: bItem.movie.dataValues.movieId};
+                })
+            }
+        })
+    },
+
+    getPublishBucket : async function ( bucketId , transaction) {
+        const result = await bucket.findOne({
+            attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
+            include: [
+                {
+                    model: bucket_item,
+                    attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
+                    include: [
+                        {
+                            attributes:[['id', 'movieId'], 'title' ,'thumb'],
+                            model: movie,
+                        }]
+                }],
+            where : {
+                [Op.and]: [{publish : 1}, {id : bucketId}]},
+            order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
+            transaction
+        });
+
+        return {
+            bucketId:result.bucketId,
+            bucketName:result.bucketName,
+            bucketItemMovies:result.bucket_items.map((bItem) => {
+                return {
+                    movieId : bItem.movie.dataValues.movieId,
+                    thumb : bItem.movie.dataValues.thumb,
+                    title : bItem.movie.dataValues.title
+                }
+            })
+        }
+    },
+
+    getMyBuckets : async function (memberId, transaction) {
         const result =  await bucket.findAll({
             attributes : [['id', 'bucketId'],['bucket_name', 'bucketName'], 'publish'],
             include: [
@@ -20,7 +82,6 @@ const MemberStorage = {
                 [bucket_item, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
             ], transaction});
 
-
         return result.map((item) => {
             return {
                 bucketId:item.dataValues.bucketId,
@@ -32,10 +93,9 @@ const MemberStorage = {
                 })
             }
         })
-
     },
 
-    getBucket : async function (memberId,bucketId ,transaction) {
+    getMyBucket : async function (memberId, bucketId , transaction) {
         const result = await bucket.findOne({
             attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
             include: [

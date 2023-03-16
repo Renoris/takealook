@@ -1,4 +1,4 @@
-import {validateNickname} from "../util/validationNickName.js";
+import {validateNickname} from "../util/validationText.js";
 
 export async function signUpBtnEventListener(e, signupInfo, genderList, validateDom) {
     e.preventDefault();

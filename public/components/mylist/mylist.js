@@ -78,6 +78,10 @@ const selectOverlay = document.querySelector(".selection_overlay");
 selectOverlay.addEventListener("click", (e) => {
   const evTarget = e.target;
   if (evTarget.classList.contains("selection_overlay")) {
+    const fixedFolderTitle = document.getElementById("fixed_folder_title");
+    const titleEdit = document.querySelector(".title_edit");
+    fixedFolderTitle.classList.remove('title_hide');
+    titleEdit.classList.add('title_hide');
     selectOverlay.classList.remove("select_on");
   }
 });

@@ -1,7 +1,7 @@
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
 import {reFreshMovieListImage} from "../util/convertImage.js";
-import {validateNickname} from "../util/validationNickName.js";
+import {validateNickname, validateTitle} from "../util/validationText.js";
 
 function distributePick(simplePicks, bucketItemMovies) {
   const unSelectList = [];
@@ -72,8 +72,9 @@ async function movieCheckBoxClickEventListener(
     reFreshMovieListImage(refreshThumbArg);
 }
 
-async function titleConvertEvent(title, bucketId, fixedFolderTitle, titleEdit) {
-    if (!validateNickname(title)) {
+async function titleConvertEvent(e, title, bucketId, fixedFolderTitle, titleEdit) {
+    e.preventDefault();
+    if (!validateTitle(title)) {
         alert("제목이 적절하지 않습니다.");
         return;
     }
@@ -113,10 +114,10 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
         titleEdit.classList.remove('title_hide');
     })
 
-    applyTitle.addEventListener('click', async (e) => await titleConvertEvent(inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit))
+    applyTitle.addEventListener('click', async (e) => await titleConvertEvent(e, inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit))
     inputFolderTitle.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
-            await titleConvertEvent(inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit);
+            await titleConvertEvent(e, inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit);
         }
     })
 

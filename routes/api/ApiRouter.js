@@ -7,7 +7,7 @@ const memberRouter = require('./member/MemberRouter');
 const testRouter = require('./test/TestRouter');
 const signUpRouter = require('./member/SignUpRouter');
 const pickRouter = require('./pick/PickRouter');
-const myBucketRouter = require('./bucket/MyBucketRouter');
+const myBucketRouter = require('./bucket/BucketMyRouter');
 const bucketItemRouter = require('./bucketItem/BucketItemRouter')
 
 //jwt 필요없음

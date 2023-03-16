@@ -119,15 +119,6 @@ const elementFactory = {
             alert("삭제되었습니다.");
         })
 
-        deleteFolder.addEventListener('click', async (e) => {
-            const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
-            if (!response.message) {
-                alert("서버와 통신하지 못하였습니다.");
-                return;
-            }
-            folderBox.remove();
-            alert("삭제되었습니다.");
-        })
 
         const folderName = document.createElement("h4");
         folderName.id = `folder_${bucketId}`;
