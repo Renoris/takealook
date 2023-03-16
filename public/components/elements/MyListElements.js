@@ -4,14 +4,12 @@ import authFetch from "../fetchs/AuthFetch.js";
 const elementFactory = {
     /**
      * 무비 리스트 엘리멘트 생성
-     * @param bucketId
-     * @param bucketName
-     * @param publish
-     * @param thumbArray
+     * @param bucket
      * @param parentNode
      * @param movieListClickEventListener : function
      */
-    reCreateMovieList: function (bucketId, bucketName, publish ,thumbArray, parentNode, movieListClickEventListener) {
+    reCreateMovieList: function (bucket, parentNode, movieListClickEventListener) {
+        const {bucketId, bucketName, publish, thumbArray} = bucket;
         //엘리먼트 생성
         const folderBox = document.createElement("div");
         folderBox.classList.add("folder_box");
@@ -134,7 +132,7 @@ const elementFactory = {
         parentNode.append(folderBox);
 
         //이벤트 할당
-        thumb1.addEventListener("click", (e) => movieListClickEventListener(e, bucketId, folderBox, refreshThumbArg));
+        thumb1.addEventListener("click", (e) => movieListClickEventListener(e, bucket, folderBox, refreshThumbArg));
     },
     /**
      * 모달 내 영화 리스트 아이템 생성
@@ -222,7 +220,7 @@ const elementFactory = {
 
 
     createEmptyMovieFolder: function (movieListClickEventListener, parentNode) {
-        let array = [
+        let thumbArray = [
             {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
             {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
             {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
@@ -271,7 +269,7 @@ const elementFactory = {
         folderBox.addEventListener("click", async (e) => {
             const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
             folderBox.remove();
-            elementFactory.reCreateMovieList(bucketId,"새로운 폴더",false ,array , parentNode, movieListClickEventListener);
+            elementFactory.reCreateMovieList({bucketId, bucketName :"새로운 폴더" , publish:false , thumbArray} , parentNode, movieListClickEventListener);
             parentNode.append(folderBox);
         });
     }

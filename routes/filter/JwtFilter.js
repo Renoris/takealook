@@ -9,7 +9,7 @@ function verifyAuthorization(authorization) {
 
 function verifyToken(token) {
     const user = jwtUtil.verify(token);
-    if (user.message === 'TokenExpiredError') throw Error('TokenExpiredError');
+    if (user.message === 'jwt expired') throw Error('TokenExpiredError');
     if (!user.ok) throw Error("적합하지 않은 사용자입니다.");
     return user.id;
 }
