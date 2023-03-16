@@ -1,0 +1,34 @@
+.select_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.select_images {
+  position: relative;
+  width: 360px;
+  background-color: #fff;
+  border: 6px double #44579d;
+  border-radius: 20px;
+}
+.image_lineup {
+  display: flex;
+  flex-wrap: wrap;
+  width: 320px;
+  margin: 10px auto;
+  gap: 10px;
+}
+.image_lineup img {
+  width: 100px;
+}
+.image_lineup img:hover {
+  border: 3px solid #ff9900;
+}
+.image_on {
+  display: block;
+}

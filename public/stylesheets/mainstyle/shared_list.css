@@ -1,0 +1,123 @@
+#shared_movie_lists {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 20px;
+  font-weight: 900;
+  border-bottom: 1px solid #bcbcbc;
+}
+.shared_title {
+  text-align: center;
+  padding: 60px 0;
+  border-bottom: 1px solid #bcbcbc;
+}
+.shared_title h2 {
+  font-size: 20px;
+  font-weight: 900;
+}
+.shared_title span {
+  font-size: 12px;
+  font-weight: 700;
+}
+#shared_section {
+  width: 80%;
+  margin: 0 auto;
+}
+.shared_article {
+  width: 100%;
+  margin-bottom: 60px;
+}
+.shared_movie_cont {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 20px 16px;
+}
+.shared_movie_img_box {
+  width: 260px;
+  height: 280px;
+  padding: 26px 52px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  flex-shrink: 0;
+}
+.shared_movie_img_box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.shared_movie_info_box {
+  padding: 20px;
+  flex-grow: 1;
+}
+.shared_movie_info_box h3 {
+  font-size: 18px;
+  font-weight: 900;
+}
+.shared_movie_info {
+  margin: 30px 0;
+}
+.shared_movie_info h4 {
+  font-size: 16px;
+  font-weight: 900;
+}
+.shared_movie_info span {
+  display: inline-block;
+  margin: 6px;
+  font-size: 12px;
+  color: #646464;
+}
+.shared_movie_description {
+  width: 100%;
+  height: 110px;
+  overflow: auto;
+}
+.shared_movie_description h4 {
+  font-size: 16px;
+  font-weight: 900;
+}
+.shared_movie_description p {
+  margin: 6px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 786px) {
+  #shared_movie_lists {
+    font-size: 16px;
+  }
+  .shared_title {
+    padding: 30px 0;
+  }
+  .shared_title h2 {
+    font-size: 16px;
+  }
+  .shared_title span {
+    font-size: 10px;
+  }
+  #shared_section {
+    width: 95%;
+  }
+  .shared_movie_cont {
+    flex-wrap: wrap;
+  }
+  .shared_movie_img_box {
+    margin: auto;
+  }
+  .shared_movie_info_box h3 {
+    font-size: 16px;
+  }
+  .shared_movie_info span {
+    font-size: 10px;
+  }
+  .shared_movie_info h4,
+  .shared_movie_description h4 {
+    font-size: 14px;
+  }
+  .shared_movie_description {
+    height: 150px;
+  }
+  .shared_movie_description p {
+    font-size: 12px;
+  }
+}

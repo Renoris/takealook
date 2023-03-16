@@ -1,0 +1,48 @@
+@media screen and (max-width: 480px) {
+  /* 상위 구간 */
+  #my_list_nick_name {
+    font-size: 22px;
+  }
+  .create_mylist {
+    font-size: 20px;
+  }
+  .mylist_title a {
+    font-size: 12px;
+  }
+  /* 생성한 리스트 구간 */
+  .list_text {
+    font-size: 16px;
+  }
+  .list_icon ion-icon {
+    font-size: 14px;
+    vertical-align: baseline;
+  }
+  .share_btn,
+  .delete_btn,
+  .remove_btn {
+    padding: 3px 9px;
+  }
+  /* 내 취향 영화 부분 */
+  #more_btn {
+    font-size: 10px;
+  }
+  .list_poster {
+    gap: 30px 10px;
+  }
+  .mylist_poster {
+    width: 126px;
+    height: 235px;
+  }
+  .poster_info h3 {
+    font-size: 14px;
+  }
+  .poster_info span {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 992px) {
+  .mylist_title {
+    font-size: 24px;
+  }
+}

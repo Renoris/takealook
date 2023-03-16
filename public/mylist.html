@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <title>보고싶은 영화 담아두자! 내 리스트</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/myliststyle/reaction_call.css" />
+  </head>
+
+  <body>
+    <!-- 세종 헤더작업 -->
+    <header>
+      <!-- 로고 및 검색바 인터페이스 -->
+      <div class="head_container">
+        <h1 class="logo">
+          <a href="/"><img src="images/logo.png" alt="Take a Look logo" /></a>
+        </h1>
+        <div class="interface">
+          <form id="search">
+            <div class="search_box">
+              <span class="back"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+              <input
+                type="search"
+                name="search"
+                placeholder="영화 검색..."
+                id="search_bar"
+                class="search_bar"
+              />
+            </div>
+            <div>
+              <!-- search_show 클래스로 검색바와 버튼 활성화 -->
+              <button type="button" label="검색" class="search_btn">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
+              <button type="button" label="검색" class="search_view">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
+            </div>
+          </form>
+          <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
+          <button type="button" class="outer_login">로그인</button>
+          <div class="outer_profile">
+            <img id="profile_image" src="./images/sample_profile.png" alt="" />
+            <span id="outer_nick_name">김떼껄룩</span>
+          </div>
+          <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
+          <a href="./account" class="outer_account">회원가입</a>
+          <button type="button" class="outer_logout">로그아웃</button>
+          <!-- 햄버거 메뉴 버튼 992px 이하일경우 활성화 -->
+          <button type="button" id="menu_bar">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <!-- 로그인 전 입력카드 -->
+      <div class="login_box">
+        <div>
+          <h3>내가 쏘아올린 작은 취향</h3>
+          <p>수만개의 영화만큼, 수만개의 취향이 있다!</p>
+          <span class="confirm_log clear"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 로그인 이메일로 전송되었습니다.
+            확인해주세요!</span
+          >
+          <span class="confirm_log fail"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일로 전송실패했습니다ㅠ 다시
+            입력해주세요!</span
+          >
+          <span class="confirm_log no_account"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 등록된 이메일이 없습니다. 회원가입
+            먼저 해주세요!</span
+          >
+          <span class="confirm_log valid_email"
+            ><ion-icon name="alert-circle-outline"></ion-icon> 이메일의 형식을 맞춰주세요.</span
+          >
+          <form id="login_form">
+            <label for="email">이메일</label>
+            <input type="text" id="email" placeholder="이메일 로그인" />
+            <button type="button" id="login_btn">로그인</button>
+          </form>
+          <a href="./account">회원가입</a>
+        </div>
+      </div>
+      <!-- 로그인 후 내정보 카드 -->
+      <div class="account_box">
+        <div class="account_info">
+          <div class="account_img">
+            <img id="inner_profile_image" src="./images/sample_profile.png" alt="프로필 사진" />
+          </div>
+          <div class="name_email">
+            <h2 id="user_nick_name">떼껄룩 님</h2>
+            <button id="logout_btn">로그아웃</button>
+            <p id="user_email">takea1234@look.com</p>
+          </div>
+        </div>
+        <div class="account_menu">
+          <a href="./myinformation" class="my_info">내 정보</a>
+          <a href="./mylist" class="my_list">내 리스트</a>
+        </div>
+      </div>
+    </header>
+    <!-- 승범 작업구역 -->
+    <main>
+      <h2 class="mylist_head">내 리스트</h2>
+      <div class="mylist_hero">
+        <div class="mylist_title">
+          <img id="my_list_profile_image" src="./images/sample_profile.png" />
+          <div>
+            <h3 id="my_list_nick_name"><b>떼껄룩</b> 님<br />영화취향</h3>
+            <a href="./myinformation">내 정보 편집</a>
+          </div>
+        </div>
+      </div>
+      <section class="my_list_container">
+        <div class="create_box">
+          <h2 class="create_mylist">내 리스트</h2>
+          <!-- 생성한 리스트 box -->
+          <article class="list_cont">
+            <div class="list_head">
+              <div class="list_title">
+                <img src="images/listcreate.png" />
+                <h3 class="list_text">생성한 리스트</h3>
+              </div>
+              <!-- 공유, 편집, 삭제 기능 -->
+              <div class="list_icon">
+                <button type="button" id="share_btn" class="share_btn">
+                  <ion-icon name="share-social-outline"></ion-icon>
+                </button>
+                <button type="button" id="delete_btn" class="delete_btn">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+
+            <!-- 영화 모음 -->
+            <div class="list_folders">
+              <div class="folder_lists">
+                <!-- <div class="folder_box">
+                  <div class="folder_imgs">
+                    <div class="folder_img1"><img src="./images/add_folder.png" alt="" /></div>
+                    <div class="folder_img2"><img src="./images/add_folder.png" alt="" /></div>
+                    <div class="folder_img3"><img src="./images/add_folder.png" alt="" /></div>
+                  </div>
+                  share_on 클래스로 공유중 표시 전환
+                  <img class="share_valid" src="./images/share_valid.png" alt="" />
+                  <img class="share_invalid" src="./images/share_invalid.png" alt="" />
+                  delete_on 클래스로 폴더 삭제 버튼 활성화
+                  <img class="delete_folder" src="./images/delete_folder.png" alt="" />
+                  <h4 class="folder_name">영화폴더 1</h4>
+                  <span class="sharing">공유중</span>
+                </div> -->
+              </div>
+            </div>
+          </article>
+
+          <!-- 취향리스트 -->
+          <!-- favlist_hide 로 저장한 영화리스트 접기 / 펼치기 -->
+          <article class="favlist_cont favlist_hide">
+            <div class="list_head">
+              <div class="list_title">
+                <img src="images/moviecollection.png" />
+                <h3 class="list_text">내 취향 영화</h3>
+                <button type="button" name="더보기" id="more_btn">
+                  <ion-icon class="more" name="chevron-down-outline"></ion-icon> 더보기
+                </button>
+              </div>
+              <div class="list_icon">
+                <button type="button" id="remove_btn" class="remove_btn">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <!-- 취향리스트 포스터 -->
+            <div class="list_poster">
+              <!-- <div class="mylist_poster">
+                click_show 로 favbtn 활성화
+                <img class="poster_click" src="./images/fav_on.png" alt="" />
+                <div class="poster_collection">
+                  <img src="./images/no_image.png" alt="" />
+                </div>
+                <div class="poster_info">
+                  <h3>영화제목</h3>
+                  <span>장르</span>
+                </div>
+              </div> -->
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- select_on 으로 모달 활성화 -->
+      <article class="selection_overlay">
+        <div class="modal_selection">
+          <form class="folder_title_head">
+            <!-- title_hide 클래스로 전환 -->
+            <h2 id="fixed_folder_title" class="folder_title">폴더 제목</h2>
+            <div class="title_edit title_hide">
+              <input type="text" id="input_folder_title" />
+              <button type="button" id="apply_title">적용</button>
+            </div>
+          </form>
+          <h3 class="in_list">포함된 영화</h3>
+          <ul class="selected_movies">
+            <li>
+              <img src="./images/no_image.png" alt="" />
+              <h3>영화 제목 출력 부분</h3>
+              <input type="checkbox" />
+            </li>
+          </ul>
+          <hr />
+          <h3 class="out_list">미포함된 영화</h3>
+          <ul class="unselected_movies">
+            <li>
+              <img src="./images/no_image.png" alt="" />
+              <h3>영화 제목 출력 부분</h3>
+              <input type="checkbox" />
+            </li>
+          </ul>
+        </div>
+      </article>
+      <div class="modal_movie">
+        <div class="movie_card_container">
+          <img src="./images/no_image.png" class="img_card" id="movie_detail_image" />
+          <div class="text_card">
+            <div class="title_close">
+              <h2 class="movie_detail_title">Title</h2>
+              <button id="movie_modal_close_btn"><ion-icon name="close-outline"></ion-icon></button>
+            </div>
+            <div class="movie_card">
+              <h3 class="movie_info_card">영화정보</h3>
+              <div class="card_info">
+                <div class="movie_card_left">
+                  <div id="movie_detail_pub_date">2023</div>
+                  <div id="movie_detail_genre">장르 종류</div>
+                </div>
+                <div class="movie_card_right">
+                  <div id="movie_detail_user_rating">평점</div>
+                  <div id="movie_detail_running_time">상영시간</div>
+                </div>
+              </div>
+            </div>
+            <div class="summary">
+              <h3>줄거리</h3>
+              <p id="movie_detail_story">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa perferendis sapiente
+                rem possimus ex dicta aliquam expedita eaque, autem, laudantium repellendus ab
+                officiis odio dolores. Ratione modi consequuntur dicta molestiae?
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal_loading">
+        <div>
+          <div class="loading">
+            <img src="./images/loading.png" alt="고양이와 바다" />
+          </div>
+          <div class="wavy">
+            <span style="--i: 1">l</span>
+            <span style="--i: 2">o</span>
+            <span style="--i: 3">a</span>
+            <span style="--i: 4">d</span>
+            <span style="--i: 5">i</span>
+            <span style="--i: 6">n</span>
+            <span style="--i: 7">g</span>
+            <span style="--i: 8">.</span>
+            <span style="--i: 9">.</span>
+            <span style="--i: 10">.</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/components/mylist/mylist.js"></script>
+    <script type="module" src="components/header/header.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

@@ -1,16 +1,52 @@
 const express = require('express');
 const router = express.Router();
 const movieService = require('./MovieService');
-
+const statusBuilder = require('../../../util/response/ResponseHandler');
+const jwtUtil = require('../../../util/jwt/JwtUtils');
 
 router.get('/', async (req, res) => {
-    const {limit, offset, genre, pubDate} = req.query;
-    res.send(await movieService.getMovies(1, genre, pubDate, limit, offset));
+    try {
+        const {genre, pubDate, query, limit, offset} = req.query;
+        const {authorization} = req.headers;
+
+        let result;
+        if (authorization) {
+            const token = jwtUtil.resolveToken(authorization);
+            const auth = jwtUtil.verify(token);
+            result = await movieService.getMovies(auth.id, genre, pubDate, query ,limit, offset);
+        } else {
+            result = await movieService.getMovies(undefined, genre, pubDate,query , limit, offset);
+        }
+
+        statusBuilder.setIsOkToJson(res);
+        res.send(result);
+    } catch (error) {
+        statusBuilder.badRequest(res, error.msg);
+    }
 });
 
+router.post('/build', async (req, res) => {
+    try {
+        const {query} = req.body;
+        await movieService.buildMovies(query);
+        statusBuilder.setIsOkToJson(res);
+        res.send({message : 'success'});
+    } catch (error) {
+        statusBuilder.badRequest(res, error.msg);
+    }
+});
+
+
 router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-    res.send(await movieService.getMovieDetail(id));
+    try {
+        const id = req.params?.id;
+        const movieDetail = await movieService.getMovieDetail(id);
+        statusBuilder.setIsOkToJson(res);
+        res.send(movieDetail);
+    } catch (error) {
+        statusBuilder.badRequest(res);
+    }
+
 });
 
 module.exports = router;

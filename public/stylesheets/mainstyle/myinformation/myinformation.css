@@ -1,0 +1,215 @@
+.mylist_info {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  border-bottom: 1px solid #959595;
+}
+#profile_cont {
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+}
+.my_profile {
+  height: 260px;
+  background-color: #ffd954;
+  border-radius: 10px;
+  padding: 40px;
+}
+.image_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 2px;
+  width: 120px;
+}
+.image_box img {
+  width: 100%;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+.image_change {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.5s;
+}
+.image_change:hover {
+  background-color: #44579d;
+  color: #fff;
+}
+/* form 구간 */
+#information {
+  margin: 20px;
+}
+/* 이메일 라인 */
+.email {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+  font-weight: 900;
+}
+.email_label {
+  font-size: 18px;
+  margin-right: 40px;
+}
+#email_box {
+  padding: 12px;
+  font-size: 16px;
+  width: 75%;
+  border-style: none;
+  color: gray;
+}
+#email_box:focus {
+  outline: none;
+}
+.my_form {
+  margin-top: 20px;
+  display: flex;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+  font-weight: 900;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+/* 닉네임 라인 */
+.nick_name_label {
+  font-size: 18px;
+  margin-right: 30px;
+}
+#nick_name {
+  flex-grow: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #44579d;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+#nick_name:focus {
+  outline-color: #44579d;
+}
+/* 중복확인 버튼 */
+.overlap {
+  background-color: #ffd954;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: all 0.5s;
+}
+.overlap:hover {
+  background-color: #ff9900;
+}
+/* 성, 이름 라인 */
+.name_form {
+  display: flex;
+  align-items: center;
+}
+.name_label {
+  flex-basis: 80px;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+.name_input {
+  width: 75%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-style: none;
+  margin-right: 30px;
+  color: gray;
+}
+.name_input:focus {
+  outline: none;
+}
+/* 성별 라인 */
+.gender_input {
+  height: 38px;
+  display: block;
+  padding: 10px 5px;
+  border-style: none;
+  border-bottom: 2px solid #bcbcbc;
+  margin-right: 2px;
+}
+.gender_box {
+  margin-right: 45px;
+  font-size: 18px;
+}
+.gender {
+  height: 38px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+/* 장르 라인 */
+.genre_box {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d9d9d9;
+  font-weight: 700;
+}
+.preferred_genre {
+  font-size: 18px;
+  font-weight: 900;
+}
+.genre_selector {
+  display: flex;
+  gap: 15px;
+}
+.genre_selector select {
+  font-size: 12px;
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #44579d;
+}
+.genre_selector select:focus {
+  outline-color: #44579d;
+}
+/* 닉네임 유효성 검사결과 */
+.valid_name {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: green;
+  display: none;
+}
+.invalid_name {
+  margin-top: 4px;
+  display: none;
+  font-size: 12px;
+  color: crimson;
+  font-weight: 700;
+}
+.name_on {
+  display: flex;
+}
+/* 수정 및 탈퇴 버튼 */
+.modification {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.modification button {
+  background-color: #ffd954;
+  border-style: none;
+  padding: 8px 24px;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+.modification button:hover {
+  background-color: #ff9900;
+}

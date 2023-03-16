@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <title>떼껄룩(Take a Look) 회원가입</title>
+  </head>
+  <body style="background: #f7efd5;">
+    <header>
+      <div class="head_container">
+        <h1 class="logo">
+          <a href="./index.html"><img src="images/logo.png" alt="Take a Look logo" /></a>
+        </h1>
+        <div class="interface">
+          <a href="./index.html" id="menu_bar">
+            <ion-icon name="close"></ion-icon></ion-icon>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="account_cont_border">
+        <div class="account_cont">
+          <h1>회원가입</h1>
+          <div class="border_line"></div>
+          <img src="./images/watching_cat.png" alt="담장넘어 바라보는 고양이">
+          <img src="./images/paws.png" alt="" class="hidden">
+          <h2>Take a Look</h2>
+        </div>
+        <div class="user_form">
+          <form>
+            <div class="mail_line">
+              <label for="email_name"><ion-icon name="mail-outline"></ion-icon></label>
+              <input type="text" id="email_name" placeholder="이메일">
+              <span><ion-icon name="at-outline"></ion-icon></span>
+              <input type="text" id="email_platform">
+              <select name="platform" id="email_platforms">
+                <option value="">직접입력</option>
+                <option value="naver.com">naver.com</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="daum.net">daum.net</option>
+                <option value="hanmail.net">hanmail.net</option>
+              </select>
+            </div>
+            <span class="usable" id ="usable_email">사용가능한 이메일 입니다.</span>
+            <span class="duplicate" id ="duplicate_email">중복된 이메일 입니다. 다른 이메일을 입력해 주세요.</span>
+            <div class="user_name">
+              <label for="last_name"><ion-icon name="person"></ion-icon></label>
+              <input type="text" id="last_name" placeholder="성">
+              <label for="first_name"></label>
+              <input type="text" id="first_name" placeholder="이름">
+            </div>
+            <div class="user_nickname">
+              <label for="user_nickname"><ion-icon name="pricetag"></ion-icon></label>
+              <div class="nickname_alert">
+                <input type="text" id="user_nickname" placeholder="닉네임">
+                <span class="usable" id = "usable_nick_name">사용가능한 닉네임 입니다.</span>
+                <span class="duplicate" id = "un_usable_nick_name">사용할 수 없는 닉네임 입니다. 다시 입력해주세요!</span>
+                <span class="duplicate" id = "duplicate_nick_name">중복된 닉네임 입니다. 다시 입력해주세요!</span>
+              </div>
+              <button id = 'validate_nick_btn' type="button">중복확인</button>
+            </div>
+            <div class="user_gender">
+              <span> 성별 </span>
+              <label for="male">남</label>
+              <input type="radio" name="gender" id="male">
+              <label for="female">여</label>
+              <input type="radio" name="gender" id="female">
+            </div>
+            <span class="confirm_log fail">
+              <ion-icon name="alert-circle-outline"></ion-icon> 회원가입이 실패했습니다! 정보를 다시 확인해 주세요!
+            </span>
+            <button id = "signup_btn">가입하기</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal_loading">
+        <div>
+          <div class="loading">
+            <img src="./images/loading.png" alt="고양이와 바다" />
+          </div>
+          <div class="wavy">
+            <span style="--i: 1">l</span>
+            <span style="--i: 2">o</span>
+            <span style="--i: 3">a</span>
+            <span style="--i: 4">d</span>
+            <span style="--i: 5">i</span>
+            <span style="--i: 6">n</span>
+            <span style="--i: 7">g</span>
+            <span style="--i: 8">.</span>
+            <span style="--i: 9">.</span>
+            <span style="--i: 10">.</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="components/account/account.js"></script>
+  </body>
+</html>

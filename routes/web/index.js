@@ -2,24 +2,39 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  const filePath = path.join(__dirname,'..', 'public', 'index.html');
+router.get('/account', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'account.html');
+  res.status(200);
   res.sendFile(filePath);
-});
+})
 
-router.get('/mainpage', function(req, res, next) {
-  const filePath = path.join(__dirname, '..', 'public', 'mainpage.html');
+router.get('/mylist', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'mylist.html');
+  res.status(200);
   res.sendFile(filePath);
-});
+})
 
-router.get('/api/hello', function(req, res, next) {
-  res.send({
-    array:
-    [{title : '게시글제목1', creator: '누군가1'}, {title : '게시글제목2', creator: '누군가2'}]
-  });
-});
+router.get('/myinformation', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'myinformation.html');
+  res.status(200);
+  res.sendFile(filePath);
+})
+
+router.get('/shared_list', function (req, res) {
+  res.redirect('/error');
+})
+
+router.get('/shared_list/:bucketId', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'shared_list.html');
+  console.log(5235);
+  res.status(200);
+  res.sendFile(filePath);
+})
 
 
-
+router.get('/index', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'index.html');
+  res.status(200);
+  res.sendFile(filePath);
+})
 module.exports = router;

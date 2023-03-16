@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
-const indexRouter = require('./routes/web');
-const movieRouter = require('./routes/api/movie/MovieRouter');
+const indexRouter = require('./routes/web/index');
+const errorRouter = require('./routes/web/error');
+const apiRouter = require('./routes/api/ApiRouter')
+const authWebRouter = require('./routes/web/auth');
 
 const app = express();
 //views를 요청하면 /public으로 연결하겠다
@@ -13,6 +16,10 @@ app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 //뷰 엔진은 html로
 app.set('view engine', 'html');
+app.use(cors({
+    origin: 'https://mail.naver.com/',
+    credentials: true
+}))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,6 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movie', movieRouter);
+app.use('/auth', authWebRouter);
+app.use('/api', apiRouter);
+app.use('*', errorRouter);
 
 module.exports = app;

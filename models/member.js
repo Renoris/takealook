@@ -10,17 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Member.hasMany(models.bucket);
     }
   }
   Member.init({
-    userName: DataTypes.STRING,
-    password: DataTypes.STRING,
-    emailAddress: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
+    email: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName : DataTypes.STRING,
+    gender : DataTypes.STRING,
+    nickName : DataTypes.STRING,
+    role: DataTypes.STRING(30),
     profileImage: DataTypes.STRING,
-    allow: DataTypes.BOOLEAN,
-    refreshToken: DataTypes.STRING
+    disable:DataTypes.BOOLEAN,
+    refreshToken: DataTypes.STRING,
+    favorite:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'member',

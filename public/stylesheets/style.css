@@ -1,6 +1,16 @@
-@import "mainstyle/header.css";
-@import "mainstyle/intro_content.css";
-@import "mainstyle/main_container.css";
+@import "./mainstyle/header.css";
+@import "./mainstyle/intro_content.css";
+@import "./mainstyle/main_container.css";
+@import "./mainstyle/login-info.css";
+@import "./mainstyle/shared_list.css";
+
+@import "./myliststyle/mycollection.css";
+@import "./myliststyle/modal_select.css";
+@import "./mainstyle/myinformation/myinformation.css";
+
+@import "./account.css";
+@import "./modal_loading.css";
+@import "./responsive.css";
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 
@@ -29,33 +39,27 @@ p {
 }
 body {
   font-family: "Nanum Gothic", sans-serif;
-  background: #f7efd5;
 }
 a {
   text-decoration: none;
   color: #333;
 }
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  /* user-drag: none; */
+}
 
-/* 반응형 모바일 사이즈 */
-@media screen and (max-width: 480px) {
-  #search_bar {
-    display: none;
-  }
-  #search_btn {
-    background-color: initial;
-    border-radius: 50%;
-    padding: 0;
-  }
-  .content_intro h2 {
-    font-size: 40px;
-  }
-  .content_intro p {
-    font-size: 20px;
-  }
-  .login_box {
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    padding: 15px 60px;
-  }
+/* TOP 버튼 */
+.up_to_top {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 8;
+}
+.up_to_top img {
+  width: 40px;
 }

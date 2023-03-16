@@ -1,0 +1,204 @@
+/* 반응형 모바일 사이즈 */
+@media screen and (max-width: 480px) {
+  /* 헤더(모바일) */
+  .head_container {
+    padding: 0 16px;
+  }
+  .outer_login,
+  .outer_account,
+  .outer_profile,
+  .outer_logout {
+    display: none;
+  }
+  .logo img {
+    width: 150px;
+  }
+  .content_intro h2 {
+    font-size: 40px;
+  }
+  .content_intro p {
+    font-size: 20px;
+  }
+  .hero_image {
+    background-image: url("../images/cat_in_movie_house_bg_wtlight.png");
+  }
+  /* 검색바 */
+  #search {
+    right: 60px;
+  }
+  .search_bar,
+  .search_btn {
+    display: none;
+  }
+  .search_view {
+    display: flex;
+  }
+  #menu_bar {
+    display: block;
+  }
+  .login_box a {
+    display: block;
+  }
+  /* 로그인 박스(모바일) */
+  .login_box,
+  .account_box {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 15px 20px;
+  }
+  .account_info {
+    margin-top: 15px;
+  }
+  .account_img {
+    width: 90px;
+  }
+  .name_email h2 {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  #user_email {
+    font-size: 12px;
+  }
+  .my_info,
+  .my_list {
+    font-size: 12px;
+  }
+  /* 회원가입 */
+  .account_cont_border {
+    width: 360px;
+    padding: 20px;
+  }
+  .user_form form input {
+    font-size: 12px;
+  }
+  .user_form ion-icon {
+    font-size: 16px;
+  }
+  #email_platforms {
+    display: none;
+  }
+  /* 메인컨테이너 영화 리스트 부분 */
+  .main_container {
+    margin: 15px auto;
+  }
+  .select_list div {
+    width: 90px;
+  }
+  .select_list label {
+    font-size: 18px;
+  }
+  .genres_tag select,
+  .years_tag select {
+    width: 80px;
+    font-size: 12px;
+    padding: 6px;
+  }
+  .movie_cover {
+    width: 150px;
+    height: 260px;
+  }
+  .movie_cover h3 {
+    font-size: 12px;
+  }
+  .movie_cover span {
+    font-size: 10px;
+  }
+  /* 영화 모달창 */
+  .modal_movie {
+    overflow: scroll;
+  }
+  .movie_card_container {
+    height: 100%;
+  }
+  .img_card,
+  .text_card {
+    border-radius: 0;
+  }
+  /* 취향리스트 부분 */
+  .today_pick h2,
+  .share_lists h2 {
+    font-size: 20px;
+  }
+  .left_btn,
+  .right_btn {
+    display: block;
+  }
+  .share_line {
+    gap: 30px 20px;
+  }
+  .folder_box {
+    width: 150px;
+    height: 200px;
+  }
+  .folder_img1,
+  .folder_img2,
+  .folder_img3 {
+    width: 110px;
+    height: 160px;
+  }
+  .folder_img2 {
+    left: 20px;
+  }
+  .folder_img3 {
+    left: 40px;
+  }
+  .share_textbox h3 {
+    font-size: 16px;
+  }
+  .share_textbox span {
+    font-size: 10px;
+  }
+}
+
+/* 중간 사이즈(태블릿 등 화면조정) */
+@media screen and (min-width: 481px) and (max-width: 992px) {
+  /* 헤더 부분 */
+  .head_container {
+    padding: 0 16px;
+  }
+  .outer_login,
+  .outer_account,
+  .outer_profile,
+  .outer_logout {
+    display: none;
+  }
+  /* 영화 리스트 구역 */
+  .movie_cover {
+    width: 200px;
+    height: 350px;
+  }
+  .movie_cover h3 {
+    font-size: 16px;
+  }
+  .movie_cover span {
+    font-size: 12px;
+  }
+  /* 검색바 */
+  #search {
+    right: 60px;
+  }
+  .search_bar,
+  .search_btn {
+    display: none;
+  }
+  .search_view {
+    display: flex;
+  }
+  #menu_bar {
+    display: block;
+  }
+  .login_box a {
+    display: block;
+  }
+  /* 영화 모달 창 */
+  .img_card,
+  .text_card {
+    border-radius: 0;
+  }
+  /* 취향리스트 부분 */
+  .left_btn,
+  .right_btn {
+    display: block;
+  }
+}

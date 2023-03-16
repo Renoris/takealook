@@ -1,0 +1,53 @@
+@media screen and (max-width: 480px) {
+  .outer_logout {
+    display: block;
+  }
+  .mylist_info {
+    font-size: 18px;
+  }
+  #profile_cont {
+    width: 100%;
+  }
+  #information label {
+    font-size: 16px;
+  }
+  #information input {
+    font-size: 14px;
+  }
+  .email_label {
+    margin-right: 14px;
+  }
+  .name_label {
+    flex-basis: 40px;
+  }
+  .overlap {
+    font-size: 12px;
+  }
+  .my_profile {
+    border-radius: 0px;
+  }
+  .genre_selector select {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 1100px) {
+  #profile_cont {
+    width: 90%;
+  }
+  .outer_logout {
+    display: block;
+  }
+}
+
+#search {
+  display: none;
+}
+#menu_bar {
+  display: none;
+}
+.outer_profile,
+.outer_account,
+.login_box,
+.account_box {
+  display: none;
+}

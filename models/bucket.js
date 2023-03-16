@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Op, Sequelize
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class bucket extends Model {
@@ -10,12 +10,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      bucket.hasMany(models.bucket_item);
+      bucket.belongsTo(models.member, {
+        foreignKey: 'ownerId',
+        targetKey: 'id',
+        on: {
+          ownerId: {[Op.eq]:Sequelize.col('members.id')}
+        }
+      });
     }
   }
   bucket.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     bucketName: DataTypes.STRING,
     bucketTag: DataTypes.STRING,
+    ownerId: DataTypes.INTEGER,
+    publish: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'bucket',

@@ -1,0 +1,102 @@
+.modal_loading,
+.modal_movie {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+/* 모달 켜기 */
+.modal_on {
+  display: flex;
+}
+/* 모달 영화정보 */
+.movie_card_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 700px;
+  border-radius: 20px;
+  transition: all 1s;
+}
+.img_card {
+  width: 350px;
+  height: 486px;
+  background-color: #ff9900;
+  background-image: url("../../images/no_image.png");
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px 0 0 20px;
+}
+.text_card {
+  width: 350px;
+  height: 486px;
+  padding: 43px 20px;
+  border-radius: 0 20px 20px 0;
+  background-color: #3f4b77;
+}
+.title_close {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.movie_detail_title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+}
+.title_close button {
+  border-style: none;
+  background-color: inherit;
+}
+.title_close ion-icon {
+  color: #ffd954;
+  font-size: 32px;
+}
+.movie_card {
+  background-color: #abb9eb;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+.movie_info_card {
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.card_info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.movie_card_left,
+.movie_card_right {
+  width: 50%;
+}
+.summary {
+  background-color: #abb9eb;
+  padding: 20px;
+  border-radius: 10px;
+  height: 220px;
+  overflow: auto;
+}
+.summary h3 {
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.summary p {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.modalfontdown {
+  font-size: 18px;
+}

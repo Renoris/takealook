@@ -12,17 +12,11 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      story: {
-        type: Sequelize.STRING
-      },
       genre:{
         type: Sequelize.STRING
       },
       country:{
         type: Sequelize.STRING
-      },
-      year: {
-        type: Sequelize.INTEGER
       },
       link: {
         type: Sequelize.STRING
@@ -36,6 +30,9 @@ module.exports = {
       pub_date: {
         type: Sequelize.DATE
       },
+      running_time: {
+        type: Sequelize.STRING
+      },
       director: {
         type: Sequelize.STRING
       },
@@ -43,7 +40,16 @@ module.exports = {
         type: Sequelize.STRING
       },
       user_rating: {
+        type: Sequelize.FLOAT(4,2)
+      },
+      story: {
+        type: Sequelize.TEXT('medium')
+      },
+      random: {
         type: Sequelize.INTEGER
+      },
+      thumb: {
+        type: Sequelize.STRING
       }
     });
   },
