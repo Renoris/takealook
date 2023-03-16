@@ -1,4 +1,4 @@
-import { spreadMyList, spreadMyPick } from "./myListEvents.js";
+import { spreadMyList, spreadMyPick,  shareBtnClickEventListener, deleteBtnClickEventListener} from "./myListEvents.js";
 import {modalInitialize} from "../modal/modalUtil.js";
 
 // 더 보기 기능, 펼치기 & 접기 토글
@@ -17,48 +17,21 @@ const shareBtn = document.querySelector(".share_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const removeBtn = document.querySelector(".remove_btn");
 
-//영화 리스트 부분
-shareBtn.addEventListener("click", () => {
-  const shareValids = document.querySelectorAll(".share_valid"); //공유중인 상태 이미지
-  const shareInvalids = document.querySelectorAll(".share_invalid"); //공유 안된 상태 이미지
-  if (shareBtn.classList.contains("edit_list")) {
-    shareBtn.classList.remove("edit_list");
-    const sharings = document.querySelectorAll('.sharing');
 
-    for (const share of sharings) {
-      share.classList.remove('share_on');
-    }
-    for (const valid of shareValids) {
-     valid.classList.remove('share_on');
-    }
-
-    for (const invalid of shareInvalids) {
-     invalid.classList.remove('share_on');
-    }
-  } else {
-    shareBtn.classList.add("edit_list");
-    for (const valid of shareValids) {
-      if (valid['data-active'] === 1) {
-        valid.classList.add('share_on');
-        const sharing = document.getElementById(`shareing_${valid.id.slice(6)}`);
-        sharing.classList.add('share_on');
-      }
-    }
-
-    for (const invalid of shareInvalids) {
-      if (invalid['data-active'] === 1) {
-        invalid.classList.add('share_on');
-      }
-    }
+shareBtn.addEventListener("click", (e) => {
+  if (deleteBtn.classList.contains('edit_list')) {
+    deleteBtnClickEventListener(e, deleteBtn);
   }
+  shareBtnClickEventListener(e, shareBtn);
+
 });
-deleteBtn.addEventListener("click", () => {
-  const deleteFolders = document.querySelectorAll(".delete_folder"); //폴더 삭제 버튼 누를시 등장 이미지
-  deleteBtn.classList.toggle("edit_list");
-  for (const item of deleteFolders) {
-    item.classList.toggle("delete_on");
+deleteBtn.addEventListener("click", (e) => {
+  if (shareBtn.classList.contains('edit_list')) {
+    shareBtnClickEventListener(e, shareBtn)
   }
-});
+  deleteBtnClickEventListener(e, deleteBtn);
+})
+
 
 //내 픽 부분
 removeBtn.addEventListener("click", () => {

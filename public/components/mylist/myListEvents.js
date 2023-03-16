@@ -198,3 +198,50 @@ export async function spreadMyList(folderLists) {
   }
   elementFactory.createEmptyMovieFolder(movieListClickEventListener, folderLists);
 }
+
+
+export function deleteBtnClickEventListener(e, deleteBtn) {
+    e.preventDefault();
+    const deleteFolders = document.querySelectorAll(".delete_folder"); //폴더 삭제 버튼 누를시 등장 이미지
+    deleteBtn.classList.toggle("edit_list");
+    for (const item of deleteFolders) {
+        item.classList.toggle("delete_on");
+    }
+}
+
+//영화 리스트 부분
+export function shareBtnClickEventListener(e, shareBtn) {
+    e.preventDefault();
+    const shareValids = document.querySelectorAll(".share_valid"); //공유중인 상태 이미지
+    const shareInvalids = document.querySelectorAll(".share_invalid"); //공유 안된 상태 이미지
+    if (shareBtn.classList.contains("edit_list")) {
+        shareBtn.classList.remove("edit_list");
+        const sharings = document.querySelectorAll('.sharing');
+
+        for (const share of sharings) {
+            share.classList.remove('share_on');
+        }
+        for (const valid of shareValids) {
+            valid.classList.remove('share_on');
+        }
+
+        for (const invalid of shareInvalids) {
+            invalid.classList.remove('share_on');
+        }
+    } else {
+        shareBtn.classList.add("edit_list");
+        for (const valid of shareValids) {
+            if (valid['data-active'] === 1) {
+                valid.classList.add('share_on');
+                const sharing = document.getElementById(`shareing_${valid.id.slice(6)}`);
+                sharing.classList.add('share_on');
+            }
+        }
+
+        for (const invalid of shareInvalids) {
+            if (invalid['data-active'] === 1) {
+                invalid.classList.add('share_on');
+            }
+        }
+    }
+}
