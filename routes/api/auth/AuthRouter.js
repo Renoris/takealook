@@ -28,7 +28,6 @@ router.get('/:hash', async (req, res) => {
     const {hash} = req.params;
     try {
         const tokens = await authService.registerTokenByHash(hash);
-        console.log(tokens);
         res.send(tokens);
     } catch (error) {
         responseHandler.badRequest(res, error.message);
