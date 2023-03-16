@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       bucket.belongsTo(models.member, {
         foreignKey: 'ownerId',
         targetKey: 'id',
+        sourceKey: 'id',
         on: {
           ownerId: {[Op.eq]:Sequelize.col('members.id')}
         }
