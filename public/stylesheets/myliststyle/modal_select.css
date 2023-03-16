@@ -37,6 +37,16 @@
   justify-content: center;
   gap: 20px;
 }
+.title_edit input {
+  padding: 4px;
+  font-size: 18px;
+  border-style: none;
+  border-bottom: 2px solid #a7a7a7;
+  text-align: center;
+}
+.title_edit input:focus {
+  outline: none;
+}
 .title_hide {
   display: none;
 }
