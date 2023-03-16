@@ -33,15 +33,26 @@ async function changeMovieTagWithGenre(e,movieTag,recommendTag,genreList , genre
 }
 
 genreTvMovie.addEventListener('click', async (e) =>
-    changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'TV영화'));
-genreSF.addEventListener('click', async (e) => changeMovieTagWithGenre(e,
-    movieTag,recommendTag,genreList,'SF'));
-genreAction.addEventListener('click', async (e) => changeMovieTagWithGenre(e,
-    movieTag,recommendTag,genreList,'액션'));
-genreComedy.addEventListener('click', async (e) => changeMovieTagWithGenre(e,
-    movieTag,recommendTag,genreList,'코미디'));
-genreDrama.addEventListener('click', async (e) => changeMovieTagWithGenre(e,
-    movieTag,recommendTag,genreList,'드라마'));
+    alert("개발 예정 중입니다.")
+    // changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'TV영화')
+)
+genreSF.addEventListener('click', async (e) =>
+    // changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'SF')
+    alert("개발 예정 중입니다.")
+);
+genreAction.addEventListener('click', async (e) =>
+    // changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'액션')
+    alert("개발 예정 중입니다.")
+);
+genreComedy.addEventListener('click', async (e) =>
+    // changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'코미디')
+    alert("개발 예정 중입니다.")
+);
+
+genreDrama.addEventListener('click', async (e) =>
+    // changeMovieTagWithGenre(e, movieTag,recommendTag,genreList,'드라마')
+    alert("개발 예정 중입니다.")
+);
 
 
 
