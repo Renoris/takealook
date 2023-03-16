@@ -31,10 +31,11 @@ function getMovieQuery (id, genre, pubDate, search, limit, offset) {
 
     //항상 고정값
     if (!search) {
-        query = `${query} where pub_date >= 1990 and user_rating >= 2`;
+        query = `${query} where pub_date >= 1990 and user_rating >= 2 and genre not like '%에로%'`;
         alreadyCondition = true;
     }else {
-        query = `${query} where`
+        alreadyCondition = true;
+        query = `${query} where genre not like '%에로%'`;
     }
 
     if (flag) {

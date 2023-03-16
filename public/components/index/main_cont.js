@@ -14,7 +14,7 @@ let activeFav = false;
 let endMovie = false;
 
 //제한 횟수, 생성 횟수, 페이지 카운트
-const coverLimit = 99;
+const coverLimit = 200;
 const coverIncrease = 14;
 const pageMax = Math.ceil(coverLimit / coverIncrease);
 let currentPage = 1;
@@ -119,7 +119,7 @@ const infiniteScroll = async () => {
   await throttle(async () => {
     if (scrollControlValues.activeFav) return;
     if (scrollControlValues.endMovie) return;
-    const endOfPage = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+    const endOfPage = window.innerHeight + window.scrollY + 1000 >= document.body.offsetHeight;
 
     if (endOfPage) {
       const length = await addCover(searchInfo, scrollControlValues.movieContainer);
@@ -129,7 +129,7 @@ const infiniteScroll = async () => {
     if (currentPage > pageMax) {
       scrollControlValues.endMovie = true;
     }
-  }, 500);
+  }, 100);
 };
 
 // 첫 스크롤 생성
