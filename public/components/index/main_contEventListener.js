@@ -1,15 +1,7 @@
 import elementFactory from "../elements/MoviesElements.js";
 import authFetch from "../fetchs/AuthFetch.js";
+import {replaceSpecialCode} from "../util/convertText.js";
 const access = localStorage.getItem("takealook-access");
-const removeList = {
-  "&nbsp;": " ",
-  "&lt;": "<",
-  "&gt;": ">",
-  "&amp;": "&",
-  "&quot;": '"',
-  "&#035;": "#",
-  "&#039;": "",
-};
 
 export function movieTagClickEventListener(e, scrollControlValues) {
     scrollControlValues.movieContainer.classList.remove("hide");
@@ -49,9 +41,7 @@ export async function toggleModal(movieId) {
       movieDetailTitle.classList.remove("modalfontdown");
     }
     let replacedTitle = movie.title;
-    for (const key in removeList) {
-      replacedTitle = replacedTitle.replace(`${key}`, `${removeList[key]}`);
-    }
+    replacedTitle= replaceSpecialCode(replacedTitle);
     movieDetailTitle.innerText = replacedTitle;
     movieDetailStory.innerText = movie.story.replace("\n", " ");
     movieDetailPubDate.innerText = movie.pubDate.slice(0, 4);

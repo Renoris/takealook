@@ -1,4 +1,4 @@
-const {bucket, bucket_item, movie, member} = require('../../../models/index');
+const {bucket, bucket_item, movie, member, sequelize} = require('../../../models/index');
 const {Op} = require('sequelize');
 
 const MemberStorage = {
@@ -39,10 +39,12 @@ const MemberStorage = {
                     attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
                     include: [
                         {
-                            attributes:[['id', 'movieId'], 'title' ,'thumb'],
+                            attributes:[['id', 'movieId'], 'title' ,'thumb', 'story', 'genre', [sequelize.literal('YEAR(pub_date)'), 'pubDate']],
                             model: movie,
                         }]
-                }],
+                },
+                {model: member, attributes:[['nick_name','nickName']]}
+            ],
             where : {
                 [Op.and]: [{publish : 1}, {id : bucketId}]},
             order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
@@ -52,11 +54,15 @@ const MemberStorage = {
         return {
             bucketId:result.bucketId,
             bucketName:result.bucketName,
+            nickName:result.member.nickName,
             bucketItemMovies:result.bucket_items.map((bItem) => {
                 return {
                     movieId : bItem.movie.dataValues.movieId,
                     thumb : bItem.movie.dataValues.thumb,
-                    title : bItem.movie.dataValues.title
+                    title : bItem.movie.dataValues.title,
+                    pubDate : bItem.movie.dataValues.pubDate,
+                    genre : bItem.movie.dataValues.genre,
+                    story : bItem.movie.dataValues.story
                 }
             })
         }

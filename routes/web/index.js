@@ -20,6 +20,18 @@ router.get('/myinformation', function (req, res) {
   res.sendFile(filePath);
 })
 
+router.get('/shared_list', function (req, res) {
+  res.redirect('/error');
+})
+
+router.get('/shared_list/:bucketId', function (req, res) {
+  const filePath = path.join(__dirname,'..','..','public', 'shared_list.html');
+  console.log(5235);
+  res.status(200);
+  res.sendFile(filePath);
+})
+
+
 router.get('/index', function (req, res) {
   const filePath = path.join(__dirname,'..','..','public', 'index.html');
   res.status(200);
