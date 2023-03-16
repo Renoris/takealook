@@ -53,19 +53,22 @@ async function movieCheckBoxClickEventListener(
     reFreshMovieListImage(refreshThumbArg);
 }
 
-async function titleConvertEvent(e, title, bucketId, fixedFolderTitle, titleEdit) {
+async function titleConvertEvent(e, bucket, fixedFolderTitle, titleEdit) {
     e.preventDefault();
-    if (!validateTitle(title)) {
+
+    const {bucketName, bucketId} = bucket;
+
+    if (!validateTitle(bucketName)) {
         alert("제목이 적절하지 않습니다.");
         return;
     }
 
     const originTitle = document.getElementById(`folder_${bucketId}`);
-    originTitle.innerText = title;
+    originTitle.innerText = bucketName;
 
-    const result = await authFetch(`/api/bucket/my/title/${bucketId}`,`PATCH`, {bucketName:title});
+    const result = await authFetch(`/api/bucket/my/title/${bucketId}`,`PATCH`, {bucketName});
     if (result.message !== 'success') {alert("서버와의 연결에 실패했습니다.");}
-    fixedFolderTitle.innerText = title;
+    fixedFolderTitle.innerText = bucketName;
     fixedFolderTitle.classList.remove('title_hide');
     titleEdit.classList.add('title_hide');
 }
@@ -73,21 +76,48 @@ async function titleConvertEvent(e, title, bucketId, fixedFolderTitle, titleEdit
 /**
  * 모달 내 체크 박스 이벤트
  * @param e
- * @param bucketId
+ * @param bucket
  * @param folder_box
  * @param refreshThumbArg
  * @returns {Promise<void>}
  */
 
-async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
+async function refreshModalData(e, bucket, folder_box, refreshThumbArg) {
     //dom 셋팅
+    const {bucketName, bucketId} = bucket;
     const folderTitle = document.querySelector(".folder_title");
     const selectedMovies = document.querySelector(".selected_movies");
     const unselectedMovies = document.querySelector(".unselected_movies");
-    const inputFolderTitle = document.getElementById("input_folder_title");
-    const fixedFolderTitle = document.getElementById("fixed_folder_title");
-    const applyTitle = document.getElementById("apply_title");
-    const titleEdit = document.querySelector(".title_edit");
+    // const inputFolderTitle = document.getElementById("input_folder_title");
+    // const fixedFolderTitle = document.getElementById("fixed_folder_title");
+    // const applyTitle = document.getElementById("apply_title");
+    // const titleEdit = document.querySelector(".title_edit");
+    const folderTitleHead = document.querySelector('.folder_title_head');
+
+    const fixedFolderTitle = document.createElement('h2');
+    fixedFolderTitle.classList.add('folder_title');
+    fixedFolderTitle.id = "fixed_folder_title";
+    fixedFolderTitle.innerText = bucketName;
+
+    const titleEdit = document.createElement('div');
+    titleEdit.classList.add('title_edit');
+    titleEdit.classList.add('title_hide');
+
+    const inputFolderTitle = document.createElement('input');
+    inputFolderTitle.type = "text";
+    inputFolderTitle.id = "input_folder_title";
+
+    const applyTitle = document.createElement('button');
+    applyTitle.type = "button";
+    applyTitle.id = "apply_title";
+    applyTitle.innerText =  "적용";
+
+    titleEdit.append(inputFolderTitle);
+    titleEdit.append(applyTitle);
+
+    folderTitleHead.textContent = '';
+    folderTitleHead.append(fixedFolderTitle);
+    folderTitleHead.append(titleEdit);
 
     fixedFolderTitle.addEventListener('click', () => {
         fixedFolderTitle.classList.add('title_hide');
@@ -95,10 +125,14 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
         titleEdit.classList.remove('title_hide');
     })
 
-    applyTitle.addEventListener('click', async (e) => await titleConvertEvent(e, inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit))
+    applyTitle.addEventListener('click', async (e) => {
+        bucket.bucketName = inputFolderTitle.value;
+        await titleConvertEvent(e, bucket, fixedFolderTitle, titleEdit)
+    })
     inputFolderTitle.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
-            await titleConvertEvent(e, inputFolderTitle.value, bucketId, fixedFolderTitle, titleEdit);
+            bucket.bucketName = inputFolderTitle.value;
+            await titleConvertEvent(e, bucket, fixedFolderTitle, titleEdit);
         }
     })
 
@@ -141,9 +175,9 @@ async function refreshModalData(e, bucketId, folder_box, refreshThumbArg) {
     }
 }
 
-async function movieListClickEventListener(e, bucketId, folder_box, refreshThumbArg) {
+async function movieListClickEventListener(e, bucketInfo, folder_box, refreshThumbArg) {
   const modal = document.querySelector(".selection_overlay");
-  await refreshModalData(e, bucketId, folder_box, refreshThumbArg);
+  await refreshModalData(e, bucketInfo ,folder_box, refreshThumbArg);
   modal.classList.add("select_on");
 }
 
@@ -169,10 +203,10 @@ export async function spreadMyList(folderLists) {
       const {publish, bucketId, bucketName, bucketThumbs} = bucket;
       const thumbArray = getMovieListThumb(bucketThumbs);
       elementFactory.reCreateMovieList(
-          bucketId,
-          bucketName,
-          publish,
-          thumbArray,
+          { bucketId,
+              bucketName,
+              publish,
+              thumbArray},
           folderLists,
           movieListClickEventListener
         );
