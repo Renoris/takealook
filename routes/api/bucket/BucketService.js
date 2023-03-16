@@ -2,9 +2,9 @@ const bucketStorage = require('./BucketStorage');
 const {sequelize, bucket} = require("../../../models/index");
 
 const BucketService = {
-    getPublishBuckets : async function () {
+    getPublishBuckets : async function (limit, offset) {
         return sequelize.transaction(async (transaction) => {
-            return await bucketStorage.getPublishBuckets(transaction);
+            return await bucketStorage.getPublishBuckets(limit, offset ,transaction);
         })
     },
     getPublishBucket : async function (bucketId) {

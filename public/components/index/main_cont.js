@@ -87,12 +87,15 @@ years.addEventListener("change", async (e) => {
   await reloadPage(e, searchInfo, scrollControlValues);
 });
 
+let endFav = false;
+
 export const scrollControlValues = {
   movieContainer,
   favContainer,
   tags,
   activeFav,
   endMovie,
+  endFav,
 };
 
 movieTag.addEventListener("click", (e) => movieTagClickEventListener(e, scrollControlValues));

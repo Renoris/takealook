@@ -9,12 +9,14 @@ const signUpRouter = require('./member/SignUpRouter');
 const pickRouter = require('./pick/PickRouter');
 const myBucketRouter = require('./bucket/BucketMyRouter');
 const bucketItemRouter = require('./bucketItem/BucketItemRouter')
+const publishBucketRouter = require('./bucket/BucketPublishRouter');
 
 //jwt 필요없음
 router.use('/auth', authRouter);
 router.use('/movie', movieRouter);
 router.use('/signup', signUpRouter);
 router.use('/test', testRouter);
+router.use('/bucket/publish', publishBucketRouter);
 
 //이 아래로 jwt 필요
 //req.body.authId 에 유저 id 첨가
