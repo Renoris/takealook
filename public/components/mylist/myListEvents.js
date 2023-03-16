@@ -1,7 +1,7 @@
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
 import {reFreshMovieListImage, getMovieListThumb} from "../util/convertImage.js";
-import {validateNickname, validateTitle} from "../util/validationText.js";
+import {validateTitle} from "../util/validationText.js";
 
 function distributePick(simplePicks, bucketItemMovies) {
   const unSelectList = [];
