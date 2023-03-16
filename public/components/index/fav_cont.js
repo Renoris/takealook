@@ -2,6 +2,7 @@
 import {scrollControlValues, searchInfo} from "./main_cont.js";
 import elementFactory from "../elements/favContElements.js";
 import {getMovieListThumb} from "../util/convertImage.js";
+import {movieTagClickEventListener, reloadPage} from "./main_contEventListener.js";
 
 
 const pickList = document.querySelector(".pick_lists");
