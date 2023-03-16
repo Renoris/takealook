@@ -1,22 +1,27 @@
-const {bucket, bucket_item, movie} = require('../../../models/index');
+const {bucket, bucket_item, movie, member} = require('../../../models/index');
 const {Op} = require('sequelize');
 
 const MemberStorage = {
     getPublishBuckets : async function (limit, offset ,transaction) {
         const result =  await bucket.findAll({
             attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
-            include: [{model: bucket_item, attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']], include: [{attributes:[['id', 'movieId'],'thumb'], model: movie,}]}],
+            include: [
+                {model: bucket_item, attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']], include: [{attributes:[['id', 'movieId'],'thumb'], model: movie}]},
+                {model: member, attributes:[['nick_name','nickName']]}
+            ],
             where : {publish : 1},
             order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
-            limit:Number(limit),
+            limit:Number(limit), //number()이걸 안해주면 string으로 들어가는 문제 발생
             offset:Number(offset),
-            subQuery:false,
-            transaction});
+            subQuery:false, //limit가 서브쿼리에 걸리는것을 방지
+            transaction
+        });
 
         return result.map((item) => {
             return {
                 bucketId:item.dataValues.bucketId,
                 bucketName:item.dataValues.bucketName,
+                nickName:item.member.nickName,
                 bucketThumbs:item.bucket_items.map((bItem) => {
                     return {thumb:bItem.movie.dataValues.thumb,
                         movieId: bItem.movie.dataValues.movieId};

@@ -86,8 +86,8 @@ export const addFav = async (currentPage, maxPage ,coverIncrease, coverLimit, pa
   const buckets = await (await fetch(url, {method: "GET"})).json();
   count = buckets.length;
   for (const bucket of buckets) {
-    const {bucketId, bucketName, bucketThumbs} = bucket;
-    elementFactory.createMovieList(bucketId, bucketName, getMovieListThumb(bucketThumbs), parentNode);
+    const {bucketId, bucketName, bucketThumbs, nickName} = bucket;
+    elementFactory.createMovieList(bucketId, bucketName, getMovieListThumb(bucketThumbs), nickName ,parentNode);
   }
   return count;
 };
