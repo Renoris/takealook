@@ -140,7 +140,8 @@ const MemberStorage = {
     },
 
     updateBucketTitle: async function (authId, bucketId , bucketName, transaction) {
-        const myBucket = await bucket.findOne({where : {[Op.and] : [{ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}, transaction})
+        const myBucket = await bucket.findOne({
+            where : {[Op.and] : [{ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}, transaction})
         if (!myBucket) throw Error("해당 영화 리스트가 없습니다.");
         myBucket.bucketName = bucketName;
         await myBucket.save({transaction});
@@ -148,14 +149,16 @@ const MemberStorage = {
 
 
     updateBucketPublish: async function (authId, bucketId , publish, transaction) {
-        const myBucket = await bucket.findOne({where : {[Op.and] : [{ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}, transaction})
+        const myBucket = await bucket.findOne({
+            where : {[Op.and] : [{ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}, transaction})
         if (!myBucket) throw Error("해당 영화 리스트가 없습니다.");
         myBucket.publish = publish;
         await myBucket.save({transaction});
     },
 
     deleteBucket: async function (authId, bucketId, transaction) {
-        const myBucket = await bucket.findOne({where : {[Op.and] : [ {ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}})
+        const myBucket = await bucket.findOne({
+            where : {[Op.and] : [ {ownerId : {[Op.eq]:authId}}, {id: {[Op.eq]: bucketId}}]}})
         if (!myBucket) throw Error("해당 영화 리스트가 없습니다.");
         await myBucket.destroy({transaction});
     }
