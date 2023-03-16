@@ -5,7 +5,8 @@ const bucketService = require('./BucketService');
 
 router.get('/', async (req, res) => {
     try {
-        const result = await bucketService.getPublishBuckets();
+        const {limit, offset} = req.query;
+        const result = await bucketService.getPublishBuckets(limit, offset);
         responseHandler.setIsOkToJson(res);
         res.send(result);
     } catch (error) {

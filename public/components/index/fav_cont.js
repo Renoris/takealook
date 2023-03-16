@@ -1,5 +1,8 @@
-import {movieTagClickEventListener, reloadPage} from "./main_contEventListener.js";
+
 import {scrollControlValues, searchInfo} from "./main_cont.js";
+import elementFactory from "../elements/favContElements.js";
+import {getMovieListThumb} from "../util/convertImage.js";
+
 
 const pickList = document.querySelector(".pick_lists");
 const pickCover = document.querySelectorAll(".pick_lists li");
@@ -47,7 +50,72 @@ function cloneElement() {
   pickList.append(coverCloneFirst);
   pickList.prepend(coverCloneLast, pickList.firstElementChild);
 }
-function initfunction() {
+
+//무한 스크롤
+let throttleTimer;
+const throttle = (callback, time) => {
+  if (throttleTimer) return;
+
+  throttleTimer = true;
+
+  //이걸 죠져놔야됌
+  setTimeout(() => {
+    callback();
+    throttleTimer = false;
+  }, time);
+};
+
+const coverLimit = 200;
+const coverIncrease = 14;
+const pageMax = Math.ceil(coverLimit / coverIncrease);
+let currentPage = 1;
+
+export const addFav = async (currentPage, maxPage ,coverIncrease, coverLimit, parentNode) => {
+  let count = 0;
+  const startRange = (currentPage - 1) * coverIncrease;
+  const endRange = currentPage === pageMax ? coverLimit : currentPage * coverIncrease;
+  let url = '/api/bucket/publish';
+  const param = {
+    limit : endRange - startRange,
+    offset : startRange
+  }
+
+  url = `${url}?${new URLSearchParams(param).toString()}`
+
+  const buckets = await (await fetch(url, {method: "GET"})).json();
+  count = buckets.length;
+  for (const bucket of buckets) {
+    const {bucketId, bucketName, bucketThumbs} = bucket;
+    elementFactory.createMovieList(bucketId, bucketName, getMovieListThumb(bucketThumbs), parentNode);
+  }
+  return count;
+};
+
+
+const shareLine = document.querySelector('.share_line');
+
+//무한 스크롤 공식
+const infiniteFavScroll = async () => {
+  await throttle(async () => {
+    if (!scrollControlValues.activeFav) return;
+    if (scrollControlValues.endFav) return;
+    const endOfPage = window.innerHeight + window.scrollY + 1000 >= document.body.offsetHeight;
+
+
+    if (endOfPage) {
+      const count = await addFav(currentPage, pageMax, coverIncrease, coverLimit, shareLine);
+      scrollControlValues.endFav = count === 0;
+      currentPage++;
+    }
+
+    if (currentPage > pageMax) {
+      scrollControlValues.endFav = true;
+    }
+  }, 100);
+};
+
+
+async function initfunction() {
   pickList.style.width = coverWidth * (slideCount + 2) + "px";
   pickList.style.left = -coverWidth + "px";
 }
@@ -81,6 +149,6 @@ leftBtn.addEventListener("click", function () {
   }
   currentCover -= 1;
 });
-
+window.addEventListener("scroll", infiniteFavScroll);
 cloneElement();
 initfunction();

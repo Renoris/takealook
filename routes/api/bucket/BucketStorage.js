@@ -5,20 +5,13 @@ const MemberStorage = {
     getPublishBuckets : async function (limit, offset ,transaction) {
         const result =  await bucket.findAll({
             attributes : [['id', 'bucketId'],['bucket_name', 'bucketName']],
-            include: [
-                {
-                    model: bucket_item,
-                    attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']],
-                    include: [
-                        {
-                            attributes:[['id', 'movieId'], 'thumb'],
-                            model: movie,
-                        }]}],
+            include: [{model: bucket_item, attributes:[['bucket_id','connectbid'], ['movie_id','connectmid']], include: [{attributes:[['id', 'movieId'],'thumb'], model: movie,}]}],
             where : {publish : 1},
-            limit,
-            offset,
-            order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']//이부분 as 가 아닌 id를 사용해야된다.. 왜?
-            ], transaction});
+            order: [['id', 'ASC'], [bucket_item, 'id', 'DESC']],
+            limit:Number(limit),
+            offset:Number(offset),
+            subQuery:false,
+            transaction});
 
         return result.map((item) => {
             return {

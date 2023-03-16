@@ -1,6 +1,6 @@
 import authFetch from "../fetchs/AuthFetch.js";
 import elementFactory from "../elements/MyListElements.js";
-import {reFreshMovieListImage} from "../util/convertImage.js";
+import {reFreshMovieListImage, getMovieListThumb} from "../util/convertImage.js";
 import {validateNickname, validateTitle} from "../util/validationText.js";
 
 function distributePick(simplePicks, bucketItemMovies) {
@@ -24,25 +24,6 @@ function distributePick(simplePicks, bucketItemMovies) {
     unSelectList,
   };
 }
-function getMovieListThumb(thumbs) {
-  let index = 0;
-  let array = [
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
-      {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
-  ];
-  for (const item of thumbs) {
-    if (item.thumb) {
-      array[index] = item;
-      index++;
-    }
-    if (index >= 3) {
-      break;
-    }
-  }
-  return array;
-}
-
 
 async function movieCheckBoxClickEventListener(
     e, eventParameter,

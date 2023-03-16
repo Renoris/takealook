@@ -7,6 +7,25 @@ export function convertImageScaleMedium(image) {
     return `${image.slice(0, index)}type=m203_290_2`;
 }
 
+export function getMovieListThumb(thumbs) {
+    let index = 0;
+    let array = [
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image.png`},
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_black.png`},
+        {thumb:`${window.location.protocol}//${window.location.host}/images/no_image_color.png`},
+    ];
+    for (const item of thumbs) {
+        if (item.thumb) {
+            array[index] = item;
+            index++;
+        }
+        if (index >= 3) {
+            break;
+        }
+    }
+    return array;
+}
+
 export function reFreshMovieListImage(refreshThumbArg) {
     let thumbIndex = 0;
     const {thumbArray, thumbNodes} = refreshThumbArg;
