@@ -49,6 +49,7 @@
 }
 .shared_movie_info_box {
   padding: 20px;
+  flex-grow: 1;
 }
 .shared_movie_info_box h3 {
   font-size: 18px;
@@ -69,7 +70,7 @@
 }
 .shared_movie_description {
   width: 100%;
-  height: 100px;
+  height: 110px;
   overflow: auto;
 }
 .shared_movie_description h4 {
