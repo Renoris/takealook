@@ -1,5 +1,5 @@
 /* 반응형 모바일 사이즈 */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 720px) {
   /* 헤더(모바일) */
   .head_container {
     padding: 0 16px;
@@ -152,7 +152,7 @@
 }
 
 /* 중간 사이즈(태블릿 등 화면조정) */
-@media screen and (min-width: 481px) and (max-width: 992px) {
+@media screen and (min-width: 721px) and (max-width: 1280px) {
   /* 헤더 부분 */
   .head_container {
     padding: 0 16px;

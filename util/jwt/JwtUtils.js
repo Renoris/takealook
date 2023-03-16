@@ -21,13 +21,14 @@ module.exports = {
 
         return jwt.sign(payload, accessSecret, { // secret으로 sign하여 발급하고 return
             algorithm: 'HS256', // 암호화 알고리즘
-            expiresIn: '2h', 	  // 유효기간
+            expiresIn: '4h', 	  // 유효기간
         });
     },
     verify: (token) => { // access token 검증
         let decoded = null;
         try {
-            decoded = jwt.verify(token, accessSecret);
+            decoded = jwt.decode(token, accessSecret);
+            jwt.verify(token, accessSecret);
             return {
                 ok: true,
                 id: decoded.id,
@@ -37,6 +38,7 @@ module.exports = {
         } catch (err) {
             return {
                 ok: false,
+                id : decoded.id,
                 message: err.message,
             };
         }
@@ -62,7 +64,8 @@ module.exports = {
                 }
             }) // refresh token 가져오기
 
-            if (token === data.refresh_token) {
+            console.log(data);
+            if (token === data.dataValues.refresh_token) {
                 try {
                     jwt.verify(token, refreshSecret);
                     return true;

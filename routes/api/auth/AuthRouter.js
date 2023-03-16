@@ -36,17 +36,18 @@ router.get('/:hash', async (req, res) => {
 
 router.post('/refresh', async (req, res) => {
     try {
-        const {authorization} = req.headers;
+        const {authorization, refresh} = req.headers;
         const token = jwtUtil.resolveToken(authorization);
         const {id, message, role} = jwtUtil.verify(token);
-        if (message === 'TokenExpiredError') {
-            const {refreshToken} = req.body;
-            if (!refreshToken) throw Error("리프레시 토큰이 없습니다.");
-            if (!await jwtUtil.refreshVerify(token, id)) throw Error("리프레시 토큰이 올바르지 않습니다.");
+        if (message === 'jwt expired') {
+            if (!refresh) throw Error("리프레시 토큰이 없습니다.");
+            const resolveRefresh = jwtUtil.resolveToken(refresh);
+            if (!await jwtUtil.refreshVerify(resolveRefresh, id)) throw Error("리프레시 토큰이 올바르지 않습니다.");
             const refreshedAccessToken = jwtUtil.sign({id, role});
+            res.status(200);
             res.send({accessToken : refreshedAccessToken});
         } else {
-            throw Error("토큰이 만료되지 않았습니다.")
+            throw Error("올바른 토큰이 아닙니다.")
         }
     }catch (error) {
         responseHandler.badRequest(res, error.message);

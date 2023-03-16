@@ -1,7 +1,13 @@
 let isChangeAccess = false;
 
 async function authFetch(url, method = "GET" , bodyParam, contentType = 'application/json') {
-    if (isChangeAccess) return;
+    if (isChangeAccess) {
+        while (true) {
+            if (!isChangeAccess) {
+                break;
+            }
+        }
+    }
     const init = {
         method,
         headers : {
@@ -22,21 +28,22 @@ async function authFetch(url, method = "GET" , bodyParam, contentType = 'applica
         } else {
             isChangeAccess = true;
             const result = await response.json();
-            if (result.message.include('TokenExpiredError')){
+            if (result.message.includes("TokenExpiredError")){
                 const refreshResponse = await fetch('/api/auth/refresh',
                     {
                         method : "POST",
                         headers : {
                             'Content-Type' : 'application/json',
-                            authorization :  localStorage.getItem('takealook-access')},
-                        body: {
-                            refreshToken: JSON.stringify(localStorage.getItem('takealook-refresh'))
-                        }
+                            authorization :  localStorage.getItem('takealook-access'),
+                            refresh: localStorage.getItem('takealook-refresh'),
+                        },
                     });
                 if (refreshResponse.status !== 200) throw Error ("토큰 갱신에 실패했습니다.");
                 const {accessToken} = await refreshResponse.json();
-                localStorage.setItem('takealook-access', accessToken);
-                location.reload();
+                localStorage.setItem('takealook-access', `bearer ${accessToken}`);
+                init.headers.authorization = localStorage.getItem('takealook-access');
+                return await (await fetch(url, init)).json();
+
             } else {
                 throw Error("비정상적인 토큰입니다.")
             }
@@ -44,7 +51,7 @@ async function authFetch(url, method = "GET" , bodyParam, contentType = 'applica
     } catch (error) {
         localStorage.removeItem('takealook-refresh');
         localStorage.removeItem('takealook-access');
-        location.href = "/";
+        location.href = '/';
     } finally {
         isChangeAccess = false;
     }
