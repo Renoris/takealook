@@ -1,14 +1,24 @@
-import {convertImageScaleMedium, convertImageScaleSmall, reFreshMovieListImage} from "../util/convertImage.js";
-import {toggleModal} from "../index/main_contEventListener.js";
-import authFetch from "../fetchs/AuthFetch.js";
+import {reFreshMovieListImage} from "../../util/convertImage.js";
+import authFetch from "../../fetchs/AuthFetch.js";
+import {movieListClickEventListener, shareValidClickEvent, shareInvalidClickEvent} from "../myListMovieListEvent.js";
+
+async function deleteFolderEvent(e, folderBox) {
+    const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
+    if (!response.message) {
+        alert("서버와 통신하지 못하였습니다.");
+        return;
+    }
+    folderBox.remove();
+    alert("삭제되었습니다.");
+}
+
 const elementFactory = {
     /**
      * 무비 리스트 엘리멘트 생성
      * @param bucket
      * @param parentNode
-     * @param movieListClickEventListener : function
      */
-    reCreateMovieList: function (bucket, parentNode, movieListClickEventListener) {
+    reCreateMovieList: function (bucket, parentNode) {
         const {bucketId, bucketName, publish, thumbArray} = bucket;
         //엘리먼트 생성
         const folderBox = document.createElement("div");
@@ -59,34 +69,13 @@ const elementFactory = {
         shareValid.classList.add('share_valid');
         shareValid.id = `share_${bucketId}`
         shareValid.src = `${window.location.protocol}//${window.location.host}/images/share_valid.png`;
-        shareValid.addEventListener('click', async (e) => {
-            const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : false});
-            if (!response.message) {
-                alert("서버와 통신하지 못하였습니다.");
-                return;
-            }
-            shareValid['data-active'] = 0;
-            shareValid.classList.remove('share_on');
-            shareInvalid['data-active'] = 1;
-            shareInvalid.classList.add('share_on');
-            sharing.classList.remove('share_on');
-        })
+        shareValid.addEventListener('click', async (e) => shareValidClickEvent(e, shareValid, shareInvalid, sharing));
+
 
         const shareInvalid = document.createElement('img');
         shareInvalid.classList.add('share_invalid');
         shareInvalid.src = `${window.location.protocol}//${window.location.host}/images/share_invalid.png`;
-        shareInvalid.addEventListener('click', async (e) => {
-            const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : true});
-            if (!response.message) {
-                alert("서버와 통신하지 못하였습니다.");
-                return;
-            }
-            shareValid['data-active'] = 1;
-            shareValid.classList.add('share_on');
-            shareInvalid['data-active'] = 0;
-            shareInvalid.classList.remove('share_on');
-            sharing.classList.add('share_on');
-        })
+        shareInvalid.addEventListener('click', async (e) => shareInvalidClickEvent(e, shareValid, shareInvalid, sharing));
 
         if(publish) {
             shareValid['data-active'] = 1;
@@ -106,16 +95,7 @@ const elementFactory = {
             deleteFolder.classList.add('delete_on');
         }
 
-        deleteFolder.addEventListener('click', async (e) => {
-            const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
-            if (!response.message) {
-                alert("서버와 통신하지 못하였습니다.");
-                return;
-            }
-            folderBox.remove();
-            alert("삭제되었습니다.");
-        })
-
+        deleteFolder.addEventListener('click', async (e) => deleteFolderEvent(e, folderBox));
 
         const folderName = document.createElement("h4");
         folderName.id = `folder_${bucketId}`;
@@ -134,90 +114,6 @@ const elementFactory = {
         //이벤트 할당
         thumb1.addEventListener("click", (e) => movieListClickEventListener(e, bucket, folderBox, refreshThumbArg));
     },
-    /**
-     * 모달 내 영화 리스트 아이템 생성
-     * @param movieInfo
-     * @param bucketId
-     * @param checked
-     * @param selectedMovies
-     * @param unSelectedMovies
-     * @param movieCheckBoxClickEventListener : function
-     */
-    createBucketItem : function (movieInfo, bucketId, checked, selectedMovies, unSelectedMovies, movieCheckBoxClickEventListener, refreshThumbArg) {
-        const li = document.createElement("li");
-        li.id = `movie_${movieInfo.movieId}`;
-        const img = document.createElement("img");
-        const convertedThumb = convertImageScaleSmall(movieInfo.thumb);
-
-        img.src = convertedThumb;
-
-        const titleDom = document.createElement("h3");
-        titleDom.innerHTML = movieInfo.title;
-
-        const inputCheckBox = document.createElement("input");
-        inputCheckBox.type = "checkbox";
-        if (checked) {
-            inputCheckBox.checked = true;
-        }
-
-        const eventParameters = {
-            movieId:movieInfo.movieId,
-            bucketId,
-            movieRow:li,
-            selectedMovies,
-            unSelectedMovies,
-            refreshThumbArg,
-            thumb:convertedThumb
-        }
-
-        inputCheckBox.addEventListener("change", (e) => movieCheckBoxClickEventListener(e, eventParameters));
-
-        li.append(img);
-        li.append(titleDom);
-        li.append(inputCheckBox);
-        if (checked) {
-            selectedMovies.append(li);
-        } else {
-            unSelectedMovies.append(li);
-        }
-    },
-    /**
-     * 내 픽 영화 엘리먼트 생성
-     * @param movie
-     * @param favBtnClickEventListener
-     * @param parentNode
-     */
-    createMyPick: function(movie, favBtnClickEventListener, parentNode) {
-        const myListPoster = document.createElement("div");
-        myListPoster.classList.add("mylist_poster");
-        myListPoster.id = `movie_${movie.movieId}`;
-        const poster_collection = document.createElement("img");
-        poster_collection.classList.add("poster_collection");
-        poster_collection.src = convertImageScaleMedium(movie.thumb);
-        const favBtn = document.createElement("img");
-        favBtn.classList.add("poster_click");
-        favBtn.src = "images/fav_on.png";
-
-        const posterInfo = document.createElement("div");
-        posterInfo.classList.add("poster_info");
-
-        const title = document.createElement("h3");
-        title.innerText = movie.title;
-        const genre = document.createElement("span");
-        genre.innerText = movie.genre;
-
-        posterInfo.append(title);
-        posterInfo.append(genre);
-
-        myListPoster.appendChild(poster_collection);
-        myListPoster.appendChild(favBtn);
-        myListPoster.appendChild(posterInfo);
-
-        parentNode.appendChild(myListPoster);
-        poster_collection.addEventListener('click', async (e) => {await toggleModal(movie.movieId)});
-        favBtn.addEventListener("click", async (e) => favBtnClickEventListener(e, movie.movieId, parentNode, myListPoster));
-    },
-
 
     createEmptyMovieFolder: function (movieListClickEventListener, parentNode) {
         let thumbArray = [
@@ -269,10 +165,10 @@ const elementFactory = {
         folderBox.addEventListener("click", async (e) => {
             const { bucketId } = await authFetch("/api/bucket/my", "POST", { bucketName: "새로운 폴더" });
             folderBox.remove();
-            elementFactory.reCreateMovieList({bucketId, bucketName :"새로운 폴더" , publish:false , thumbArray} , parentNode, movieListClickEventListener);
+            elementFactory.reCreateMovieList({bucketId, bucketName :"새로운 폴더" , publish:false , thumbArray} , parentNode);
             parentNode.append(folderBox);
         });
-    }
+    },
 };
 
 export default elementFactory;
