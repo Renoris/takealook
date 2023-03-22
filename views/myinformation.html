@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 내 정보</title>
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/myinfo_media.css" />
-    <link rel="stylesheet" href="stylesheets/mainstyle/myinformation/image_select_modal.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/mainstyle/myinformation/myinfo_media.css" />
+    <link rel="stylesheet" href="/stylesheets/mainstyle/myinformation/image_select_modal.css" />
   </head>
   <body>
     <header>
       <!-- 로고 및 검색바 인터페이스 -->
       <div class="head_container">
         <h1 class="logo">
-          <a href="/"><img src="images/logo.png" alt="Take a Look logo" /></a>
+          <a href="/public"><img src="/images/logo.png" alt="Take a Look logo" /></a>
         </h1>
         <div class="interface">
           <form id="search">
@@ -42,7 +42,7 @@
           <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
           <button type="button" class="outer_login">로그인</button>
           <div class="outer_profile">
-            <img id="profile_image" src="./images/sample_profile.png" alt="" />
+            <img id="profile_image" src="/images/sample_profile.png" alt="" />
             <span id="outer_nick_name">김떼껄룩</span>
           </div>
           <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
@@ -86,7 +86,7 @@
       <div class="account_box">
         <div class="account_info">
           <div class="account_img">
-            <img id="inner_profile_image" src="./images/sample_profile.png" alt="프로필 사진" />
+            <img id="inner_profile_image" src="/images/sample_profile.png" alt="프로필 사진" />
           </div>
           <div class="name_email">
             <h2 id="user_nick_name">떼껄룩 님</h2>
@@ -107,7 +107,7 @@
         <!-- 프로필 사진 -->
         <div class="my_profile">
           <div class="image_box">
-            <img id="update_profile_img" src="./images/sample_profile.png" />
+            <img id="update_profile_img" src="/images/sample_profile.png" />
             <button class="image_change">이미지 변경</button>
           </div>
         </div>
@@ -176,7 +176,7 @@
       <div class="modal_loading">
         <div>
           <div class="loading">
-            <img src="./images/loading.png" alt="고양이와 바다" />
+            <img src="/images/loading.png" alt="고양이와 바다" />
           </div>
           <div class="wavy">
             <span style="--i: 1">l</span>
@@ -194,9 +194,9 @@
       </div>
     </main>
 
-    <script type="module" src="components/header/header.js"></script>
-    <script type="module" src="components/info/myInformation.js"></script>
-    <script type="module" src="components/info/image_select_modal.js"></script>
+    <script type="module" src="/components/header/header.js"></script>
+    <script type="module" src="/components/info/myInformation.js"></script>
+    <script type="module" src="/components/info/image_select_modal.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
