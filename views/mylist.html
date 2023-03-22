@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <title>보고싶은 영화 담아두자! 내 리스트</title>
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/myliststyle/reaction_call.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/myliststyle/reaction_call.css" />
   </head>
 
   <body>
@@ -16,7 +16,7 @@
       <!-- 로고 및 검색바 인터페이스 -->
       <div class="head_container">
         <h1 class="logo">
-          <a href="/"><img src="images/logo.png" alt="Take a Look logo" /></a>
+          <a href="/"><img src="/images/logo.png" alt="Take a Look logo" /></a>
         </h1>
         <div class="interface">
           <form id="search" style="display: none">
@@ -43,7 +43,7 @@
           <!-- outer_show 클래스로 로그인과 프로필 토글한다 -->
           <button type="button" class="outer_login">로그인</button>
           <div class="outer_profile">
-            <img id="profile_image" src="./images/sample_profile.png" alt="" />
+            <img id="profile_image" src="/images/sample_profile.png" alt="" />
             <span id="outer_nick_name">김떼껄룩</span>
           </div>
           <!-- outer_show 클래스로 회원가입과 로그아웃 토글한다 -->
@@ -87,7 +87,7 @@
       <div class="account_box">
         <div class="account_info">
           <div class="account_img">
-            <img id="inner_profile_image" src="./images/sample_profile.png" alt="프로필 사진" />
+            <img id="inner_profile_image" src="/images/sample_profile.png" alt="프로필 사진" />
           </div>
           <div class="name_email">
             <h2 id="user_nick_name">떼껄룩 님</h2>
@@ -106,7 +106,7 @@
       <h2 class="mylist_head">내 리스트</h2>
       <div class="mylist_hero">
         <div class="mylist_title">
-          <img id="my_list_profile_image" src="./images/sample_profile.png" />
+          <img id="my_list_profile_image" src="/images/sample_profile.png" />
           <div>
             <h3 id="my_list_nick_name"><b>떼껄룩</b> 님<br />영화취향</h3>
             <a href="./myinformation">내 정보 편집</a>
@@ -120,7 +120,7 @@
           <article class="list_cont">
             <div class="list_head">
               <div class="list_title">
-                <img src="images/listcreate.png" />
+                <img src="/images/listcreate.png" />
                 <h3 class="list_text">생성한 리스트</h3>
               </div>
               <!-- 공유, 편집, 삭제 기능 -->
@@ -160,7 +160,7 @@
           <article class="favlist_cont favlist_hide">
             <div class="list_head">
               <div class="list_title">
-                <img src="images/moviecollection.png" />
+                <img src="/images/moviecollection.png" />
                 <h3 class="list_text">내 취향 영화</h3>
                 <button type="button" name="더보기" id="more_btn">
                   <ion-icon class="more" name="chevron-down-outline"></ion-icon> 더보기
@@ -203,7 +203,7 @@
           <h3 class="in_list">포함된 영화</h3>
           <ul class="selected_movies">
             <li>
-              <img src="./images/no_image.png" alt="" />
+              <img src="/images/no_image.png" alt="" />
               <h3>영화 제목 출력 부분</h3>
               <input type="checkbox" />
             </li>
@@ -212,7 +212,7 @@
           <h3 class="out_list">미포함된 영화</h3>
           <ul class="unselected_movies">
             <li>
-              <img src="./images/no_image.png" alt="" />
+              <img src="/images/no_image.png" alt="" />
               <h3>영화 제목 출력 부분</h3>
               <input type="checkbox" />
             </li>
@@ -221,7 +221,7 @@
       </article>
       <div class="modal_movie">
         <div class="movie_card_container">
-          <img src="./images/no_image.png" class="img_card" id="movie_detail_image" />
+          <img src="/images/no_image.png" class="img_card" id="movie_detail_image" />
           <div class="text_card">
             <div class="title_close">
               <h2 class="movie_detail_title">Title</h2>
@@ -254,7 +254,7 @@
       <div class="modal_loading">
         <div>
           <div class="loading">
-            <img src="./images/loading.png" alt="고양이와 바다" />
+            <img src="/images/loading.png" alt="고양이와 바다" />
           </div>
           <div class="wavy">
             <span style="--i: 1">l</span>
@@ -272,7 +272,7 @@
       </div>
     </main>
     <script type="module" src="/components/mylist/mylist.js"></script>
-    <script type="module" src="components/header/header.js"></script>
+    <script type="module" src="/components/header/header.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

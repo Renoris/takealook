@@ -11,7 +11,7 @@ const authWebRouter = require('./routes/web/auth');
 
 const app = express();
 //views를 요청하면 /public으로 연결하겠다
-app.set('views', __dirname + '/public');
+app.set('views', path.join(__dirname + '/views'));
 //엔진은 ejs를 쓰되 html로 하겠다.
 app.engine('html', require('ejs').renderFile);
 //뷰 엔진은 html로
