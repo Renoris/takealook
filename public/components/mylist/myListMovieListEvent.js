@@ -57,20 +57,7 @@ export function shareBtnClickEventListener(e, shareBtn) {
     }
 }
 
-export async function shareValidClickEvent(e, shareValid, shareInvalid, sharing) {
-    const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : true});
-    if (!response.message) {
-        alert("서버와 통신하지 못하였습니다.");
-        return;
-    }
-    shareValid['data-active'] = 1;
-    shareValid.classList.add('share_on');
-    shareInvalid['data-active'] = 0;
-    shareInvalid.classList.remove('share_on');
-    sharing.classList.add('share_on');
-}
-
-export async function shareInvalidClickEvent(e, shareValid, shareInvalid, sharing) {
+export async function shareValidClickEvent(e, bucketId ,shareValid, shareInvalid, sharing) {
     const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : false});
     if (!response.message) {
         alert("서버와 통신하지 못하였습니다.");
@@ -81,6 +68,19 @@ export async function shareInvalidClickEvent(e, shareValid, shareInvalid, sharin
     shareInvalid['data-active'] = 1;
     shareInvalid.classList.add('share_on');
     sharing.classList.remove('share_on');
+}
+
+export async function shareInvalidClickEvent(e, bucketId ,shareValid, shareInvalid, sharing) {
+    const response = await authFetch(`/api/bucket/my/publish/${bucketId}`, 'PATCH', {publish : true});
+    if (!response.message) {
+        alert("서버와 통신하지 못하였습니다.");
+        return;
+    }
+    shareValid['data-active'] = 1;
+    shareValid.classList.add('share_on');
+    shareInvalid['data-active'] = 0;
+    shareInvalid.classList.remove('share_on');
+    sharing.classList.add('share_on');
 }
 
 

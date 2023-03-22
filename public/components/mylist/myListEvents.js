@@ -2,6 +2,7 @@ import authFetch from "../fetchs/AuthFetch.js";
 import myListElement from "./elements/MyListElements.js";
 import {getMovieListThumb} from "../util/convertImage.js";
 import myListMyPickElement from "./elements/MyListMyPickElement.js";
+import myListElements from "./elements/MyListElements.js";
 
 export async function spreadMyPick(listPoster) {
   try {

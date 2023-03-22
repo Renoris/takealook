@@ -2,7 +2,7 @@ import {reFreshMovieListImage} from "../../util/convertImage.js";
 import authFetch from "../../fetchs/AuthFetch.js";
 import {movieListClickEventListener, shareValidClickEvent, shareInvalidClickEvent} from "../myListMovieListEvent.js";
 
-async function deleteFolderEvent(e, folderBox) {
+async function deleteFolderEvent(e, bucketId , folderBox) {
     const response = await authFetch(`/api/bucket/my/${bucketId}`, 'DELETE');
     if (!response.message) {
         alert("서버와 통신하지 못하였습니다.");
@@ -69,13 +69,13 @@ const elementFactory = {
         shareValid.classList.add('share_valid');
         shareValid.id = `share_${bucketId}`
         shareValid.src = `${window.location.protocol}//${window.location.host}/images/share_valid.png`;
-        shareValid.addEventListener('click', async (e) => shareValidClickEvent(e, shareValid, shareInvalid, sharing));
+        shareValid.addEventListener('click', async (e) => shareValidClickEvent(e, bucketId ,shareValid, shareInvalid, sharing));
 
 
         const shareInvalid = document.createElement('img');
         shareInvalid.classList.add('share_invalid');
         shareInvalid.src = `${window.location.protocol}//${window.location.host}/images/share_invalid.png`;
-        shareInvalid.addEventListener('click', async (e) => shareInvalidClickEvent(e, shareValid, shareInvalid, sharing));
+        shareInvalid.addEventListener('click', async (e) => shareInvalidClickEvent(e, bucketId ,shareValid, shareInvalid, sharing));
 
         if(publish) {
             shareValid['data-active'] = 1;
@@ -95,7 +95,7 @@ const elementFactory = {
             deleteFolder.classList.add('delete_on');
         }
 
-        deleteFolder.addEventListener('click', async (e) => deleteFolderEvent(e, folderBox));
+        deleteFolder.addEventListener('click', async (e) => deleteFolderEvent(e, bucketId ,folderBox));
 
         const folderName = document.createElement("h4");
         folderName.id = `folder_${bucketId}`;
@@ -115,7 +115,7 @@ const elementFactory = {
         thumb1.addEventListener("click", (e) => movieListClickEventListener(e, bucket, folderBox, refreshThumbArg));
     },
 
-    createEmptyMovieFolder: function (movieListClickEventListener, parentNode) {
+    createEmptyMovieFolder: function (parentNode) {
         let thumbArray = [
             {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
             {thumb:`${window.location.protocol}//${window.location.host}/images/add_folder.png`},
